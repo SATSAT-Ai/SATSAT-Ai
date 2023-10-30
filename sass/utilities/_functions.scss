@@ -1,0 +1,16 @@
+@use "sass:math";
+
+@function rem($size) {
+	@if math.is-unitless($size) {
+		@return math.div($size, 16) + rem;
+	} @else {
+		@error 'Dont use units for the rem()';
+	}
+}
+@function em($size) {
+	@if math.is-unitless($size) {
+		@return math.div($size, 16) + em;
+	} @else {
+		@error 'Dont use units for the em()';
+	}
+}

@@ -1,0 +1,82 @@
+"use client";
+import Image from "next/image";
+import satsatLogo from "../public/satsat-logo.svg";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { MdMenu, MdArrowForward } from "react-icons/md";
+import { useState } from "react";
+import MobileNav from "./MobileNav";
+
+const Header = () => {
+	const [showNav, setShowNav] = useState(false);
+	const pathname = usePathname();
+
+	return (
+		<header className="py-3 z-10 fixed w-full bg-white/20 top-0">
+			<div className="my-max flex items-center justify-between w-full">
+				<Image src={satsatLogo} height={120} width={120} alt="SATSAT-Ai" />
+				<MdMenu
+					className="sm:hidden"
+					color="white"
+					size="25"
+					onClick={() => setShowNav(true)}
+				/>
+				{showNav && (
+					<div className="sm:hidden">
+						<MobileNav setShowNav={setShowNav} />
+					</div>
+				)}
+				<ul className="hidden sm:flex items-center gap-5 font-medium text-text-normal">
+					<li
+						className={`${
+							pathname == "/"
+								? "text-mid--yellow"
+								: "text-grey-lightest hover:text-white"
+						}`}
+					>
+						<Link href={"/home"}>Home</Link>
+					</li>
+					<li
+						className={`${
+							pathname == "/about"
+								? "text-mid--yellow"
+								: "text-grey-lightest hover:text-white"
+						}`}
+					>
+						<Link href={"/about"}>About</Link>
+					</li>
+					<li
+						className={`${
+							pathname == "/features"
+								? "text-mid--yellow"
+								: "text-grey-lightest hover:text-white"
+						}`}
+					>
+						<Link href={"/features"}>Features</Link>
+					</li>
+					<li
+						className={`${
+							pathname == "/contact"
+								? "text-mid--yellow"
+								: "text-grey-lightest hover:text-white"
+						}`}
+					>
+						<Link href={"/contact"}>Contact</Link>
+					</li>
+					<li className="text-grey-lightest hover:text-white">
+						<Link href={"/login"}>Sign in</Link>
+					</li>
+					<Link
+						className="flex items-center gap-3 active:scale-[1.01] text-white bg-brand-green button"
+						href={"/signup"}
+					>
+						Get Started
+						<MdArrowForward color="white" size="25" />
+					</Link>
+				</ul>
+			</div>
+		</header>
+	);
+};
+
+export default Header;

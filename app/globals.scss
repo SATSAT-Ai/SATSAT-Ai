@@ -1,0 +1,56 @@
+@use "../sass/utilities/functions" as *;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	body {
+		min-height: 100vh;
+	}
+
+	p {
+		font-size: rem(16);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	h1,
+	h2,
+	h4 {
+		line-height: 1.4;
+	}
+}
+
+@layer components {
+	.button {
+		padding-inline: rem(15);
+		padding-block: rem(10);
+		border-radius: rem(8);
+		font-size: rem(16);
+	}
+}
+
+@layer utilities {
+	.my-max {
+		width: min(100% - 20px, 1200px);
+		margin-inline: auto;
+	}
+
+	.green-blob {
+		background-color: #29a173;
+		border-radius: 50%;
+		position: absolute;
+		transform: translateX(-50%);
+		filter: blur(200px);
+	}
+	.yellow-blob {
+		background-color: #c18e3b;
+		border-radius: 50%;
+		position: absolute;
+		transform: translateX(-50%);
+		filter: blur(200px);
+	}
+	.my-shadow {
+		box-shadow: -7px 1px 20px -9px #29a173, 1px -1px 20px -7px #c18e3b;
+	}
+}
