@@ -13,22 +13,22 @@ export default function Home() {
 			<div className="green-blob w-96 h-96 top-[-10%] left-1/2"></div>
 			<Header />
 			<div className="my-max">
-				<section className=" z-10 py-48 text-center flex flex-col ">
+				<section className="pb-56 mt-7 z-10 text-center flex flex-col ">
 					<h1 className="text-brand-green text-text-50 md:text-text-60 lg:text-text-80">
 						SATSAT Ai
 					</h1>
-					<p className="text-mid--yellow text-text-normal md:text-text-normal">
+					<p className="text-mid--yellow max-w-xs mx-auto text-text-normal md:text-text-normal">
 						Query your financial data with natural language.
 					</p>
 					<Link
-						className="flex items-center gap-2 active:scale-[1.01] text-white w-fit mx-auto mt-4 bg-brand-green button"
+						className="flex hover:bg-mid--yellow transition-colors duration-200 items-center gap-2 active:scale-[1.01] text-white w-fit mx-auto mt-7 bg-brand-green button"
 						href={"/signup"}
 					>
 						Get Started
 						<MdArrowForward color="white" size="25" />
 					</Link>
 				</section>
-				<main className="py-10 md:py-36 ">
+				<main className="md:py-36 ">
 					<div className="px-5">
 						<div className="flex relative rounded-3xl my-shadow mx-auto max-w-4xl items-center justify-center">
 							<div className="green-blob w-96 h-96 top-[50%] left-[-50%] md:left-[-20%]"></div>
@@ -42,7 +42,7 @@ export default function Home() {
 								priority
 							/>
 						</div>
-						<section className="text-center flex flex-col py-40">
+						<section className="text-center flex flex-col">
 							<h2 className="text-brand-green mb-3 text-text-40 md:text-text-60 lg:text-text-80">
 								WHAT IS SATSAT Ai?
 							</h2>
@@ -72,7 +72,7 @@ export default function Home() {
 								</div>
 								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center justify-center">
 									<Image src={chatBot} height={50} width={50} alt="chatbot" />
-									<h3 className="text-text-20 mb-2">Seamless Storage:</h3>
+									<h3 className="text-text-20 mb-2">Seamless Storage</h3>
 									<p className="text-grey-lightest">
 										Processed documents are securely stored in-house for instant
 										retrieval.
@@ -89,7 +89,7 @@ export default function Home() {
 								</div>
 							</div>
 						</section>
-						<section className="text-center flex flex-col py-40">
+						<section className="text-center flex flex-col">
 							<h3 className="text-brand-green mb-3 text-text-40 md:text-text-60 lg:text-text-80">
 								WHY SATSAT Ai?
 							</h3>
@@ -100,7 +100,7 @@ export default function Home() {
 							</p>
 
 							<div className=" relative  mt-10 md:mt-20 mx-auto max-w-4xl">
-								<h3 className=" my-5 text-center  text-text-normal md:text-text-20 font-medium max-w-4xl mr-auto md:text-left text-mid--yellow">
+								<h3 className=" my-5 text-center  text-text-normal md:text-text-20 max-w-4xl mr-auto md:text-left text-mid--yellow">
 									Here is what set SATSAT Ai apart:
 								</h3>
 								<div className=" grid gap-5 grid-cols-1 sm:grid-cols-2">
@@ -215,7 +215,7 @@ export default function Home() {
 								</div>
 							</div>
 						</section>
-						<section className="mt-52  text-center flex flex-col ">
+						<section className="text-center flex flex-col ">
 							<h4 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80">
 								Eget ut adipiscing in ac
 							</h4>

@@ -16,7 +16,7 @@ const MobileNav = ({ setShowNav }: navProps) => {
 				onClick={() => setShowNav(false)}
 				color="white"
 				size="25"
-				className="absolute top-7 right-4"
+				className="absolute cursor-pointer top-5 right-4"
 			/>
 			<li
 				className={`${

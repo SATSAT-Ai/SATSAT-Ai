@@ -4,19 +4,42 @@ import satsatLogo from "../public/satsat-logo.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdMenu, MdArrowForward } from "react-icons/md";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import MobileNav from "./MobileNav";
 
 const Header = () => {
 	const [showNav, setShowNav] = useState(false);
+	const [scrolled, setScrolled] = useState(false);
 	const pathname = usePathname();
 
+	useEffect(() => {
+		const handleScroll = () => {
+			if (window.scrollY > 60) {
+				setScrolled(true);
+			} else {
+				setScrolled(false);
+			}
+		};
+
+		window.addEventListener("scroll", handleScroll);
+
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, []);
+
 	return (
-		<header className="py-3 z-10 fixed w-full bg-white/20 top-0">
+		<header
+			className={`py-3 z-10 fixed w-full transition-background duration-300 ${
+				scrolled ? "bg-white/10 backdrop-blur-md saturate-150" : ""
+			} top-0`}
+		>
 			<div className="my-max flex items-center justify-between w-full">
-				<Image src={satsatLogo} height={120} width={120} alt="SATSAT-Ai" />
+				<Link href={"/"}>
+					<Image src={satsatLogo} height={120} width={120} alt="SATSAT-Ai" />
+				</Link>
 				<MdMenu
-					className="sm:hidden"
+					className="sm:hidden cursor-pointer"
 					color="white"
 					size="25"
 					onClick={() => setShowNav(true)}
@@ -26,7 +49,7 @@ const Header = () => {
 						<MobileNav setShowNav={setShowNav} />
 					</div>
 				)}
-				<ul className="hidden sm:flex items-center gap-5 font-medium text-text-normal">
+				<ul className="hidden sm:flex items-center gap-5 font-normal text-text-normal">
 					<li
 						className={`${
 							pathname == "/"
@@ -67,7 +90,7 @@ const Header = () => {
 						<Link href={"/login"}>Sign in</Link>
 					</li>
 					<Link
-						className="flex items-center gap-3 active:scale-[1.01] text-white bg-brand-green button"
+						className="flex items-center gap-3 hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
 						href={"/signup"}
 					>
 						Get Started
