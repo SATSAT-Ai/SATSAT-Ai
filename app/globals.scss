@@ -4,8 +4,19 @@
 @tailwind utilities;
 
 @layer base {
+	*::selection {
+		background-color: #29a173;
+		color: white;
+	}
 	body {
 		min-height: 100vh;
+		scroll-behavior: smooth;
+	}
+
+	img {
+		user-select: none;
+		pointer-events: none;
+		-webkit-user-select: none;
 	}
 
 	p {
@@ -20,10 +31,11 @@
 	h4 {
 		line-height: 1.4;
 		font-weight: 700;
+		margin-bottom: 1.2rem;
 	}
 
 	section {
-		padding-top: 12rem;
+		padding-block: 5rem;
 	}
 }
 
@@ -58,5 +70,36 @@
 	}
 	.my-shadow {
 		box-shadow: -7px 1px 20px -9px #29a173, 1px -1px 20px -7px #c18e3b;
+	}
+
+	.gradient {
+		background: linear-gradient(to top, #29a173, #c18e3b);
+	}
+
+	.gradient2 {
+		background: linear-gradient(to left, #050d0a, #a3a3a3, #050d0a);
+	}
+
+	.scrollbar-hidden {
+		&::-webkit-scrollbar {
+			display: none;
+		}
+	}
+
+	/* Define the keyframes for the marquee animation */
+	@keyframes marquee {
+		0% {
+			transform: translateX(100%); /* Start offscreen to the right */
+		}
+		100% {
+			transform: translateX(-100%); /* End offscreen to the left */
+		}
+	}
+
+	.marquee-container {
+		display: flex; /* Ensure the items are in a row */
+		overflow: hidden; /* Hide the overflow content */
+		width: 100%; /* Adjust as needed */
+		animation: marquee 20s linear infinite; /* Adjust the animation duration as needed */
 	}
 }
