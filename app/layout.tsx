@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.scss";
+import Footer from "@/components/Footer";
+import Header from "@/components/Header";
+import { SATSATmetadata } from "@/utils/metadata";
 
 const roboto = Roboto({
 	subsets: ["latin", "greek"],
 	weight: ["300", "400", "700", "900"],
 });
 
-export const metadata: Metadata = {
-	title: "SATSAT-Ai",
-	description:
-		"SATSAT Ai is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language.",
-};
+export const metadata: Metadata = SATSATmetadata;
 
 export default function RootLayout({
 	children,
@@ -20,7 +19,10 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
+			<Header />
+
 			<body className={roboto.className}>{children}</body>
+			<Footer />
 		</html>
 	);
 }
