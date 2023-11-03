@@ -6,3 +6,10 @@ export interface featureData {
 	para: string;
 	link: string;
 }
+
+export interface Iprices {
+	id: string;
+	category: string;
+	priviledges: string[];
+	price: string;
+}
