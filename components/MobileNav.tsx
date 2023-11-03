@@ -36,6 +36,7 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 					className="absolute cursor-pointer top-5 right-4"
 				/>
 				<li
+					onClick={() => setShowNav(false)}
 					className={`${
 						pathname == "/"
 							? "text-mid--yellow"
@@ -45,6 +46,7 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 					<Link href={"/"}>Home</Link>
 				</li>
 				<li
+					onClick={() => setShowNav(false)}
 					className={`${
 						pathname == "/about"
 							? "text-mid--yellow"
@@ -54,6 +56,7 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 					<Link href={"/about"}>About</Link>
 				</li>
 				<li
+					onClick={() => setShowNav(false)}
 					className={`${
 						pathname == "/features"
 							? "text-mid--yellow"
@@ -63,6 +66,7 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 					<Link href={"/features"}>Features</Link>
 				</li>
 				<li
+					onClick={() => setShowNav(false)}
 					className={`${
 						pathname == "/contact"
 							? "text-mid--yellow"
@@ -71,12 +75,17 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 				>
 					<Link href={"/contact"}>Contact</Link>
 				</li>
-				<li className="text-grey-lightest hover:text-white">
-					<Link href={"/login"}>Sign in</Link>
+				<li
+					onClick={() => setShowNav(false)}
+					className="text-grey-lightest hover:text-white"
+				>
+					<Link href={"/signin"}>Sign in</Link>
 				</li>
-				<Link className="text-white bg-brand-green button" href={"/signup"}>
-					Get Started
-				</Link>
+				<li onClick={() => setShowNav(false)}>
+					<Link className="text-white bg-brand-green button" href={"/signup"}>
+						Get Started
+					</Link>
+				</li>
 			</ul>
 		</>
 	);
