@@ -15,6 +15,8 @@ const config: Config = {
 			darker: "#050d0a",
 			"mid--yellow": "#c18e3b",
 			"grey-light": "#444c48",
+			transparent: "transparent",
+			crimson: "crimson",
 		},
 		extend: {
 			backgroundImage: {
