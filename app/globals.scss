@@ -8,9 +8,27 @@
 		background-color: #29a173;
 		color: white;
 	}
+
+	textarea {
+		resize: none;
+	}
+
 	body {
 		min-height: 100vh;
 		scroll-behavior: smooth;
+
+		&::-webkit-scrollbar-track-piece,
+		&::-webkit-scrollbar {
+			background-color: #050d0a;
+			width: 14px;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: #a3a3a3;
+			&:hover {
+				background-color: #29a173;
+			}
+		}
 	}
 
 	img {
@@ -49,6 +67,13 @@
 }
 
 @layer utilities {
+	.dashboardbg {
+		background-image: url("../public/dashboard-background.svg");
+		background-position: center;
+		background-size: cover;
+		height: 100%;
+	}
+
 	.my-max {
 		width: min(100% - 20px, 1200px);
 		margin-inline: auto;
@@ -79,27 +104,16 @@
 	.gradient2 {
 		background: linear-gradient(to left, #050d0a, #a3a3a3, #050d0a);
 	}
+	.gradient3 {
+		background: linear-gradient(to right, #a3a3a3, #050d0a);
+	}
+	.gradient4 {
+		background: linear-gradient(to right, #050d0a, #a3a3a3);
+	}
 
 	.scrollbar-hidden {
 		&::-webkit-scrollbar {
 			display: none;
 		}
-	}
-
-	/* Define the keyframes for the marquee animation */
-	@keyframes marquee {
-		0% {
-			transform: translateX(100%); /* Start offscreen to the right */
-		}
-		100% {
-			transform: translateX(-100%); /* End offscreen to the left */
-		}
-	}
-
-	.marquee-container {
-		display: flex; /* Ensure the items are in a row */
-		overflow: hidden; /* Hide the overflow content */
-		width: 100%; /* Adjust as needed */
-		animation: marquee 20s linear infinite; /* Adjust the animation duration as needed */
 	}
 }
