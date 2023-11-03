@@ -36,7 +36,11 @@ const Header = () => {
 			<header
 				className={`py-3 z-10 fixed w-full transition-background duration-300 ${
 					scrolled
-						? "bg-white/10 backdrop-blur-md saturate-150"
+						? `${
+								pathname == "/choose-your-pricing"
+									? "bg-brand-green-darker/70"
+									: "bg-white/10"
+						  } backdrop-blur-md saturate-150`
 						: "bg-none backdrop-blur-none"
 				} top-0`}
 			>
@@ -88,11 +92,11 @@ const Header = () => {
 							<Link href={"/contact"}>Contact</Link>
 						</li>
 						<li className="text-grey-lightest hover:text-white">
-							<Link href={"/login"}>Sign in</Link>
+							<Link href={"/signin"}>Sign in</Link>
 						</li>
 						<Link
 							className="flex items-center gap-3 font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
-							href={"/signup"}
+							href={"/choose-your-pricing"}
 						>
 							Get Started
 							<MdArrowForward color="white" size="25" />
