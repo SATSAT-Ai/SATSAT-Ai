@@ -32,28 +32,31 @@ const Footer = () => {
 
 				<ul className=" items-center sm:items-start text-grey-light w-fit flex flex-col gap-3">
 					<li className="hover:text-white w-fit">
-						<Link href={"#"}>Faq</Link>
+						<Link href={"/faq"}>Faq</Link>
 					</li>
 					<li className="hover:text-white w-fit transition-colors">
-						<Link href={"#"}>Support</Link>
+						<Link href={"/support"}>Support</Link>
 					</li>
 					<li className="hover:text-white w-fit transition-colors">
-						<Link href={"#"}>Developers</Link>
+						<Link href={"/developers"}>Developers</Link>
+					</li>
+					<li className="hover:text-white w-fit transition-colors">
+						<Link href={"/choose-your-pricing"}>Pricing</Link>
 					</li>
 				</ul>
 				<ul className=" items-center sm:items-start text-grey-light w-fit flex flex-col gap-3">
 					<li className="hover:text-white w-fit">
-						<Link href={"#"}>Home</Link>
+						<Link href={"/"}>Home</Link>
 					</li>
 					<li className="hover:text-white w-fit transition-colors">
-						<Link href={"#"}>About Us</Link>
+						<Link href={"/about"}>About Us</Link>
 					</li>
 
 					<li className="hover:text-white w-fit transition-colors">
-						<Link href={"#"}>Features</Link>
+						<Link href={"/features"}>Features</Link>
 					</li>
 					<li className="hover:text-white w-fit transition-colors">
-						<Link href={"#"}>Contact</Link>
+						<Link href={"/contact"}>Contact</Link>
 					</li>
 				</ul>
 			</div>
@@ -63,14 +66,14 @@ const Footer = () => {
 					<p className="text-grey-light">&copy; All rights reserved</p>
 					<ul className="items-center text-grey-light w-fit flex gap-3">
 						<li className="hover:text-white w-fit">
-							<Link href={"#"}>Terms</Link>
+							<Link href={"/terms"}>Terms</Link>
 						</li>
 						<li className="hover:text-white w-fit transition-colors">
-							<Link href={"#"}>Privacy</Link>
+							<Link href={"/privacy"}>Privacy</Link>
 						</li>
 
 						<li className="hover:text-white w-fit transition-colors">
-							<Link href={"#"}>Cookies</Link>
+							<Link href={"/cokies"}>Cookies</Link>
 						</li>
 					</ul>
 					<ul className="items-center text-grey-light w-fit flex gap-5">
