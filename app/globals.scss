@@ -111,9 +111,28 @@
 		background: linear-gradient(to right, #050d0a, #a3a3a3);
 	}
 
+	.gradient-upgrade {
+		background: linear-gradient(40deg, #2e2e48, #005031);
+		transition: background 0.2s ease-in-out;
+		&:hover {
+			background: linear-gradient(80deg, #2e2e48, #005031);
+		}
+	}
+
 	.scrollbar-hidden {
 		&::-webkit-scrollbar {
 			display: none;
 		}
 	}
 }
+
+// .list {
+// 	&:hover {
+// 		// color: #29a173;
+// 		// background-color: #ffffff36;
+// 	}
+
+// 	// &:hover .MuiSvgIcon-root {
+// 	// 	color: #29a173;
+// 	// }
+// }
