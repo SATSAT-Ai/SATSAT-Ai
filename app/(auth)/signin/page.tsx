@@ -1,45 +1,31 @@
 import React from "react";
-import logo from "@/public/satsat-logo.svg";
 import Image from "next/image";
-import signupImage from "@/public/signupImage.svg";
+import signinImage from "@/public/signinImage.svg";
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
-import Country from "@/components/Countries";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-	title: "SATSAT-Ai Get started!",
+	title: "Welcome back to SATSAT Ai",
 };
+
 const page = () => {
 	return (
 		<>
 			<Header />
 			<div className="bg-darker pb-7 w-full min-h-screen items-center flex relative">
-				<div className="green-blob w-96 h-96 top-[-40%] left-[20%] md:top-[-25%] md:left-[10%] animate-pulse"></div>
+				<div className="yellow-blob w-96 h-96 top-[-40%] left-[20%] md:top-[-25%] md:left-[10%] animate-pulse"></div>
 
 				<main className="grid grid-cols-1 lg:grid-cols-2 h-auto mt-20 items-center justify-between w-full gap-5 max-w-5xl xl:max-w-6xl my-max">
 					<div className="flex flex-col md:flex-[.9] gap-3 items-start md:w-full max-w-sm mx-auto">
-						<Image src={logo} alt="satsat-ai" height={150} width={150} />
+						{/* <Image src={logo} alt="satsat-ai" height={150} width={150} /> */}
+						<p className="text-mid--yellow text-[27px]">Welcome back!</p>
 						<p className="text-mid--yellow">
-							Please fill your detail to create your account.
+							Please fill your details to log into your account.
 						</p>
-						<div className="w-full mt-5 flex flex-col">
-							<label
-								className="mb-2 text-text-normal text-mid--yellow"
-								htmlFor=""
-							>
-								Full Name
-							</label>
-							<input
-								className="placeholder:text-grey-lightest/60 border border-white bg-transparent p-2 rounded-lg"
-								type="text"
-								placeholder="John Doe"
-								value={""}
-								name="username"
-							/>
-						</div>
+
 						<div className="w-full flex flex-col">
 							<label
 								className="mb-2 text-text-normal text-mid--yellow"
@@ -55,30 +41,28 @@ const page = () => {
 								name="email"
 							/>
 						</div>
-						<div className="w-full flex flex-col">
-							<label
-								className="mb-2 text-text-normal text-mid--yellow"
-								htmlFor=""
-							>
-								Country
-							</label>
-							<Country />
-						</div>
-						<span className="text-white text-text-normal font-light text-right w-full">
-							Already having an account?{" "}
-							<Link
-								className="font-medium text-normal text-mid--yellow"
-								href="/signin"
-							>
-								signin
+
+						<div className=" text-white w-full justify-between flex items-center gap-5">
+							<span className="flex  items-center gap-2">
+								<input type="checkbox" />
+								Remember me
+							</span>
+							<Link href={"#"} className="text-text-normal text-crimson">
+								Forget password?
 							</Link>
-						</span>
+						</div>
 						<button
 							className="border mt-5 font-medium text-[17px] active:scale-[1.001] hover:text-darker transition-colors duration-200 hover:border-mid--yellow hover:bg-mid--yellow border-brand-green block w-full p-2 rounded-lg text-mid--yellow"
 							type="button"
 						>
-							Signup
+							Sign in
 						</button>
+						<span className="text-white text-center w-full mt-3">
+							Dont have an account?{" "}
+							<Link className="text-brand-green" href={"/signup"}>
+								Sign up
+							</Link>
+						</span>
 						<div className="flex items-center justify-center w-full">
 							<div className=" my-7 w-full h-[1px] gradient3"></div>
 
@@ -89,14 +73,14 @@ const page = () => {
 							className="mt-5 font-semibold text-[17px] transition-colors duration-20 bg-white w-full p-3 rounded-3xl text-darker hover:bg-transparent border flex items-center justify-center gap-3 hover:text-white active:scale-[1.01] hover:border-white"
 							type="button"
 						>
-							Signup with Google
+							Sign in with Google
 							<FcGoogle size={25} />
 						</button>
 					</div>
 					<div className="rounded-[40px] hidden lg:flex overflow-clip">
 						<Image
 							className="object-cover"
-							src={signupImage}
+							src={signinImage}
 							layout="responsive"
 							height={750}
 							width={600}
