@@ -27,7 +27,7 @@ export default function Home() {
 	return (
 		<>
 			<Header />
-			<div className="bg-darker min-h-screen overflow-hidden relative">
+			<div className="bg-darker min-h-screen overflow-clip relative">
 				<div className=" h-screen text-center flex flex-col relative z-0 ">
 					<div className="green-blob w-96 h-96 top-[-50%] md:top-[-25%] left-[50%]"></div>
 					<section className="my-max flex flex-col items-center justify-center h-[80%] w-full">
