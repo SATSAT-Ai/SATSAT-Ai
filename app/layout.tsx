@@ -1,13 +1,12 @@
 import type { Metadata } from "next";
-import { Roboto } from "next/font/google";
+import { Poppins } from "next/font/google";
 import "./globals.scss";
 import { SATSATmetadata } from "@/utils/metadata";
-
 import NextTopLoader from "nextjs-toploader";
 
-const roboto = Roboto({
-	subsets: ["latin", "greek"],
-	weight: ["300", "400", "700", "900"],
+const poppins = Poppins({
+	subsets: ["latin"],
+	weight: ["400", "500", "700", "900"],
 });
 
 export const metadata: Metadata = SATSATmetadata;
@@ -19,7 +18,7 @@ export default function RootLayout({
 }) {
 	return (
 		<html lang="en">
-			<body className={roboto.className}>
+			<body className={poppins.className}>
 				<NextTopLoader
 					showSpinner={true}
 					color="#29a173"
