@@ -18,13 +18,7 @@ const config: Config = {
 			transparent: "transparent",
 			crimson: "crimson",
 		},
-		extend: {
-			backgroundImage: {
-				"gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
-				"gradient-conic":
-					"conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-			},
-		},
+
 		fontSize: {
 			"text-normal": "16px",
 			"text-40": "40px",
@@ -36,6 +30,7 @@ const config: Config = {
 			"text-12": "12px",
 		},
 	},
+
 	plugins: [],
 };
 export default config;
