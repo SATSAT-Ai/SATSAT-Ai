@@ -31,7 +31,7 @@ export default function Home() {
 				<div className=" h-screen text-center flex flex-col relative z-0 ">
 					<div className="green-blob w-96 h-96 top-[-50%] md:top-[-25%] left-[50%]"></div>
 					<section className="my-max flex flex-col items-center justify-center h-[80%] w-full">
-						<h1 className="text-brand-green max-w-5xl mx-auto text-text-40 md:text-text-60">
+						<h1 className="text-brand-green max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
 							SATSAT Ai
 						</h1>
 						<p className="text-mid--yellow text-text-normal md:text-text-normal">
