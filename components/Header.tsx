@@ -91,7 +91,13 @@ const Header = () => {
 						>
 							<Link href={"/contact"}>Contact</Link>
 						</li>
-						<li className="text-grey-lightest hover:text-white">
+						<li
+							className={`${
+								pathname == "/signin"
+									? "text-mid--yellow font-medium"
+									: "text-grey-lightest hover:text-white"
+							}`}
+						>
 							<Link href={"/signin"}>Sign in</Link>
 						</li>
 						<Link
