@@ -73,7 +73,7 @@ const DashboardData = ({ pathname }: { pathname: string }) => {
 				/>
 			),
 			name: "Settings",
-			path: "dashboard/settings",
+			path: "/dashboard/settings",
 		},
 	];
 	return (
