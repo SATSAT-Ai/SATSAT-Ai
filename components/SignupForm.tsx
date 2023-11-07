@@ -109,6 +109,7 @@ const SignupForm = () => {
 					{...register("country", {
 						required: { value: true, message: "Field is required" },
 					})}
+					defaultValue={"Ghana"}
 					onChange={() => {}}
 				>
 					{africanCountries.map((country) => {
