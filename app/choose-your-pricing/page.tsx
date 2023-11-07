@@ -1,5 +1,5 @@
 import React from "react";
-import { pricingData } from "./pricingdata";
+import { pricingData } from "../../pricingdata";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { Iprices } from "@/interface";
 import Link from "next/link";
