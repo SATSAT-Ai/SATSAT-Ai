@@ -5,7 +5,7 @@ import { FcGoogle } from "react-icons/fc";
 import logo from "@/public/satsat-logo.svg";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { africanCountries } from "@/app/(auth)/signup/africanCountries";
+import { africanCountries } from "@/africanCountries";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
 
