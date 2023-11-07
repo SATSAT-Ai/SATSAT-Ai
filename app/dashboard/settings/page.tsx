@@ -65,7 +65,7 @@ const Page = () => {
 					)}
 				</div>
 				{steps == 1 ? (
-					<form action="" className="bg-white/20 p-5 rounded-xl">
+					<form className="bg-white/20 p-5 rounded-xl">
 						<span className="text-text-24 font-semibold">
 							Edit your account information
 						</span>
