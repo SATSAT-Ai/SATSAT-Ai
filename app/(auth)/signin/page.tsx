@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 	title: "Welcome back to SATSAT Ai",
 };
 
-const page = () => {
+const Page = () => {
 	return (
 		<>
 			<Header />
@@ -37,4 +37,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Page;

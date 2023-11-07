@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 	title: "SATSAT-Ai subscription plan",
 };
 
-const page = () => {
+const Page = () => {
 	return (
 		<>
 			<Header />
@@ -85,4 +85,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Page;

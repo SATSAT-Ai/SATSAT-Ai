@@ -1,8 +1,4 @@
-"use client";
-
-import Footer from "@/components/Footer";
-
-const page = () => {
+const Page = () => {
 	return (
 		<div className="min-h-screen text-white p-5">
 			<h1 className="text-text-40">Dashboard</h1>
@@ -11,4 +7,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Page;

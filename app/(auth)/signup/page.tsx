@@ -10,7 +10,7 @@ import SignupForm from "@/components/SignupForm";
 export const metadata: Metadata = {
 	title: "SATSAT-Ai Get started!",
 };
-const page = () => {
+const Page = () => {
 	return (
 		<>
 			<Header />
@@ -37,4 +37,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Page;

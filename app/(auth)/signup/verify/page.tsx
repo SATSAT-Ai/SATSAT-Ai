@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Logo from "@/public/satsat-logo.svg";
 import Image from "next/image";
 
-const page = () => {
+const Page = () => {
 	return (
 		<>
 			<Header />
@@ -62,4 +62,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Page;
