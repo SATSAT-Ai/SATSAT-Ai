@@ -36,10 +36,10 @@ export const SATSATmetadata: Metadata = {
 	},
 	metadataBase: new URL(process.env.WEBSITE_URL as string),
 
-	alternates: {
-		canonical: process.env.WEBSITE_URL,
-		languages: {
-			"en-US": "/en-US",
-		},
-	},
+	// alternates: {
+	// 	canonical: process.env.WEBSITE_URL,
+	// 	languages: {
+	// 		"en-US": "/en-US",
+	// 	},
+	// },
 };
