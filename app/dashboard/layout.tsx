@@ -4,6 +4,7 @@ import { ReactNode } from "react";
 import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "./theme";
 import DashboardHeader from "@/components/DashboardHeader";
+import ContextProvider from "@/context/AppContext";
 
 const layout = ({ children }: { children: ReactNode }) => {
 	return (
@@ -18,7 +19,7 @@ const layout = ({ children }: { children: ReactNode }) => {
 				</div>
 				<div className="flex-[10]">
 					<DashboardHeader />
-					{children}
+					<ContextProvider>{children}</ContextProvider>
 					{/* <Footer /> */}
 				</div>
 			</div>
