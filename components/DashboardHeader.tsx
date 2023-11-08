@@ -21,7 +21,7 @@ const DashboardHeader = () => {
 	};
 
 	return (
-		<div className="sticky backdrop-blur-md top-0 bg-white/10 text-white p-5">
+		<div className="sticky z-50 backdrop-blur-lg top-0 bg-brand-green-darker/10 text-white p-5">
 			<ul className="flex gap-5 items-center justify-end">
 				<li className="relative">
 					<NotificationsIcon
@@ -86,7 +86,7 @@ const DashboardHeader = () => {
 						<Link href={"#"}>
 							<PersonPinIcon fontSize="medium" color="primary" />
 						</Link>
-						<div>
+						<div className="md:flex flex-col hidden">
 							<p className="text-text-12 text-grey-lightest">Welcome Back!</p>
 							<span>Kamasah Dickson</span>
 						</div>
