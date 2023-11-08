@@ -7,10 +7,16 @@ import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import LogoutIcon from "@mui/icons-material/Logout";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { TbLayoutSidebarRightExpand } from "react-icons/tb";
+import { Dispatch, SetStateAction } from "react";
 
-const DashboardData = ({ pathname }: { pathname: string }) => {
+const DashboardData = ({
+	pathname,
+	setHideSidebar,
+}: {
+	pathname: string;
+	setHideSidebar: Dispatch<SetStateAction<boolean>>;
+}) => {
 	const dashboardData = [
 		{
 			icon: (
@@ -77,7 +83,13 @@ const DashboardData = ({ pathname }: { pathname: string }) => {
 		},
 	];
 	return (
-		<ul className="mt-5 flex sticky top-2 flex-col gap-1 ">
+		<ul className="mt-5 flex w-full sticky top-0 items-center md:items-start flex-col gap-2 ">
+			<li
+				onClick={() => setHideSidebar(true)}
+				className="md:ml-6 cursor-pointer mb-3 hover:bg-brand-green w-fit p-1 rounded-md"
+			>
+				<TbLayoutSidebarRightExpand color="white" size={25} />
+			</li>
 			{dashboardData.map((routes) => {
 				return (
 					<li
@@ -86,31 +98,30 @@ const DashboardData = ({ pathname }: { pathname: string }) => {
 							pathname === routes.path
 								? " text-mid--yellow hover:bg-grey-light before:absolute before:left-0 before:top-1/2 before:-translate-y-1/2 before:h-[24px] before:rounded-md before:w-[4px] before:bg-mid--yellow"
 								: "text-white"
-						} text-text-20 pl-6 flex hover:bg-white/10 cursor-pointer p-2 list items-center gap-3 relative`}
+						} text-text-normal md:pl-6 justify-center md:justify-start w-full flex hover:bg-white/10 cursor-pointer p-2 list items-center gap-3 relative`}
 					>
-						{routes.icon}
-						<Link href={routes.path}>{routes.name}</Link>
+						<Link href={routes.path} className="flex items-center gap-3">
+							{routes.icon}
+							<p className="hidden md:flex">{routes.name}</p>
+						</Link>
 					</li>
 				);
 			})}
-			<div className="flex flex-col mx-3 mt-4 gap-7">
+			<li className="flex flex-col mx-3 mt-4 gap-7">
 				<div className="mt-7 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
 					<RocketLaunchIcon fontSize="large" color={"primary"} />
-					<h3 className="my-0 font-medium">UPGRADE PLAN</h3>
-					<p className="text-text-[15px] font-normal">
+					<h3 className="my-0 hidden md:flex font-medium text-text-normal">
+						UPGRADE PLAN
+					</h3>
+					<p className="hidden md:flex text-[13px] font-normal">
 						Upgrade your current plan and enjoy amazing features
 					</p>
 				</div>
-				<div className=" bg-white/10 hover:bg-brand-green-darker cursor-pointer active:scale-[1.01] p-3 rounded-md flex items-center gap-3">
+				<div className="bg-white/10 w-fit md:w-full mx-auto hover:bg-brand-green-darker cursor-pointer active:scale-[1.01] p-3 rounded-md flex items-center gap-3">
 					<LogoutIcon fontSize="medium" color={"primary"} />
-					Logout
+					<p className="hidden md:flex">Logout</p>
 				</div>
-				<div className=" bg-white/10 hover:bg-brand-green-darker cursor-pointer justify-between p-3 rounded-md flex items-center gap-2">
-					<PersonPinIcon fontSize="large" color={"primary"} />
-					Kamasah Dickson
-					<MoreVertIcon fontSize="medium" color={"primary"} />
-				</div>
-			</div>
+			</li>
 		</ul>
 	);
 };
