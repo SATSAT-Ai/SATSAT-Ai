@@ -7,12 +7,18 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
 import NotificationIcon from "@/public/notificationIcon.svg";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useContext } from "react";
+import satsatLogo from "../public/satsat-logo.svg";
+import { AppContext } from "@/context/AppContext";
 
 const DashboardHeader = () => {
 	const [showNotification, setShowNotification] = useState(false);
+	const { hideSidebar } = useContext(AppContext);
+
+	const notificationRef = useRef(null);
 
 	const handleShowNotification = () => {
+		// if (notificationRef.current || showNotification) {
 		if (showNotification) {
 			setShowNotification(false);
 		} else {
@@ -21,17 +27,28 @@ const DashboardHeader = () => {
 	};
 
 	return (
-		<div className="sticky z-50 backdrop-blur-lg top-0 bg-brand-green-darker/10 text-white p-5">
+		<div
+			className={`sticky z-50 backdrop-blur-lg top-0 bg-white/10 text-white p-5 flex items-center ${
+				hideSidebar ? "justify-between" : "justify-end"
+			} gap-5`}
+		>
+			{hideSidebar && (
+				<Link href={"/"}>
+					<Image src={satsatLogo} height={110} width={110} alt="SATSAT-Ai" />
+				</Link>
+			)}
 			<ul className="flex gap-5 items-center justify-end">
 				<li className="relative">
 					<NotificationsIcon
 						fontSize="medium"
 						color="primary"
 						className="cursor-pointer active:scale-[1.01]"
+						ref={notificationRef}
 						onClick={handleShowNotification}
 					/>
+					{/* notification */}
 					{showNotification && (
-						<div className="bg-white/10 border border-white/20 w-[300px] absolute top-8 p-3 rounded-xl right-3">
+						<div className="bg-grey-light/95 backdrop-blur-3xl border z-40 border-white/10 w-[300px] absolute top-8 p-3 rounded-xl right-3">
 							<div className="flex items-center w-full justify-between gap-5">
 								<h5>Notifications</h5>
 								<span className="cursor-pointer active:scale-[1.01] text-text-12 text-mid--yellow">
