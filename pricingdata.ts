@@ -44,6 +44,6 @@ export const pricingData = [
 			"Access to webhooks",
 			"custom Branding",
 		],
-		price: "Contact Us",
+		price: "Contact Sales",
 	},
 ];

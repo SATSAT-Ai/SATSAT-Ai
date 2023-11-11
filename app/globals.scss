@@ -80,7 +80,7 @@
 	}
 
 	.green-blob {
-		background-color: #29a173;
+		background-color: #2aa274;
 		border-radius: 50%;
 		position: absolute;
 		transform: translateX(-50%);
@@ -126,13 +126,107 @@
 	}
 }
 
-// .list {
-// 	&:hover {
-// 		// color: #29a173;
-// 		// background-color: #ffffff36;
-// 	}
+.icon .MuiSvgIcon-root {
+	color: white;
+	@media (min-width: 768px) {
+		color: #c18e3b;
+	}
+}
 
-// 	// &:hover .MuiSvgIcon-root {
-// 	// 	color: #29a173;
-// 	// }
-// }
+.unique,
+.card {
+	transition: all 0.3s ease;
+	ul li {
+		color: #050d0a;
+	}
+	h3 {
+		color: #050d0a;
+	}
+	.button:hover {
+		background: #005031;
+	}
+	.verify {
+		color: white;
+	}
+	&:hover {
+		background-color: #005031;
+		.verify {
+			color: #fff;
+		}
+		h2 {
+			color: #fff;
+		}
+		ul li,
+		h3 {
+			color: #ffff;
+		}
+
+		ul li .check {
+			color: #c18e3b;
+		}
+
+		.line {
+			border-color: #fff;
+		}
+
+		.button {
+			background-color: #fff;
+			color: #29a173;
+			&:hover {
+				background-color: #c18e3b;
+				color: white;
+			}
+		}
+	}
+}
+
+.unique {
+	background-color: #005031;
+
+	.verify {
+		display: none;
+	}
+
+	h2 {
+		color: #fff;
+	}
+	ul li,
+	h3 {
+		color: #ffff;
+	}
+
+	ul li .check {
+		color: #c18e3b;
+	}
+
+	.line {
+		border-color: #fff;
+	}
+
+	.button {
+		background-color: #fff;
+		color: #29a173;
+		&:hover {
+			background-color: #c18e3b;
+			color: white;
+		}
+	}
+
+	&:hover {
+		background-color: #123829;
+		.verify {
+			display: block;
+		}
+	}
+}
+
+.card {
+	background-color: #fff;
+	&:hover {
+		.button {
+			&:hover {
+				background-color: #29a173;
+			}
+		}
+	}
+}
