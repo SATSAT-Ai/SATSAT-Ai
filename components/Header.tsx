@@ -39,7 +39,7 @@ const Header = () => {
 						? `${
 								pathname == "/choose-your-pricing"
 									? "bg-brand-green-darker/70"
-									: "bg-white/10"
+									: "bg-white/90"
 						  } backdrop-blur-md saturate-150`
 						: "bg-none backdrop-blur-none"
 				} top-0`}
