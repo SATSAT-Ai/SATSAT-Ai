@@ -7,7 +7,7 @@ import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
 import NotificationIcon from "@/public/notificationIcon.svg";
 import Image from "next/image";
-import { useState, useRef, useContext } from "react";
+import { useState, useRef, useContext, useEffect } from "react";
 import satsatLogo from "../public/satsat-logo.svg";
 import { AppContext } from "@/context/AppContext";
 
@@ -18,13 +18,25 @@ const DashboardHeader = () => {
 	const notificationRef = useRef(null);
 
 	const handleShowNotification = () => {
-		// if (notificationRef.current || showNotification) {
-		if (showNotification) {
-			setShowNotification(false);
-		} else {
-			setShowNotification(true);
-		}
+		setShowNotification((prev) => !prev);
 	};
+
+	useEffect(() => {
+		const handleClickOutside = (event: MouseEvent) => {
+			if (
+				notificationRef.current &&
+				(!notificationRef.current as any).contains(event.target)
+			) {
+				setShowNotification(false);
+			}
+		};
+
+		document.addEventListener("click", handleClickOutside);
+
+		return () => {
+			document.removeEventListener("click", handleClickOutside);
+		};
+	}, []);
 
 	return (
 		<div
