@@ -8,8 +8,13 @@ import {
 	PointElement,
 	LineElement,
 	Filler,
+	plugins,
 } from "chart.js";
 import { Line } from "react-chartjs-2";
+
+interface MyChart extends ChartJS {
+	beforeDatasetsDraw?(chart: MyChart): void;
+}
 
 const LineChart = () => {
 	ChartJS.register(
@@ -18,23 +23,69 @@ const LineChart = () => {
 		PointElement,
 		LineElement,
 		Tooltip,
-		Filler
+		Filler,
+		plugins
 	);
 
 	return (
 		<div className="mt-7 bg-white/10 p-5 rounded-2xl relative h-auto">
 			<Line
 				style={{ width: "100%", height: "200px" }}
+				plugins={[
+					{
+						id: "lines",
+						beforeDatasetsDraw(chart) {
+							const {
+								ctx,
+								tooltip,
+								chartArea: { top, bottom },
+							} = chart;
+
+							if (tooltip?.getActiveElements().length) {
+								const { x } = tooltip.getActiveElements()[0].element;
+
+								ctx.beginPath();
+								ctx.strokeStyle = "#29a173";
+								ctx.lineWidth = 1;
+								ctx.moveTo(x, top);
+								ctx.lineTo(x, bottom);
+								ctx.setLineDash([6, 0]);
+								ctx.stroke();
+								ctx.restore();
+							}
+						},
+					},
+				]}
 				options={{
+					interaction: {
+						mode: "index",
+					},
+
 					responsive: true,
 					maintainAspectRatio: false,
 					aspectRatio: 2,
 
-					plugins: { legend: { display: false } },
+					plugins: {
+						legend: { display: false },
+						tooltip: {
+							intersect: true,
+							usePointStyle: true,
+							callbacks: {
+								afterTitle: (context) => {
+									// return "Custom Tooltip title";
+								},
+							},
+							position: "average",
+							backgroundColor: "#123829",
+							bodyColor: "#fff",
+
+							yAlign: "bottom",
+						},
+					},
 					elements: {
 						line: {
 							tension: 0.4,
-							borderWidth: 2,
+							borderWidth: 3,
 							borderColor: "#29a173",
 						},
 					},
@@ -56,18 +107,18 @@ const LineChart = () => {
 					labels: ["Mon", "Tue", "Thu", "Fri", "Sat", "Sun"],
 					datasets: [
 						{
-							data: [400, 920, 415, 732, 235, 435, 623],
-							borderWidth: 0,
-							fill: true,
-							showLine: false,
-
-							backgroundColor: ["rgba(42,162,116,0.1)"],
-						},
-						{
-							data: [400, 720, 115, 332, 235, 835, 623],
+							data: [400, 620, 345, 372, 435, 623],
 							pointBorderColor: "#c18e3b",
 							pointBackgroundColor: "#c18e3b",
+							pointHoverRadius: 10,
+							pointHitRadius: 15,
+							pointHoverBorderWidth: 3,
+							pointHoverBackgroundColor: "white",
+							pointHoverBorderColor: "#29a173",
+							backgroundColor: ["rgba(42, 162, 116, 0.1)"],
 							borderWidth: 1,
+							fill: true,
+							showLine: true,
 						},
 					],
 				}}
