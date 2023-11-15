@@ -25,7 +25,7 @@ const DashboardHeader = () => {
 		const handleClickOutside = (event: MouseEvent) => {
 			if (
 				notificationRef.current &&
-				(!notificationRef.current as any).contains(event.target)
+				!(notificationRef.current as any).contains(event.target)
 			) {
 				setShowNotification(false);
 			}
