@@ -2,14 +2,27 @@
 
 import { PieChart } from "@mui/x-charts/PieChart";
 import PieChartAmount from "./PieChartAmount";
+import { ItransactionsData } from "@/interface";
 
-const PieCharts = () => {
-	const data = [
-		{ id: 0, value: 10, label: "series A" },
-		{ id: 1, value: 15, label: "series B" },
-		{ id: 2, value: 20, label: "series C" },
-	];
+type dataProp = {
+	id: number;
+	value: number;
+	label: string;
+}[];
 
+const PieCharts = ({
+	data,
+	endAngle = 180,
+	title,
+	transactionsData,
+	colors,
+}: {
+	data: dataProp;
+	endAngle: number;
+	title: string;
+	transactionsData: ItransactionsData;
+	colors: string[];
+}) => {
 	const sizing = {
 		margin: { right: 5 },
 		width: 180,
@@ -18,135 +31,52 @@ const PieCharts = () => {
 	};
 
 	return (
-		<div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-5 mt-7">
-			<div className="bg-white/10 p-5 w-full rounded-2xl">
-				<h3 className="m-0 font-medium uppercase text-text-normal pb-3">
-					Total Transfers Made
-				</h3>
-				<div className="flex flex-wrap-reverse md:flex-nowrap justify-center items-center gap-4">
-					<div className="flex flex-col gap-2">
-						<PieChartAmount amount={"3,000"} />
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#29a173] block shadow-sm"></span>
-							62% Transfer
-						</div>
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#174634] block shadow-sm"></span>
-							13% E-Levy
-						</div>
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#c18e3b] block shadow-sm"></span>
-							23% Fees
-						</div>
-					</div>
-					<PieChart
-						colors={["#29a173", "#174634", "#c18e3b"]}
-						series={[
-							{
-								data,
-								startAngle: -90,
-								endAngle: 180,
-								cornerRadius: 5,
-								innerRadius: 30,
-								outerRadius: 90,
-								paddingAngle: 5,
-								highlightScope: { faded: "global", highlighted: "item" },
-								faded: {
-									innerRadius: 30,
-									additionalRadius: -30,
-									color: "gray",
-								},
-							},
-						]}
-						{...sizing}
-					/>
+		<div className="bg-white/10 max-w-lg mx-auto sm:max-w-full p-5 w-full rounded-2xl">
+			<h3 className="m-0 font-medium uppercase text-text-normal pb-3">
+				{title}
+			</h3>
+			<div className="flex flex-wrap-reverse md:flex-nowrap justify-center items-center gap-4">
+				<div className="flex flex-col gap-2">
+					<PieChartAmount amount={"3,000"} />
+					{transactionsData.data.map((transaction) => {
+						return (
+							<div
+								key={transaction.name}
+								className="flex text-text-12 items-center gap-2"
+							>
+								<span
+									style={{
+										backgroundColor: `${transaction.color}`,
+									}}
+									className="h-3 rounded-md w-4 bg-[gold] block shadow-sm"
+								></span>
+								{`${transaction.percentage} ${transaction.name}`}
+							</div>
+						);
+					})}
 				</div>
-			</div>
-			<div className="bg-white/10 p-5 w-full rounded-2xl">
-				<h3 className="m-0 font-medium uppercase text-text-normal pb-3">
-					Total Transfers Made
-				</h3>
-				<div className="flex flex-wrap-reverse md:flex-nowrap justify-center items-center gap-4">
-					<div className="flex flex-col gap-2">
-						<PieChartAmount amount={"3,000"} />
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#29a173] block shadow-sm"></span>
-							62% Transfer
-						</div>
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#174634] block shadow-sm"></span>
-							13% E-Levy
-						</div>
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#c18e3b] block shadow-sm"></span>
-							23% Fees
-						</div>
-					</div>
-					<PieChart
-						colors={["#29a173", "#174634", "#c18e3b"]}
-						series={[
-							{
-								data,
-								startAngle: -90,
-								endAngle: 180,
-								cornerRadius: 5,
+				<PieChart
+					colors={[...colors]}
+					series={[
+						{
+							data,
+							startAngle: -90,
+							endAngle,
+							cornerRadius: 5,
+							innerRadius: 30,
+							outerRadius: 90,
+							paddingAngle: 5,
+							highlightScope: { faded: "global", highlighted: "item" },
+
+							faded: {
 								innerRadius: 30,
-								outerRadius: 90,
-								paddingAngle: 5,
-								highlightScope: { faded: "global", highlighted: "item" },
-								faded: {
-									innerRadius: 30,
-									additionalRadius: -30,
-									color: "gray",
-								},
+								additionalRadius: -30,
+								color: "gray",
 							},
-						]}
-						{...sizing}
-					/>
-				</div>
-			</div>
-			<div className="bg-white/10 p-5 w-full rounded-2xl">
-				<h3 className="m-0 font-medium uppercase text-text-normal pb-3">
-					Total Transfers Made
-				</h3>
-				<div className="flex flex-wrap-reverse md:flex-nowrap justify-center items-center gap-4">
-					<div className="flex flex-col gap-2">
-						<PieChartAmount amount={"3,000"} />
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#29a173] block shadow-sm"></span>
-							62% Transfer
-						</div>
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#174634] block shadow-sm"></span>
-							13% E-Levy
-						</div>
-						<div className="flex text-[13px] items-center gap-2">
-							<span className="h-3 rounded-md w-4 bg-[#c18e3b] block shadow-sm"></span>
-							23% Fees
-						</div>
-					</div>
-					<PieChart
-						colors={["#29a173", "#174634", "#c18e3b"]}
-						series={[
-							{
-								data,
-								startAngle: -90,
-								endAngle: 180,
-								cornerRadius: 5,
-								innerRadius: 30,
-								outerRadius: 90,
-								paddingAngle: 5,
-								highlightScope: { faded: "global", highlighted: "item" },
-								faded: {
-									innerRadius: 30,
-									additionalRadius: -30,
-									color: "gray",
-								},
-							},
-						]}
-						{...sizing}
-					/>
-				</div>
+						},
+					]}
+					{...sizing}
+				/>
 			</div>
 		</div>
 	);
