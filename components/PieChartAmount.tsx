@@ -9,7 +9,8 @@ const PieChartAmount = ({ amount }: { amount: string }) => {
 	return (
 		<h4
 			onClick={() => setShowAmount(!showAmount)}
-			className="text-text-normal text-white cursor-pointer select-none flex items-center gap-2"
+			tabIndex={0}
+			className="text-text-normal mb-2 text-white cursor-pointer select-none flex items-center gap-2"
 		>
 			{showAmount ? (
 				<AiOutlineEye color="#ffffff60" size={20} className="cursor-pointer" />
@@ -21,7 +22,7 @@ const PieChartAmount = ({ amount }: { amount: string }) => {
 				/>
 			)}
 			{showAmount ? (
-				`GHS ${amount}`
+				<span>{`GHS ${amount}`}</span>
 			) : (
 				<span className="text-text-24 h-5">******</span>
 			)}
