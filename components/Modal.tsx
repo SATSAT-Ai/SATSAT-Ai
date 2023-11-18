@@ -26,14 +26,14 @@ const Modal = ({
 			onClick={() => setShowModal && setShowModal(false)}
 			className={` ${
 				showModal ? "block" : "hidden"
-			} fixed top-0 left-0 w-full h-full bg-darker/90 flex items-center justify-center`}
+			} fixed top-0 left-0 w-full h-full bg-darker/90 z-50 flex items-center justify-center`}
 		>
 			<div
 				onClick={(e) => e.stopPropagation()}
 				className="bg-white/80 rounded-lg text-darker p-5"
 			>
 				<h4
-					className={`mb-0 text-text-24 ${
+					className={`mb-0 text-text-24 font-bold ${
 						modalAction == "deleteAccount"
 							? "text-[crimson] font-normal"
 							: "text-darker"
@@ -41,10 +41,16 @@ const Modal = ({
 				>
 					{title}
 				</h4>
-				<span className={`text-text-[18px]  font-medium`}>{body}</span>
+				{modalAction == "deleteAccount" ? (
+					<span className={`text-text-[18px]  font-medium`}>
+						This action cannot be reverted if you continue
+					</span>
+				) : (
+					<span className={`text-text-[18px]  font-medium`}>{body}</span>
+				)}
 				<div className="mt-5 flex items-center w-full justify-center gap-4">
 					<button
-                    onClick={()=> setShowModal && setShowModal(false)}
+						onClick={() => setShowModal && setShowModal(false)}
 						className="py-1 rounded px-7 ease-in transition-colors active:scale-[1.01] bg-[crimson] text-white"
 						type="button"
 					>
