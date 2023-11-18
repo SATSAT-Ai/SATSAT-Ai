@@ -13,3 +13,20 @@ export interface Iprices {
 	priviledges: string[];
 	price: string;
 }
+
+export interface Inotification {
+	id: string;
+	notificationType: string;
+	message: string;
+	read: boolean;
+	time: string;
+}
+
+export interface ItransactionsData {
+	id: string;
+	data: {
+		percentage: string;
+		color: string;
+		name: string;
+	}[];
+}
