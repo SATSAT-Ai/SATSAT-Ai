@@ -35,7 +35,7 @@ const PageScroller = () => {
 			} fixed bottom-20 z-10 cursor-pointer right-7`}
 		>
 			<BsArrowUpCircleFill
-				size={55}
+				size={50}
 				className="text-white hover:text-mid--yellow duration-150 active:scale-[1.03]"
 			/>
 		</div>
