@@ -37,6 +37,11 @@
 		-webkit-user-select: none;
 	}
 
+	.no-select {
+		user-select: none;
+		-webkit-user-select: none;
+	}
+
 	p {
 		font-size: rem(16);
 		font-weight: 400;
