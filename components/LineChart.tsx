@@ -12,10 +12,6 @@ import {
 } from "chart.js";
 import { Line } from "react-chartjs-2";
 
-interface MyChart extends ChartJS {
-	beforeDatasetsDraw?(chart: MyChart): void;
-}
-
 const LineChart = () => {
 	ChartJS.register(
 		CategoryScale,
@@ -28,9 +24,9 @@ const LineChart = () => {
 	);
 
 	return (
-		<div className="mt-7 bg-white/10 p-5 rounded-2xl relative h-auto">
+		<div className="my-7 bg-white/10 p-5 rounded-2xl relative h-auto">
 			<Line
-				style={{ width: "100%", height: "200px" }}
+				style={{ width: "100%", height: "300px" }}
 				plugins={[
 					{
 						id: "lines",
