@@ -11,7 +11,7 @@ type changeFrequency =
 	| "never";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const changeFrequency = "daily" as changeFrequency;
+	const changeFrequency = "weekly" as changeFrequency;
 	const routes = [
 		"",
 		"/about",
