@@ -30,3 +30,9 @@ export interface ItransactionsData {
 		name: string;
 	}[];
 }
+export interface IdashboardData {
+	icon: JSX.Element;
+	name: string;
+	path: string;
+	subPaths?: { path: string; name: string }[];
+}
