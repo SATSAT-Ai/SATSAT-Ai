@@ -246,19 +246,19 @@
 			}
 		}
 	}
-	//mui calender
-	.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel,
-	.css-kg9q0s-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button,
-	.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button,
-	.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton,
-	.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root,
-	.css-sf5j28-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton {
-		color: white !important;
-	}
+}
+//mui calender
+.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel,
+.css-kg9q0s-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button,
+.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button,
+.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton,
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root,
+.css-sf5j28-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton {
+	color: white !important;
+}
 
-	.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled:not(
-			.Mui-selected
-		) {
-		color: rgba(0, 0, 0, 0.38) !important;
-	}
+.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled:not(
+		.Mui-selected
+	) {
+	color: rgba(0, 0, 0, 0.38) !important;
 }
