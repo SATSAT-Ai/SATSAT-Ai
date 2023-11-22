@@ -40,7 +40,7 @@ export default function Home() {
 						</p>
 						<Link
 							href={"/choose-your-pricing"}
-							className="flex animate-pulse hover:animate-none bg-brand-green hover:bg-mid--yellow transition-colors duration-200 items-center gap-2 active:scale-[1.01] text-white w-fit px-7 !rounded-3xl mx-auto mt-5 button"
+							className="flex animate-pulse hover:animate-none bg-brand-green hover:bg-mid--yellow transition-colors duration-200 items-center gap-2 active:scale-[1.01] text-white w-fit px-7 !rounded-2xl mx-auto mt-5 button"
 						>
 							Get Started
 						</Link>
