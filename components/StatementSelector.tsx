@@ -5,6 +5,8 @@ import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
+import dayjs, { Dayjs } from "dayjs";
+import { useState } from "react";
 
 const newTheme = (theme: any) =>
 	createTheme({
@@ -18,7 +20,8 @@ const newTheme = (theme: any) =>
 						borderWidth: 1,
 						borderColor: "white",
 						border: "1px solid",
-						backgroundColor: "gray",
+						backgroundColor: "#2f4f4f",
+						//other styles are in the globals.scss
 					},
 				},
 			},
@@ -26,6 +29,29 @@ const newTheme = (theme: any) =>
 	});
 
 const StatementSelector = () => {
+	const [value, setValue] = useState<Dayjs | null>(dayjs("2022-04-17")); // use value to query
+	const dateStrings = ["2022-04-17", "2021-04-17", "2021-04-20", "2011-07-27"]; //! sort data
+
+	// convert date strings to Day.js objects
+	const parsedDates = dateStrings.map((dateString) => dayjs(dateString));
+	// determine if a date should be disabled
+	const shouldDisableDate = (date: Dayjs) => {
+		// current date to  string
+		const currentDateString = date.format("YYYY-MM-DD");
+		// Check if the current date is in the dateStrings array
+		return !dateStrings.includes(currentDateString);
+	};
+
+	// prevent duplicates from parsedDates
+	const uniqueYears = Array.from(
+		new Set(parsedDates.map((date) => date.year()))
+	);
+
+	const shouldDisableYear = (year: Dayjs) => {
+		// Disable all years except those in the dateStrings array
+		return !uniqueYears.includes(year.year());
+	};
+
 	return (
 		<>
 			<Select
@@ -41,6 +67,11 @@ const StatementSelector = () => {
 			<LocalizationProvider dateAdapter={AdapterDayjs}>
 				<ThemeProvider theme={newTheme}>
 					<DesktopDatePicker
+						onChange={(newValue) => setValue(newValue)}
+						value={value}
+						shouldDisableYear={shouldDisableYear}
+						shouldDisableDate={shouldDisableDate}
+						label="Select Date"
 						sx={{
 							backgroundColor: "#ffffff10",
 							borderRadius: 2,
@@ -56,7 +87,9 @@ const StatementSelector = () => {
 						}}
 						slotProps={{
 							textField: { size: "small", color: "success" },
+							toolbar: { toolbarFormat: "ddd DD MMMM", hidden: false },
 						}}
+						defaultValue={dayjs(dateStrings[0])}
 					/>
 				</ThemeProvider>
 			</LocalizationProvider>

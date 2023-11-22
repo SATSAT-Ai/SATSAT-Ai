@@ -43,7 +43,7 @@ const NotificationLogic = ({
 								<>
 									<div
 										key={notification.id}
-										className="mt-5 flex items-center gap-3"
+										className="my-5 flex px-2 items-center gap-3"
 									>
 										<div className="flex items-center justify-between w-full">
 											<div className="flex items-center gap-5">

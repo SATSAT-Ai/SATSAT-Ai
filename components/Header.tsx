@@ -54,7 +54,7 @@ const Header = () => {
 						size="25"
 						onClick={() => setShowNav(true)}
 					/>
-					<ul className="hidden sm:flex items-center gap-5 font-normal text-text-normal">
+					<ul className="hidden sm:flex items-center gap-3 font-normal text-text-normal">
 						<li
 							className={`${
 								pathname == "/"
@@ -101,7 +101,7 @@ const Header = () => {
 							<Link href={"/signin"}>Sign in</Link>
 						</li>
 						<Link
-							className="flex items-center gap-3 font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
+							className="flex items-center !rounded-3xl gap-3 font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
 							href={"/choose-your-pricing"}
 						>
 							Get Started

@@ -8,7 +8,7 @@ Chartjs.register(ArcElement, Tooltip, Legend);
 const DoughnutChart = () => {
 	// Top 5 income sources
 	return (
-		<div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] ">
+		<div className="w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] mx-auto ">
 			<Doughnut
 				data={{
 					labels: [

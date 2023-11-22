@@ -18,6 +18,7 @@ import PageScroller from "@/components/PageScroller";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import TypeWriter from "@/components/TypeWriter";
 
 export const metadata: Metadata = {
 	title: "Welcome to SATSAT-Ai",
@@ -32,14 +33,14 @@ export default function Home() {
 					<div className="green-blob w-96 h-96 animate-pulse top-[-55%] md:top-[-40%] left-[50%]"></div>
 					<section className="my-max flex flex-col items-center justify-center h-[80%] w-full">
 						<h1 className="text-brand-green max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
-							SATSAT Ai
+							SATSAT AI
 						</h1>
 						<p className="text-mid--yellow text-text-normal md:text-text-normal">
-							Query your financial data with natural language.
+							<TypeWriter text="Query your financial data with natural language." />
 						</p>
 						<Link
 							href={"/choose-your-pricing"}
-							className="flex animate-pulse hover:animate-none bg-brand-green hover:bg-mid--yellow transition-colors duration-200 items-center gap-2 active:scale-[1.01] text-white w-fit mx-auto mt-5 button"
+							className="flex animate-pulse hover:animate-none bg-brand-green hover:bg-mid--yellow transition-colors duration-200 items-center gap-2 active:scale-[1.01] text-white w-fit px-7 !rounded-3xl mx-auto mt-5 button"
 						>
 							Get Started
 						</Link>
@@ -61,10 +62,10 @@ export default function Home() {
 						</div>
 						<section className="text-center flex flex-col">
 							<h2 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
-								WHAT IS SATSAT Ai?
+								WHAT IS SATSAT AI?
 							</h2>
 							<p className="text-mid--yellow max-w-lg mx-auto text-text-normal md:text-text-normal">
-								SATSAT Ai is your all-in-one intelligence platform. It combines
+								SATSAT AI is your all-in-one intelligence platform. It combines
 								cutting edge AI technology to query your data with natural
 								language.
 							</p>
@@ -75,7 +76,7 @@ export default function Home() {
 									<Image src={chatBot} height={50} width={50} alt="chatbot" />
 									<h3 className="text-text-20 mb-2">Effortless Ingestion</h3>
 									<p className="text-grey-lightest">
-										Upload your financial data and SATSAT Ai takes care of the
+										Upload your financial data and SATSAT AI takes care of the
 										rest.
 									</p>
 								</div>
@@ -108,17 +109,17 @@ export default function Home() {
 						</section>
 						<section className="text-center flex flex-col">
 							<h3 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
-								WHY SATSAT Ai?
+								WHY SATSAT AI?
 							</h3>
 							<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-								SATSAT Ai is an intelligence platform; it is a paradigm shift in
+								SATSAT AI is an intelligence platform; it is a paradigm shift in
 								how you harness the wisdom hidden within your documents. We are
 								here to empower your organization, save you time and resources.
 							</p>
 
 							<div className=" relative  mt-10 md:mt-20 mx-auto max-w-4xl">
 								<h3 className=" text-center  text-text-normal md:text-text-20 max-w-4xl mr-auto md:text-left text-mid--yellow">
-									Here is what sets SATSAT Ai apart:
+									Here is what sets SATSAT AI apart:
 								</h3>
 								<div className=" grid gap-5 grid-cols-1 sm:grid-cols-2">
 									<div className="green-blob w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
@@ -131,7 +132,7 @@ export default function Home() {
 										<p className="text-grey-lightest">
 											Your employees can access answers to their questions in
 											mere seconds without wading through endless documents on
-											their drives. SATSAT Ai scans, understands, and presents
+											their drives. SATSAT AI scans, understands, and presents
 											relevant information ensuring you spend less time
 											searching and more time acting
 										</p>
@@ -151,7 +152,7 @@ export default function Home() {
 										<Image src={chatBot} height={50} width={50} alt="chatbot" />
 										<h3 className="text-text-20">Data Security and Privacy</h3>
 										<p className="text-grey-lightest">
-											We understand the importance of data security. SATSAT Ai
+											We understand the importance of data security. SATSAT AI
 											ensures maximum protection behind your firewall, so you
 											can harness the power of AI with peace of mind.
 										</p>
@@ -170,7 +171,7 @@ export default function Home() {
 						</section>
 						<section className=" z-10  text-center flex flex-col ">
 							<h4 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
-								CHAT WITH SATSAT Ai
+								CHAT WITH SATSAT AI
 							</h4>
 							<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
 								Querying your financial data has never been easy, with SAT SAT
@@ -186,7 +187,7 @@ export default function Home() {
 									</h4>
 									<p className="text-mid--yellow mb-5 max-w-md">
 										Enjoy fast, secure and reliable way of Querying financial
-										data with SATSAT Ai
+										data with SATSAT AI
 									</p>
 									<Link
 										href={"/choose-your-pricing"}
@@ -238,7 +239,7 @@ export default function Home() {
 							FINANCIAL SERVICE PROVIDERS
 						</h4>
 						<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-							SATSAT Ai can scan documents like invoices, mobile money
+							SATSAT AI can scan documents like invoices, mobile money
 							statements, bank statements and receipts. These are some of the
 							banks and mobile money service providers
 						</p>
@@ -305,12 +306,12 @@ export default function Home() {
 					<section className="text-center flex flex-col ">
 						<div className="my-max">
 							<h4 className="text-brand-green text-text-40 md:text-text-50 lg:text-text-80 max-w-5xl mx-auto">
-								ANALYSING YOUR DATA WITH SATSAT Ai
+								ANALYSING YOUR DATA WITH SATSAT AI
 							</h4>
 							<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-								SATSAT Ai is a revolution in how we harness knowledge buried
+								SATSAT AI is a revolution in how we harness knowledge buried
 								within our documents. Whether you are in healthcare, legal,
-								finance, or any other industry, SATSAT Ai empowers you to
+								finance, or any other industry, SATSAT AI empowers you to
 								transform your data into a dynamic source of insights.
 							</p>
 

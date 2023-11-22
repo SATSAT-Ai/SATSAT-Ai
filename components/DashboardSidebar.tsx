@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
-import DashboardData from "./DashboardData";
+import DashboardData from "./DashboardSidebarData";
 
 const DashboardSidebar = () => {
 	const pathname = usePathname();

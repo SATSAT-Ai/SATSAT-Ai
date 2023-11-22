@@ -15,7 +15,7 @@ const Footer = () => {
 								src={satsatLogo}
 								height={100}
 								width={100}
-								alt="Satsat ai"
+								alt="SATSAT AI"
 							/>
 						</Link>
 					</li>

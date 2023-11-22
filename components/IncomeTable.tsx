@@ -2,21 +2,21 @@ import Table from "@mui/joy/Table";
 
 const IncomeTable = () => {
 	function createData(
+		date: string,
 		name: string,
-		calories: number,
-		fat: number,
-		carbs: number,
-		protein: number
+		number: number,
+		amount: number,
+		balance_after: number
 	) {
-		return { name, calories, fat, carbs, protein };
+		return { date, name, number, amount, balance_after };
 	}
 
 	const rows = [
-		createData("Frozen yoghurt", 159, 6.0, 24, 4.0),
-		createData("Ice cream sandwich", 237, 9.0, 37, 4.3),
-		createData("Eclair", 262, 16.0, 24, 6.0),
-		createData("Cupcake", 305, 3.7, 67, 4.3),
-		createData("Gingerbread", 356, 16.0, 49, 3.9),
+		createData("12-01-2023", "Frozen yoghurt", 6, 24, 4.0),
+		createData("12-01-2023", "Ice cream sandwich", 237, 9.0, 37),
+		createData("12-01-2023", "Eclair", 262, 16.0, 24),
+		createData("12-01-2023", "Cupcake", 305, 3.7, 67),
+		createData("12-01-2023", "Gingerbread", 356, 16.0, 49),
 	];
 	return (
 		<Table
@@ -47,21 +47,21 @@ const IncomeTable = () => {
 		>
 			<thead>
 				<tr>
-					<th>Column width (40%)</th>
-					<th>Calories</th>
-					<th>Fat&nbsp;(g)</th>
-					<th>Carbs&nbsp;(g)</th>
-					<th>Protein&nbsp;(g)</th>
+					<th title="Date">Date</th>
+					<th title="Name">Name</th>
+					<th title="Number">Number</th>
+					<th title="Amount">Amount</th>
+					<th title="Balance After">Balance After</th>
 				</tr>
 			</thead>
 			<tbody>
 				{rows.map((row) => (
-					<tr key={row.name}>
+					<tr key={row.date}>
+						<td>{row.date}</td>
 						<td>{row.name}</td>
-						<td>{row.calories}</td>
-						<td>{row.fat}</td>
-						<td>{row.carbs}</td>
-						<td>{row.protein}</td>
+						<td>{row.number}</td>
+						<td>{row.amount}</td>
+						<td>{row.balance_after}</td>
 					</tr>
 				))}
 			</tbody>

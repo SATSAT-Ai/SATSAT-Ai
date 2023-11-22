@@ -105,7 +105,7 @@ const DashboardHeader = () => {
 									</span>
 								)}
 							</div>
-							<div className="mb-7 mt-3">
+							<div className=" pb-3 border-b border-white/10 mt-3">
 								<ul className="flex items-center gap-5 text-text-12">
 									<li
 										onClick={() => setReadTarget(0)}
@@ -128,11 +128,13 @@ const DashboardHeader = () => {
 									</li>
 								</ul>
 							</div>
-							<NotificationLogic
-								readTarget={readTarget}
-								fakeNotification={fakeNotification}
-								setFakeNotification={setFakeNotification}
-							/>
+							<div className="h-[150px] overflow-y-auto custom-scroll">
+								<NotificationLogic
+									readTarget={readTarget}
+									fakeNotification={fakeNotification}
+									setFakeNotification={setFakeNotification}
+								/>
+							</div>
 						</div>
 					)}
 				</li>

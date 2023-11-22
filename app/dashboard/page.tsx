@@ -7,7 +7,6 @@ import PieCharts from "@/components/PieCharts";
 import StatementSelector from "@/components/StatementSelector";
 import { AppContext } from "@/context/AppContext";
 import { ItransactionsData } from "@/interface";
-import Table from "@mui/joy/Table";
 import { useContext } from "react";
 import { TbLayoutSidebarRightExpand } from "react-icons/tb";
 
@@ -72,7 +71,7 @@ const Page = () => {
 			],
 		},
 		{
-			id: "total_Transaction",
+			id: "top_Transaction",
 			data: [
 				{
 					percentage: "73%",
@@ -144,10 +143,10 @@ const Page = () => {
 						"crimson",
 						"indigo",
 					]}
-					title="Total Transactions"
+					title="Top Transactions"
 				/>
 			</div>
-			<div className="my-7 bg-white/10 p-2 sm:p-5 flex-col lg:flex-row flex items-center w-full justify-between gap-7 rounded-2xl">
+			<div className="my-7 bg-white/10 p-2 sm:p-5 grid grid-cols-1 items-center lg:grid-cols-2 w-full justify-between gap-7 rounded-2xl">
 				<DonutChart />
 				<div className="">
 					<h3 className="text-text-24 sm:text-[35px] text-white font-bold text-center">

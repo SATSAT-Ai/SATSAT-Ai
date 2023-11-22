@@ -69,12 +69,21 @@ const Page = () => {
 									<h3 className=" text-center text-text-normal font-medium">
 										{prices.price}
 									</h3>
-									<Link
-										className="w-full shadow-md button block text-center font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
-										href={"#"}
-									>
-										Signup
-									</Link>
+									{prices.category == "enterprise" ? (
+										<Link
+											className="w-full shadow-md button block text-center font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
+											href={"#"}
+										>
+											Connect
+										</Link>
+									) : (
+										<Link
+											className="w-full shadow-md button block text-center font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
+											href={"#"}
+										>
+											Signup
+										</Link>
+									)}
 								</div>
 							);
 						})}
