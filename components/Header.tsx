@@ -54,7 +54,7 @@ const Header = () => {
 						size="25"
 						onClick={() => setShowNav(true)}
 					/>
-					<ul className="hidden sm:flex items-center gap-3 font-normal text-text-normal">
+					<ul className="hidden sm:flex items-center gap-3 sm:gap-5 font-normal text-text-normal">
 						<li
 							className={`${
 								pathname == "/"
