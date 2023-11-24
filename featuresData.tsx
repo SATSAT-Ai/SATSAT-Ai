@@ -5,6 +5,9 @@ import { GiArtificialIntelligence } from "react-icons/gi";
 import { HiDocumentSearch } from "react-icons/hi";
 import { FaChartSimple } from "react-icons/fa6";
 import { featureData } from "./interface";
+import { MdManageAccounts } from "react-icons/md";
+import { MdOutlineQueryStats } from "react-icons/md";
+import { IoDocumentLockOutline } from "react-icons/io5";
 
 export const featuresData: featureData[] = [
 	{
@@ -32,14 +35,14 @@ export const featuresData: featureData[] = [
 		link: "#",
 	},
 	{
-		icon: <MdDocumentScanner size={40} color="#c18e3b" />,
+		icon: <IoDocumentLockOutline size={40} color="#c18e3b" />,
 		title: "Smart Document Detection",
 		para: " amet amet pellentesque. Arcu mollis sem aenean aliquam diam enim tortor et. Pharetra neque interdum ac arcu nec morbi placerat in pellentesque. Eget ut adipiscing in ac. Turpis nunc sit in erat tristique facilisi vitae nec morbi.",
 		link: "#",
 	},
 	{
-		icon: <PiWebhooksLogoBold size={40} color="#c18e3b" />,
-		title: "MdDocumentScanner",
+		icon: <MdDocumentScanner size={40} color="#c18e3b" />,
+		title: "Document Scanner",
 		para: " amet amet pellentesque. Arcu mollis sem aenean aliquam diam enim tortor et. Pharetra neque interdum ac arcu nec morbi placerat in pellentesque. Eget ut adipiscing in ac. Turpis nunc sit in erat tristique facilisi vitae nec morbi.",
 		link: "#",
 	},
@@ -58,6 +61,24 @@ export const featuresData: featureData[] = [
 	{
 		icon: <FaChartSimple size={40} color="#c18e3b" />,
 		title: "Charts and Graphs",
+		para: " amet amet pellentesque. Arcu mollis sem aenean aliquam diam enim tortor et. Pharetra neque interdum ac arcu nec morbi placerat in pellentesque. Eget ut adipiscing in ac. Turpis nunc sit in erat tristique facilisi vitae nec morbi.",
+		link: "#",
+	},
+	{
+		icon: <MdManageAccounts size={40} color="#c18e3b" />,
+		title: "Client Profile Management",
+		para: " amet amet pellentesque. Arcu mollis sem aenean aliquam diam enim tortor et. Pharetra neque interdum ac arcu nec morbi placerat in pellentesque. Eget ut adipiscing in ac. Turpis nunc sit in erat tristique facilisi vitae nec morbi.",
+		link: "#",
+	},
+	{
+		icon: <MdOutlineQueryStats size={40} color="#c18e3b" />,
+		title: "Alternative Scoring",
+		para: " amet amet pellentesque. Arcu mollis sem aenean aliquam diam enim tortor et. Pharetra neque interdum ac arcu nec morbi placerat in pellentesque. Eget ut adipiscing in ac. Turpis nunc sit in erat tristique facilisi vitae nec morbi.",
+		link: "#",
+	},
+	{
+		icon: <PiWebhooksLogoBold size={40} color="#c18e3b" />,
+		title: "API and Webhooks",
 		para: " amet amet pellentesque. Arcu mollis sem aenean aliquam diam enim tortor et. Pharetra neque interdum ac arcu nec morbi placerat in pellentesque. Eget ut adipiscing in ac. Turpis nunc sit in erat tristique facilisi vitae nec morbi.",
 		link: "#",
 	},
