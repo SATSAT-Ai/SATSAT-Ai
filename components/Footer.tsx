@@ -77,19 +77,19 @@ const Footer = () => {
 						</li>
 					</ul>
 					<ul className="items-center text-grey-light w-fit flex gap-5">
-						<li className="hover:text-white w-fit transition-colors">
+						<li className="hover:text-white text-brand-green w-fit transition-colors">
 							<Link href={"#"}>
-								<BsFacebook color="#29a173" size="25" />
+								<BsFacebook size="25" />
 							</Link>
 						</li>
-						<li className="hover:text-white w-fit transition-colors">
+						<li className="hover:text-white text-brand-green w-fit transition-colors">
 							<Link href={"#"}>
-								<FaXTwitter color="#29a173" size="25" />
+								<FaXTwitter size="25" />
 							</Link>
 						</li>
-						<li className="hover:text-white w-fit transition-colors">
+						<li className="hover:text-white text-brand-green w-fit transition-colors">
 							<Link href={"#"}>
-								<BsLinkedin color="#29a173" size="25" />
+								<BsLinkedin size="25" />
 							</Link>
 						</li>
 					</ul>
