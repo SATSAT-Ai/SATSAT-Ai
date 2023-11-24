@@ -30,9 +30,15 @@ export interface ItransactionsData {
 		name: string;
 	}[];
 }
-export interface IdashboardData {
+export interface IDashboardSidebarData {
 	icon: JSX.Element;
 	name: string;
 	path: string;
-	subPaths?: { path: string; name: string }[];
+	subPaths?: { path: string; name: string; icon: JSX.Element }[];
+}
+
+export interface Ichat {
+	id: string;
+	title: string;
+	timestamp: string;
 }
