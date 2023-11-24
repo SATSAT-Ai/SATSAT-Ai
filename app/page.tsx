@@ -1,11 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import promptPageDemo from "../public/Prompt-page-demo.svg";
 import chatBot from "../public/chatbot.svg";
 import createAccountImage from "../public/create-account.svg";
 import chatWithAiImage from "../public/chat-with-ai.svg";
-import { MdArrowForward } from "react-icons/md";
-import { AiFillStar } from "react-icons/ai";
+import { MdArrowForward, MdPlayCircle } from "react-icons/md";
+import { MdStar } from "react-icons/md";
 import mtnImage from "../public/mtn.svg";
 import vodaphoneImage from "../public/vodaphone.svg";
 import ecobankImage from "../public/ecobank.svg";
@@ -18,10 +17,11 @@ import PageScroller from "@/components/PageScroller";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import TypeWriter from "@/components/TypeWriter";
+import TypeWrite from "@/components/TypeWrite";
+import PromptPage from "@/components/PromptPage";
 
 export const metadata: Metadata = {
-	title: "Welcome to SATSAT-Ai",
+	title: "Welcome to SATSAT-AI",
 };
 
 export default function Home() {
@@ -30,35 +30,46 @@ export default function Home() {
 			<Header />
 			<div className="bg-darker min-h-screen overflow-clip relative">
 				<div className=" h-screen text-center flex flex-col relative z-0 ">
-					<div className="green-blob w-96 h-96 animate-pulse top-[-55%] md:top-[-40%] left-[50%]"></div>
+					<div className="green-blob w-96 h-96 animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
 					<section className="my-max flex flex-col items-center justify-center h-[80%] w-full">
 						<h1 className="text-brand-green max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
 							SATSAT AI
 						</h1>
 						<p className="text-mid--yellow text-text-normal md:text-text-normal">
-							<TypeWriter text="Query your financial data with natural language." />
+							<TypeWrite text="Query your financial data with natural language." />
 						</p>
-						<Link
-							href={"/choose-your-pricing"}
-							className="flex animate-pulse hover:animate-none bg-brand-green hover:bg-mid--yellow transition-colors duration-200 items-center gap-2 active:scale-[1.01] text-white w-fit px-7 !rounded-2xl mx-auto mt-5 button"
-						>
-							Get Started
-						</Link>
+						<div className="flex flex-col-reverse sm:flex-row items-center gap-5 mt-7">
+							<Link
+								href={"/choose-your-pricing"}
+								className="flex animate-pulse hover:animate-none transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white w-fit px-7 rounded-3xl mx-auto button2"
+							>
+								{/* <AiFillStar size={20} color="white" /> */}
+								Get Started Now
+							</Link>
+							<Link
+								href={""}
+								className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-grey-lightest hover:text-white w-fit px-7  rounded-3xl mx-auto"
+							>
+								<MdPlayCircle size={20} />
+								Watch Demo
+							</Link>
+						</div>
 					</section>
 				</div>
 				<main className="md:py-36">
 					<div className="my-max">
-						<div className="flex relative rounded-3xl my-shadow mx-auto max-w-4xl items-center justify-center">
+						<div className="flex bg-[black] relative sm:rounded-3xl my-shadow mx-auto my-max items-center justify-center">
 							<div className="green-blob w-96 h-96 top-[50%] left-[-50%] md:left-[-20%]"></div>
 							<div className="yellow-blob w-96 h-96 top-[20%] right-[-30%]"></div>
-							<Image
+							{/* <Image
 								className="rounded-3xl z-0"
 								src={promptPageDemo}
 								height={700}
 								width={900}
 								alt="prompt page"
 								priority
-							/>
+							/> */}
+							<PromptPage />
 						</div>
 						<section className="text-center flex flex-col">
 							<h2 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
@@ -96,12 +107,19 @@ export default function Home() {
 										retrieval.
 									</p>
 								</div>
-								<div className="text-white z-0 p-5 rounded-3xl  sm:bg-brand-green-darker flex flex-col items-center justify-center">
+								<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-brand-green-darker flex flex-col items-center justify-center">
+									<Link
+										href={""}
+										className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white hover:text-mid--yellow w-fit px-7  rounded-3xl mx-auto"
+									>
+										<MdPlayCircle size={20} />
+										Watch Demo
+									</Link>
 									<Link
 										href={"/choose-your-pricing"}
-										className="flex items-center gap-3 hover:border-mid--yellow md:hover:border-darker border border-white active:scale-[1.01] button  hover:bg-mid--yellow md:hover:bg-darker rounded-2xl transition-all bg-brand-green-darker"
+										className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] bg-darker text-white w-fit px-7 rounded-3xl mx-auto button2"
 									>
-										Get started
+										Get Started
 										<MdArrowForward color="white" size="25" />
 									</Link>
 								</div>
@@ -157,12 +175,19 @@ export default function Home() {
 											can harness the power of AI with peace of mind.
 										</p>
 									</div>
-									<div className="text-white z-0 p-5 rounded-3xl sm:bg-brand-green-darker flex flex-col items-center justify-center">
+									<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-brand-green-darker flex flex-col items-center justify-center">
+										<Link
+											href={""}
+											className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white hover:text-mid--yellow w-fit px-7  rounded-3xl mx-auto"
+										>
+											<MdPlayCircle size={20} />
+											Watch Demo
+										</Link>
 										<Link
 											href={"/choose-your-pricing"}
-											className="flex items-center gap-2 border-[1px] active:scale-[1.01] border-white button md:hover:border-darker hover:border-mid--yellow hover:bg-mid--yellow md:hover:bg-darker rounded-2xl transition-all bg-brand-green-darker"
+											className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] bg-darker text-white w-fit px-7 rounded-3xl mx-auto button2"
 										>
-											Get started
+											Get Started
 											<MdArrowForward color="white" size="25" />
 										</Link>
 									</div>
@@ -191,9 +216,10 @@ export default function Home() {
 									</p>
 									<Link
 										href={"/choose-your-pricing"}
-										className="flex w-fit items-center gap-3 active:scale-[1.01] text-white button hover:bg-white hover:text-darker transition-all bg-brand-green-darker"
+										className="flex text-text-[18px] items-center gap-3 active:scale-[1.01] text-white button2 hover:bg-white w-fit border border-brand-green hover:border-white hover:text-darker rounded-3xl transition-all "
 									>
-										Get started
+										<MdStar size={20} />
+										Get started Now
 									</Link>
 								</div>
 								<div className="flex flex-col sm:flex-row gap-5 lg:flex-col">
@@ -239,9 +265,10 @@ export default function Home() {
 							FINANCIAL SERVICE PROVIDERS
 						</h4>
 						<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-							SATSAT AI can scan documents like invoices, mobile money
+							SATSAT AI scans documents such as invoices, mobile money
 							statements, bank statements and receipts. These are some of the
-							banks and mobile money service providers
+							mobile money service providers and banks we provide our services
+							to
 						</p>
 
 						{/* <ServiceProviders /> */}
@@ -325,10 +352,10 @@ export default function Home() {
 										</span>
 										<Link
 											href={"/choose-your-pricing"}
-											className="flex text-text-[18px] items-center gap-3 active:scale-[1.01] text-white button hover:bg-white hover:text-darker rounded-3xl transition-all border border-white"
+											className="flex text-text-[18px] items-center gap-3 active:scale-[1.01] text-white button2 hover:bg-white hover:text-darker rounded-3xl transition-all "
 										>
-											<AiFillStar size={25} color="#29a173" />
-											Get started
+											<MdStar size={25} color="#29a173" />
+											Get started Now
 										</Link>
 									</div>
 									<div className="flex items-center justify-between gap-5 w-full">
