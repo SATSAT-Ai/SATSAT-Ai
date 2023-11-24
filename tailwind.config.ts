@@ -19,6 +19,13 @@ const config: Config = {
 			crimson: "crimson",
 		},
 
+		extend: {
+			backgroundImage: {
+				"silver-gradient": "linear-gradient(to top,#050d0a,#ffffff,#050d0a)",
+				"silver-gradient2": "linear-gradient(to left,#050d0a,#ffffff,#050d0a)",
+			},
+		},
+
 		fontSize: {
 			"text-normal": "16px",
 			"text-40": "40px",
