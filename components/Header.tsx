@@ -64,14 +64,15 @@ const Header = () => {
 						>
 							<Link href={"/"}>Home</Link>
 						</li>
+
 						<li
 							className={`${
-								pathname == "/about"
+								pathname == "/how-it-works"
 									? "text-mid--yellow font-medium"
 									: "text-grey-lightest hover:text-white"
 							}`}
 						>
-							<Link href={"/about"}>About</Link>
+							<Link href={"/how-it-works"}>How It Works</Link>
 						</li>
 						<li
 							className={`${
@@ -84,13 +85,23 @@ const Header = () => {
 						</li>
 						<li
 							className={`${
+								pathname == "/about"
+									? "text-mid--yellow font-medium"
+									: "text-grey-lightest hover:text-white"
+							}`}
+						>
+							<Link href={"/about"}>About</Link>
+						</li>
+
+						{/* <li
+							className={`${
 								pathname == "/contact"
 									? "text-mid--yellow font-medium"
 									: "text-grey-lightest hover:text-white"
 							}`}
 						>
 							<Link href={"/contact"}>Contact</Link>
-						</li>
+						</li> */}
 						<li
 							className={`${
 								pathname == "/signin"
@@ -100,13 +111,15 @@ const Header = () => {
 						>
 							<Link href={"/signin"}>Sign in</Link>
 						</li>
-						<Link
-							className="flex items-center !rounded-3xl gap-3 font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
-							href={"/choose-your-pricing"}
-						>
-							Get Started
-							<MdArrowForward color="white" size="25" />
-						</Link>
+						{pathname !== "/choose-your-pricing" && (
+							<Link
+								className="flex items-center !rounded-3xl gap-3 font-normal hover:shadow-none hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button2"
+								href={"/choose-your-pricing"}
+							>
+								Get Started
+								<MdArrowForward color="white" size="25" />
+							</Link>
+						)}
 					</ul>
 				</div>
 			</header>
