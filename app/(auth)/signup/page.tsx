@@ -8,7 +8,7 @@ import Footer from "@/components/Footer";
 import SignupForm from "@/components/SignupForm";
 
 export const metadata: Metadata = {
-	title: "SATSAT-Ai Get started!",
+	title: "SATSAT-AI Get started!",
 };
 const Page = () => {
 	return (
