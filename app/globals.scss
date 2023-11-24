@@ -72,6 +72,24 @@
 	section {
 		padding-block: 5rem;
 	}
+
+	.outmessage {
+		background: linear-gradient(45deg, #2aa27438, #c18e3b50);
+	}
+	.inMessage {
+		background-color: #2aa27438;
+	}
+
+	.silver-text {
+		background: radial-gradient(
+			70.71% 70.71% at 50% 50%,
+			#fff 30%,
+			rgba(255, 255, 255, 0.5) 84.77%
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
 }
 
 @layer components {
@@ -80,6 +98,22 @@
 		padding-block: rem(10);
 		border-radius: rem(8);
 		font-size: rem(16);
+	}
+
+	.button2 {
+		padding-inline: rem(15);
+		padding-block: rem(10);
+		font-size: rem(16);
+		box-shadow: 0px 0px 10px 0px #2aa274;
+		background-color: transparent;
+		color: #a3a3a3;
+
+		&:hover {
+			box-shadow: none;
+			background-color: #2aa274;
+			box-shadow: 0px 0px 10px 0px #2aa274;
+			color: white;
+		}
 	}
 }
 
