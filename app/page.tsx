@@ -46,13 +46,6 @@ export default function Home() {
 								{/* <AiFillStar size={20} color="white" /> */}
 								Get Started Now
 							</Link>
-							<Link
-								href={""}
-								className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-grey-lightest hover:text-white w-fit px-7  rounded-3xl mx-auto"
-							>
-								<MdPlayCircle size={20} />
-								Watch Demo
-							</Link>
 						</div>
 					</section>
 				</div>
@@ -109,11 +102,10 @@ export default function Home() {
 								</div>
 								<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-brand-green-darker flex flex-col items-center justify-center">
 									<Link
-										href={""}
+										href={"/book-a-demo"}
 										className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white hover:text-mid--yellow w-fit px-7  rounded-3xl mx-auto"
 									>
-										<MdPlayCircle size={20} />
-										Watch Demo
+										Book A Demo
 									</Link>
 									<Link
 										href={"/choose-your-pricing"}
@@ -177,11 +169,10 @@ export default function Home() {
 									</div>
 									<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-brand-green-darker flex flex-col items-center justify-center">
 										<Link
-											href={""}
+											href={"/book-a-demo"}
 											className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white hover:text-mid--yellow w-fit px-7  rounded-3xl mx-auto"
 										>
-											<MdPlayCircle size={20} />
-											Watch Demo
+											Book A Demo
 										</Link>
 										<Link
 											href={"/choose-your-pricing"}
