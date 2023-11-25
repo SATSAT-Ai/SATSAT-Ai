@@ -1,7 +1,5 @@
-"use client";
 import Link from "next/link";
 import DashboardIcon from "@mui/icons-material/Dashboard";
-import CurrencyExchangeIcon from "@mui/icons-material/CurrencyExchange";
 import ChatIcon from "@mui/icons-material/Chat";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
@@ -12,81 +10,71 @@ import { TbLayoutSidebarRightExpand } from "react-icons/tb";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import Logo from "@/public/satsat-logo.svg";
-import { IdashboardData } from "@/interface";
+import { IDashboardSidebarData } from "@/interface";
 import PageWithSubPath from "./PageWithSubPath";
-import { useState } from "react";
+import UploadFileIcon from "@mui/icons-material/UploadFile";
+import PaidIcon from "@mui/icons-material/Paid";
+import CategoryIcon from "@mui/icons-material/Category";
+import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 
-const DashboardData = ({
+const DashboardSidebarWithData = ({
 	pathname,
 	setHideSidebar,
 }: {
 	pathname: string;
 	setHideSidebar: Dispatch<SetStateAction<boolean>>;
 }) => {
-	const [showSubpath, setShowSubpath] = useState(false);
-
-	const dashboardData: IdashboardData[] = [
+	const dashboardSidebarData: IDashboardSidebarData[] = [
 		{
-			icon: (
-				<DashboardIcon
-					color={pathname == "/dashboard" ? "secondary" : "primary"}
-					fontSize="medium"
-				/>
-			),
+			icon: <DashboardIcon fontSize="medium" />,
 			name: "Dashboard",
 			path: "/dashboard",
 		},
 		{
-			icon: <CurrencyExchangeIcon fontSize="medium" />,
-			name: "Transactions",
 			path: "/dashboard/transactions",
+			icon: <PaidIcon fontSize="medium" />,
+			name: "Transactions",
 			subPaths: [
-				{ path: "/dashboard/transactions1", name: "Transactions1" },
-				{ path: "/dashboard/transactions2", name: "Transactions2" },
+				{
+					path: "/dashboard/transactions/categories",
+					name: "Categories",
+					icon: <CategoryIcon fontSize="medium" />,
+				},
+				{
+					path: "/dashboard/transactions/budget",
+					name: "Budget",
+					icon: <PriceCheckIcon fontSize="medium" />,
+				},
 			],
 		},
 		{
-			icon: (
-				<ChatIcon
-					fontSize="medium"
-					color={pathname == "/dashboard/chat" ? "secondary" : "primary"}
-				/>
-			),
+			path: "/dashboard/upload",
+			icon: <UploadFileIcon fontSize="medium" />,
+			name: "Upload",
+		},
+		{
+			icon: <ChatIcon fontSize="medium" />,
 			name: "Chat",
 			path: "/dashboard/chat",
 		},
 		{
-			icon: (
-				<ReceiptLongIcon
-					fontSize="medium"
-					color={pathname == "/dashboard/receipts" ? "secondary" : "primary"}
-				/>
-			),
+			icon: <ReceiptLongIcon fontSize="medium" />,
 			name: "Receipts",
 			path: "/dashboard/receipts",
 		},
 		{
-			icon: (
-				<TextSnippetIcon
-					fontSize="medium"
-					color={pathname == "/dashboard/invoice" ? "secondary" : "primary"}
-				/>
-			),
+			icon: <TextSnippetIcon fontSize="medium" />,
 			name: "Invoice",
 			path: "/dashboard/invoice",
 		},
 
 		{
-			icon: (
-				<SettingsSuggestIcon
-					color={pathname == "/dashboard/settings" ? "secondary" : "primary"}
-					fontSize="medium"
-				/>
-			),
+			icon: <SettingsSuggestIcon fontSize="medium" />,
 			name: "Settings",
 			path: "/dashboard/settings",
 		},
 	];
+
 	return (
 		<>
 			<ul className=" justify-between min-h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-2 ">
@@ -101,49 +89,43 @@ const DashboardData = ({
 						/>
 					</Link>
 				</li>
-				<div
+				<li
 					tabIndex={0}
 					onClick={() => setHideSidebar(true)}
 					className="md:ml-6 focus:bg-brand-green mx-auto md:mx-full cursor-pointer my-5 md:my-0 hover:bg-brand-green w-fit p-1 rounded-md"
 				>
 					<TbLayoutSidebarRightExpand color="white" size={25} />
-				</div>
-				<li className="w-full flex flex-col gap-2">
-					{dashboardData.map((routes) => {
+				</li>
+				<ul className="w-full flex flex-col gap-2">
+					{dashboardSidebarData.map((routes: IDashboardSidebarData) => {
 						if (routes.subPaths) {
-							const routeWithSubpath = dashboardData.filter(
-								(routesWithPath) =>
-									routesWithPath.name && routesWithPath.subPaths
-							);
 							return (
 								<PageWithSubPath
 									key={routes.name}
-									routeWithSubpath={routeWithSubpath}
+									routeWithSubpath={routes}
 									pathname={pathname}
-									showSubpath={showSubpath}
-									setShowSubpath={setShowSubpath}
 								/>
 							);
 						}
 						return (
-							<Link
-								onClick={() => setShowSubpath(false)}
-								href={routes.path}
-								key={routes.name}
-								className={`${
-									pathname === routes.path
-										? " bg-mid--yellow md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
-										: "text-white"
-								} text-text-normal md:pl-6 w-fit mx-auto md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex   cursor-pointer p-2 items-center gap-3 hover:bg-white/10 relative`}
-							>
-								<div className="flex items-center gap-3">
-									{routes.icon}
-									<p className="hidden md:flex">{routes.name}</p>
-								</div>
-							</Link>
+							<li key={routes.name}>
+								<Link
+									href={routes.path!}
+									className={`${
+										pathname === routes.path
+											? " bg-mid--yellow md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
+											: "text-white"
+									} text-text-normal md:pl-6 w-fit mx-auto md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex   cursor-pointer p-2 items-center gap-3 hover:bg-white/10 relative`}
+								>
+									<div className="flex items-center gap-3">
+										{routes.icon}
+										<p className="hidden md:flex">{routes.name}</p>
+									</div>
+								</Link>
+							</li>
 						);
 					})}
-				</li>
+				</ul>
 				<li className="flex flex-col mx-3 md:mt-4 gap-7">
 					<div className="md:mt-7 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
 						<RocketLaunchIcon fontSize="large" color={"primary"} />
@@ -163,4 +145,4 @@ const DashboardData = ({
 		</>
 	);
 };
-export default DashboardData;
+export default DashboardSidebarWithData;
