@@ -10,7 +10,6 @@ import { TbLayoutSidebarRightExpand } from "react-icons/tb";
 import { FaPlus } from "react-icons/fa6";
 import ChatCollections from "./ChatCollections";
 import { Ichat } from "@/interface";
-import SidebarChatFiles from "./SidebarChatFiles";
 import { FaUserCircle } from "react-icons/fa";
 
 const ChatSidebar = () => {
@@ -105,7 +104,6 @@ const ChatSidebar = () => {
 				</div>
 				<ChatCollections chatCollections={chats} showFiles={showFiles} />
 
-				<SidebarChatFiles showFiles={showFiles} setShowFiles={setShowFiles} />
 				<li className="flex  flex-col md:mt-2 gap-4">
 					<div className="active:scale-[1.01] select-none flex flex-col max-w-xs cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
 						<h3 className="my-0 flex items-center gap-3 font-medium text-text-normal">
