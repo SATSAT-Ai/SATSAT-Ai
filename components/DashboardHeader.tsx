@@ -1,6 +1,5 @@
 "use client";
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import ForumIcon from "@mui/icons-material/Forum";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
@@ -10,6 +9,7 @@ import satsatLogo from "../public/satsat-logo.svg";
 import { AppContext } from "@/context/AppContext";
 import NotificationLogic from "./NotificationLogic";
 import { Inotification } from "@/interface";
+import ChatIcon from "@mui/icons-material/Chat";
 
 const DashboardHeader = () => {
 	const { hideSidebar, setShowNotification, showNotification } =
@@ -139,9 +139,9 @@ const DashboardHeader = () => {
 					)}
 				</li>
 				<li>
-					<Link href={"#"}>
+					<Link href={"/chat"}>
 						<div className="relative">
-							<ForumIcon
+							<ChatIcon
 								fontSize="medium"
 								color="primary"
 								className="relative"
