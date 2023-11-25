@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useContext } from "react";
 import { AppContext } from "@/context/AppContext";
-import DashboardData from "./DashboardSidebarData";
+import DashboardSidebarWithData from "./DashboardSidebarData";
 
 const DashboardSidebar = () => {
 	const pathname = usePathname();
@@ -14,7 +14,10 @@ const DashboardSidebar = () => {
 				hideSidebar ? "hidden" : "block"
 			}`}
 		>
-			<DashboardData setHideSidebar={setHideSidebar} pathname={pathname} />
+			<DashboardSidebarWithData
+				setHideSidebar={setHideSidebar}
+				pathname={pathname}
+			/>
 		</div>
 	);
 };
