@@ -1,72 +1,90 @@
-import { IdashboardData } from "@/interface";
+"use client";
+import { IDashboardSidebarData } from "@/interface";
 import Link from "next/link";
-import { Dispatch, SetStateAction } from "react";
+import { useState, useEffect } from "react";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 
 const PageWithSubPath = ({
 	routeWithSubpath,
 	pathname,
-	showSubpath,
-	setShowSubpath,
 }: {
-	routeWithSubpath: IdashboardData[];
+	routeWithSubpath: IDashboardSidebarData;
 	pathname: string;
-	setShowSubpath: Dispatch<SetStateAction<boolean>>;
-	showSubpath: boolean;
 }) => {
-	return routeWithSubpath.map((routes) => {
-		return (
+	const [showSubpath, setShowSubpath] = useState(false);
+
+	useEffect(() => {
+		if (pathname.includes("/transactions/")) {
+			setShowSubpath(true);
+		}
+	}, [pathname]);
+
+	return (
+		<li
+			className={`${
+				showSubpath
+					? ` rounded-md md:shadow-none relative pb-2 md:pb-0 bg-brand-green/10`
+					: !showSubpath
+					? "md:hover:bg-white/10"
+					: "text-white"
+			} text-text-normal mx-auto md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex cursor-pointer items-center gap-3 relative`}
+		>
 			<div
-				key={routes.name}
-				className={`${
-					pathname === routes.path
-						? ` md:bg-transparent icon rounded-md md:shadow-none text-mid--yellow md:hover:bg-white/10 ${
-								!showSubpath &&
-								"md:before:absolute bg-mid--yellow hover:bg-white/10 md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
-						  }`
-						: !showSubpath
-						? "md:hover:bg-white/10"
-						: "text-white"
-				} text-text-normal md:pl-6  mx-auto md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex  cursor-pointer md:p-1 items-center gap-3 relative`}
+				className={`flex gap-2 flex-col ${
+					showSubpath ? "h-fit" : "h-10 md:h-11 "
+				} overflow-hidden  w-full`}
 			>
 				<div
-					className={`flex gap-2 flex-col ${
-						showSubpath ? "h-fit" : "h-10 md:h-9 "
-					} overflow-hidden  w-full`}
+					className={`${
+						pathname === routeWithSubpath.path
+							? "md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow bg-mid--yellow text-white md:text-mid--yellow hover:bg-white/10 md:bg-transparent rounded-md shadow-md md:shadow-none"
+							: "hover:bg-white/10"
+					} text-text-normal w-fit mx-auto md:mx-full rounded-md md:hover:bg-transparent md:rounded-none justify-center md:justify-start md:w-full flex items-center  cursor-pointer gap-3 p-2 md:pl-6 md:py-2 relative`}
 				>
 					<Link
-						href={routes.path!}
-						onClick={() => setShowSubpath((prev) => !prev)}
-						className={`${
-							pathname === routes.path
-								? " bg-mid--yellow hover:bg-white/10 md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow"
-								: "text-white hover:bg-white/10"
-						} text-text-normal w-fit mx-auto md:mx-full rounded-md md:hover:bg-transparent md:rounded-none justify-center md:justify-start md:w-full flex   cursor-pointer p-2 md:p-0 md:py-2 items-center gap-3 relative`}
+						className="flex gap-3 items-center"
+						href={routeWithSubpath.path}
 					>
-						{routes.icon}
-						<p className="hidden md:flex">{routes.name}</p>
+						{routeWithSubpath.icon}
+						<p className="hidden md:flex">{routeWithSubpath.name}</p>
 					</Link>
-					<div className="flex items-center gap-2 w-full md:ml-1 flex-col">
-						{routes.subPaths?.map((subpath) => {
-							return (
-								<Link
-									href={subpath.path}
-									key={subpath.path}
-									className={`${
-										pathname === subpath.path
-											? " bg-mid--yellow md:bg-transparent icon  shadow-md md:shadow-none text-mid--yellow  md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
-											: "text-white hover:bg-white/10"
-									} text-text-normal md:pl-6 w-fit mx-auto md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex cursor-pointer p-2 items-center gap-3 relative`}
-								>
-									{routes.icon}
-									<div className="hidden md:flex">{subpath.name}</div>
-								</Link>
-							);
-						})}
-					</div>
+					{!showSubpath && (
+						<ExpandMoreIcon
+							onClick={() => setShowSubpath(true)}
+							fontSize="medium"
+							color="inherit"
+						/>
+					)}
+					{showSubpath && (
+						<ExpandLessIcon
+							onClick={() => setShowSubpath(false)}
+							fontSize="medium"
+							color="inherit"
+						/>
+					)}
+				</div>
+				<div className="flex items-center gap-2 w-full flex-col">
+					{routeWithSubpath.subPaths?.map((subpath) => {
+						return (
+							<Link
+								href={subpath.path}
+								key={subpath.path}
+								className={`${
+									pathname === subpath.path
+										? "md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow bg-mid--yellow md:bg-transparent icon shadow-md md:shadow-none text-mid--yellow "
+										: "text-white "
+								} hover:bg-white/10 text-text-normal w-fit mx-auto md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex cursor-pointer px-3 md:px-0 md:pl-6 py-2 items-center gap-3 relative`}
+							>
+								{subpath.icon}
+								<div className="hidden md:flex">{subpath.name}</div>
+							</Link>
+						);
+					})}
 				</div>
 			</div>
-		);
-	});
+		</li>
+	);
 };
 
 export default PageWithSubPath;
