@@ -10,7 +10,7 @@ export interface featureData {
 export interface Iprices {
 	id: string;
 	category: string;
-	priviledges: string[];
+	privileges: string[];
 	price: string;
 }
 
