@@ -52,7 +52,7 @@ const UploadStepOne = ({
 					Select Document Type To Upload
 				</h2>
 
-				<ul className="mt-7 p-5 flex-col sm:flex-row flex items-center gap-7 justify-center">
+				<ul className="mt-7 p-5 flex-col flex-wrap sm:flex-row flex items-center gap-7 justify-center">
 					{documents.map((document) => {
 						return (
 							<li
