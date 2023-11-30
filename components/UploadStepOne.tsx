@@ -65,9 +65,10 @@ const UploadStepOne = ({
 							>
 								<Image
 									src={document.image}
-									height={90}
-									width={90}
-									alt="bank statement"
+									height={70}
+									width={70}
+									alt={document.value}
+									priority
 								/>
 								<p className="font-medium text-[17px] text-center">
 									{document.value}
