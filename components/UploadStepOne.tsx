@@ -1,9 +1,9 @@
 import Image from "next/image";
 import bankStatementimage from "@/public/bank-statement.png";
-import mobileMoneyStatementImage from "@/public/bill.png";
 import { Dispatch, SetStateAction } from "react";
 import receiptImage from "@/public/receipt.png";
 import invoiceImage from "@/public/invoice.png";
+import mobileMoneyImage from "@/public/mobile-money.png";
 
 const UploadStepOne = ({
 	selectedStatement,
@@ -23,15 +23,16 @@ const UploadStepOne = ({
 
 	const documents = [
 		{
-			name: "mobile-money-statement",
-			value: "Mobile Money",
-			image: mobileMoneyStatementImage,
-		},
-		{
 			name: "bank-statement",
 			value: "Bank Statement",
 			image: bankStatementimage,
 		},
+		{
+			name: "mobile-money-statement",
+			value: "Mobile Money",
+			image: mobileMoneyImage,
+		},
+
 		{
 			name: "invoice",
 			value: "Invoice",
