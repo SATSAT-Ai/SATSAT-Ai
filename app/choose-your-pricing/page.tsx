@@ -1,24 +1,23 @@
-import React from "react";
 import { pricingData } from "../../pricingdata";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { Iprices } from "@/interface";
-import Link from "next/link";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MdVerified } from "react-icons/md";
+import SubscribeButton from "@/components/SubscribeButton";
 
 export const metadata: Metadata = {
-	title: "SATSAT-Ai subscription plan",
+	title: "SATSAT AI subscription plan",
 };
 
-const Page = () => {
+const page = () => {
 	return (
 		<>
 			<Header />
 			<main className="min-h-screen bg-darker relative overflow-x-clip">
-				<div className=" animate-pulse green-blob w-96 h-96 top-[-5%] md:top-[-10%] right-[-50%] md:right-[-15%]"></div>
-				<div className=" animate-pulse yellow-blob w-96 h-96 bottom-[-10%] md:bottom-[0%] left-[-10%]"></div>
+				<div className=" animate-pulse green-blob2 w-96 h-96 top-[-5%] md:top-[-10%] right-[-50%] md:right-[-15%]"></div>
+				<div className=" animate-pulse yellow-blob3 w-96 h-96 bottom-[-10%] md:bottom-[0%] left-[-10%]"></div>
 				<section>
 					<h1 className="text-brand-green mb-3 text-center max-w-5xl mx-auto text-text-40 md:text-text-60">
 						Choose pricing
@@ -50,17 +49,17 @@ const Page = () => {
 										/>
 									)}
 									<ul className="flex flex-col gap-3">
-										{prices.priviledges.map((priviledges) => {
+										{prices.privileges.map((privileges) => {
 											return (
 												<li
 													className=" flex items-center gap-3"
-													key={priviledges}
+													key={privileges}
 												>
 													<BsFillCheckCircleFill
 														size={20}
 														className={`${"text-brand-green"} check`}
 													/>
-													{priviledges}
+													{privileges}
 												</li>
 											);
 										})}
@@ -70,19 +69,12 @@ const Page = () => {
 										{prices.price}
 									</h3>
 									{prices.category == "enterprise" ? (
-										<Link
-											className="w-full shadow-md button block text-center font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
-											href={"#"}
-										>
-											Connect
-										</Link>
+										<SubscribeButton
+											name="Contact Sales"
+											type="contact-sales"
+										/>
 									) : (
-										<Link
-											className="w-full shadow-md button block text-center font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"
-											href={"#"}
-										>
-											Signup
-										</Link>
+										<SubscribeButton name="Signup" type="signup" />
 									)}
 								</div>
 							);
@@ -95,4 +87,4 @@ const Page = () => {
 	);
 };
 
-export default Page;
+export default page;

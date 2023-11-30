@@ -9,16 +9,17 @@ const DashboardSidebar = () => {
 	const pathname = usePathname();
 	const { hideSidebar, setHideSidebar } = useContext(AppContext);
 	return (
-		<div
-			className={`bg-white/10 backdrop-blur-md text-white min-h-full z-40 sm:relative absolute flex-initial md:basis-64 ${
-				hideSidebar ? "hidden" : "block"
+		<aside
+			className={`bg-white/10   backdrop-blur-md text-white  z-40 sm:relative fixed flex-initial md:basis-64  ${
+				hideSidebar ? "!basis-28 hidden md:block" : "block"
 			}`}
 		>
 			<DashboardSidebarWithData
+				hideSidebar={hideSidebar}
 				setHideSidebar={setHideSidebar}
 				pathname={pathname}
 			/>
-		</div>
+		</aside>
 	);
 };
 

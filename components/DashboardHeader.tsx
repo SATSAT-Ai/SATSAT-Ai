@@ -10,8 +10,11 @@ import { AppContext } from "@/context/AppContext";
 import NotificationLogic from "./NotificationLogic";
 import { Inotification } from "@/interface";
 import ChatIcon from "@mui/icons-material/Chat";
+import { usePathname } from "next/navigation";
 
 const DashboardHeader = () => {
+	const pathname = usePathname();
+
 	const { hideSidebar, setShowNotification, showNotification } =
 		useContext(AppContext);
 	const [readTarget, setReadTarget] = useState(0);
@@ -58,7 +61,7 @@ const DashboardHeader = () => {
 		<header
 			className={`sticky z-40 backdrop-blur-lg h-[82px] top-0 bg-white/10 text-white p-5 flex items-center ${
 				hideSidebar ? "justify-between" : "justify-end"
-			} gap-5`}
+			} gap-5 ${pathname.includes("/dashboard/chat") && "hidden"}`}
 		>
 			{hideSidebar && (
 				<Link href={"/"}>

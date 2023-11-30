@@ -64,6 +64,15 @@ const Header = () => {
 						>
 							<Link href={"/"}>Home</Link>
 						</li>
+						<li
+							className={`${
+								pathname == "/about"
+									? "text-mid--yellow font-medium"
+									: "text-grey-lightest hover:text-white"
+							}`}
+						>
+							<Link href={"/about"}>About</Link>
+						</li>
 
 						<li
 							className={`${
@@ -83,25 +92,7 @@ const Header = () => {
 						>
 							<Link href={"/features"}>Features</Link>
 						</li>
-						<li
-							className={`${
-								pathname == "/about"
-									? "text-mid--yellow font-medium"
-									: "text-grey-lightest hover:text-white"
-							}`}
-						>
-							<Link href={"/about"}>About</Link>
-						</li>
 
-						{/* <li
-							className={`${
-								pathname == "/contact"
-									? "text-mid--yellow font-medium"
-									: "text-grey-lightest hover:text-white"
-							}`}
-						>
-							<Link href={"/contact"}>Contact</Link>
-						</li> */}
 						<li
 							className={`${
 								pathname == "/signin"

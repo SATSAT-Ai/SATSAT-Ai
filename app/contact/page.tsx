@@ -7,12 +7,12 @@ export const metadata: Metadata = {
 	title: "SATSAT-Ai Contact Support",
 };
 
-const Page = () => {
+const page = () => {
 	return (
 		<>
 			<Header />
 			<div className=" flex relative overflow-x-clip items-center justify-center min-h-screen bg-darker">
-				<div className=" animate-pulse green-blob w-96 h-96 top-[-30%] lg:top-[-30%] left-[50%] "></div>
+				<div className=" animate-pulse green-blob2 w-96 h-96 top-[-30%] lg:top-[-30%] left-[50%] "></div>
 				<main className="w-full my-max">
 					<ContactUsForm />
 				</main>
@@ -22,4 +22,4 @@ const Page = () => {
 	);
 };
 
-export default Page;
+export default page;

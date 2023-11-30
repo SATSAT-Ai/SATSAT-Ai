@@ -21,7 +21,7 @@ import TypeWrite from "@/components/TypeWrite";
 import PromptPage from "@/components/PromptPage";
 
 export const metadata: Metadata = {
-	title: "Welcome to SATSAT-AI",
+	title: "Welcome to SATSAT AI - Chat with your financial documents",
 };
 
 export default function Home() {
@@ -30,7 +30,7 @@ export default function Home() {
 			<Header />
 			<div className="bg-darker min-h-screen overflow-clip relative">
 				<div className=" h-screen text-center flex flex-col relative z-0 ">
-					<div className="green-blob w-96 h-96 animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
+					<div className="green-blob2 w-[550px] h-[400px] animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
 					<section className="my-max flex flex-col items-center justify-center h-[80%] w-full">
 						<h1 className="text-brand-green max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
 							SATSAT AI
@@ -43,7 +43,6 @@ export default function Home() {
 								href={"/choose-your-pricing"}
 								className="flex animate-pulse hover:animate-none transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white w-fit px-7 rounded-3xl mx-auto button2"
 							>
-								{/* <AiFillStar size={20} color="white" /> */}
 								Get Started Now
 							</Link>
 						</div>
@@ -52,16 +51,8 @@ export default function Home() {
 				<main className="md:py-36">
 					<div className="my-max">
 						<div className="flex bg-[black] relative sm:rounded-3xl my-shadow mx-auto my-max items-center justify-center">
-							<div className="green-blob w-96 h-96 top-[50%] left-[-50%] md:left-[-20%]"></div>
-							<div className="yellow-blob w-96 h-96 top-[20%] right-[-30%]"></div>
-							{/* <Image
-								className="rounded-3xl z-0"
-								src={promptPageDemo}
-								height={700}
-								width={900}
-								alt="prompt page"
-								priority
-							/> */}
+							<div className="green-blob2 w-96 h-96 top-[50%] left-[-50%] md:left-[-20%]"></div>
+							<div className="yellow-blob2 w-96 h-96 top-[20%] right-[-30%]"></div>
 							<PromptPage />
 						</div>
 						<section className="text-center flex flex-col">
@@ -70,11 +61,11 @@ export default function Home() {
 							</h2>
 							<p className="text-mid--yellow max-w-lg mx-auto text-text-normal md:text-text-normal">
 								SATSAT AI is your all-in-one intelligence platform. It combines
-								cutting edge AI technology to query your data with natural
-								language.
+								cutting edge AI technology to query your financial data with
+								natural language.
 							</p>
-							<div className=" relative mt-10 md:mt-20 grid gap-5 mx-auto grid-cols-1 sm:grid-cols-2 max-w-4xl">
-								<div className="yellow-blob w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
+							<div className=" relative mt-10 z-0 md:mt-20 grid gap-5 mx-auto grid-cols-1 sm:grid-cols-2 max-w-4xl">
+								<div className="yellow-blob -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
 
 								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center justify-center">
 									<Image src={chatBot} height={50} width={50} alt="chatbot" />
@@ -105,7 +96,7 @@ export default function Home() {
 										href={"/book-a-demo"}
 										className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white hover:text-mid--yellow w-fit px-7  rounded-3xl mx-auto"
 									>
-										Book A Demo
+										Book a demo
 									</Link>
 									<Link
 										href={"/choose-your-pricing"}
@@ -122,17 +113,18 @@ export default function Home() {
 								WHY SATSAT AI?
 							</h3>
 							<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-								SATSAT AI is an intelligence platform; it is a paradigm shift in
-								how you harness the wisdom hidden within your documents. We are
-								here to empower your organization, save you time and resources.
+								SATSAT AI is an financial intelligence platform; it is a
+								paradigm shift in how you harness the wisdom hidden within your
+								financial documents. We are here to empower your organization,
+								save you time and resources.
 							</p>
 
 							<div className=" relative  mt-10 md:mt-20 mx-auto max-w-4xl">
 								<h3 className=" text-center  text-text-normal md:text-text-20 max-w-4xl mr-auto md:text-left text-mid--yellow">
 									Here is what sets SATSAT AI apart:
 								</h3>
-								<div className=" grid gap-5 grid-cols-1 sm:grid-cols-2">
-									<div className="green-blob w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
+								<div className=" grid gap-5 grid-cols-1 z-0 relative sm:grid-cols-2">
+									<div className="green-blob -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[25%] right-[-30%]"></div>
 
 									<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-start text-left justify-center">
 										<Image src={chatBot} height={50} width={50} alt="chatbot" />
@@ -163,8 +155,9 @@ export default function Home() {
 										<h3 className="text-text-20">Data Security and Privacy</h3>
 										<p className="text-grey-lightest">
 											We understand the importance of data security. SATSAT AI
-											ensures maximum protection behind your firewall, so you
-											can harness the power of AI with peace of mind.
+											ensures maximum protection and security using cutting edge
+											industry security and privacy practices, so you can
+											harness the power of AI with peace of mind.
 										</p>
 									</div>
 									<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-brand-green-darker flex flex-col items-center justify-center">
@@ -172,7 +165,7 @@ export default function Home() {
 											href={"/book-a-demo"}
 											className="flex transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white hover:text-mid--yellow w-fit px-7  rounded-3xl mx-auto"
 										>
-											Book A Demo
+											Book a demo
 										</Link>
 										<Link
 											href={"/choose-your-pricing"}
@@ -191,7 +184,7 @@ export default function Home() {
 							</h4>
 							<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
 								Querying your financial data has never been easy, with SAT SAT
-								Ai you dont need to worry about anything
+								AI you need not worry about anything
 							</p>
 
 							<div className="mt-20 md:max-w-5xl mx-auto grid gap-10 grid-cols-1 lg:grid-cols-2">
@@ -319,7 +312,7 @@ export default function Home() {
 						</Marquee>
 					</section>
 
-					{/* ===========Analize=================== */}
+					{/* ===========Analyze=================== */}
 
 					<section className="text-center flex flex-col ">
 						<div className="my-max">
@@ -335,8 +328,8 @@ export default function Home() {
 
 							<div className="py-20">
 								<div className="text-left relative max-w-2xl mx-auto">
-									<div className="yellow-blob w-72 h-72 md:w-96 md:h-96 top-[70%] left-[-30%] md:top-[20%]"></div>
-									<div className="green-blob w-72 h-72 md:w-96 md:h-96 top-[70%] right-[-70%] md:top-[20%]"></div>
+									<div className="yellow-blob2 w-72 h-72 md:w-96 md:h-96 top-[70%] left-[-30%] md:top-[20%]"></div>
+									<div className="green-blob2 w-72 h-72 md:w-96 md:h-96 top-[70%] right-[-70%] md:top-[20%]"></div>
 									<div className="flex mb-10 items-center gap-5 justify-between">
 										<span className="text-white text-center font-semibold text-text-20">
 											Who we serve

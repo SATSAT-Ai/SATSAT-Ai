@@ -5,18 +5,17 @@ const IncomeTable = () => {
 		date: string,
 		name: string,
 		number: number,
-		amount: number,
-		balance_after: number
+		amount: number
 	) {
-		return { date, name, number, amount, balance_after };
+		return { date, name, number, amount };
 	}
 
 	const rows = [
-		createData("12-01-2023", "Frozen yoghurt", 6, 24, 4.0),
-		createData("12-01-2023", "Ice cream sandwich", 237, 9.0, 37),
-		createData("12-01-2023", "Eclair", 262, 16.0, 24),
-		createData("12-01-2023", "Cupcake", 305, 3.7, 67),
-		createData("12-01-2023", "Gingerbread", 356, 16.0, 49),
+		createData("12-01-2023", "Frozen yoghurt", 6, 24),
+		createData("12-01-2023", "Ice cream sandwich", 237, 9.0),
+		createData("12-01-2023", "Eclair", 262, 16.0),
+		createData("12-01-2023", "Cupcake", 305, 3.7),
+		createData("12-01-2023", "Gingerbread", 356, 16.0),
 	];
 	return (
 		<Table
@@ -51,7 +50,6 @@ const IncomeTable = () => {
 					<th title="Name">Name</th>
 					<th title="Number">Number</th>
 					<th title="Amount">Amount</th>
-					<th title="Balance After">Balance After</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -61,7 +59,6 @@ const IncomeTable = () => {
 						<td>{row.name}</td>
 						<td>{row.number}</td>
 						<td>{row.amount}</td>
-						<td>{row.balance_after}</td>
 					</tr>
 				))}
 			</tbody>

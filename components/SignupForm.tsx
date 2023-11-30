@@ -112,7 +112,7 @@ const SignupForm = () => {
 					defaultValue={"Ghana"}
 					onChange={() => {}}
 				>
-					{africanCountries.map((country) => {
+					{filteredCountry.map((country) => {
 						return (
 							<Option key={country.label} value={country.value}>
 								{country.value.toUpperCase()}
@@ -127,7 +127,7 @@ const SignupForm = () => {
 				)}
 			</div>
 
-			<span className="text-white text-text-normal font-light text-right w-full">
+			<span className="text-white text-text-12 font-light text-right w-full">
 				Already having an account?{" "}
 				<Link
 					className="font-medium text-normal text-mid--yellow"

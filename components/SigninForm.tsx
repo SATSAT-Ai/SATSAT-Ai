@@ -37,7 +37,7 @@ const SigninForm = () => {
 					Email
 				</label>
 				<input
-					className={`placeholder:text-grey-lightest/60 border ${
+					className={`placeholder:text-grey-lightest/60 text-white border ${
 						errors.email
 							? "border-crimson"
 							: isValid
@@ -67,9 +67,6 @@ const SigninForm = () => {
 					style={{ color: "white" }}
 					{...register("rememberMe")}
 				/>
-				<Link href={"#"} className="text-text-normal text-crimson">
-					Forgot password?
-				</Link>
 			</div>
 			<button
 				className="border mt-5 font-medium text-[17px] active:scale-[1.001] hover:text-darker transition-colors duration-200 hover:border-mid--yellow hover:bg-mid--yellow border-brand-green block w-full p-2 rounded-lg text-mid--yellow"
@@ -77,9 +74,9 @@ const SigninForm = () => {
 			>
 				Sign in
 			</button>
-			<span className="text-white text-center w-full mt-3">
+			<span className="text-white text-text-12 text-center w-full mt-3">
 				Dont have an account?{" "}
-				<Link className="text-brand-green" href={"/signup"}>
+				<Link className="text-brand-green" href={"/choose-your-pricing"}>
 					Sign up
 				</Link>
 			</span>

@@ -7,9 +7,9 @@ const page = () => {
 			<Header />
 
 			<main className="bg-darker min-h-screen w-full py-10 relative overflow-hidden">
-				<div className="green-blob w-96 h-96 animate-pulse top-[-10%] md:top-[-20%] left-[50%]"></div>
+				<div className="green-blob2 w-96 h-96 animate-pulse top-[-10%] md:top-[-20%] left-[50%]"></div>
 
-				<div className="my-max">
+				<div className="my-max pt-5">
 					<h1 className="capitalize mt-16 text-brand-green text-center max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-60">
 						About us
 					</h1>

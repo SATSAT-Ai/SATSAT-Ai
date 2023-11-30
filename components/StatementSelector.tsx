@@ -53,7 +53,7 @@ const StatementSelector = () => {
 	};
 
 	return (
-		<>
+		<div className="flex items-center justify-center gap-5 flex-wrap sm:flex-nowrap ">
 			<Select
 				variant="solid"
 				sx={{ width: 250 }}
@@ -93,7 +93,7 @@ const StatementSelector = () => {
 					/>
 				</ThemeProvider>
 			</LocalizationProvider>
-		</>
+		</div>
 	);
 };
 

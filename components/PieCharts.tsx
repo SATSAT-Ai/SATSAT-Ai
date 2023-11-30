@@ -16,12 +16,14 @@ const PieCharts = ({
 	title,
 	transactionsData,
 	colors,
+	hideSidebar,
 }: {
 	data: dataProp;
 	endAngle: number;
 	title: string;
 	transactionsData: ItransactionsData;
 	colors: string[];
+	hideSidebar: boolean;
 }) => {
 	const sizing = {
 		margin: { right: 5 },
@@ -31,11 +33,15 @@ const PieCharts = ({
 	};
 
 	return (
-		<div className="bg-white/10 max-w-lg mx-auto sm:max-w-full p-5 w-full rounded-2xl">
+		<div className="bg-white/10 max-w-lg mx-auto lg:max-w-full p-5 w-full rounded-2xl">
 			<h3 className="m-0 font-medium uppercase text-text-normal pb-3">
 				{title}
 			</h3>
-			<div className="flex flex-wrap-reverse md:flex-nowrap justify-center items-center gap-4">
+			<div
+				className={`flex flex-wrap-reverse ${
+					hideSidebar ? "lg:flex-nowrap" : "lg:flex-wrap"
+				} justify-center items-center gap-4 xl:flex-nowrap`}
+			>
 				<div className="flex flex-col gap-2">
 					<PieChartAmount amount={"3,000"} />
 					{transactionsData.data.map((transaction) => {

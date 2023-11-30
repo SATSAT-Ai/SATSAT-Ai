@@ -3,10 +3,11 @@ import { Poppins } from "next/font/google";
 import "./globals.scss";
 import { SATSATmetadata } from "@/utils/metadata";
 import NextTopLoader from "nextjs-toploader";
+import "react-tooltip/dist/react-tooltip.css";
 
 const poppins = Poppins({
 	subsets: ["latin"],
-	weight: ["400", "500", "700", "900"],
+	weight: ["300", "400", "700", "800", "900"],
 });
 
 export const metadata: Metadata = SATSATmetadata;

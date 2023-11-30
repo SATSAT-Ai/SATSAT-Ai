@@ -1,8 +1,8 @@
 "use client";
 
-import { useForm, Controller } from "react-hook-form";
-import Radio from "@mui/joy/Radio";
-import RadioGroup from "@mui/joy/RadioGroup";
+import { useForm } from "react-hook-form";
+import Select from "@mui/joy/Select";
+import Option from "@mui/joy/Option";
 
 type FormValues = {
 	firstName: string;
@@ -159,56 +159,38 @@ const ContactUsForm = () => {
 			</div>
 			<div className="flex flex-col gap-5 mt-7">
 				<p className="text-text-normal text-mid--yellow">Select subject</p>
+				<Select
+					color="neutral"
+					placeholder="Subject"
+					variant="outlined"
+					size="md"
+					style={{
+						backgroundColor: "transparent",
+						color: errors.subject ? "crimson" : isValid ? "#29a173" : "white",
+						borderColor: errors.subject
+							? "crimson"
+							: isValid
+							? "#29a173"
+							: "#444c48",
+					}}
+					{...register("subject", {
+						required: { value: true, message: "Field is required" },
+					})}
+					defaultValue={""}
+					onChange={() => {}}
+				>
+					<Option value={"General Enquiry"}>General Enquiry</Option>
+					<Option value={"Onboarding"}>Onboarding</Option>
+					<Option value={"Account"}>Account</Option>
+					<Option value={"Sales"}>Sales</Option>
+				</Select>
 				{errors.subject && (
 					<p className="text-crimson pt-1 text-text-12">
 						{errors.subject.message}
 					</p>
 				)}
-
-				<Controller
-					name="subject"
-					rules={{ required: true }}
-					control={control}
-					render={({ field }) => {
-						return (
-							<RadioGroup {...field} name="subject">
-								<div className="flex items-center center gap-5 flex-wrap justify-between">
-									<Radio
-										color="success"
-										variant="soft"
-										size="sm"
-										value="General Enquiry"
-										label="General Enquiry"
-										style={{ color: errors.subject ? "crimson" : "white" }}
-									/>
-									<Radio
-										color="success"
-										variant="soft"
-										size="sm"
-										value="Onboarding"
-										label="Onboarding"
-										style={{ color: errors.subject ? "crimson" : "white" }}
-									/>
-									<Radio
-										color="success"
-										variant="soft"
-										size="sm"
-										value="Account"
-										label="Account"
-										style={{ color: errors.subject ? "crimson" : "white" }}
-									/>
-								</div>
-							</RadioGroup>
-						);
-					}}
-				></Controller>
-				{errors.subject && (
-					<p className="text-crimson pt-1 text-text-12">
-						{"Field is required"}
-					</p>
-				)}
 			</div>
-			<div className="w-full mt-16 flex flex-col">
+			<div className="w-full mt-10 flex flex-col">
 				<label className="mb-2 text-text-normal text-mid--yellow">
 					Message
 				</label>

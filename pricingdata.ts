@@ -2,7 +2,7 @@ export const pricingData = [
 	{
 		id: "free",
 		category: "free",
-		priviledges: [
+		privileges: [
 			"Upload and scan documents",
 			"Scan up to 10 free pages",
 			"Access to dashboard",
@@ -12,7 +12,7 @@ export const pricingData = [
 	{
 		id: "pro",
 		category: "pro",
-		priviledges: [
+		privileges: [
 			"Upload and scan documents",
 			"$1 per 10 pages scan",
 			"Access to dashboard",
@@ -23,26 +23,27 @@ export const pricingData = [
 	{
 		id: "plus",
 		category: "plus",
-		priviledges: [
+		privileges: [
 			"Upload and scan documents",
 			"$1 per 10 pages scan",
 			"Access to dashboard",
 			"Access to API",
-			"Access to SATSAT AI chatbot",
+			"Access to chatbot",
 		],
 		price: "$1/10 Pages + $9 Monthly",
 	},
 	{
 		id: "Enterprise",
 		category: "enterprise",
-		priviledges: [
+		privileges: [
 			"Upload and scan documents",
 			"Access to dashboard",
 			"Access to API",
-			"Access to SATSAT AI chatbot",
-			"Access to webhooks",
+			"Access to chatbot",
+			"Client Management",
 			"custom Branding",
+			"Dedicated Support",
 		],
-		price: "Contact Sales",
+		price: "Let's Talk",
 	},
 ];

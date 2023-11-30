@@ -45,6 +45,17 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 				>
 					<Link href={"/"}>Home</Link>
 				</li>
+
+				<li
+					onClick={() => setShowNav(false)}
+					className={`${
+						pathname == "/about"
+							? "text-mid--yellow"
+							: "text-grey-lightest hover:text-white"
+					}`}
+				>
+					<Link href={"/about"}>About</Link>
+				</li>
 				<li
 					className={`${
 						pathname == "/how-it-works"
@@ -63,16 +74,6 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 					}`}
 				>
 					<Link href={"/features"}>Features</Link>
-				</li>
-				<li
-					onClick={() => setShowNav(false)}
-					className={`${
-						pathname == "/about"
-							? "text-mid--yellow"
-							: "text-grey-lightest hover:text-white"
-					}`}
-				>
-					<Link href={"/about"}>About</Link>
 				</li>
 
 				{/* <li

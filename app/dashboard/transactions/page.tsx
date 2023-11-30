@@ -1,7 +1,12 @@
-import React from "react";
+import TransactionsPageClient from "@/components/TransactionsPageClient";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "SATSAT-AI Transactions",
+};
 
 const Page = () => {
-	return <div>Page</div>;
+	return <TransactionsPageClient />;
 };
 
 export default Page;
