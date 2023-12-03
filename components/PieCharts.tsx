@@ -34,9 +34,9 @@ const PieCharts = ({
 
 	return (
 		<div className="bg-white/10 max-w-lg mx-auto lg:max-w-full p-5 w-full rounded-2xl">
-			<h3 className="m-0 font-medium uppercase text-text-normal pb-3">
+			<h2 className="m-0 font-medium uppercase text-text-normal pb-3">
 				{title}
-			</h3>
+			</h2>
 			<div
 				className={`flex flex-wrap-reverse ${
 					hideSidebar ? "lg:flex-nowrap" : "lg:flex-wrap"
