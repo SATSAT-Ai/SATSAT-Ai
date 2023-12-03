@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
 			allow: "/",
 			disallow: "/private/",
 		},
-		sitemap: `${process.env.WEBSITE_URL}/sitemap.xml`,
+		sitemap: `${process.env.WEBSITE_URL || "localhost:3000"}/sitemap.xml`,
 	};
 }
