@@ -102,15 +102,17 @@ const Header = () => {
 						>
 							<Link href={"/signin"}>Sign in</Link>
 						</li>
-						{pathname !== "/choose-your-pricing" && (
-							<Link
-								className="flex items-center !rounded-3xl gap-3 font-normal hover:shadow-none hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button2"
-								href={"/choose-your-pricing"}
-							>
-								Get Started
-								<MdArrowForward color="white" size="25" />
-							</Link>
-						)}
+						<li>
+							{pathname !== "/choose-your-pricing" && (
+								<Link
+									className="flex items-center !rounded-3xl gap-3 font-normal hover:shadow-none hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button2"
+									href={"/choose-your-pricing"}
+								>
+									Get Started
+									<MdArrowForward color="white" size="25" />
+								</Link>
+							)}
+						</li>
 					</ul>
 				</div>
 			</header>
