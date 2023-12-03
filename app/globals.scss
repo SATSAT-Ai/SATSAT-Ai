@@ -16,6 +16,7 @@
 	body {
 		min-height: 100vh;
 		scroll-behavior: smooth;
+		overflow-y: auto;
 
 		&::-webkit-scrollbar-track-piece,
 		&::-webkit-scrollbar {
@@ -34,7 +35,8 @@
 		min-height: calc(100vh - 82px);
 	}
 
-	.custom-scroll {
+	.custom-scroll,
+	.custom-scroll2 {
 		&::-webkit-scrollbar-track-piece,
 		&::-webkit-scrollbar {
 			background-color: #050d0a;
@@ -43,6 +45,16 @@
 
 		&::-webkit-scrollbar-thumb {
 			background-color: #a3a3a3;
+		}
+	}
+	.custom-scroll2 {
+		&::-webkit-scrollbar-track-piece,
+		&::-webkit-scrollbar {
+			background-color: #123829;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: #2aa274;
 		}
 	}
 
