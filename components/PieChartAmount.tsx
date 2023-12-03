@@ -7,7 +7,7 @@ const PieChartAmount = ({ amount }: { amount: string }) => {
 	const [showAmount, setShowAmount] = useState(false);
 
 	return (
-		<h4
+		<h3
 			onClick={() => setShowAmount(!showAmount)}
 			tabIndex={0}
 			className="text-text-normal mb-2 text-white cursor-pointer select-none flex items-center gap-2"
@@ -26,7 +26,7 @@ const PieChartAmount = ({ amount }: { amount: string }) => {
 			) : (
 				<span className="text-text-24 h-5">******</span>
 			)}
-		</h4>
+		</h3>
 	);
 };
 
