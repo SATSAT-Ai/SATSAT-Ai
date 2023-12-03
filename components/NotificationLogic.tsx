@@ -40,11 +40,8 @@ const NotificationLogic = ({
 						.filter((notification) => notification.read === false)
 						.map((notification, index) => {
 							return (
-								<>
-									<div
-										key={notification.id}
-										className="my-5 flex px-2 items-center gap-3"
-									>
+								<div key={notification.id}>
+									<div className="my-5 flex px-2 items-center gap-3">
 										<div className="flex items-center justify-between w-full">
 											<div className="flex items-center gap-5">
 												<Image
@@ -73,18 +70,15 @@ const NotificationLogic = ({
 									{index !== fakeNotification.length - 1 && (
 										<div className=" my-3 w-full h-[1px] bg-white/20"></div>
 									)}
-								</>
+								</div>
 							);
 						})
 				: fakeNotification
 						.filter((notification) => notification.read === true)
 						.map((notification, index) => {
 							return (
-								<>
-									<div
-										key={notification.id}
-										className="mt-5 flex  items-center gap-3"
-									>
+								<div key={notification.id}>
+									<div className="mt-5 flex  items-center gap-3">
 										<div className="flex items-center justify-between w-full">
 											<div className="flex opacity-50 items-center gap-5">
 												<Image
@@ -113,7 +107,7 @@ const NotificationLogic = ({
 									{index !== fakeNotification.length - 1 && (
 										<div className=" my-3 w-full h-[1px] bg-white/20"></div>
 									)}
-								</>
+								</div>
 							);
 						})}
 			{readTarget == 0 &&
