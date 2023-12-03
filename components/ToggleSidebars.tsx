@@ -14,7 +14,7 @@ const ToggleSidebars = () => {
 		<div
 			className={`${
 				!hideSidebar && !hideChatSidebar ? "hidden" : "flex"
-			}  mx-auto sticky top-20 flex  max-w-[1440px]  w-full justify-between p-5 items-center `}
+			}  mx-auto sticky top-0 left-0  flex  max-w-[1440px]  w-full justify-between p-5 items-center `}
 		>
 			{hideSidebar && (
 				<div
