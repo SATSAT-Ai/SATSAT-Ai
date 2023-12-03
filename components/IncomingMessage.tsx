@@ -24,7 +24,7 @@ interface IcomingProp {
 
 const IncomingMessage = ({ message }: IcomingProp) => {
 	return (
-		<div className="flex items-end gap-3">
+		<div className="flex items-end mr-auto gap-3">
 			<Image src={chatbot} height={35} width={35} alt="satsat-ai" />
 			<div className=" flex inMessage shadow-lg flex-col gap-3 p-4 rounded-3xl text-white">
 				{message.firstText && (
@@ -50,9 +50,21 @@ const IncomingMessage = ({ message }: IcomingProp) => {
 					</div>
 				)}
 				<div className="flex items-center gap-3 mt-3">
-					<ContentCopyIcon fontSize="medium" color="inherit" />
-					<ThumbUpAltIcon fontSize="medium" color="inherit" />
-					<ThumbDownIcon fontSize="medium" color="inherit" />
+					<ContentCopyIcon
+						fontSize="small"
+						className="active:scale-[1.03] cursor-pointer"
+						color="inherit"
+					/>
+					<ThumbUpAltIcon
+						fontSize="small"
+						className="active:scale-[1.03] cursor-pointer"
+						color="inherit"
+					/>
+					<ThumbDownIcon
+						fontSize="small"
+						className="active:scale-[1.03] cursor-pointer"
+						color="inherit"
+					/>
 				</div>
 			</div>
 		</div>
