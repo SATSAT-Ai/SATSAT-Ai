@@ -33,7 +33,7 @@ const page = () => {
 								<div
 									key={prices.id}
 									className={`h-ful cursor-pointer ${
-										prices.category == "plus" ? "unique" : "card"
+										prices.category == "plus" ? "unique" : "card" //custom classnames
 									} hover:text-white relative lg:h-auto p-6 max-w-sm md:max-w-full w-full mx-auto rounded-xl bg-white text-white`}
 								>
 									<h2
