@@ -83,10 +83,9 @@ const PageWithSubPath = ({
 				<div className="flex items-center gap-2 w-full flex-col">
 					{routeWithSubpath.subPaths?.map((subpath) => {
 						return (
-							<>
+							<div key={subpath.name} className="w-full">
 								<Link
 									href={subpath.path}
-									key={subpath.path}
 									id={subpath.name}
 									className={`${
 										pathname === subpath.path
@@ -105,7 +104,7 @@ const PageWithSubPath = ({
 									content={subpath.name}
 									place="right"
 								/>
-							</>
+							</div>
 						);
 					})}
 				</div>
