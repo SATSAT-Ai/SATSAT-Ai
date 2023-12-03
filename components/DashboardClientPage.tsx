@@ -95,7 +95,7 @@ const DashboardClientPage = () => {
 	return (
 		<div
 			onClick={() => setShowNotification(false)}
-			className="min-h-screen text-white sm:px-5 my-max z-10 "
+			className="min-h-screen text-white sm:px-3 my-max z-10 "
 		>
 			<div className="flex flex-col justify-center lg:flex-nowrap flex-wrap sm:flex-row items-center gap-5 py-3">
 				{hideSidebar && (

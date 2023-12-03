@@ -142,7 +142,7 @@ const DashboardHeader = () => {
 					)}
 				</li>
 				<li>
-					<Link href={"/chat"}>
+					<Link href={"/chat"} aria-label="Chat with Ai">
 						<div className="relative">
 							<ChatIcon
 								fontSize="medium"
@@ -157,7 +157,8 @@ const DashboardHeader = () => {
 				</li>
 				<li className="flex items-center gap-3">
 					<div className="flex items-center gap-3">
-						<Link href={"#"}>
+						<Link href={"#"} aria-label="profile">
+							{/* change aria-lable to user name*/}
 							<PersonPinIcon fontSize="medium" color="primary" />
 						</Link>
 						<div className="md:flex flex-col hidden">

@@ -5,11 +5,8 @@ import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
 import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import {
-	TbLayoutSidebarLeftExpandFilled,
-	TbLayoutSidebarRightExpand,
-	TbLayoutSidebarRightExpandFilled,
-} from "react-icons/tb";
+import { MdClose } from "react-icons/md";
+import { TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import Logo from "@/public/satsat-logo.svg";
@@ -91,25 +88,20 @@ const DashboardSidebarWithData = ({
 			<div
 				className={`${
 					hideSidebar && "pt-20"
-				} py-5 justify-between min-h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-2 `}
+				} py-4 custom-scroll custom-scroll justify-between h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
 			>
-				{
-					//change icon on hover
-					pathname.includes("/chat") && (
-						<div
-							tabIndex={0}
-							className={`${
-								hideSidebar && "hidden"
-							} md:ml-6 absolute -right-8 top-8 !mb-10 focus:bg-brand-green mx-auto md:mx-full cursor-pointer my-5 md:my-0 hover:bg-brand-green w-fit p-1 rounded-md`}
-							onClick={() => setHideSidebar((prev) => !prev)}
-						>
-							<TbLayoutSidebarRightExpand size={25} color="white" />
-						</div>
-					)
-				}
 				<ul className="flex md:w-full w-fit mx-auto flex-col gap-3">
+					<div
+						tabIndex={0}
+						className={`${
+							hideSidebar && "hidden"
+						} md:ml-6 ml-2 md:absolute right-2 md:top-8 active:scale-[1.06] z-10 top-1  focus:bg-brand-green md:mx-auto md:mx-full cursor-pointer my-5 md:my-0 hover:bg-brand-green w-fit p-1 rounded-md`}
+						onClick={() => setHideSidebar((prev) => !prev)}
+					>
+						<MdClose size={25} color="white" />
+					</div>
 					<li
-						className={`w-full mb-10 hidden lg:block font-medium ${
+						className={`w-full pb-3 hidden md:block font-medium ${
 							hideSidebar && "!hidden"
 						}`}
 					>
@@ -127,19 +119,12 @@ const DashboardSidebarWithData = ({
 					{!pathname.includes("/chat") && (
 						<li
 							tabIndex={0}
-							className={`md:ml-6 hidden sm:flex !mb-10 focus:bg-brand-green mx-auto md:mx-full cursor-pointer my-5 md:my-0 hover:bg-brand-green w-fit p-1 rounded-md`}
+							className={` ${
+								!hideSidebar && "!hidden"
+							} md:ml-6 hidden sm:flex focus:bg-brand-green mx-auto md:mx-full cursor-pointer my-5 md:my-0 hover:bg-brand-green w-fit p-1 rounded-md`}
 							onClick={() => setHideSidebar((prev) => !prev)}
 						>
 							<TbLayoutSidebarLeftExpandFilled size={25} color="white" />
-						</li>
-					)}
-					{!pathname.includes("/chat") && (
-						<li
-							tabIndex={0}
-							className={` md:ml-6 flex sm:hidden !mb-10 focus:bg-brand-green mx-auto md:mx-full cursor-pointer my-5 md:my-0 hover:bg-brand-green w-fit p-1 rounded-md`}
-							onClick={() => setHideSidebar(true)}
-						>
-							<TbLayoutSidebarRightExpandFilled size={25} color="white" />
 						</li>
 					)}
 
@@ -183,8 +168,9 @@ const DashboardSidebarWithData = ({
 					})}
 				</ul>
 				<button
+					type="button"
 					id="upgrade-plan"
-					className="flex mb-5 flex-col mx-3 md:mt-4 gap-7"
+					className="flex flex-col mx-3 gap-7"
 				>
 					<div className="md:mt-7 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
 						<div className="mr-auto">
