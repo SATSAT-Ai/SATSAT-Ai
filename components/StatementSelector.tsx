@@ -3,10 +3,17 @@ import Option from "@mui/joy/Option";
 import Select from "@mui/joy/Select";
 import { AdapterDayjs } from "@mui/x-date-pickers-pro/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DesktopDatePicker } from "@mui/x-date-pickers/DesktopDatePicker";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
-import dayjs, { Dayjs } from "dayjs";
-import { useState } from "react";
+import dayjs from "dayjs";
+import { DateField } from "@mui/x-date-pickers/DateField";
+import { Dispatch, SetStateAction } from "react";
+
+interface Istatement {
+	fromDate: dayjs.Dayjs | null;
+	toDate: dayjs.Dayjs | null;
+	setFromDate: Dispatch<SetStateAction<dayjs.Dayjs | null>>;
+	setToDate: Dispatch<SetStateAction<dayjs.Dayjs | null>>;
+}
 
 const newTheme = (theme: any) =>
 	createTheme({
@@ -28,30 +35,12 @@ const newTheme = (theme: any) =>
 		},
 	});
 
-const StatementSelector = () => {
-	const [value, setValue] = useState<Dayjs | null>(dayjs("2022-04-17")); // use value to query
-	const dateStrings = ["2022-04-17", "2021-04-17", "2021-04-20", "2011-07-27"]; //! sort data
-
-	// convert date strings to Day.js objects
-	const parsedDates = dateStrings.map((dateString) => dayjs(dateString));
-	// determine if a date should be disabled
-	const shouldDisableDate = (date: Dayjs) => {
-		// current date to  string
-		const currentDateString = date.format("YYYY-MM-DD");
-		// Check if the current date is in the dateStrings array
-		return !dateStrings.includes(currentDateString);
-	};
-
-	// prevent duplicates from parsedDates
-	const uniqueYears = Array.from(
-		new Set(parsedDates.map((date) => date.year()))
-	);
-
-	const shouldDisableYear = (year: Dayjs) => {
-		// Disable all years except those in the dateStrings array
-		return !uniqueYears.includes(year.year());
-	};
-
+const StatementSelector = ({
+	fromDate,
+	toDate,
+	setFromDate,
+	setToDate,
+}: Istatement) => {
 	return (
 		<div className="flex items-center justify-center gap-5 flex-wrap sm:flex-nowrap ">
 			<Select
@@ -66,31 +55,54 @@ const StatementSelector = () => {
 			</Select>
 			<LocalizationProvider dateAdapter={AdapterDayjs}>
 				<ThemeProvider theme={newTheme}>
-					<DesktopDatePicker
-						onChange={(newValue) => setValue(newValue)}
-						value={value}
-						shouldDisableYear={shouldDisableYear}
-						shouldDisableDate={shouldDisableDate}
-						label="Select Date"
-						sx={{
-							backgroundColor: "#ffffff10",
-							borderRadius: 2,
-							svg: { color: "white" },
-							input: { color: "white" },
-							label: { color: "white" },
+					<div className="flex items-center gap-5">
+						<DateField
+							label="From Date"
+							value={fromDate}
+							onChange={(newValue) => setFromDate(newValue)}
+							format="LL"
+							// format="MM-DD-YYYY"
+							sx={{
+								backgroundColor: "#ffffff10",
+								borderRadius: 2,
+								svg: { color: "white" },
+								input: { color: "white" },
+								label: { color: "white" },
 
-							"& .MuiOutlinedInput-root": {
-								"&:hover > fieldset": {
-									borderColor: "#C7C8CD",
+								"& .MuiOutlinedInput-root": {
+									"&:hover > fieldset": {
+										borderColor: "#C7C8CD",
+									},
 								},
-							},
-						}}
-						slotProps={{
-							textField: { size: "small", color: "success" },
-							toolbar: { toolbarFormat: "ddd DD MMMM", hidden: false },
-						}}
-						defaultValue={dayjs(dateStrings[0])}
-					/>
+							}}
+							slotProps={{
+								textField: { size: "small", color: "success" },
+							}}
+						/>
+						<DateField
+							label="To Date"
+							value={toDate}
+							onChange={(newValue) => setToDate(newValue)}
+							format="LL"
+							// format="MM-DD-YYYY"
+							sx={{
+								backgroundColor: "#ffffff10",
+								borderRadius: 2,
+								svg: { color: "white" },
+								input: { color: "white" },
+								label: { color: "white" },
+
+								"& .MuiOutlinedInput-root": {
+									"&:hover > fieldset": {
+										borderColor: "#C7C8CD",
+									},
+								},
+							}}
+							slotProps={{
+								textField: { size: "small", color: "success" },
+							}}
+						/>
+					</div>
 				</ThemeProvider>
 			</LocalizationProvider>
 		</div>
