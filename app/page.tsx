@@ -50,7 +50,7 @@ export default function Home() {
 				</div>
 				<main className="md:py-36">
 					<div className="my-max">
-						<div className="flex bg-[black] relative sm:rounded-3xl my-shadow mx-auto my-max items-center justify-center">
+						<div className="flex bg-[black] relative rounded-3xl my-shadow mx-auto my-max items-center justify-center">
 							<div className="green-blob2 w-96 h-96 top-[50%] left-[-50%] md:left-[-20%]"></div>
 							<div className="yellow-blob2 w-96 h-96 top-[20%] right-[-30%]"></div>
 							<PromptPage />
@@ -331,12 +331,19 @@ export default function Home() {
 									<div className="yellow-blob2 w-72 h-72 md:w-96 md:h-96 top-[70%] left-[-30%] md:top-[20%]"></div>
 									<div className="green-blob2 w-72 h-72 md:w-96 md:h-96 top-[70%] right-[-70%] md:top-[20%]"></div>
 									<div className="flex mb-10 items-center gap-5 justify-between">
-										<span className="text-white text-center font-semibold text-text-20">
+										<span className="text-white text-center font-semibold text-[18px]">
 											Who we serve
 										</span>
 										<Link
 											href={"/choose-your-pricing"}
-											className="flex text-text-[18px] items-center gap-3 active:scale-[1.01] text-white button2 hover:bg-white hover:text-darker rounded-3xl transition-all "
+											className="sm:hidden flex text-text-normal items-center gap-3 active:scale-[1.01] text-white button2 hover:bg-white hover:text-darker rounded-3xl transition-all "
+										>
+											<MdStar size={25} color="#29a173" />
+											Get started
+										</Link>
+										<Link
+											href={"/choose-your-pricing"}
+											className="sm:flex hidden text-text-normal items-center gap-3 active:scale-[1.01] text-white button2 hover:bg-white hover:text-darker rounded-3xl transition-all "
 										>
 											<MdStar size={25} color="#29a173" />
 											Get started Now
