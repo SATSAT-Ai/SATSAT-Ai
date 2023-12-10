@@ -66,6 +66,7 @@ const UploadStepOne = ({
 									width={70}
 									alt={document.name}
 									priority
+									quality={90}
 								/>
 								<p className="font-medium text-[17px] text-center">
 									{document.value}

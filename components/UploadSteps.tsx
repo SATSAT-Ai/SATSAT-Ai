@@ -25,18 +25,6 @@ const UploadSteps = () => {
 			className="min-h-screen text-white sm:px-5 my-max z-10 "
 		>
 			<div className="flex flex-col sm:flex-row items-center gap-5 py-3">
-				{hideSidebar && (
-					<div
-						tabIndex={0}
-						className=" focus:bg-brand-green fixed md:hidden left-5 bg-mid--yellow cursor-pointer hover:bg-brand-green w-fit p-1 rounded-md"
-					>
-						<TbLayoutSidebarRightExpand
-							size={25}
-							color="white"
-							onClick={() => setHideSidebar(false)}
-						/>
-					</div>
-				)}
 				<h2 className="text-center text-[25px] sm:text-[35px] py-4 lg:text-text-50 w-full font-medium">
 					{uploadStep == 1
 						? "Select A Document Type"
