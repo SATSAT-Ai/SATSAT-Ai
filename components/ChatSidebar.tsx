@@ -1,25 +1,40 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 "use client";
 
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useEffect } from "react";
 import { FaPlus } from "react-icons/fa6";
 import { usePathname } from "next/navigation";
 import { MdClose } from "react-icons/md";
 import FetchedCharts from "./FetchedCharts";
 import { ChatContext } from "@/context/ChatContext";
 import Link from "next/link";
+import { AppContext } from "@/context/AppContext";
 
 const ChatSidebar = () => {
 	const pathname = usePathname();
 
 	const { hideChatSidebar, setHideChatSidebar } = useContext(ChatContext);
+	const { setHideSidebar } = useContext(AppContext);
 
-	useLayoutEffect(() => {
-		if (typeof window !== "undefined" && window.innerWidth < 768) {
-			setHideChatSidebar(true);
-		} else {
-			setHideChatSidebar(false);
-		}
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth < 768) {
+				setHideChatSidebar(true);
+				setHideSidebar(true);
+			} else if (window.innerWidth < 1025) {
+				setHideChatSidebar(true);
+			} else {
+				setHideChatSidebar(false);
+				setHideSidebar(false);
+			}
+		};
+
+		handleResize();
+
+		window.addEventListener("resize", handleResize);
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
 	}, []);
 
 	return (
