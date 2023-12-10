@@ -93,6 +93,24 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 	// ]);
 
 	const [conversations, setConversations] = useState<IUser[]>([]);
+	const [chatSuggestions, setChatSuggestions] = useState([
+		{
+			id: "skdjfksjdf",
+			value: "Total income for the past quarter",
+		},
+		{
+			id: "skdwerfjfksjdf",
+			value: "Total income for the past quarter",
+		},
+		{
+			id: "skdjsdfrfksjdf",
+			value: "Total income for the past quarter",
+		},
+		{
+			id: "skdjferwrksjdf",
+			value: "Total income for the past quarter",
+		},
+	]);
 
 	const fetchConversations = () => {
 		if (chatContainerId) {
@@ -100,6 +118,10 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		} else {
 			//create a new id and start a new conv.
 		}
+	};
+
+	const fetchChatSuggestions = () => {
+		//suggestions
 	};
 
 	const handleTextAreaResize = (e: any) => {
@@ -230,35 +252,18 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 						<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
 							Chat suggestions
 						</h2>
-						<div className="flex justify-center flex-wrap gap-5">
-							<div className="flex flex-col gap-5">
-								<button
-									type="button"
-									className="border border-white py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/20 active:scale-[1.01] rounded-3xl"
-								>
-									Total income for the past quarter
-								</button>
-								<button
-									type="button"
-									className="border border-white py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/20 active:scale-[1.01] rounded-3xl"
-								>
-									Total income for the past quarter
-								</button>
-							</div>
-							<div className="flex flex-col gap-5">
-								<button
-									type="button"
-									className="border border-white py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/20 active:scale-[1.01] rounded-3xl"
-								>
-									Total income for the past quarter
-								</button>
-								<button
-									type="button"
-									className="border border-white py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/20 active:scale-[1.01] rounded-3xl"
-								>
-									Total income for the past quarter
-								</button>
-							</div>
+						<div className="flex flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
+							{chatSuggestions.map((suggestions) => {
+								return (
+									<button
+										key={suggestions.id}
+										type="button"
+										className="border border-white py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/20 active:scale-[1.01] rounded-3xl"
+									>
+										{suggestions.value}
+									</button>
+								);
+							})}
 						</div>
 					</div>
 				</main>
