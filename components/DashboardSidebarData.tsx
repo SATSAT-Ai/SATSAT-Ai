@@ -92,13 +92,19 @@ const DashboardSidebarWithData = ({
 			>
 				<ul className="flex md:w-full w-fit mx-auto flex-col gap-3">
 					<div
+						id="close-sidebar"
 						tabIndex={0}
 						className={`${
 							hideSidebar && "hidden"
-						} md:ml-6 ml-2 md:absolute right-2 md:top-8 active:scale-[1.06] z-10 top-1  focus:bg-brand-green md:mx-auto md:mx-full cursor-pointer my-5 md:my-0 hover:bg-brand-green w-fit p-1 rounded-md`}
+						} md:ml-6 ml-2 md:absolute right-2 md:top-8 active:scale-[1.06] z-10 top-1 md:mx-auto md:mx-full cursor-pointer my-5 md:my-0 w-fit p-1 rounded-md`}
 						onClick={() => setHideSidebar((prev) => !prev)}
 					>
 						<MdClose size={25} color="white" />
+						<Tooltip
+							anchorSelect="#close-sidebar"
+							place="right"
+							content="Close sidebar"
+						/>
 					</div>
 					<li
 						className={`w-full pb-3 hidden md:block font-medium ${
@@ -118,13 +124,19 @@ const DashboardSidebarWithData = ({
 
 					{!pathname.includes("/chat") && (
 						<li
+							id="open-sidebar"
 							tabIndex={0}
 							className={` ${
 								!hideSidebar && "!hidden"
-							} md:ml-6 hidden sm:flex focus:bg-brand-green mx-auto md:mx-full cursor-pointer my-5 md:my-0 hover:bg-brand-green w-fit p-1 rounded-md`}
+							} md:ml-6 hidden sm:flex mx-auto md:mx-full cursor-pointer my-5 md:my-0 w-fit p-1 rounded-md`}
 							onClick={() => setHideSidebar((prev) => !prev)}
 						>
 							<TbLayoutSidebarLeftExpandFilled size={25} color="white" />
+							<Tooltip
+								anchorSelect="#open-sidebar"
+								place="right"
+								content="Open sidebar"
+							/>
 						</li>
 					)}
 
@@ -176,6 +188,7 @@ const DashboardSidebarWithData = ({
 						<div className="mr-auto">
 							<RocketLaunchIcon fontSize="large" color={"primary"} />
 						</div>
+
 						<div
 							className={`${
 								hideSidebar && "!hidden"
