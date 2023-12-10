@@ -31,7 +31,7 @@ export const AppContext = createContext<Icontext>({
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [showModal, setShowModal] = useState(false);
 	const [modalAction, setModalAction] = useState("deleteAccount");
-	const [hideSidebar, setHideSidebar] = useState(false);
+	const [hideSidebar, setHideSidebar] = useState(true);
 	const [showNotification, setShowNotification] = useState(false);
 	const [showMoreOptions, setShowMoreOptions] = useState(false);
 
