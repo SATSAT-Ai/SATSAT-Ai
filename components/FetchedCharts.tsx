@@ -1,6 +1,6 @@
 import { Ichat } from "@/interface";
-import Link from "next/link";
-import { PiChatCircleTextFill } from "react-icons/pi";
+import ChatOptions from "./ChatOptions";
+import FetchedChartsSingleChart from "./FetchedChartsSingleChart";
 
 const FetchedCharts = ({ pathname }: { pathname: string }) => {
 	//fetch chats
@@ -165,30 +165,15 @@ const FetchedCharts = ({ pathname }: { pathname: string }) => {
 			>
 				{chats.map((chat) => {
 					return (
-						<Link
-							scroll={false}
-							href={
-								pathname === `dashboard/chat/${chat.id}`
-									? `${chat.id}`
-									: `/dashboard/chat/${chat.id}`
-							}
+						<FetchedChartsSingleChart
 							key={chat.id}
-							className="flex text-white hover:bg-white/10 rounded-xl cursor-pointer p-2 items-center gap-2 text-[14px] font-medium"
-						>
-							<PiChatCircleTextFill size={25} />
-							{chat.title}
-						</Link>
+							pathname={pathname}
+							chat={chat}
+						/>
 					);
 				})}
 			</div>
-			{chats.length > 1 && (
-				<button
-					type="button"
-					className="active:scale-[1.02] bg-[#a01d39] text-white p-2 text-center text-text-normal"
-				>
-					Delete all chats
-				</button>
-			)}
+			<ChatOptions chats={chats} />
 		</>
 	);
 };
