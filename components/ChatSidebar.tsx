@@ -8,24 +8,20 @@ import { MdClose } from "react-icons/md";
 import FetchedCharts from "./FetchedCharts";
 import { ChatContext } from "@/context/ChatContext";
 import Link from "next/link";
-import { AppContext } from "@/context/AppContext";
 
 const ChatSidebar = () => {
 	const pathname = usePathname();
 
 	const { hideChatSidebar, setHideChatSidebar } = useContext(ChatContext);
-	const { setHideSidebar } = useContext(AppContext);
 
 	useEffect(() => {
 		const handleResize = () => {
 			if (window.innerWidth < 768) {
 				setHideChatSidebar(true);
-				setHideSidebar(true);
 			} else if (window.innerWidth < 1025) {
 				setHideChatSidebar(true);
 			} else {
 				setHideChatSidebar(false);
-				setHideSidebar(false);
 			}
 		};
 
