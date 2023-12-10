@@ -320,6 +320,22 @@
 			}
 		}
 	}
+
+	.link-parent {
+		.option {
+			transition: 0.2s ease-out;
+			opacity: 0;
+		}
+		&:hover {
+			.option {
+				opacity: 1;
+			}
+		}
+	}
+}
+
+.not-reconcilable-row {
+	background-color: crimson !important;
 }
 
 @keyframes spin {
@@ -329,16 +345,6 @@
 	to {
 		transform: rotate(360deg);
 	}
-}
-
-//mui calender
-.css-rhmlg1-MuiTypography-root-MuiDayCalendar-weekDayLabel,
-.css-kg9q0s-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button,
-.css-1nkg345-MuiButtonBase-root-MuiIconButton-root-MuiPickersArrowSwitcher-button,
-.css-12mkn7b-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton,
-.css-1u23akw-MuiButtonBase-root-MuiPickersDay-root,
-.css-sf5j28-MuiButtonBase-root-MuiIconButton-root-MuiPickersCalendarHeader-switchViewButton {
-	color: white !important;
 }
 
 .css-1u23akw-MuiButtonBase-root-MuiPickersDay-root.Mui-disabled:not(
@@ -381,8 +387,32 @@ error [data-filepond-item-state*="error"] .filepond--item-panel,
 	// #c44e47
 }
 
-successfull
-	[data-filepond-item-state="processing-complete"]
-	.filepond--item-panel {
+// successfull
+[data-filepond-item-state="processing-complete"] .filepond--item-panel {
 	background-color: green !important;
+}
+
+.css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root,
+.css-rtrcn9-MuiTablePagination-root .MuiTablePagination-selectLabel,
+.css-194a1fa-MuiSelect-select-MuiInputBase-input.MuiSelect-select,
+.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon,
+.css-levciy-MuiTablePagination-displayedRows,
+.css-zylse7-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
+	color: white !important;
+}
+
+.css-1knaqv7-MuiButtonBase-root-MuiButton-root {
+	color: #c18e3b !important;
+}
+
+.css-128fb87-MuiDataGrid-toolbarContainer {
+	@media (min-width: 700px) {
+		padding: 16px 20px !important;
+	}
+}
+
+.transWidth {
+	@media (min-width: 375px) {
+		max-width: 350px !important;
+	}
 }
