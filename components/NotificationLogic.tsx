@@ -110,13 +110,19 @@ const NotificationLogic = ({
 								</div>
 							);
 						})}
-			{readTarget == 0 &&
-				fakeNotification.filter((notification) => notification.read === true)
-					.length > 1 && (
-					<span className="text-center text-text-12 mt-5 text-white/50 block">
-						You have no new notifications
-					</span>
-				)}
+			{readTarget == 0
+				? fakeNotification.filter((notification) => notification.read === true)
+						.length > 1 && (
+						<span className="text-center text-text-12 mt-5 text-white/50 block">
+							You have no new notifications
+						</span>
+				  )
+				: fakeNotification.filter((notification) => notification.read === false)
+						.length > 1 && (
+						<span className="text-center text-text-12 mt-5 text-white/50 block">
+							You have no read notifications
+						</span>
+				  )}
 		</>
 	);
 };
