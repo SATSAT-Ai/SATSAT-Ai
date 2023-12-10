@@ -27,7 +27,7 @@ function DragNdrop({
 		<div className="flex flex-col gap-5">
 			<div className="bg-[#202025] p-3 rounded-lg">
 				<h2 className="font-normal mb-1 text-text-12">Status</h2>
-				<div className="grid grid-cols-3 gap-1 sm:gap-2">
+				<div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-2">
 					<span className="text-text-12 flex items-center gap-1 font-medium text-mid--yellow">
 						Resume.pdf pending
 						<div className="loader"></div>
