@@ -1,6 +1,7 @@
 "use client";
 
 import { AppContext } from "@/context/AppContext";
+import { ChatContext } from "@/context/ChatContext";
 import { useContext } from "react";
 import {
 	TbLayoutSidebarLeftExpand,
@@ -8,8 +9,23 @@ import {
 } from "react-icons/tb";
 
 const ToggleSidebars = () => {
-	const { setHideSidebar, setHidChatSidebar, hideSidebar, hideChatSidebar } =
-		useContext(AppContext);
+	const { setHideSidebar, hideSidebar } = useContext(AppContext);
+	const { setHideChatSidebar, hideChatSidebar } = useContext(ChatContext);
+
+	const handleShowSidebar = () => {
+		setHideSidebar(false);
+		if (window.innerWidth <= 1050) {
+			setHideChatSidebar(true);
+		}
+	};
+
+	const handleHideSidebar = () => {
+		setHideChatSidebar(false);
+		if (window.innerWidth <= 1050) {
+			setHideSidebar(true);
+		}
+	};
+
 	return (
 		<div
 			className={`${
@@ -20,7 +36,7 @@ const ToggleSidebars = () => {
 				<div
 					tabIndex={0}
 					className="  focus:bg-brand-green cursor-pointer hover:bg-brand-green w-fit p-1 rounded-md"
-					onClick={() => setHideSidebar(false)}
+					onClick={handleShowSidebar}
 				>
 					<TbLayoutSidebarLeftExpand size={25} color="white" />
 				</div>
@@ -29,7 +45,7 @@ const ToggleSidebars = () => {
 				<div
 					tabIndex={0}
 					className="ml-auto focus:bg-brand-green cursor-pointer hover:bg-brand-green w-fit p-1 rounded-md"
-					onClick={() => setHidChatSidebar(false)}
+					onClick={handleHideSidebar}
 				>
 					<TbLayoutSidebarRightExpand size={25} color="white" />
 				</div>
