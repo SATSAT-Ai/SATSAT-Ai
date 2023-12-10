@@ -19,7 +19,7 @@ export const ChatContext = createContext<Ichat>({
 });
 
 const ChatContextProvider = ({ children }: { children: ReactNode }) => {
-	const [hideChatSidebar, setHideChatSidebar] = useState(false);
+	const [hideChatSidebar, setHideChatSidebar] = useState(true);
 
 	return (
 		<ChatContext.Provider
