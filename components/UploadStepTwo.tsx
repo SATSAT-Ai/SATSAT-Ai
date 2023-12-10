@@ -17,12 +17,9 @@ const UploadStepTwo = ({
 	return (
 		<div
 			onClick={() => setShowNotification(false)}
-			className="bg-white/20 p-10 max-w-3xl mx-auto rounded-xl"
+			className="bg-white/20 p-4 sm:p-10 max-w-3xl mx-auto rounded-xl"
 		>
 			<div className="max-w-xl mx-auto">
-				<h2 className="text-center font-semibold text-text-20 max-w-md mx-auto">
-					Upload Your Financial Data
-				</h2>
 				<DragNdrop files={files} setFiles={setFiles} />
 
 				<div className="flex mt-7 items-center gap-5 justify-end">

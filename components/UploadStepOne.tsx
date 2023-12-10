@@ -48,11 +48,7 @@ const UploadStepOne = ({
 	return (
 		<div className="bg-white/20 p-10 w-full mx-auto rounded-xl">
 			<div className="w-full">
-				<h2 className="text-center text-[25px] w-full">
-					Select Document Type To Upload
-				</h2>
-
-				<ul className="mt-7 p-5 flex-col flex-wrap sm:flex-row flex items-center gap-7 justify-center">
+				<ul className="mt-7 p-5 flex flex-wrap justify-center items-center gap-7">
 					{documents.map((document) => {
 						return (
 							<li
