@@ -26,8 +26,8 @@ const page = () => {
 							height={550}
 							width={550}
 							alt="signup"
+							quality={90}
 							priority
-							placeholder="blur"
 						/>
 					</div>
 				</main>
