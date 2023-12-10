@@ -56,9 +56,10 @@ const PromptPage = () => {
 			</div>
 			<div className="pt-5 mx-auto lg:pt-0 before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:bg-silver-gradient2 lg:before:h-full lg:before:w-[1px] lg:before:top-0 lg:before:left-0 before:rounded-lg lg:before:bg-silver-gradient lg:pl-5 relative flex flex-col gap-5">
 				<OutgoingMessage
-					message={
-						"Can you show me my monthly spending trends?" as unknown as IUser
-					}
+					message={{
+						message: "Can you show me my monthly spending trends?",
+						from: "User",
+					}}
 				/>
 				<IncomingMessage
 					message={{
@@ -73,9 +74,10 @@ const PromptPage = () => {
 					}}
 				/>
 				<OutgoingMessage
-					message={
-						"What about my total income for the past quarter?" as unknown as IUser
-					}
+					message={{
+						message: "Can you show me my monthly spending trends?",
+						from: "User",
+					}}
 				/>
 				<IncomingMessage
 					message={{
