@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import { africanCountries } from "@/africanCountries";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+// import toast, { Toaster } from 'react-hot-toast';
 
 export type FormValues = {
 	fullName: string;
@@ -36,7 +37,7 @@ const SignupForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className="flex flex-col md:flex-[.9] gap-3 items-start md:w-full max-w-sm mx-auto"
 		>
-			<Image src={logo} alt="satsat-ai" height={150} width={150} />
+			<Image src={logo} alt="satsat-ai" height={150} width={150} quality={90} />
 			<p className="text-mid--yellow">
 				Please fill your detail to create your account.
 			</p>
