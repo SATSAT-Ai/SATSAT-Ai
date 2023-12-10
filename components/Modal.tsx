@@ -2,6 +2,8 @@
 
 import { Dispatch, SetStateAction } from "react";
 
+type modalAction = "deleteAccount";
+
 const Modal = ({
 	title,
 	body,
