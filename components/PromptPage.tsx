@@ -1,3 +1,4 @@
+import { IUser } from "./ChatMain";
 import IncomingMessage from "./IncomingMessage";
 import OutgoingMessage from "./OutgoingMessage";
 import TelegramIcon from "@mui/icons-material/Telegram";
@@ -54,7 +55,11 @@ const PromptPage = () => {
 				</ul>
 			</div>
 			<div className="pt-5 mx-auto lg:pt-0 before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:bg-silver-gradient2 lg:before:h-full lg:before:w-[1px] lg:before:top-0 lg:before:left-0 before:rounded-lg lg:before:bg-silver-gradient lg:pl-5 relative flex flex-col gap-5">
-				<OutgoingMessage message="Can you show me my monthly spending trends?" />
+				<OutgoingMessage
+					message={
+						"Can you show me my monthly spending trends?" as unknown as IUser
+					}
+				/>
 				<IncomingMessage
 					message={{
 						id: "lorem",
@@ -67,7 +72,11 @@ const PromptPage = () => {
 						endingText: `Is there anything else you'd like to inquire about?`,
 					}}
 				/>
-				<OutgoingMessage message="What about my total income for the past quarter?" />
+				<OutgoingMessage
+					message={
+						"What about my total income for the past quarter?" as unknown as IUser
+					}
+				/>
 				<IncomingMessage
 					message={{
 						id: "lorem",
