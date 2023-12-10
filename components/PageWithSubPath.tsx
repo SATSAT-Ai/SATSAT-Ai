@@ -6,15 +6,18 @@ import { useEffect, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import ExpandLessIcon from "@mui/icons-material/ExpandLess";
 import { Tooltip } from "react-tooltip";
+import { Dispatch, SetStateAction } from "react";
 
 const PageWithSubPath = ({
 	routeWithSubpath,
 	pathname,
 	hideSidebar,
+	setHideSidebar,
 }: {
 	routeWithSubpath: IDashboardSidebarData;
 	pathname: string;
 	hideSidebar: boolean;
+	setHideSidebar: Dispatch<SetStateAction<boolean>>;
 }) => {
 	const [showSubpath, setShowSubpath] = useState(false);
 	const [showSub, setShowSub] = useState(() =>
@@ -39,7 +42,7 @@ const PageWithSubPath = ({
 			} text-text-normal  rounded-md md:rounded-none  md:justify-start md:w-full flex cursor-pointer items-center gap-3 relative`}
 		>
 			<Tooltip
-				className={!hideSidebar ? "hidden" : "flex"}
+				className={!hideSidebar ? "hidden" : "hidden lg:flex"}
 				place="right-start"
 				anchorSelect={`#${routeWithSubpath.name}`}
 				content={routeWithSubpath.name}
@@ -57,6 +60,7 @@ const PageWithSubPath = ({
 					} text-text-normal w-fit md:mx-full rounded-md md:hover:bg-transparent md:rounded-none justify-center md:justify-start md:w-full flex items-center  cursor-pointer md:gap-6 gap-3 p-2 md:pl-6 md:py-2 relative`}
 				>
 					<Link
+						onClick={() => setHideSidebar(true)}
 						className="flex gap-3 items-center"
 						href={routeWithSubpath.path}
 					>
@@ -86,6 +90,7 @@ const PageWithSubPath = ({
 						return (
 							<div key={subpath.name} className="w-full">
 								<Link
+									onClick={() => setHideSidebar(true)}
 									href={subpath.path}
 									id={subpath.name}
 									className={`${
