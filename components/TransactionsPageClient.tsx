@@ -1,5 +1,4 @@
 "use client";
-import { TbLayoutSidebarRightExpand } from "react-icons/tb";
 import Option from "@mui/joy/Option";
 import Select from "@mui/joy/Select";
 import { useContext } from "react";
@@ -7,30 +6,14 @@ import { AppContext } from "@/context/AppContext";
 import TransTable from "./TransTable";
 
 const TransactionsPageClient = () => {
-	const {
-		hideSidebar,
-		setHideSidebar,
-		setShowNotification,
-		setShowMoreOptions,
-	} = useContext(AppContext);
+	const { setShowNotification, setShowMoreOptions } = useContext(AppContext);
 
 	return (
 		<div
 			onClick={() => (setShowNotification(false), setShowMoreOptions(false))}
 			className="min-h-screen text-white sm:p-5 sm:my-max"
 		>
-			<div className="flex items-center flex-col gap-5 py-3">
-				{hideSidebar && (
-					<div className=" fixed mt-4 z-10 md:hidden left-5 bg-mid--yellow cursor-pointer hover:bg-brand-green w-fit p-1 rounded-md">
-						<TbLayoutSidebarRightExpand
-							size={25}
-							color="white"
-							onClick={() => setHideSidebar(false)}
-						/>
-					</div>
-				)}
-			</div>
-			<div className="flex flex-col sm:flex-row items-center gap-5 justify-end w-full">
+			<div className="flex mt-4 flex-col sm:flex-row items-center gap-5 justify-end w-full">
 				<Select
 					variant="solid"
 					sx={{ width: 250 }}
