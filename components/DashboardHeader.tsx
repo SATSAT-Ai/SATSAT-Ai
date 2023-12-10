@@ -9,14 +9,21 @@ import satsatLogo from "../public/satsat-logo.svg";
 import { AppContext } from "@/context/AppContext";
 import NotificationLogic from "./NotificationLogic";
 import { Inotification } from "@/interface";
-import ChatIcon from "@mui/icons-material/Chat";
 import { usePathname } from "next/navigation";
+import { RiMenu4Fill } from "react-icons/ri";
 
 const DashboardHeader = () => {
 	const pathname = usePathname();
 
-	const { hideSidebar, setShowNotification, showNotification } =
-		useContext(AppContext);
+	const {
+		hideSidebar,
+		setShowNotification,
+		showNotification,
+		showMoreOptions,
+		setShowMoreOptions,
+		setHideSidebar,
+	} = useContext(AppContext);
+
 	const [readTarget, setReadTarget] = useState(0);
 	const [fakeNotification, setFakeNotification] = useState<Inotification[]>([
 		{
@@ -34,10 +41,6 @@ const DashboardHeader = () => {
 			time: "30mins ago",
 		},
 	]);
-
-	const handleShowNotification = () => {
-		setShowNotification((prev) => !prev);
-	};
 
 	const handleMarkAsRead = () => {
 		setFakeNotification(
@@ -57,30 +60,51 @@ const DashboardHeader = () => {
 		(notification) => notification.read === false
 	);
 
+	const handleLogout = () => {
+		//logout
+	};
+
 	return (
 		<header
-			className={`sticky z-40 backdrop-blur-lg h-[82px] top-0 bg-white/10 text-white p-5 flex items-center ${
+			className={`sticky z-40 backdrop-blur-lg md:h-20 h-16 top-0 bg-white/10 text-white px-3 md:px-5 flex items-center ${
 				hideSidebar ? "justify-between" : "justify-end"
 			} gap-5 ${pathname.includes("/dashboard/chat") && "hidden"}`}
 		>
 			{hideSidebar && (
-				<Link href={"/"}>
-					<Image src={satsatLogo} height={100} width={100} alt="SATSAT-Ai" />
-				</Link>
+				<div
+					tabIndex={0}
+					className={`md:hidden sm:top-[unset] top-24 left-5 cursor-pointer w-fit p-1 rounded-md`}
+					onClick={() => setHideSidebar(false)}
+				>
+					<RiMenu4Fill size={25} color="white" />
+				</div>
 			)}
+			<Link href={"/"} className="mx-auto md:mr-auto md:ml-0">
+				<Image
+					src={satsatLogo}
+					height={100}
+					width={100}
+					alt="SATSAT-Ai"
+					className={`md:${hideSidebar ? "flex" : "hidden"}`}
+				/>
+			</Link>
 
-			<ul className="flex gap-5 items-center justify-end">
+			<ul className="flex gap-2 sm:gap-5 items-center justify-end">
 				<li className="relative" tabIndex={0}>
 					<NotificationsIcon
 						fontSize="medium"
 						color="primary"
 						className="cursor-pointer active:scale-[1.01]"
-						onClick={handleShowNotification}
+						onClick={() => (
+							setShowNotification((prev) => !prev), setShowMoreOptions(false)
+						)}
 					/>
 
 					{notificationCount(unreadNotification) >= 1 && (
 						<div
-							onClick={handleShowNotification}
+							onClick={() => (
+								setShowNotification((prev) => !prev), setShowMoreOptions(false)
+							)}
 							className=" text-text-12 flex items-center cursor-pointer justify-center number-notification rounded-full border border-white absolute bg-brand-green -top-2 -right-1 h-5 text-center w-5"
 						>
 							{notificationCount(unreadNotification)}
@@ -88,7 +112,7 @@ const DashboardHeader = () => {
 					)}
 					{/* notification */}
 					{showNotification && (
-						<div className="bg-grey-light/95 no-select backdrop-blur-3xl border z-40 border-white/10 w-[300px] sm:w-[350px] absolute top-8 p-3 rounded-xl right-[50%] translate-x-[50%] sm:translate-x-0 sm:right-3">
+						<div className="bg-grey-light no-select border z-40 border-white/10 w-[300px] sm:w-[350px] absolute top-14 p-3 rounded-xl right-full md:right-1/2 md:translate-x-1/3 translate-x-[40%] sm:translate-x-0 sm:-right-2">
 							<div className="flex items-center w-full justify-between gap-5">
 								<div className="flex items-center gap-3">
 									<h5>Notifications</h5>
@@ -141,32 +165,51 @@ const DashboardHeader = () => {
 						</div>
 					)}
 				</li>
-				<li>
-					<Link href={"/chat"} aria-label="Chat with Ai">
-						<div className="relative">
-							<ChatIcon
-								fontSize="medium"
-								color="primary"
-								className="relative"
-							/>
-							{/* <div className=" text-text-12 flex items-center justify-center number-notification rounded-full border border-white absolute bg-brand-green -top-2 -right-1 h-5 text-center w-5">
-								2
-							</div> */}
-						</div>
-					</Link>
-				</li>
+
 				<li className="flex items-center gap-3">
 					<div className="flex items-center gap-3">
-						<Link href={"#"} aria-label="profile">
-							{/* change aria-lable to user name*/}
-							<PersonPinIcon fontSize="medium" color="primary" />
-						</Link>
 						<div className="md:flex flex-col hidden">
-							<p className="text-text-12 text-grey-lightest">Welcome Back!</p>
-							<span>Kamasah Dickson</span>
+							<p className="text-text-12 text-grey-lightest">Welcome!</p>
+							<span className="text-[14px]">Kamasah Dickson</span>
 						</div>
 					</div>
-					<ExpandMoreIcon fontSize="medium" color="primary" />
+				</li>
+				<li className="relative">
+					<button
+						onClick={() => (
+							setShowMoreOptions((prev) => !prev), setShowNotification(false)
+						)}
+						type="button"
+						className="bg-grey-light hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:scale-[1.02]"
+					>
+						<ExpandMoreIcon fontSize="medium" color="primary" />
+					</button>
+
+					{showMoreOptions && (
+						<div className="bg-grey-light no-select border z-40 border-white/10 absolute top-12 right-0 p-3 rounded-xl">
+							<div className="flex items-center w-full justify-between gap-5">
+								<ul className="flex flex-col">
+									<li className=" text-text-normal hover:text-brand-green transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
+										<Link href={"/profilt"} className="flex items-center gap-2">
+											<PersonPinIcon fontSize="medium" color="inherit" />{" "}
+											Profile
+										</Link>
+									</li>
+
+									<div className=" my-2 w-full h-[1px] bg-white/10"></div>
+									<li className=" cursor-pointer active:scale-[1.02] text-white hover:text-white transition-opacity bg-brand-green rounded-md py-2 text-center hover:opacity-80 px-4">
+										<button
+											type="button"
+											className="text-text-normal"
+											onClick={handleLogout}
+										>
+											Logout
+										</button>
+									</li>
+								</ul>
+							</div>
+						</div>
+					)}
 				</li>
 			</ul>
 		</header>
