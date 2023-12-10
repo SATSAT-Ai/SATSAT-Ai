@@ -41,7 +41,7 @@ const PromptPage = () => {
 							you need, precisely when you need them.
 						</span>
 					</li>
-					<li>
+					<li className="hidden md:block">
 						<p className="mb-2 capitalize text-brand-green text-text-20">
 							Secure, Effortless, and Personalized
 						</p>
@@ -75,7 +75,7 @@ const PromptPage = () => {
 				/>
 				<OutgoingMessage
 					message={{
-						message: "Can you show me my monthly spending trends?",
+						message: "Can you show me my total income for the past quarter?",
 						from: "User",
 					}}
 				/>
