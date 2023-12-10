@@ -54,7 +54,7 @@ const PageWithSubPath = ({
 						pathname === routeWithSubpath.path
 							? "md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow bg-mid--yellow text-white md:text-mid--yellow hover:bg-white/10 md:bg-transparent rounded-md shadow-md md:shadow-none"
 							: "hover:bg-white/10"
-					} text-text-normal w-fit md:mx-full rounded-md md:hover:bg-transparent md:rounded-none justify-center md:justify-start md:w-full flex items-center  cursor-pointer gap-3 p-2 md:pl-6 md:py-2 relative`}
+					} text-text-normal w-fit md:mx-full rounded-md md:hover:bg-transparent md:rounded-none justify-center md:justify-start md:w-full flex items-center  cursor-pointer md:gap-6 gap-3 p-2 md:pl-6 md:py-2 relative`}
 				>
 					<Link
 						className="flex gap-3 items-center"
@@ -65,19 +65,20 @@ const PageWithSubPath = ({
 							{routeWithSubpath.name}
 						</p>
 					</Link>
-					{!showSubpath && (
+					{!showSubpath ? (
 						<ExpandMoreIcon
 							onClick={() => (setShowSubpath(true), setShowSub(true))}
 							fontSize="medium"
 							color="inherit"
 						/>
-					)}
-					{showSubpath && (
-						<ExpandLessIcon
-							onClick={() => (setShowSubpath(false), setShowSub(false))}
-							fontSize="medium"
-							color="inherit"
-						/>
+					) : (
+						showSubpath && (
+							<ExpandLessIcon
+								onClick={() => (setShowSubpath(false), setShowSub(false))}
+								fontSize="medium"
+								color="inherit"
+							/>
+						)
 					)}
 				</div>
 				<div className="flex items-center gap-2 w-full flex-col">
