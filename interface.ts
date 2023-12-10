@@ -42,3 +42,27 @@ export interface Ichat {
 	title: string;
 	timestamp: string;
 }
+export interface Data {
+	id: string;
+	reconcilable: boolean;
+	Provider: string;
+	"Trans. Date": string;
+	Category: string;
+	"From Acc.": number;
+	"From Name": string;
+	"From No.": number;
+	"Trans. Type": string;
+	Amount: number;
+	Fees: number;
+	E_Levy: number;
+	"Bal. Before": number;
+	"Bal. After": number;
+	"To No.": number;
+	"To Name": string;
+	"To Acc.": number;
+	"Trans. ID": string;
+	"Ref.": string;
+	Ova: string;
+	"Img.": string;
+	Details: string;
+}
