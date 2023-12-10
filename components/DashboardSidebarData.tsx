@@ -148,18 +148,20 @@ const DashboardSidebarWithData = ({
 									key={routes.name}
 									routeWithSubpath={routes}
 									pathname={pathname}
+									setHideSidebar={setHideSidebar}
 								/>
 							);
 						}
 						return (
 							<li key={routes.name} id={routes.name}>
 								<Tooltip
-									className={!hideSidebar ? "hidden" : "flex"}
+									className={!hideSidebar ? "hidden" : "hidden lg:flex"}
 									anchorSelect={`#${routes.name}`}
 									place="right"
 									content={routes.name}
 								/>
 								<Link
+									onClick={() => setHideSidebar(true)}
 									href={routes.path!}
 									className={`${
 										pathname === routes.path
