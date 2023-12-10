@@ -7,13 +7,12 @@ import PieCharts from "@/components/PieCharts";
 import StatementSelector from "@/components/StatementSelector";
 import { AppContext } from "@/context/AppContext";
 import { ItransactionsData } from "@/interface";
-import { useContext, useEffect } from "react";
-import { TbLayoutSidebarLeftExpand } from "react-icons/tb";
+import { useContext } from "react";
 import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
 
 const DashboardClientPage = () => {
-	const { hideSidebar, setHideSidebar, setShowNotification } =
+	const { hideSidebar, setShowNotification, setShowMoreOptions } =
 		useContext(AppContext);
 
 	const data = [
@@ -101,21 +100,11 @@ const DashboardClientPage = () => {
 
 	return (
 		<div
-			onClick={() => setShowNotification(false)}
+			onClick={() => (setShowNotification(false), setShowMoreOptions(false))}
 			className="min-h-screen text-white sm:px-3 my-max z-10 "
 		>
 			<div className="flex flex-col lg:flex-nowrap justify-between flex-wrap sm:flex-row items-center gap-5 py-3">
 				<div className="flex items-center gap-3">
-					{hideSidebar && (
-						<div
-							tabIndex={0}
-							className={`md:hidden focus:bg-brand-green sm:top-[unset] top-24  left-5 bg-mid--yellow cursor-pointer hover:bg-brand-green w-fit p-1 rounded-md`}
-							onClick={() => setHideSidebar(false)}
-						>
-							<TbLayoutSidebarLeftExpand size={25} color="white" />
-						</div>
-					)}
-
 					<h1 className="text-[35px] w-fit md:text-[45px] m-0 text-center lg:text-left ">
 						Dashboard
 					</h1>
