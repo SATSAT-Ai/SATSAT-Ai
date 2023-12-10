@@ -27,6 +27,7 @@ const page = () => {
 							width={550}
 							alt="signup"
 							priority
+							placeholder="blur"
 						/>
 					</div>
 				</main>
