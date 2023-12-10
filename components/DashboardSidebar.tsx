@@ -1,21 +1,29 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { useContext, useLayoutEffect } from "react";
+import { useContext, useEffect } from "react";
 import { AppContext } from "@/context/AppContext";
 import DashboardSidebarWithData from "./DashboardSidebarData";
 const DashboardSidebar = () => {
 	const pathname = usePathname();
 	const { hideSidebar, setHideSidebar } = useContext(AppContext);
 
-	useLayoutEffect(() => {
-		if (pathname.includes("/chat")) {
-			setHideSidebar(true);
-		} else {
-			setHideSidebar(false);
-		}
+	useEffect(() => {
+		const handleResize = () => {
+			if (window.innerWidth < 768) {
+				setHideSidebar(true);
+			} else {
+				setHideSidebar(false);
+			}
+		};
+
+		window.addEventListener("resize", handleResize);
+
+		return () => {
+			window.removeEventListener("resize", handleResize);
+		};
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [pathname]);
+	}, []);
 
 	return (
 		<aside
