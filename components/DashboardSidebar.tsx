@@ -19,8 +19,10 @@ const DashboardSidebar = () => {
 
 	return (
 		<aside
-			className={`bg-white/10  backdrop-blur-md text-white  z-40 sm:relative fixed flex-initial md:basis-64  ${
-				hideSidebar ? "!basis-28 hidden md:block" : "block"
+			className={`bg-white/10  backdrop-blur-md text-white  z-40 md:relative fixed   ${
+				hideSidebar
+					? "w-40 md:w-32 transition-all duration-500 -translate-x-full md:translate-x-0"
+					: "w-28 md:w-64 translate-x-0  transition-transform duration-500 md:duration-0 md:transition-none"
 			}`}
 		>
 			<DashboardSidebarWithData
