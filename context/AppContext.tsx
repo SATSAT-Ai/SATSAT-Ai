@@ -6,34 +6,34 @@ interface Icontext {
 	showModal: boolean;
 	modalAction: string;
 	hideSidebar: boolean;
-	hideChatSidebar: boolean;
 	showNotification: boolean;
+	showMoreOptions: boolean;
 	setShowModal: Dispatch<SetStateAction<boolean>>;
 	setModalAction: Dispatch<SetStateAction<string>>;
 	setHideSidebar: Dispatch<SetStateAction<boolean>>;
-	setHidChatSidebar: Dispatch<SetStateAction<boolean>>;
 	setShowNotification: Dispatch<SetStateAction<boolean>>;
+	setShowMoreOptions: Dispatch<SetStateAction<boolean>>;
 }
 
 export const AppContext = createContext<Icontext>({
 	showModal: false,
 	modalAction: "deleteAccount",
 	hideSidebar: false,
-	hideChatSidebar: false,
 	showNotification: false,
+	showMoreOptions: false,
 	setShowModal: () => {},
 	setModalAction: () => {},
 	setHideSidebar: () => {},
-	setHidChatSidebar: () => {},
 	setShowNotification: () => {},
+	setShowMoreOptions: () => {},
 });
 
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [showModal, setShowModal] = useState(false);
 	const [modalAction, setModalAction] = useState("deleteAccount");
 	const [hideSidebar, setHideSidebar] = useState(false);
-	const [hideChatSidebar, setHidChatSidebar] = useState(false);
 	const [showNotification, setShowNotification] = useState(false);
+	const [showMoreOptions, setShowMoreOptions] = useState(false);
 
 	return (
 		<AppContext.Provider
@@ -46,8 +46,8 @@ const ContextProvider = ({ children }: { children: React.ReactNode }) => {
 				hideSidebar,
 				showNotification,
 				setShowNotification,
-				hideChatSidebar,
-				setHidChatSidebar,
+				showMoreOptions,
+				setShowMoreOptions,
 			}}
 		>
 			{children}
