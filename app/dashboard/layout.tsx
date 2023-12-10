@@ -4,6 +4,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import DashboardHeader from "@/components/DashboardHeader";
 import ContextProvider from "@/context/AppContext";
 import { theme } from "./theme";
+import ChatContextProvider from "@/context/ChatContext";
 
 const layout = ({ children }: { children: ReactNode }) => {
 	return (
@@ -19,7 +20,7 @@ const layout = ({ children }: { children: ReactNode }) => {
 						<ThemeProvider theme={theme}>
 							<DashboardHeader />
 						</ThemeProvider>
-						{children}
+						<ChatContextProvider>{children}</ChatContextProvider>
 					</div>
 				</ContextProvider>
 			</div>
