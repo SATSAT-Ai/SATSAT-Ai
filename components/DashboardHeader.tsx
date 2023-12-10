@@ -94,7 +94,7 @@ const DashboardHeader = () => {
 					<NotificationsIcon
 						fontSize="medium"
 						color="primary"
-						className="cursor-pointer active:scale-[1.01]"
+						className="cursor-pointer active:scale-[1.02]"
 						onClick={() => (
 							setShowNotification((prev) => !prev), setShowMoreOptions(false)
 						)}
@@ -112,7 +112,7 @@ const DashboardHeader = () => {
 					)}
 					{/* notification */}
 					{showNotification && (
-						<div className="bg-grey-light no-select border z-40 border-white/10 w-[300px] sm:w-[350px] absolute top-14 p-3 rounded-xl right-full md:right-1/2 md:translate-x-1/3 translate-x-[40%] sm:translate-x-0 sm:-right-2">
+						<div className="bg-grey-light no-select border z-40 border-white/10 w-[300px] sm:w-[350px] absolute top-12 p-3 rounded-xl right-full md:right-1/2 md:translate-x-1/3 translate-x-[27%] sm:translate-x-0 sm:-right-2">
 							<div className="flex items-center w-full justify-between gap-5">
 								<div className="flex items-center gap-3">
 									<h5>Notifications</h5>
