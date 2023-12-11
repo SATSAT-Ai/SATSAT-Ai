@@ -86,21 +86,20 @@ const DashboardSidebarWithData = ({
 	return (
 		<>
 			<div
-				className={`${
-					hideSidebar && "pt-20"
-				} py-4 custom-scroll custom-scroll justify-between h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
+				className={`py-4 overflow-y-auto custom-scroll2 justify-between h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
 			>
 				<ul className="flex md:w-full w-fit mx-auto flex-col gap-3">
 					<div
 						id="close-sidebar"
 						tabIndex={0}
 						className={`${
-							hideSidebar && "hidden"
+							hideSidebar && "sm:hidden"
 						} md:ml-6 ml-2 md:absolute right-2 md:top-8 active:scale-[1.06] z-10 top-1 md:mx-auto md:mx-full cursor-pointer my-5 md:my-0 w-fit p-1 rounded-md`}
 						onClick={() => setHideSidebar((prev) => !prev)}
 					>
 						<MdClose size={25} color="white" />
 						<Tooltip
+							className={!hideSidebar ? "hidden" : "hidden lg:flex"}
 							anchorSelect="#close-sidebar"
 							place="right"
 							content="Close sidebar"
@@ -128,7 +127,7 @@ const DashboardSidebarWithData = ({
 							tabIndex={0}
 							className={` ${
 								!hideSidebar && "!hidden"
-							} md:ml-6 hidden sm:flex mx-auto md:mx-full cursor-pointer my-5 md:my-0 w-fit p-1 rounded-md`}
+							} md:ml-6 hidden sm:flex mx-auto md:mx-full cursor-pointer my-5 w-fit p-1 rounded-md`}
 							onClick={() => setHideSidebar((prev) => !prev)}
 						>
 							<TbLayoutSidebarLeftExpandFilled size={25} color="white" />
