@@ -86,7 +86,7 @@ const DashboardSidebarWithData = ({
 	return (
 		<>
 			<div
-				className={`py-4 overflow-y-auto custom-scroll2 justify-between h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
+				className={`py-4 overflow-y-auto overflow-x-clip custom-scroll2 justify-between h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
 			>
 				<ul className="flex md:w-full w-fit mx-auto flex-col gap-3">
 					<div
