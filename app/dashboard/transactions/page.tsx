@@ -1,4 +1,4 @@
-import TransactionsPageClient from "@/components/TransactionsPageClient";
+import TransactionsClientPage from "@/components/TransactionsClientPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const Page = () => {
-	return <TransactionsPageClient />;
+	return <TransactionsClientPage />;
 };
 
 export default Page;
