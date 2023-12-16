@@ -4,9 +4,16 @@ import IncomingMessage from "@/components/IncomingMessage";
 import OutgoingMessage from "@/components/OutgoingMessage";
 import ChatScrolltoBottom from "@/components/ChatScrolltoBottom";
 import ChatScrolltoTop from "@/components/ChatScrolltoTop";
-import { useRef, useState, KeyboardEvent, useLayoutEffect } from "react";
+import {
+	useRef,
+	useState,
+	KeyboardEvent,
+	useLayoutEffect,
+	useContext,
+} from "react";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { useForm } from "react-hook-form";
+import { ChatContext } from "@/context/ChatContext";
 
 type Messagefrom = "User" | "Ai";
 export interface IUser {
@@ -30,7 +37,6 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 	const chatContainerRef = useRef<null | HTMLElement>(null);
 	const [scrollToBottom, setScrollToBottom] = useState(false);
 	const [scrollToTop, setScrollToTop] = useState(false);
-
 	const {
 		formState: { errors },
 		register,
@@ -92,7 +98,9 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 	// 	},
 	// ]);
 
+	const { isOldConversation, setIsOldConversation } = useContext(ChatContext);
 	const [conversations, setConversations] = useState<IUser[]>([]);
+
 	const [chatSuggestions, setChatSuggestions] = useState([
 		{
 			id: "skdjfksjdf",
@@ -150,6 +158,10 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		const WatchedUserMessage = watch("userMessage");
 
 		if (e.key === "Enter" && !e.shiftKey) {
+			if (chatContainerId && isOldConversation) {
+				//remove scroll to top if old conversation is continued
+				setIsOldConversation(false);
+			}
 			e.preventDefault();
 			//sendMesssage
 			if (WatchedUserMessage?.trim()) {
@@ -198,7 +210,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 
 				setScrollToBottom(
 					clientHeight < scrollHeight &&
-						scrollTop + clientHeight < scrollHeight - 100
+						scrollTop + clientHeight < scrollHeight - 180
 				);
 			}
 		};
@@ -215,14 +227,18 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 			{conversations.length >= 1 ? (
 				<main
 					ref={chatContainerRef}
-					className=" text-white w-full flex flex-col gap-5  p-5 
-				custom-scroll2 relative overflow-auto h-screen max-w-4xl mx-auto"
+					className=" text-white w-full flex flex-col gap-5  p-5
+			custom-scroll2 relative overflow-auto"
 				>
-					{scrollToTop && <ChatScrolltoTop scrolltoTop={scrolltoTop} />}
+					<div className="fixed bottom-20 -translate-x-1/2 left-1/2">
+						{scrollToTop && isOldConversation && (
+							<ChatScrolltoTop scrolltoTop={scrolltoTop} />
+						)}
 
-					{scrollToBottom && (
-						<ChatScrolltoBottom scrollToBottom={handleScrollToBottom} />
-					)}
+						{scrollToBottom && (
+							<ChatScrolltoBottom scrollToBottom={handleScrollToBottom} />
+						)}
+					</div>
 
 					{/* main chats */}
 					{conversations.map((conversation) => {
@@ -244,33 +260,35 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 					})}
 				</main>
 			) : (
-				<main className=" flex flex-col h-full items-center justify-center px-3">
-					<h1 className="text-white text-text-40 text-center sm:text-text-60">
-						SATSAT AI
-					</h1>
-					<div className="text-white mt-10 max-w-xs md:max-w-full">
-						<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
-							Chat suggestions
-						</h2>
-						<div className="flex flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
-							{chatSuggestions.map((suggestions) => {
-								return (
-									<button
-										key={suggestions.id}
-										type="button"
-										className="border border-white py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/20 active:scale-[1.01] rounded-3xl"
-									>
-										{suggestions.value}
-									</button>
-								);
-							})}
+				<main className=" flex flex-col h-screen items-center justify-center px-3">
+					<div className="w-full pt-5 pb-36 md:pb-0 overflow-y-auto custom-scroll">
+						<h1 className="text-white text-text-40 text-center sm:text-text-60">
+							SATSAT AI
+						</h1>
+						<div className="text-white mt-10 max-w-xs md:max-w-2xl mx-auto">
+							<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
+								Chat suggestions
+							</h2>
+							<div className="flex flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
+								{chatSuggestions.map((suggestions) => {
+									return (
+										<button
+											key={suggestions.id}
+											type="button"
+											className="border border-white py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/20 active:scale-[1.01] rounded-3xl"
+										>
+											{suggestions.value}
+										</button>
+									);
+								})}
+							</div>
 						</div>
 					</div>
 				</main>
 			)}
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="text-white sticky bottom-0 p-5  "
+				className="text-white sticky bottom-0 p-5 mt-auto"
 			>
 				<div className="bg-[#071f07] rounded-lg max-w-3xl mx-auto">
 					<div
