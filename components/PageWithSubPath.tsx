@@ -13,11 +13,13 @@ const PageWithSubPath = ({
 	pathname,
 	hideSidebar,
 	setHideSidebar,
+	isActive,
 }: {
 	routeWithSubpath: IDashboardSidebarData;
 	pathname: string;
 	hideSidebar: boolean;
 	setHideSidebar: Dispatch<SetStateAction<boolean>>;
+	isActive: () => string;
 }) => {
 	const [showSubpath, setShowSubpath] = useState(false);
 	const [showSub, setShowSub] = useState(() =>
@@ -42,7 +44,7 @@ const PageWithSubPath = ({
 			} text-text-normal  rounded-md md:rounded-none  md:justify-start md:w-full flex cursor-pointer items-center gap-3 relative`}
 		>
 			<Tooltip
-				className={!hideSidebar ? "hidden" : "hidden lg:flex"}
+				className={!hideSidebar ? "hidden" : "hidden md:flex"}
 				place="right-start"
 				anchorSelect={`#${routeWithSubpath.name}`}
 				content={routeWithSubpath.name}
@@ -54,7 +56,7 @@ const PageWithSubPath = ({
 			>
 				<div
 					className={`${
-						pathname === routeWithSubpath.path
+						routeWithSubpath.path === isActive()
 							? "md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow bg-mid--yellow text-white md:text-mid--yellow hover:bg-white/10 md:bg-transparent rounded-md shadow-md md:shadow-none"
 							: "hover:bg-white/10"
 					} text-text-normal w-fit md:mx-full rounded-md md:hover:bg-transparent md:rounded-none justify-center md:justify-start md:w-full flex items-center  cursor-pointer md:gap-6 gap-3 p-2 md:pl-6 md:py-2 relative`}
@@ -94,7 +96,7 @@ const PageWithSubPath = ({
 									href={subpath.path}
 									id={subpath.name}
 									className={`${
-										pathname === subpath.path
+										subpath.path === isActive()
 											? "md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow bg-mid--yellow md:bg-transparent icon shadow-md md:shadow-none text-mid--yellow "
 											: "text-white "
 									} hover:bg-white/10 text-text-normal 0 justify-start mr-auto w-full rounded-md md:rounded-none  md:justify-start md:w-full flex cursor-pointer px-3 md:px-0 md:pl-6 py-2 items-center gap-3 relative`}
@@ -105,7 +107,7 @@ const PageWithSubPath = ({
 									</div>
 								</Link>
 								<Tooltip
-									className={!hideSidebar ? "hidden" : "flex"}
+									className={!hideSidebar ? "hidden" : "hidden md:flex"}
 									anchorSelect={`#${subpath.name}`}
 									content={subpath.name}
 									place="right"
