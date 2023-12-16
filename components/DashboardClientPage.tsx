@@ -8,12 +8,12 @@ import StatementSelector from "@/components/StatementSelector";
 import { AppContext } from "@/context/AppContext";
 import { ItransactionsData } from "@/interface";
 import { useContext } from "react";
-import dayjs, { Dayjs } from "dayjs";
 import { useState } from "react";
+import { DateRange } from "react-day-picker";
+import { addDays } from "date-fns";
 
 const DashboardClientPage = () => {
-	const { hideSidebar, setShowNotification, setShowMoreOptions } =
-		useContext(AppContext);
+	const { hideSidebar } = useContext(AppContext);
 
 	const data = [
 		{ id: 0, value: 10, label: "series A" },
@@ -93,28 +93,34 @@ const DashboardClientPage = () => {
 		},
 	];
 
-	const [fromDate, setFromDate] = useState<Dayjs | null>(dayjs("2020-04-17"));
-	const [toDate, setToDate] = useState<Dayjs | null>(dayjs("2023-07-27"));
+	const statements = ["Mobile Money Statement", "Bank Statement"];
 
-	// console.log(dayjs(fromDate).format("YYYY-MM-DD"));
+	const [selectedStatement, setSelectedStatement] = useState(statements[0]);
+
+	const [date, setDate] = useState<DateRange | undefined>({
+		from: new Date(),
+		to: addDays(new Date(), 5),
+	});
 
 	return (
-		<div
-			onClick={() => (setShowNotification(false), setShowMoreOptions(false))}
-			className="min-h-screen text-white sm:px-3 my-max z-10 "
-		>
-			<div className="flex flex-col lg:flex-nowrap justify-between flex-wrap sm:flex-row items-center gap-5 py-3">
-				<div className="flex items-center gap-3">
-					<h1 className="text-[35px] w-fit md:text-[45px] m-0 text-center lg:text-left ">
-						Dashboard
-					</h1>
-				</div>
+		<div className="min-h-screen text-white sm:px-3 my-max z-10 ">
+			<div
+				className={`flex flex-col lg:flex-nowrap justify-between flex-wrap ${
+					hideSidebar ? "sm:flex-row" : "sm:flex-col"
+				} items-center gap-5 md:flex-row ${
+					!hideSidebar && "md:justify-center"
+				} py-3`}
+			>
+				<h1 className="text-[35px] text-white w-fit md:text-[45px] m-0 text-center lg:text-left ">
+					Dashboard
+				</h1>
 				{/* statement and date selector */}
 				<StatementSelector
-					fromDate={fromDate}
-					toDate={toDate}
-					setFromDate={setFromDate}
-					setToDate={setToDate}
+					date={date}
+					setDate={setDate}
+					selectedStatement={selectedStatement}
+					setSelectedStatement={setSelectedStatement}
+					statements={statements}
 				/>
 			</div>
 			<div
