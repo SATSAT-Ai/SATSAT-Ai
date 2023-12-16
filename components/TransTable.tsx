@@ -3,12 +3,14 @@ import {
 	GridRowParams,
 	GridToolbar,
 	GridColDef,
+	GridColumnVisibilityModel,
 } from "@mui/x-data-grid";
 import Image from "next/image";
 
 import { getProviderImage } from "@/providerImages";
 import Link from "next/link";
 import { Data } from "@/interface";
+import { useState } from "react";
 
 export default function TransTable() {
 	const rows: Data[] = [
@@ -169,43 +171,66 @@ export default function TransTable() {
 			},
 		},
 	];
-	const getRowId = (row: Data) => row.id;
 
+	const getRowId = (row: Data) => row.id;
 	const getRowClassName = (params: GridRowParams<Data>) => {
 		return params.row.reconcilable ? "" : "not-reconcilable-row";
 	};
 
-	const defaultHiddenColumns = {
-		"From Acc.": false,
-		"To No.": false,
-		"From No.": false,
-		"Ref.": false,
-		Ova: false,
-		Fees: false,
-		E_Levy: false,
-		"To Acc.": false,
-	};
+	const [columnVisibilityModel, setColumnVisibilityModel] =
+		useState<GridColumnVisibilityModel>({
+			"From Acc.": false,
+			"To No.": false,
+			"From No.": false,
+			"Ref.": false,
+			Ova: false,
+			Fees: false,
+			E_Levy: false,
+			"To Acc.": false,
+		});
 
 	return (
-		<div style={{ width: "100%" }}>
-			<div style={{ height: 350, width: "100%" }}>
-				<DataGrid
-					sx={{
-						backgroundColor: "#174634",
+		<div style={{ height: 500, width: "100%" }}>
+			<DataGrid
+				sx={{
+					backgroundColor: "#174634",
+					color: "#fff",
+					borderColor: "aquamarine",
+					Height: "470px",
+					"& .MuiDataGrid-cell:hover": {
+						color: "yellow",
+					},
+					"& .MuiDataGrid-sortIcon": {
+						color: "#c18e3b",
+					},
+					"& .MuiDataGrid-menuIconButton": {
+						color: "#c18e3b",
+					},
+					"& .MuiButtonBase-root": {
+						color: "#c18e3b",
+					},
+					"& .Mui-disabled": {
+						color: "rgba(0, 0, 0, 0.26)",
+					},
+					"& .MuiToolbar-root": {
 						color: "white",
-						borderColor: "aquamarine",
-					}}
-					autoHeight
-					columns={headCells}
-					rows={rows}
-					getRowId={getRowId}
-					getRowClassName={getRowClassName}
-					slots={{ toolbar: GridToolbar }}
-					columnVisibilityModel={defaultHiddenColumns}
-
-					// loading
-				/>
-			</div>
+					},
+					"& .MuiTablePagination-selectIcon": {
+						color: "white",
+					},
+				}}
+				density="standard"
+				columns={headCells}
+				rows={rows}
+				getRowId={getRowId}
+				getRowClassName={getRowClassName}
+				slots={{ toolbar: GridToolbar }}
+				columnVisibilityModel={columnVisibilityModel}
+				onColumnVisibilityModelChange={(mewModel) => {
+					setColumnVisibilityModel(mewModel);
+				}}
+				// loading
+			/>
 		</div>
 	);
 }
