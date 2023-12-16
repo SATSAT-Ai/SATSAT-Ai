@@ -1,4 +1,4 @@
-import TransactionDetails from "@/components/TransactionDetails";
+import TransactionDetails from "@/components/TransactionDetailsPage";
 import { Data } from "@/interface";
 
 const page = ({
