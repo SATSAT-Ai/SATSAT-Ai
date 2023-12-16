@@ -1,10 +1,11 @@
 "use client";
+
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
 import Image from "next/image";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect, useRef } from "react";
 import satsatLogo from "../public/satsat-logo.svg";
 import { AppContext } from "@/context/AppContext";
 import NotificationLogic from "./NotificationLogic";
@@ -14,15 +15,12 @@ import { RiMenu4Fill } from "react-icons/ri";
 
 const DashboardHeader = () => {
 	const pathname = usePathname();
+	const notificationRef = useRef<null | HTMLLIElement>(null);
+	const optionsRef = useRef<null | HTMLDivElement>(null);
 
-	const {
-		hideSidebar,
-		setShowNotification,
-		showNotification,
-		showMoreOptions,
-		setShowMoreOptions,
-		setHideSidebar,
-	} = useContext(AppContext);
+	const { hideSidebar, setHideSidebar } = useContext(AppContext);
+	const [showNotification, setShowNotification] = useState(false);
+	const [showMoreOptions, setShowMoreOptions] = useState(false);
 
 	const [readTarget, setReadTarget] = useState(0);
 	const [fakeNotification, setFakeNotification] = useState<Inotification[]>([
@@ -41,6 +39,23 @@ const DashboardHeader = () => {
 			time: "30mins ago",
 		},
 	]);
+
+	useEffect(() => {
+		const hideOptions = (event: MouseEvent) => {
+			if (!optionsRef?.current?.contains(event.target as Node)) {
+				setShowMoreOptions(false);
+			}
+			if (!notificationRef?.current?.contains(event.target as Node)) {
+				setShowNotification(false);
+			}
+		};
+
+		window.addEventListener("mousedown", hideOptions);
+
+		return () => {
+			window.removeEventListener("mousedown", hideOptions);
+		};
+	}, [optionsRef, notificationRef]);
 
 	const handleMarkAsRead = () => {
 		setFakeNotification(
@@ -90,21 +105,17 @@ const DashboardHeader = () => {
 			</Link>
 
 			<ul className="flex gap-2 sm:gap-5 items-center justify-end">
-				<li className="relative" tabIndex={0}>
+				<li ref={notificationRef} className="relative" tabIndex={0}>
 					<NotificationsIcon
 						fontSize="medium"
 						color="primary"
 						className="cursor-pointer active:scale-[1.02]"
-						onClick={() => (
-							setShowNotification((prev) => !prev), setShowMoreOptions(false)
-						)}
+						onClick={() => setShowNotification((prev) => !prev)}
 					/>
 
 					{notificationCount(unreadNotification) >= 1 && (
 						<div
-							onClick={() => (
-								setShowNotification((prev) => !prev), setShowMoreOptions(false)
-							)}
+							onClick={() => setShowNotification((prev) => !prev)}
 							className=" text-text-12 flex items-center cursor-pointer justify-center number-notification rounded-full border border-white absolute bg-brand-green -top-2 -right-1 h-5 text-center w-5"
 						>
 							{notificationCount(unreadNotification)}
@@ -168,28 +179,28 @@ const DashboardHeader = () => {
 
 				<li className="flex items-center gap-3">
 					<div className="flex items-center gap-3">
-						<div className="md:flex flex-col hidden">
+						<div className="sm:flex flex-col hidden">
 							<p className="text-text-12 text-grey-lightest">Welcome!</p>
 							<span className="text-[14px]">Kamasah Dickson</span>
 						</div>
 					</div>
 				</li>
 				<li className="relative">
-					<button
-						onClick={() => (
-							setShowMoreOptions((prev) => !prev), setShowNotification(false)
-						)}
-						type="button"
-						className="bg-grey-light hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:scale-[1.02]"
-					>
-						<ExpandMoreIcon fontSize="medium" color="primary" />
-					</button>
+					<div ref={optionsRef}>
+						<button
+							onClick={() => setShowMoreOptions((prev) => !prev)}
+							type="button"
+							className="bg-grey-light hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:scale-[1.02]"
+						>
+							<ExpandMoreIcon fontSize="medium" color="primary" />
+						</button>
+					</div>
 
 					{showMoreOptions && (
 						<div className="bg-grey-light no-select border z-40 border-white/10 absolute top-12 right-0 p-3 rounded-xl">
 							<div className="flex items-center w-full justify-between gap-5">
 								<ul className="flex flex-col">
-									<li className=" text-text-normal hover:text-brand-green transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
+									<li className=" text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
 										<Link href={"/profilt"} className="flex items-center gap-2">
 											<PersonPinIcon fontSize="medium" color="inherit" />{" "}
 											Profile
