@@ -100,10 +100,6 @@ const DashboardSidebarWithData = ({
 				(path) => path.path === processedBrowserPathname
 			);
 
-			if (ignored) {
-				return pathname;
-			} else if (isPathSame) return isPathSame?.path;
-
 			if (!isPathSame) {
 				const isSubpathSame = dashboardSidebarData
 					.filter((path) => path.subPaths)
@@ -112,6 +108,10 @@ const DashboardSidebarWithData = ({
 
 				if (isSubpathSame) return isSubpathSame.path;
 			}
+
+			if (ignored) {
+				return pathname;
+			} else if (isPathSame) return isPathSame?.path;
 		}
 		return pathname;
 	};
