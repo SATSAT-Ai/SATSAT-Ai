@@ -10,6 +10,7 @@ import { TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import Logo from "@/public/satsat-logo.svg";
+import LogoSmall from "@/public/satsat-icon.svg";
 import { IDashboardSidebarData } from "@/interface";
 import PageWithSubPath from "./PageWithSubPath";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
@@ -83,17 +84,49 @@ const DashboardSidebarWithData = ({
 		},
 	];
 
+	const isActive = (): string => {
+		const currentPath = pathname.split("/");
+
+		if (currentPath.length >= 4) {
+			const isIgnoredSubpaths = ["categories", "budget", "reciepts"];
+			//if currentpath >= 4 remove the last path or id e.g /38h8y834
+
+			const processedBrowserPathname = currentPath.slice(0, -1).join("/");
+			const ignored = isIgnoredSubpaths.some((subpath) =>
+				currentPath.includes(subpath as string)
+			);
+
+			const isPathSame = dashboardSidebarData.find(
+				(path) => path.path === processedBrowserPathname
+			);
+
+			if (ignored) {
+				return pathname;
+			} else if (isPathSame) return isPathSame?.path;
+
+			if (!isPathSame) {
+				const isSubpathSame = dashboardSidebarData
+					.filter((path) => path.subPaths)
+					.flatMap((filteredPaths) => filteredPaths.subPaths)
+					.find((subpath) => subpath?.path === processedBrowserPathname);
+
+				if (isSubpathSame) return isSubpathSame.path;
+			}
+		}
+		return pathname;
+	};
+
 	return (
 		<>
 			<div
-				className={`py-4 overflow-y-auto overflow-x-clip custom-scroll2 justify-between h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
+				className={`py-4  custom-scroll2 justify-between h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
 			>
 				<ul className="flex md:w-full w-fit mx-auto flex-col gap-3">
 					<div
 						id="close-sidebar"
 						tabIndex={0}
 						className={`${
-							hideSidebar && "sm:hidden"
+							hideSidebar && "md:hidden"
 						} md:ml-6 ml-2 md:absolute right-2 md:top-8 active:scale-[1.06] z-10 top-1 md:mx-auto md:mx-full cursor-pointer my-5 md:my-0 w-fit p-1 rounded-md`}
 						onClick={() => setHideSidebar((prev) => !prev)}
 					>
@@ -107,13 +140,19 @@ const DashboardSidebarWithData = ({
 					</div>
 					<li
 						className={`w-full pb-3 hidden md:block font-medium ${
-							hideSidebar && "!hidden"
+							hideSidebar && pathname.includes("/chat")
+								? "flex !w-fit pl-6"
+								: hideSidebar
+								? "!hidden"
+								: ""
 						}`}
 					>
 						<Link href={"/"} className="lg:flex">
 							<Image
 								className="mx-auto w-fit pt-4"
-								src={Logo}
+								src={
+									pathname.includes("/chat") && hideSidebar ? LogoSmall : Logo
+								}
 								height={110}
 								width={110}
 								alt="SATSAT-Ai"
@@ -148,13 +187,14 @@ const DashboardSidebarWithData = ({
 									routeWithSubpath={routes}
 									pathname={pathname}
 									setHideSidebar={setHideSidebar}
+									isActive={isActive}
 								/>
 							);
 						}
 						return (
 							<li key={routes.name} id={routes.name}>
 								<Tooltip
-									className={!hideSidebar ? "hidden" : "hidden lg:flex"}
+									className={!hideSidebar ? "hidden" : "hidden md:flex"}
 									anchorSelect={`#${routes.name}`}
 									place="right"
 									content={routes.name}
@@ -163,7 +203,7 @@ const DashboardSidebarWithData = ({
 									onClick={() => setHideSidebar(true)}
 									href={routes.path!}
 									className={`${
-										pathname === routes.path
+										routes.path === isActive()
 											? " bg-mid--yellow md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
 											: "text-white"
 									} text-text-normal font-medium md:pl-6 w-fit md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex  cursor-pointer p-2 items-center gap-3 hover:bg-white/10 relative`}
@@ -183,7 +223,7 @@ const DashboardSidebarWithData = ({
 				<button
 					type="button"
 					id="upgrade-plan"
-					className="flex flex-col mx-3 gap-7"
+					className={`${hideSidebar && "md:mx-auto"} flex flex-col mx-3 gap-7`}
 				>
 					<div className="md:mt-7 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
 						<div className="mr-auto">
