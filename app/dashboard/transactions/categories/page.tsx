@@ -1,3 +1,4 @@
+import CategoryClientPage from "@/components/CategoryClientPage";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -5,7 +6,7 @@ export const metadata: Metadata = {
 };
 
 const page = () => {
-	return <div>page</div>;
+	return <CategoryClientPage />;
 };
 
 export default page;
