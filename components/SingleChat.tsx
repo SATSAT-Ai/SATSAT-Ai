@@ -39,7 +39,7 @@ const SingleChat = ({
 	return (
 		<div
 			key={chat.id}
-			className={`flex relative items-center gap-0 px-1 link-parent hover:bg-white/10 ${
+			className={`flex relative items-center gap-0 px-1 hover:bg-white/10 ${
 				showOptions && "bg-white/10"
 			} rounded-xl`}
 		>
