@@ -66,3 +66,11 @@ export interface Data {
 	"Img.": string;
 	Details: string;
 }
+
+export interface ICategory {
+	id: string;
+	date: string;
+	name: string;
+	number: number;
+	Amount: number;
+}
