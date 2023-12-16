@@ -1,8 +1,7 @@
 "use client";
 
-import { Dispatch, SetStateAction, useContext, useState } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import DragNdrop from "@/components/DragNdrop";
-import { AppContext } from "@/context/AppContext";
 
 const UploadStepTwo = ({
 	selectedStatement,
@@ -11,14 +10,10 @@ const UploadStepTwo = ({
 	selectedStatement: string | null;
 	setUploadStep: Dispatch<SetStateAction<number>>;
 }) => {
-	const { setShowNotification } = useContext(AppContext);
 	const [files, setFiles] = useState([]);
 
 	return (
-		<div
-			onClick={() => setShowNotification(false)}
-			className="bg-white/20 p-4 sm:p-10 max-w-3xl mx-auto rounded-xl"
-		>
+		<div className="bg-white/20 p-4 sm:p-10 max-w-3xl mx-auto rounded-xl">
 			<div className="max-w-xl mx-auto">
 				<DragNdrop files={files} setFiles={setFiles} />
 
