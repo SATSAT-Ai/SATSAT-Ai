@@ -21,14 +21,14 @@ export default function RootLayout({
 		<html lang="en">
 			<body className={poppins.className}>
 				<NextTopLoader
-					showSpinner={true}
+					showSpinner={false}
 					color="#29a173"
 					initialPosition={0.04}
 					crawlSpeed={300}
-					height={3}
+					height={2}
 					crawl={true}
 					easing="ease"
-					speed={200}
+					speed={350}
 					shadow="0 0 10px #29a173,0 0 5px #29a173"
 				/>
 				{children}
