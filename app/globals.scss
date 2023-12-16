@@ -4,9 +4,37 @@
 @tailwind utilities;
 
 @layer base {
+	:root {
+		--background: 0, 0%, 100%, 0.063;
+		--foreground: 210 40% 98%;
+
+		--card: 222.2 84% 4.9%;
+		--card-foreground: 210 40% 98%;
+		--popover: 120, 63%, 7%;
+		--popover-foreground: 210 40% 98%;
+		--primary: 210 40% 98%;
+		--primary-foreground: 222.2 47.4% 11.2%;
+
+		--secondary: 217.2 32.6% 17.5%;
+		--secondary-foreground: 210 40% 98%;
+		--muted: 217.2 32.6% 17.5%;
+		--muted-foreground: 215 20.2% 65.1%;
+
+		--accent: 156, 51%, 15%;
+		--accent-foreground: 210 40% 98%;
+
+		--destructive: 0 62.8% 30.6%;
+		--destructive-foreground: 210 40% 98%;
+
+		--border: 39, 77%, 83%;
+		--input: 39, 77%, 83%;
+		--ring: 212.7 26.8% 83.9;
+		--radius: 8px;
+	}
+
 	*::selection {
 		background-color: #29a173;
-		color: white;
+		color: #fff;
 	}
 
 	textarea {
@@ -21,7 +49,7 @@
 		&::-webkit-scrollbar-track-piece,
 		&::-webkit-scrollbar {
 			background-color: #050d0a;
-			width: 14px;
+			width: rem(14);
 		}
 
 		&::-webkit-scrollbar-thumb {
@@ -30,9 +58,6 @@
 				background-color: #29a173;
 			}
 		}
-	}
-	.my-min-h {
-		min-height: calc(100vh - 82px);
 	}
 
 	.custom-scroll,
@@ -89,8 +114,8 @@
 	}
 
 	.loader {
-		width: 11px;
-		height: 11px;
+		width: rem(11);
+		height: rem(11);
 		border: 2px solid #f3f3f3;
 		border-top: 2px solid #c18e3b;
 		border-radius: 50%;
@@ -161,11 +186,11 @@
 		border-radius: 50%;
 		position: absolute;
 		transform: translateX(-50%);
-		filter: blur(150px);
+		filter: blur(rem(150));
 	}
 
 	.green-blob2 {
-		filter: blur(160px);
+		filter: blur(rem(160));
 	}
 
 	.yellow-blob,
@@ -175,14 +200,14 @@
 		border-radius: 50%;
 		position: absolute;
 		transform: translateX(-50%);
-		filter: blur(150px);
+		filter: blur(rem(150));
 	}
 
 	.yellow-blob2 {
-		filter: blur(140px);
+		filter: blur(rem(140));
 	}
 	.yellow-blob3 {
-		filter: blur(190px);
+		filter: blur(rem(190));
 	}
 	.my-shadow {
 		box-shadow: -7px 1px 20px -9px #29a173, 1px -1px 20px -7px #c18e3b;
@@ -218,7 +243,7 @@
 
 	.icon .MuiSvgIcon-root {
 		color: white;
-		@media (min-width: 768px) {
+		@media (min-width: em(768)) {
 			color: #c18e3b;
 		}
 	}
@@ -320,18 +345,6 @@
 			}
 		}
 	}
-
-	.link-parent {
-		.option {
-			transition: 0.2s ease-out;
-			opacity: 0;
-		}
-		&:hover {
-			.option {
-				opacity: 1;
-			}
-		}
-	}
 }
 
 .not-reconcilable-row {
@@ -365,7 +378,7 @@
 // /* the text color of the drop label*/
 .filepond--drop-label {
 	color: #fff !important;
-	font-size: 20px !important;
+	font-size: rem(20) !important;
 }
 // /* the background color of the filepond drop area */
 .filepond--panel-root {
@@ -392,27 +405,9 @@ error [data-filepond-item-state*="error"] .filepond--item-panel,
 	background-color: green !important;
 }
 
-.css-1pe4mpk-MuiButtonBase-root-MuiIconButton-root,
-.css-rtrcn9-MuiTablePagination-root .MuiTablePagination-selectLabel,
-.css-194a1fa-MuiSelect-select-MuiInputBase-input.MuiSelect-select,
-.css-pqjvzy-MuiSvgIcon-root-MuiSelect-icon,
-.css-levciy-MuiTablePagination-displayedRows,
-.css-zylse7-MuiButtonBase-root-MuiIconButton-root.Mui-disabled {
-	color: white !important;
-}
-
-.css-1knaqv7-MuiButtonBase-root-MuiButton-root {
-	color: #c18e3b !important;
-}
-
 .css-128fb87-MuiDataGrid-toolbarContainer {
-	@media (min-width: 700px) {
+	padding: rem(10);
+	@media (min-width: em(700)) {
 		padding: 16px 20px !important;
-	}
-}
-
-.transWidth {
-	@media (min-width: 375px) {
-		max-width: 350px !important;
 	}
 }
