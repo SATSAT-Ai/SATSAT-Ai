@@ -1,29 +1,17 @@
 "use client";
 
-import { useContext, useState } from "react";
-import { AppContext } from "@/context/AppContext";
-import { TbLayoutSidebarRightExpand } from "react-icons/tb";
+import { useState } from "react";
 import UploadStepOne from "@/components/UploadStepOne";
 import UploadStepTwo from "@/components/UploadStepTwo";
 
 const UploadSteps = () => {
-	const {
-		hideSidebar,
-		setHideSidebar,
-		setShowNotification,
-		setShowMoreOptions,
-	} = useContext(AppContext);
-
 	const [uploadStep, setUploadStep] = useState(1);
 	const [selectedStatement, setSelectedStatement] = useState<null | string>(
 		null
 	);
 
 	return (
-		<div
-			onClick={() => (setShowNotification(false), setShowMoreOptions(false))}
-			className="min-h-screen text-white sm:px-5 my-max z-10 "
-		>
+		<div className="min-h-screen text-white sm:px-5 my-max z-10 ">
 			<div className="flex flex-col sm:flex-row items-center gap-5 py-3">
 				<h2 className="text-center text-[25px] sm:text-[35px] py-4 lg:text-text-50 w-full font-medium">
 					{uploadStep == 1
