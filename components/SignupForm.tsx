@@ -38,7 +38,7 @@ const SignupForm = () => {
 			className="flex flex-col md:flex-[.9] gap-3 items-start md:w-full max-w-sm mx-auto"
 		>
 			<Image src={logo} alt="satsat-ai" height={150} width={150} quality={90} />
-			<p className="text-mid--yellow">
+			<p className="text-mid--yellow mt-5 text-text-normal">
 				Please fill your detail to create your account.
 			</p>
 			<div className="w-full mt-5 flex flex-col">
