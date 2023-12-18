@@ -46,7 +46,7 @@ const Header = () => {
 			>
 				<div className="my-max flex items-center justify-between w-full">
 					<Link href={"/"}>
-						<Image src={satsatLogo} height={100} width={100} alt="SATSAT-Ai" />
+						<Image src={satsatLogo} height={120} width={120} alt="SATSAT-Ai" />
 					</Link>
 					<MdMenu
 						className="sm:hidden ml-auto cursor-pointer"
@@ -54,7 +54,7 @@ const Header = () => {
 						size="25"
 						onClick={() => setShowNav(true)}
 					/>
-					<ul className="hidden sm:flex items-center gap-3 sm:gap-5 font-normal text-text-normal">
+					<ul className="hidden sm:flex items-center gap-3 sm:gap-5 text-[14px] font-medium">
 						<li
 							className={`${
 								pathname == "/"
@@ -105,11 +105,11 @@ const Header = () => {
 						<li>
 							{pathname !== "/choose-your-pricing" && (
 								<Link
-									className="flex items-center !rounded-3xl gap-3 font-normal hover:shadow-none hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button2"
+									className="text-[15px] flex items-center !rounded-3xl gap-3 font-normal hover:shadow-none hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button2"
 									href={"/choose-your-pricing"}
 								>
 									Get Started
-									<MdArrowForward color="white" size="25" />
+									<MdArrowForward color="white" size="24" />
 								</Link>
 							)}
 						</li>
