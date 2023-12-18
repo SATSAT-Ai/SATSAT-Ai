@@ -7,7 +7,7 @@ import "react-tooltip/dist/react-tooltip.css";
 
 const poppins = Poppins({
 	subsets: ["latin"],
-	weight: ["300", "400", "700", "800", "900"],
+	weight: ["300", "400", "500", "700", "800", "900"],
 });
 
 export const metadata: Metadata = SATSATmetadata;
