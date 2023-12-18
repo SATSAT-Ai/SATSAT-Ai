@@ -28,11 +28,11 @@ const SigninForm = () => {
 			className="flex flex-col md:flex-[.9] gap-3 items-start md:w-full max-w-sm mx-auto"
 		>
 			<p className="text-mid--yellow text-[27px]">Welcome back!</p>
-			<p className="text-mid--yellow">
+			<p className="text-mid--yellow text-text-normal">
 				Please fill your details to log into your account.
 			</p>
 
-			<div className="w-full flex flex-col">
+			<div className="w-full flex mt-5 flex-col">
 				<label className="mb-2 text-text-normal text-mid--yellow" htmlFor="">
 					Email
 				</label>
