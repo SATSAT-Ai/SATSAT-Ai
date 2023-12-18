@@ -2,6 +2,8 @@
 
 import { Ichat } from "@/interface";
 import { useState, useEffect, useRef } from "react";
+import { BsArchiveFill } from "react-icons/bs";
+import { MdDelete } from "react-icons/md";
 import { SlOptionsVertical } from "react-icons/sl";
 
 const ChatsOptions = ({ chats }: { chats: Ichat[] }) => {
@@ -49,14 +51,16 @@ const ChatsOptions = ({ chats }: { chats: Ichat[] }) => {
 								<ul className="flex items-center w-full text-[14px] font-medium flex-col gap-2 ">
 									<li
 										onClick={handleArchiveChats}
-										className="active:scale-[1.02] hover:bg-mid--yellow rounded-md py-2 px-3"
+										className="active:scale-[1.02] flex items-center gap-2 hover:bg-mid--yellow rounded-md py-2 px-3"
 									>
+										<BsArchiveFill size={20} />
 										Archive All Chats
 									</li>
 									<li
 										onClick={handleDeleteChats}
-										className=" active:scale-[1.02] hover:bg-crimson rounded-md py-2 px-3"
+										className=" flex items-center gap-2 text-crimson hover:text-white active:scale-[1.02] hover:bg-crimson rounded-md py-2 px-3"
 									>
+										<MdDelete size={22} />
 										Delete All Chats
 									</li>
 								</ul>
