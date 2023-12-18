@@ -10,10 +10,14 @@ import {
 	KeyboardEvent,
 	useLayoutEffect,
 	useContext,
+	useEffect,
 } from "react";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { useForm } from "react-hook-form";
 import { ChatContext } from "@/context/ChatContext";
+import { IoMdHelpCircleOutline } from "react-icons/io";
+import { HiOutlineExternalLink } from "react-icons/hi";
+import Link from "next/link";
 
 type Messagefrom = "User" | "Ai";
 export interface IUser {
@@ -35,8 +39,11 @@ interface Idefault {
 
 const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 	const chatContainerRef = useRef<null | HTMLElement>(null);
+	const helpOptionsRef = useRef<null | HTMLDivElement>(null);
 	const [scrollToBottom, setScrollToBottom] = useState(false);
 	const [scrollToTop, setScrollToTop] = useState(false);
+	const [showHelpOptions, setShowHelpOptions] = useState(false);
+
 	const {
 		formState: { errors },
 		register,
@@ -45,6 +52,22 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		reset,
 		setFocus,
 	} = useForm<Idefault>();
+
+	useEffect(() => {
+		const handleShowHelpOption = (event: MouseEvent) => {
+			if (helpOptionsRef?.current?.contains(event.target as Node)) {
+				return;
+			} else {
+				setShowHelpOptions(false);
+			}
+		};
+
+		window.addEventListener("mousedown", handleShowHelpOption);
+
+		return () => {
+			window.removeEventListener("mousedown", handleShowHelpOption);
+		};
+	}, [showHelpOptions]);
 
 	// const [conversations, setConversations] = useState<IUser[]>([
 	// 	{
@@ -260,7 +283,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 					})}
 				</main>
 			) : (
-				<main className=" flex flex-col h-screen items-center justify-center px-3">
+				<main className=" relative flex flex-col h-screen items-center justify-center px-3">
 					<div className="w-full pt-5 pb-36 md:pb-0 overflow-y-auto custom-scroll">
 						<h1 className="text-white text-text-40 text-center sm:text-text-60">
 							SATSAT AI
@@ -288,7 +311,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 			)}
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="text-white sticky bottom-0 p-5 mt-auto"
+				className="text-white sticky bottom-3 p-5 mt-auto"
 			>
 				<div className="bg-[#071f07] rounded-lg max-w-3xl mx-auto">
 					<div
@@ -316,6 +339,59 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 								aria-hidden="false"
 							/>
 						</button>
+					</div>
+				</div>
+				<div ref={helpOptionsRef}>
+					{showHelpOptions && (
+						<div className="absolute bottom-36 right-16 bg-[#062506] shadow-md w-[200px] p-3 rounded-lg">
+							<ul className="flex cursor-pointer items-start w-full text-[14px] font-medium flex-col gap-1 ">
+								<li
+									onClick={() => setShowHelpOptions(false)}
+									className=" text-[13px] hover:bg-brand-green text-white active:scale-[1.03] p-2 w-full rounded-lg"
+								>
+									<Link
+										target="_blank"
+										href="/faq"
+										className="flex gap-2 items-center"
+									>
+										<HiOutlineExternalLink size={20} />
+										Help & FAQ
+									</Link>
+								</li>
+								<li
+									onClick={() => setShowHelpOptions(false)}
+									className="text-[13px] hover:bg-brand-green text-white active:scale-[1.03] p-2 w-full rounded-lg"
+								>
+									<Link
+										target="_blank"
+										href={"/contact"}
+										className="flex gap-2 items-center"
+									>
+										<HiOutlineExternalLink size={20} />
+										Contact Support
+									</Link>
+								</li>
+								<li
+									onClick={() => setShowHelpOptions(false)}
+									className="text-[13px] hover:bg-brand-green text-white active:scale-[1.03] p-2 w-full rounded-lg"
+								>
+									<Link
+										target="_blank"
+										href={"/terms-and-conditions"}
+										className="flex items-center  gap-2"
+									>
+										<HiOutlineExternalLink size={20} />
+										Terms & Conditions
+									</Link>
+								</li>
+							</ul>
+						</div>
+					)}
+					<div
+						onClick={() => setShowHelpOptions((prev) => !prev)}
+						className="absolute active:scale-[1.04] bottom-24 cursor-pointer transition-colors duration-200 p-2 w-fit hover:bg-grey-light rounded-full bg-brand-green-darker right-16 "
+					>
+						<IoMdHelpCircleOutline color="white" size={25} />
 					</div>
 				</div>
 			</form>
