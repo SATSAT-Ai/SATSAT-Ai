@@ -36,7 +36,7 @@ const ContactUsForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className=" active:bg-transparent max-w-xl mx-auto my-20"
 		>
-			<h1 className="text-center text-brand-green text-text-40 md:text-text-60">
+			<h1 className="text-center mb-10 text-brand-green text-text-40 md:text-text-60">
 				Contact Us
 			</h1>
 			<div className="flex flex-col gap-7">
