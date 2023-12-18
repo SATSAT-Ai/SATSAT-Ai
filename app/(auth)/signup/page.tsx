@@ -20,11 +20,11 @@ const page = () => {
 					<SignupForm />
 					<div className="rounded-[40px] hidden lg:flex overflow-clip">
 						<Image
-							className="object-cover"
+							className="object-cover rounded-[40px]"
 							src={signupImage}
-							layout="responsive"
 							height={600}
 							width={550}
+							quality={40}
 							alt="signup"
 							priority
 						/>
