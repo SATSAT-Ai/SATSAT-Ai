@@ -24,8 +24,6 @@ const SingleChat = ({
 	useEffect(() => {
 		const handleClickOutSide = (event: any) => {
 			if (!optionRef.current?.contains(event.target)) {
-				return;
-			} else {
 				setShowOptions(false);
 			}
 		};
