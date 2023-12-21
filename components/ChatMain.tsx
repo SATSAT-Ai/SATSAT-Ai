@@ -121,8 +121,12 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 	// 	},
 	// ]);
 
-	const { isOldConversation, setIsOldConversation } = useContext(ChatContext);
-	const [conversations, setConversations] = useState<IUser[]>([]);
+	const {
+		isOldConversation,
+		setIsOldConversation,
+		setConversations,
+		conversations,
+	} = useContext(ChatContext);
 
 	const [chatSuggestions, setChatSuggestions] = useState([
 		{
@@ -387,12 +391,14 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 							</ul>
 						</div>
 					)}
-					<div
-						onClick={() => setShowHelpOptions((prev) => !prev)}
-						className="absolute active:scale-[1.04] bottom-24 cursor-pointer transition-colors duration-200 p-2 w-fit hover:bg-grey-light rounded-full bg-brand-green-darker right-16 "
-					>
-						<IoMdHelpCircleOutline color="white" size={25} />
-					</div>
+					{conversations.length < 1 && (
+						<div
+							onClick={() => setShowHelpOptions((prev) => !prev)}
+							className="absolute active:scale-[1.04] bottom-24 cursor-pointer transition-colors duration-200 p-2 w-fit hover:bg-grey-light rounded-full bg-brand-green-darker right-16 "
+						>
+							<IoMdHelpCircleOutline color="white" size={25} />
+						</div>
+					)}
 				</div>
 			</form>
 		</>
