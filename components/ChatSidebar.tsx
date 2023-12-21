@@ -12,8 +12,12 @@ import SingleChat from "./SingleChat";
 const ChatSidebar = () => {
 	const pathname = usePathname();
 
-	const { hideChatSidebar, setHideChatSidebar, setIsOldConversation } =
-		useContext(ChatContext);
+	const {
+		hideChatSidebar,
+		setHideChatSidebar,
+		setConversations,
+		setIsOldConversation,
+	} = useContext(ChatContext);
 
 	useLayoutEffect(() => {
 		const handleResize = () => {
@@ -235,6 +239,7 @@ const ChatSidebar = () => {
 						<MdClose color="white" size={25} />
 					</div>
 					<Link
+						onClick={() => setConversations([])}
 						href="/dashboard/chat"
 						className="flex border-white text-text-normal font-medium border hover:bg-brand-green text-white active:scale-[1.02] ease-linear transition-colors xl:border-brand-green px-4 py-2 rounded-xl w-fit items-center gap-5"
 					>
