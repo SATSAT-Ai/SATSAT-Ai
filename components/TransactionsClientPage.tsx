@@ -1,11 +1,17 @@
 "use client";
+import { DateRange } from "react-day-picker";
 import TransTable from "./TransTable";
-import DropDown from "./ui/Dropdown";
 import { useState } from "react";
+import { addDays } from "date-fns";
+import StatementSelector from "./StatementSelector";
 
 const TransactionsClientPage = () => {
 	const statements = ["Mobile Money Statement", "Bank Statement"];
 	const [selectedStatement, setSelectedStatement] = useState(statements[0]);
+	const [date, setDate] = useState<DateRange | undefined>({
+		from: new Date(),
+		to: addDays(new Date(), 5),
+	});
 
 	return (
 		<div className="min-h-screen text-white sm:py-5 sm:my-max">
@@ -13,11 +19,15 @@ const TransactionsClientPage = () => {
 				<h1 className="text-center m-0 font-semibold text-[27px] md:text-text-40">
 					Transaction History
 				</h1>
-				<DropDown
-					selectedStatement={selectedStatement}
-					setSelectedDropDownStatement={setSelectedStatement}
-					statements={statements}
-				/>
+				<div className="w-fit">
+					<StatementSelector
+						date={date}
+						setDate={setDate}
+						selectedStatement={selectedStatement}
+						setSelectedStatement={setSelectedStatement}
+						statements={statements}
+					/>
+				</div>
 			</div>
 			<div className="mt-5 relative z-0 my-max  ">
 				<div className="w-full min-h-[450px] overflow-x-auto">
