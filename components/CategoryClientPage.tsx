@@ -119,11 +119,18 @@ const CategoryClientPage = () => {
 						Categories
 					</h1>
 
-					<DropDown
-						selectedStatement={selectedDropDownStatement}
-						setSelectedDropDownStatement={setSelectedDropDownStatement}
-						statements={statements}
-					/>
+					<div className="hidden lg:flex flex-wrap-reverse justify-between gap-5">
+						<div className="flex-1">
+							<DropDown
+								selectedStatement={selectedDropDownCategory}
+								setSelectedDropDownStatement={setSelectedDropDownCategory}
+								statements={categoryLists}
+							/>
+						</div>
+						<div className="flex items-center gap-5">
+							<DatePickerWithRange setDate={setDate} date={date} />
+						</div>
+					</div>
 				</div>
 			</div>
 
