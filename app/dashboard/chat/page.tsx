@@ -1,8 +1,6 @@
 import ChatSidebar from "@/components/ChatSidebar";
 import ToggleSidebars from "@/components/ToggleSidebars";
 import { Metadata } from "next";
-import { Toaster } from "react-hot-toast";
-
 import ChatMain from "@/components/ChatMain";
 
 export const metadata: Metadata = {
@@ -12,7 +10,6 @@ export const metadata: Metadata = {
 const page = () => {
 	return (
 		<>
-			<Toaster />
 			<div className="flex h-full overflow-clip justify-between">
 				<div className="flex  flex-[3] h-screen overflow-hidden w-full flex-col">
 					<ToggleSidebars />
