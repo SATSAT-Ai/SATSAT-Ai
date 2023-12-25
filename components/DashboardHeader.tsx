@@ -100,7 +100,7 @@ const DashboardHeader = () => {
 					height={100}
 					width={100}
 					alt="SATSAT-Ai"
-					className={`md:${hideSidebar ? "flex" : "hidden"}`}
+					className={`md:${hideSidebar ? "flex" : "hidden"} h-auto w-auto`}
 				/>
 			</Link>
 
@@ -190,6 +190,7 @@ const DashboardHeader = () => {
 						<button
 							onClick={() => setShowMoreOptions((prev) => !prev)}
 							type="button"
+							aria-label="options"
 							className="bg-grey-light hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:scale-[1.02]"
 						>
 							<ExpandMoreIcon fontSize="medium" color="primary" />
