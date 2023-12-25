@@ -65,6 +65,7 @@ const PageWithSubPath = ({
 						onClick={() => setHideSidebar(true)}
 						className="flex gap-3 items-center"
 						href={routeWithSubpath.path}
+						aria-label={routeWithSubpath.name}
 					>
 						{routeWithSubpath.icon}
 						<p className={`${hideSidebar && "!hidden"} hidden md:flex`}>
@@ -95,6 +96,7 @@ const PageWithSubPath = ({
 									onClick={() => setHideSidebar(true)}
 									href={subpath.path}
 									id={subpath.name}
+									aria-label={subpath.name}
 									className={`${
 										subpath.path === isActive()
 											? "md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow bg-mid--yellow md:bg-transparent icon shadow-md md:shadow-none text-mid--yellow "
