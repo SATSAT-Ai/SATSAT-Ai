@@ -202,6 +202,7 @@ const DashboardSidebarWithData = ({
 								<Link
 									onClick={() => setHideSidebar(true)}
 									href={routes.path!}
+									aria-label={routes.name}
 									className={`${
 										routes.path === isActive()
 											? " bg-mid--yellow md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
@@ -220,9 +221,10 @@ const DashboardSidebarWithData = ({
 						);
 					})}
 				</ul>
-				<button
-					type="button"
+				<Link
+					href={"#"}
 					id="upgrade-plan"
+					aria-label="upgrade your plan"
 					className={`${hideSidebar && "md:mx-auto"} flex flex-col mx-3 gap-7`}
 				>
 					<div className="md:mt-7 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
@@ -246,7 +248,7 @@ const DashboardSidebarWithData = ({
 							Upgrade your current plan and enjoy amazing features
 						</p>
 					</div>
-				</button>
+				</Link>
 				<Tooltip
 					className={!hideSidebar ? "hidden" : "flex"}
 					anchorSelect="#upgrade-plan"
