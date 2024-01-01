@@ -22,7 +22,7 @@ const TypeWrite = ({ text }: { text: string }) => {
 	}, [text, typedText]);
 
 	return (
-		<div className="flex items-center justify-center flex-wrap">
+		<div className="flex items-center justify-center flex-wrap text-mid--yellow text-text-normal md:text-text-normal">
 			<span>{typedText}</span>
 			{cursorVisible && (
 				<span className={cursorVisible ? "animate-pulse text-mid--yellow" : ""}>
