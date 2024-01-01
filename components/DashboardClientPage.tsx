@@ -164,7 +164,7 @@ const DashboardClientPage = () => {
 				<DonutChart />
 				<div className="">
 					<h3 className="text-text-24 sm:text-[35px] text-white font-bold text-center">
-						Top 5 Income Sources
+						Top 5 Income Streams
 					</h3>
 					<div className="overflow-x-auto w-full">
 						<IncomeTable />
