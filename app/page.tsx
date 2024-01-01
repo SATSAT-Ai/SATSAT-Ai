@@ -35,9 +35,7 @@ export default function Home() {
 						<h1 className="text-brand-green font-bold max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
 							SATSAT AI
 						</h1>
-						<p className="text-mid--yellow text-text-normal md:text-text-normal">
-							<TypeWrite text="Query your financial data with natural language." />
-						</p>
+						<TypeWrite text="Query your financial data with natural language." />
 						<div className="flex flex-col-reverse sm:flex-row items-center gap-5 mt-7">
 							<Link
 								href={"/choose-your-pricing"}
