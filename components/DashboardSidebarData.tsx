@@ -88,13 +88,7 @@ const DashboardSidebarWithData = ({
 		const currentPath = pathname.split("/");
 
 		if (currentPath.length >= 4) {
-			const isIgnoredSubpaths = ["categories", "budget", "reciepts"];
-			//if currentpath >= 4 remove the last path or id e.g /38h8y834
-
 			const processedBrowserPathname = currentPath.slice(0, -1).join("/");
-			const ignored = isIgnoredSubpaths.some((subpath) =>
-				currentPath.includes(subpath as string)
-			);
 
 			const isPathSame = dashboardSidebarData.find(
 				(path) => path.path === processedBrowserPathname
@@ -108,10 +102,6 @@ const DashboardSidebarWithData = ({
 
 				if (isSubpathSame) return isSubpathSame.path;
 			}
-
-			if (ignored) {
-				return pathname;
-			} else if (isPathSame) return isPathSame?.path;
 		}
 		return pathname;
 	};
@@ -119,9 +109,9 @@ const DashboardSidebarWithData = ({
 	return (
 		<>
 			<div
-				className={`py-4  custom-scroll2 justify-between h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
+				className={`pt-4 h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
 			>
-				<ul className="flex md:w-full w-fit mx-auto flex-col gap-3">
+				<div className="w-full h-full overflow-y-auto custom-scroll2">
 					<div
 						id="close-sidebar"
 						tabIndex={0}
@@ -138,7 +128,7 @@ const DashboardSidebarWithData = ({
 							content="Close sidebar"
 						/>
 					</div>
-					<li
+					<div
 						className={`w-full pb-3 hidden md:block font-medium ${
 							hideSidebar && pathname.includes("/chat")
 								? "flex !w-fit pl-6"
@@ -158,10 +148,10 @@ const DashboardSidebarWithData = ({
 								alt="SATSAT-Ai"
 							/>
 						</Link>
-					</li>
+					</div>
 
 					{!pathname.includes("/chat") && (
-						<li
+						<div
 							id="open-sidebar"
 							tabIndex={0}
 							className={` ${
@@ -175,86 +165,99 @@ const DashboardSidebarWithData = ({
 								place="right"
 								content="Open sidebar"
 							/>
-						</li>
+						</div>
 					)}
+					<div className="flex flex-col gap-5 h-[88%] justify-between">
+						<ul className="flex md:w-full w-fit mx-auto flex-col gap-3">
+							{dashboardSidebarData.map((routes: IDashboardSidebarData) => {
+								if (routes.subPaths) {
+									return (
+										<PageWithSubPath
+											hideSidebar={hideSidebar}
+											key={routes.name}
+											routeWithSubpath={routes}
+											pathname={pathname}
+											setHideSidebar={setHideSidebar}
+											isActive={isActive}
+										/>
+									);
+								}
+								return (
+									<li key={routes.name} id={routes.name}>
+										<Tooltip
+											className={!hideSidebar ? "hidden" : "hidden md:flex"}
+											anchorSelect={`#${routes.name}`}
+											place="right"
+											content={routes.name}
+										/>
+										<Link
+											onClick={() =>
+												setHideSidebar(
+													!pathname.includes("/chat") ? true : false
+												)
+											}
+											href={routes.path!}
+											aria-label={routes.name}
+											className={`${
+												routes.path === isActive()
+													? " bg-mid--yellow md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
+													: "text-white"
+											} text-text-normal font-medium md:pl-6 w-fit md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex  cursor-pointer p-2 items-center gap-3 hover:bg-white/10 relative`}
+										>
+											<div className="flex items-center gap-3">
+												{routes.icon}
 
-					{dashboardSidebarData.map((routes: IDashboardSidebarData) => {
-						if (routes.subPaths) {
-							return (
-								<PageWithSubPath
-									hideSidebar={hideSidebar}
-									key={routes.name}
-									routeWithSubpath={routes}
-									pathname={pathname}
-									setHideSidebar={setHideSidebar}
-									isActive={isActive}
-								/>
-							);
-						}
-						return (
-							<li key={routes.name} id={routes.name}>
-								<Tooltip
-									className={!hideSidebar ? "hidden" : "hidden md:flex"}
-									anchorSelect={`#${routes.name}`}
-									place="right"
-									content={routes.name}
-								/>
-								<Link
-									onClick={() => setHideSidebar(true)}
-									href={routes.path!}
-									aria-label={routes.name}
+												<p
+													className={`${
+														hideSidebar && "!hidden"
+													} hidden md:flex`}
+												>
+													{routes.name}
+												</p>
+											</div>
+										</Link>
+									</li>
+								);
+							})}
+						</ul>
+						<Link
+							href={"#"}
+							id="upgrade-plan"
+							aria-label="upgrade your plan"
+							className={`${
+								hideSidebar && "md:mx-auto"
+							} flex flex-col mx-3 w-fit gap-7`}
+						>
+							<div className="md:mb-5 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
+								<div className="mr-auto">
+									<RocketLaunchIcon fontSize="large" color={"primary"} />
+								</div>
+
+								<div
 									className={`${
-										routes.path === isActive()
-											? " bg-mid--yellow md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
-											: "text-white"
-									} text-text-normal font-medium md:pl-6 w-fit md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex  cursor-pointer p-2 items-center gap-3 hover:bg-white/10 relative`}
+										hideSidebar && "!hidden"
+									} my-0 hidden md:flex font-medium text-text-normal`}
 								>
-									<div className="flex items-center gap-3">
-										{routes.icon}
+									UPGRADE PLAN
+								</div>
 
-										<p className={`${hideSidebar && "!hidden"} hidden md:flex`}>
-											{routes.name}
-										</p>
-									</div>
-								</Link>
-							</li>
-						);
-					})}
-				</ul>
-				<Link
-					href={"#"}
-					id="upgrade-plan"
-					aria-label="upgrade your plan"
-					className={`${hideSidebar && "md:mx-auto"} flex flex-col mx-3 gap-7`}
-				>
-					<div className="md:mt-7 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
-						<div className="mr-auto">
-							<RocketLaunchIcon fontSize="large" color={"primary"} />
-						</div>
-
-						<div
-							className={`${
-								hideSidebar && "!hidden"
-							} my-0 hidden md:flex font-medium text-text-normal`}
-						>
-							UPGRADE PLAN
-						</div>
-
-						<p
-							className={`${
-								hideSidebar && "!hidden"
-							} hidden md:flex text-left text-[13px] font-normal`}
-						>
-							Upgrade your current plan and enjoy amazing features
-						</p>
+								<p
+									className={`${
+										hideSidebar && "!hidden"
+									} hidden md:flex text-left text-[13px] font-normal`}
+								>
+									Upgrade your current plan and enjoy amazing features
+								</p>
+							</div>
+						</Link>
+						<Tooltip
+							className={!hideSidebar ? "hidden" : "flex"}
+							anchorSelect="#upgrade-plan"
+							place="right"
+							content="Upgrade plan"
+						/>
 					</div>
-				</Link>
-				<Tooltip
-					className={!hideSidebar ? "hidden" : "flex"}
-					anchorSelect="#upgrade-plan"
-					place="right"
-					content="Upgrade plan"
-				/>
+				</div>
 			</div>
 		</>
 	);
