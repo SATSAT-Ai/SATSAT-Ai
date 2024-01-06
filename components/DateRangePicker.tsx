@@ -56,11 +56,11 @@ export function DatePickerWithRange({ className, setDate, date }: IdateRange) {
 						mode="range"
 						defaultMonth={date?.from}
 						selected={date}
-						// onSelect={setDate}
-						onSelect={(selectedDate) => (
-							setDate(selectedDate),
-							selectedDate?.from && selectedDate?.to && setIsCalendarOpen(false)
-						)}
+						onSelect={setDate}
+						// onSelect={(selectedDate) => (
+						// 	setDate(selectedDate),
+						// 	selectedDate?.from && selectedDate?.to && setIsCalendarOpen(false)
+						// )}
 						title="Select Date range"
 						numberOfMonths={1}
 					/>
