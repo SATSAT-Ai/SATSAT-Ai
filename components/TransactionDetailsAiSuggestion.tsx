@@ -73,6 +73,7 @@ const TransactionDetailsAiSuggestion = ({
 					<ul key={suggestions.id} className="flex flex-col gap-2">
 						<li className="mb-4 font-medium">
 							<TypeWrite
+								fontSize={19}
 								text={suggestions.title_suggestion}
 								key={suggestions.id}
 								showCaret={false}
@@ -96,6 +97,7 @@ const TransactionDetailsAiSuggestion = ({
 										key={list_suggestions.id}
 									>
 										<TypeWrite
+											fontSize={16}
 											text={list_suggestions.suggestion}
 											key={list_suggestions.id}
 											showCaret={false}
