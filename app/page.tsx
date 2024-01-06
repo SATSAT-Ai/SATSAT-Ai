@@ -307,51 +307,51 @@ export default function Home() {
 								<Image
 									className=" h-auto w-auto rounded-full relative"
 									src={mtnImage}
-									width="150"
+									width={150}
 									height={150}
-									alt="mtn"
+									alt="vodaphone"
 								/>
 								<Image
-									className=" h-auto w-auto rounded-full relative bottom-28"
+									className=" h-auto w-auto rounded-full relative bottom-28 right-5"
 									src={vodaphoneImage}
-									width="130"
+									width={130}
 									height={130}
 									alt="mtn"
 								/>
 								<Image
 									className=" h-auto w-auto rounded-full top-5 relative"
 									src={absaImage}
-									width="150"
+									width={150}
 									height={150}
-									alt="mtn"
+									alt="absa"
 								/>
 								<Image
 									className=" h-auto w-auto rounded-full bottom-20 relative"
 									src={accessBankImage}
-									width="100"
+									width={100}
 									height={100}
-									alt="mtn"
+									alt="access bank"
 								/>
 								<Image
 									className=" h-auto w-auto rounded-full mb-7 relative"
 									src={ecobankImage}
-									width="150"
+									width={150}
 									height={150}
-									alt="mtn"
+									alt="ecobank"
 								/>
 								<Image
 									className=" h-auto w-auto rounded-full mb-48 relative"
 									src={airtelTigoImage}
-									width="100"
+									width={100}
 									height={100}
-									alt="mtn"
+									alt="airtelTigo"
 								/>
 								<Image
-									className=" h-auto w-auto  relative right-6 rounded-full"
+									className=" h-[150px] w-[150px] rounded-full right-6 relative"
 									src={calbankImage}
-									width="140"
-									height={140}
-									alt="mtn"
+									width={150}
+									height={150}
+									alt="calbank"
 								/>
 							</div>
 						</Marquee>
