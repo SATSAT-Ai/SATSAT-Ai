@@ -63,8 +63,8 @@ export interface Data {
 	"Trans. ID": string;
 	"Ref.": string;
 	Ova: string;
-	"Img.": string;
-	Details: string;
+	Vendor: string;
+	Details?: string;
 }
 
 export interface ICategory {
