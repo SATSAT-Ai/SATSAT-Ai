@@ -35,7 +35,7 @@ export default function TransTable() {
 			"Trans. ID": "234f435f",
 			"Ref.": "Ice cream",
 			Ova: "iriej343",
-			"Img.": "9jijfjkjjk",
+			Vendor: "9jijfjkjjk",
 			Details: "Details",
 		},
 		{
@@ -59,7 +59,7 @@ export default function TransTable() {
 			"Trans. ID": "232fg4f435f",
 			"Ref.": "Ice cream",
 			Ova: "irie34j343",
-			"Img.": "9jijf6fjkjjk",
+			Vendor: "9jijf6fjkjjk",
 			Details: "Details",
 		},
 		{
@@ -83,7 +83,7 @@ export default function TransTable() {
 			"Trans. ID": "232f23g4f435f",
 			"Ref.": "Ice cream",
 			Ova: "irie3e4j343",
-			"Img.": "9jijf6f4fjkjjk",
+			Vendor: "9jijf6f4fjkjjk",
 			Details: "Details",
 		},
 	];
@@ -144,7 +144,7 @@ export default function TransTable() {
 			field: "Ova",
 		},
 		{
-			field: "Img.",
+			field: "Vendor",
 			renderCell: (params) => {
 				const imageSrc = getProviderImage(params.row.Provider);
 				return (
@@ -187,6 +187,7 @@ export default function TransTable() {
 			Fees: false,
 			E_Levy: false,
 			"To Acc.": false,
+			"Trans. ID": false,
 		});
 
 	return (
