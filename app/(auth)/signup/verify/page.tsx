@@ -19,6 +19,7 @@ const page = () => {
 								height={130}
 								width={130}
 								alt="SATSAT-Ai"
+								priority
 							/>
 							<p className="text-mid--yellow text-center my-6">
 								Enter the signup code we just sent to
