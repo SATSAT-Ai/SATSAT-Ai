@@ -3,8 +3,7 @@ import { Data } from "@/interface";
 
 const page = ({ params: { transId } }: { params: { transId: string } }) => {
 	// fetch data based on paramId
-
-	const transData: Data[] = [
+	const data: Data[] = [
 		{
 			id: "sdjfksdjf",
 			reconcilable: true,
@@ -26,7 +25,7 @@ const page = ({ params: { transId } }: { params: { transId: string } }) => {
 			"Trans. ID": "234f435f",
 			"Ref.": "Ice cream",
 			Ova: "iriej343",
-			"Img.": "9jijfjkjjk",
+			Vendor: "9jijfjkjjk",
 			Details: "Details",
 		},
 		{
@@ -50,7 +49,7 @@ const page = ({ params: { transId } }: { params: { transId: string } }) => {
 			"Trans. ID": "232fg4f435f",
 			"Ref.": "Ice cream",
 			Ova: "irie34j343",
-			"Img.": "9jijf6fjkjjk",
+			Vendor: "9jijf6fjkjjk",
 			Details: "Details",
 		},
 		{
@@ -74,96 +73,21 @@ const page = ({ params: { transId } }: { params: { transId: string } }) => {
 			"Trans. ID": "232f23g4f435f",
 			"Ref.": "Ice cream",
 			Ova: "irie3e4j343",
-			"Img.": "9jijf6f4fjkjjk",
+			Vendor: "9jijf6f4fjkjjk",
 			Details: "Details",
 		},
 	];
 
-	// const headCells: GridColDef[] = [
-	// 	{
-	// 		field: "Provider",
-	// 	},
-	// 	{
-	// 		field: "Trans. Date",
-	// 	},
-	// 	{
-	// 		field: "Category",
-	// 	},
-	// 	{
-	// 		field: "From Acc.",
-	// 	},
-	// 	{
-	// 		field: "From Name",
-	// 	},
-	// 	{
-	// 		field: "From No.",
-	// 	},
-	// 	{
-	// 		field: "Trans. Type",
-	// 	},
-	// 	{
-	// 		field: "Amount",
-	// 	},
-	// 	{
-	// 		field: "Fees",
-	// 	},
-	// 	{
-	// 		field: "E_Levy",
-	// 	},
-	// 	{
-	// 		field: "Bal. Before",
-	// 	},
-	// 	{
-	// 		field: "Bal. After",
-	// 	},
-	// 	{
-	// 		field: "To No.",
-	// 	},
-	// 	{
-	// 		field: "To Name",
-	// 	},
-	// 	{
-	// 		field: "To Acc.",
-	// 	},
-	// 	{
-	// 		field: "Trans. ID",
-	// 	},
-	// 	{
-	// 		field: "Ref.",
-	// 	},
-	// 	{
-	// 		field: "Ova",
-	// 	},
-	// 	{
-	// 		field: "Img.",
-	// 		renderCell: (params) => {
-	// 			const imageSrc = getProviderImage(params.row.Provider);
-	// 			return (
-	// 				<Image
-	// 					src={imageSrc}
-	// 					alt="Provider logo"
-	// 					style={{ width: "35px", height: "35px", borderRadius: "100%" }}
-	// 				/>
-	// 			);
-	// 		},
-	// 	},
-	// 	{
-	// 		field: "Details",
+	// const filteredData = data.filter((data) => data.id === transId);
 
-	// 		renderCell: (params) => {
-	// 			return (
-	// 				<Link
-	// 					className="py-2 px-3 hover:bg-brand-green text-text-12 text-white bg-darker shadow-md active:scale-[1.02] rounded-lg "
-	// 					href={`/dashboard/transactions/${params.id}`}
-	// 				>
-	// 					Details
-	// 				</Link>
-	// 			);
-	// 		},
-	// 	},
-	// ];
+	const filteredData = data
+		.map((data) => {
+			const { Details, ...rest } = data;
+			return rest;
+		})
+		.filter((data) => data.id === transId);
 
-	return <TransactionDetails transData={transData} />;
+	return <TransactionDetails transData={filteredData} />;
 };
 
 export default page;
