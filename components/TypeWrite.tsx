@@ -9,6 +9,7 @@ interface ITypeWrite {
 	setTypeWriterComplete?: Dispatch<SetStateAction<boolean>>;
 	loop?: boolean;
 	timeToStartNewText?: number;
+	fontSize?: number;
 }
 
 const TypeWrite = ({
@@ -19,6 +20,7 @@ const TypeWrite = ({
 	setTypeWriterComplete,
 	loop = false,
 	timeToStartNewText = 2000,
+	fontSize = 20,
 }: ITypeWrite) => {
 	const [typedText, setTypedText] = useState("");
 	const [cursorVisible, setCursorVisible] = useState(true);
@@ -75,7 +77,7 @@ const TypeWrite = ({
 		<div
 			className={`flex items-center flex-wrap ${
 				color ? `text-[${color}]` : "text-mid--yellow"
-			} text-text-normal md:text-text-20`}
+			} text-text-normal md:text-[${fontSize}]`}
 		>
 			<span>{typedText}</span>
 			{cursorVisible && showCaret && (
