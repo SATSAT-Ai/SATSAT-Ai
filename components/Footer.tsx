@@ -6,7 +6,7 @@ import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
 	return (
-		<footer className="bg-darker py-10">
+		<footer className="bg-darker py-10 relative">
 			<div className="my-max w-full gap-7 flex flex-col sm:flex-row items-center md:items-start justify-between">
 				<ul className="text-grey-light w-fit flex items-center sm:items-start flex-col gap-3">
 					<li className="hover:text-white w-fit">
@@ -16,6 +16,8 @@ const Footer = () => {
 								height={100}
 								width={100}
 								alt="SATSAT AI"
+								priority
+								className="h-auto w-auto"
 							/>
 						</Link>
 					</li>
@@ -73,7 +75,7 @@ const Footer = () => {
 						</li>
 
 						<li className="hover:text-white w-fit transition-colors">
-							<Link href={"/cokies"}>Cookies</Link>
+							<Link href={"/cookies"}>Cookies</Link>
 						</li>
 					</ul>
 					<ul className="items-center text-grey-light w-fit flex gap-5">
