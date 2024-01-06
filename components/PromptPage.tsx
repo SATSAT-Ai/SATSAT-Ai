@@ -1,4 +1,3 @@
-import { IUser } from "./ChatMain";
 import IncomingMessage from "./IncomingMessage";
 import OutgoingMessage from "./OutgoingMessage";
 import TelegramIcon from "@mui/icons-material/Telegram";
