@@ -351,6 +351,80 @@
 	background-color: crimson !important;
 }
 
+// ai
+.ai-spin {
+	animation: spin 1.2s linear infinite;
+}
+
+.glow {
+	&::before,
+	&::after {
+		content: "";
+		position: absolute;
+		left: -1px;
+		top: -1px;
+		border-radius: 30px;
+
+		background: linear-gradient(
+			45deg,
+			#993333,
+			#ff00ff,
+			#2ff5a9,
+			#6e0dd0,
+			#099fff,
+			#ff00,
+			#993333
+		);
+
+		// background: linear-gradient(
+		// 	45deg,
+		// 	#3a3d3c,
+		// 	#297055,
+		// 	#f89900,
+		// 	#009dff,
+		// 	#2ff5a9,
+		// 	#ff00
+		// );
+		// background: linear-gradient(
+		// 	45deg,
+		// 	#ff00,
+		// 	#2ff5a9,
+		// 	#ff00ff,
+		// 	#6e0dd0,
+		// 	#099fff,
+		// 	#ff00
+		// );
+		background-size: 400%;
+		width: calc(100% + 2px);
+		height: calc(100% + 2px);
+		z-index: -1;
+		animation: glow 20s linear infinite;
+	}
+
+	&::before {
+		filter: blur(20px);
+		opacity: 0;
+		transition: opacity 0.5s ease-in-out;
+	}
+
+	&:hover::before {
+		opacity: 100;
+	}
+}
+
+@keyframes glow {
+	0% {
+		background-position: 00;
+	}
+	50% {
+		background-position: 400% 0;
+	}
+	100% {
+		background-position: 0 0;
+	}
+}
+// end of ai
+
 @keyframes spin {
 	from {
 		transform: rotate(0deg);
