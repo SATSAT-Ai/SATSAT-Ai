@@ -32,14 +32,23 @@ export default function Home() {
 				<div className=" h-screen text-center flex flex-col relative z-0 ">
 					<div className="green-blob2 w-[550px] h-[400px] animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
 					<section className="my-max flex flex-col items-center justify-center h-[80%] w-full">
-						<h1 className="text-brand-green font-bold max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
+						<h1 className="text-brand-green mb-1 font-bold max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
 							SATSAT AI
 						</h1>
-						<TypeWrite text="Query your financial data with natural language." />
-						<div className="flex flex-col-reverse sm:flex-row items-center gap-5 mt-7">
+						<TypeWrite
+							text={[
+								"Kamasah Dickson",
+								"Query your financial data with natural language.",
+								"Felicia",
+								"Kamasah Samuel",
+							]}
+							showCaret={true}
+							loop={true}
+						/>
+						<div className="mt-7">
 							<Link
 								href={"/choose-your-pricing"}
-								className="flex animate-pulse hover:animate-none transition-colors duration-200 items-center font-medium gap-2 active:scale-[1.01] text-white w-fit px-7 rounded-3xl mx-auto button2"
+								className="px-7 before:opacity-0 hover:before:opacity-100 before:z-[-1] after:z-[-1]  before:rounded-3xl after:absolute after:rounded-3xl after:top-[-1px] after:left-[-1px]  before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative rounded-3xl bg-gradient-to-tr from-[#050e0b] to-[#000000] py-2 block custom-block glow text-text-normal text-white font-medium "
 							>
 								Get Started Now
 							</Link>
@@ -66,7 +75,13 @@ export default function Home() {
 								<div className="yellow-blob -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
 
 								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center justify-center">
-									<Image src={chatBot} height={50} width={50} alt="chatbot" />
+									<Image
+										src={chatBot}
+										height={50}
+										width={50}
+										className="h-auto w-auto"
+										alt="chatbot"
+									/>
 									<h3 className="text-text-20 mb-2">Effortless Ingestion</h3>
 									<p className="text-grey-lightest">
 										Upload your financial data and SATSAT AI takes care of the
@@ -74,7 +89,13 @@ export default function Home() {
 									</p>
 								</div>
 								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center justify-center">
-									<Image src={chatBot} height={50} width={50} alt="chatbot" />
+									<Image
+										src={chatBot}
+										height={50}
+										width={50}
+										className="h-auto w-auto"
+										alt="chatbot"
+									/>
 									<h3 className="text-text-20 mb-2">Smart Data Extraction</h3>
 									<p className="text-grey-lightest">
 										Our AI algorithms automatically identify file and extract
@@ -82,7 +103,13 @@ export default function Home() {
 									</p>
 								</div>
 								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center justify-center">
-									<Image src={chatBot} height={50} width={50} alt="chatbot" />
+									<Image
+										src={chatBot}
+										height={50}
+										width={50}
+										className="h-auto w-auto"
+										alt="chatbot"
+									/>
 									<h3 className="text-text-20 ">Seamless Storage</h3>
 									<p className="text-grey-lightest">
 										Processed documents are securely stored in-house for instant
@@ -125,7 +152,13 @@ export default function Home() {
 									<div className="green-blob -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[25%] right-[-30%]"></div>
 
 									<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-start text-left justify-center">
-										<Image src={chatBot} height={50} width={50} alt="chatbot" />
+										<Image
+											src={chatBot}
+											height={50}
+											width={50}
+											alt="chatbot"
+											className="h-auto w-auto"
+										/>
 										<h3 className="text-text-20 mb-3">
 											Lightning-Fast Answers, Anytime, Anywhere
 										</h3>
@@ -138,7 +171,13 @@ export default function Home() {
 										</p>
 									</div>
 									<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-start text-left justify-center">
-										<Image src={chatBot} height={50} width={50} alt="chatbot" />
+										<Image
+											src={chatBot}
+											height={50}
+											width={50}
+											alt="chatbot"
+											className="h-auto w-auto"
+										/>
 										<h3 className="text-text-20 ">
 											Collaborative Intelligence
 										</h3>
@@ -149,7 +188,13 @@ export default function Home() {
 										</p>
 									</div>
 									<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-start text-left justify-center">
-										<Image src={chatBot} height={50} width={50} alt="chatbot" />
+										<Image
+											src={chatBot}
+											height={50}
+											width={50}
+											alt="chatbot"
+											className="h-auto w-auto"
+										/>
 										<h3 className="text-text-20">Data Security and Privacy</h3>
 										<p className="text-grey-lightest">
 											We understand the importance of data security. SATSAT AI
@@ -211,6 +256,7 @@ export default function Home() {
 											height={70}
 											width={70}
 											alt="create-account"
+											className="h-auto w-auto"
 										/>
 										<div className="flex flex-col items-start">
 											<h4 className="text-brand-green mb-2">
@@ -227,6 +273,7 @@ export default function Home() {
 											height={70}
 											width={70}
 											alt="create-account"
+											className="h-auto w-auto"
 										/>
 										<div className="flex flex-col items-start">
 											<h4 className="text-brand-green mb-2">
@@ -258,49 +305,49 @@ export default function Home() {
 						<Marquee autoFill speed={100} gradient gradientColor="#050d0a">
 							<div className="flex items-center w-full gap-5 justify-between mt-20 h-full">
 								<Image
-									className="rounded-full relative h-full"
+									className=" h-auto w-auto rounded-full relative"
 									src={mtnImage}
 									width="150"
 									height={150}
 									alt="mtn"
 								/>
 								<Image
-									className="rounded-full h-full relative bottom-28"
+									className=" h-auto w-auto rounded-full relative bottom-28"
 									src={vodaphoneImage}
 									width="130"
 									height={130}
 									alt="mtn"
 								/>
 								<Image
-									className="rounded-full top-5 relative h-full"
+									className=" h-auto w-auto rounded-full top-5 relative"
 									src={absaImage}
 									width="150"
 									height={150}
 									alt="mtn"
 								/>
 								<Image
-									className="rounded-full bottom-20 relative h-full"
+									className=" h-auto w-auto rounded-full bottom-20 relative"
 									src={accessBankImage}
 									width="100"
 									height={100}
 									alt="mtn"
 								/>
 								<Image
-									className="rounded-full mb-7 relative  h-full"
+									className=" h-auto w-auto rounded-full mb-7 relative"
 									src={ecobankImage}
 									width="150"
 									height={150}
 									alt="mtn"
 								/>
 								<Image
-									className="rounded-full mb-48 relative  h-full"
+									className=" h-auto w-auto rounded-full mb-48 relative"
 									src={airtelTigoImage}
 									width="100"
 									height={100}
 									alt="mtn"
 								/>
 								<Image
-									className=" relative right-6 rounded-full h-full"
+									className=" h-auto w-auto  relative right-6 rounded-full"
 									src={calbankImage}
 									width="140"
 									height={140}
@@ -315,7 +362,7 @@ export default function Home() {
 					<section className="text-center flex flex-col ">
 						<div className="my-max">
 							<h4 className="text-brand-green text-text-40 md:text-text-50 lg:text-text-80 max-w-5xl mx-auto">
-								ANALYSING YOUR DATA WITH SATSAT AI
+								ANALYZING YOUR DATA WITH SATSAT AI
 							</h4>
 							<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
 								SATSAT AI is a revolution in how we harness knowledge buried
