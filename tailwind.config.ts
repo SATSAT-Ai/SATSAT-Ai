@@ -16,8 +16,10 @@ const config: Config = {
 		},
 		extend: {
 			backgroundImage: {
-				"silver-gradient": "linear-gradient(to top,#050d0a,#ffffff,#050d0a)",
-				"silver-gradient2": "linear-gradient(to left,#050d0a,#ffffff,#050d0a)",
+				"silver-gradient":
+					"linear-gradient(to top,#050d0021,#ffffff,#050d0021)",
+				"silver-gradient2":
+					"linear-gradient(to left,#050d0021,#ffffff,#050d0021)",
 			},
 			colors: {
 				border: "hsl(var(--border))",
