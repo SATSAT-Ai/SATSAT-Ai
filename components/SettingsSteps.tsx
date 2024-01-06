@@ -4,7 +4,6 @@ import SettingsLoginSecurity from "@/components/SettingsLoginSecurity";
 import { useState, useContext } from "react";
 import { AppContext } from "@/context/AppContext";
 import { useForm } from "react-hook-form";
-import { TbLayoutSidebarRightExpand } from "react-icons/tb";
 
 type defaultInput = {
 	firstName: string;
@@ -43,17 +42,8 @@ const SettingsSteps = () => {
 	return (
 		<>
 			<div className="flex items-center flex-col gap-5 py-3">
-				{hideSidebar && (
-					<div className=" fixed mt-4 z-10 left-5 bg-mid--yellow cursor-pointer hover:bg-brand-green w-fit p-1 rounded-md">
-						<TbLayoutSidebarRightExpand
-							size={25}
-							color="white"
-							onClick={() => setHideSidebar(false)}
-						/>
-					</div>
-				)}
 				<h1 className="text-[35px] md:text-[45px] m-0 text-center lg:text-left w-full ">
-					Dashboard
+					Settings
 				</h1>
 			</div>
 			<div className="relative flex items-start h-full gap-5 flex-col sm:flex-row mt-7 justify-between max-w-3xl">
