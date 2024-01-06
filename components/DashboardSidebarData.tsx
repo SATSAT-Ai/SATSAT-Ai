@@ -94,13 +94,28 @@ const DashboardSidebarWithData = ({
 				(path) => path.path === processedBrowserPathname
 			);
 
+			const isIgnoredSubpaths = ["categories", "budget", "receipts"];
+			const ignored = isIgnoredSubpaths.some((subpath) =>
+				currentPath.includes(subpath as string)
+			);
+
 			if (!isPathSame) {
+				//consider subpaths
 				const isSubpathSame = dashboardSidebarData
 					.filter((path) => path.subPaths)
 					.flatMap((filteredPaths) => filteredPaths.subPaths)
 					.find((subpath) => subpath?.path === processedBrowserPathname);
 
-				if (isSubpathSame) return isSubpathSame.path;
+				if (isSubpathSame) {
+					return isSubpathSame.path;
+				}
+				if (ignored) {
+					return pathname;
+				}
+			}
+
+			if (isPathSame && !ignored) {
+				return isPathSame.path;
 			}
 		}
 		return pathname;
@@ -109,7 +124,7 @@ const DashboardSidebarWithData = ({
 	return (
 		<>
 			<div
-				className={`pt-4 h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
+				className={`h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
 			>
 				<div className="w-full h-full overflow-y-auto custom-scroll2">
 					<div
@@ -137,7 +152,7 @@ const DashboardSidebarWithData = ({
 								: ""
 						}`}
 					>
-						<Link href={"/"} className="lg:flex">
+						<Link href={"/"} className="lg:flex pt-4">
 							<Image
 								className="mx-auto w-fit pt-4"
 								src={
@@ -146,6 +161,7 @@ const DashboardSidebarWithData = ({
 								height={110}
 								width={110}
 								alt="SATSAT-Ai"
+								priority
 							/>
 						</Link>
 					</div>
