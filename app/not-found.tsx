@@ -2,7 +2,7 @@ import NotfoundImage from "../public/Notfound.svg";
 import Image from "next/image";
 import Link from "next/link";
 
-const NotFound = () => {
+export default function NotFound() {
 	return (
 		<main className="bg-darker min-h-screen w-full relative pb-20">
 			<div className="flex items-center justify-center w-full h-full pt-20">
@@ -19,6 +19,4 @@ const NotFound = () => {
 			</Link>
 		</main>
 	);
-};
-
-export default NotFound;
+}
