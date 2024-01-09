@@ -1,4 +1,4 @@
-import { featuresData } from "@/featuresData";
+import { featuresData } from "@/utils/featuresData";
 import React from "react";
 import Link from "next/link";
 import { Metadata } from "next";
