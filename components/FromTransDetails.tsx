@@ -1,4 +1,4 @@
-import { Data } from "@/interface";
+import { Data } from "@/interface/interface";
 
 const FromTransDetails = ({ transData }: { transData: Data[] }) => {
 	return (
