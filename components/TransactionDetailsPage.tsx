@@ -1,6 +1,6 @@
 "use client";
-import { Data } from "@/interface";
-import { getProviderImage } from "@/providerImages";
+import { Data } from "@/interface/interface";
+import { getProviderImage } from "@/utils/providerImages";
 import Image from "next/image";
 import { useState } from "react";
 import { GiCash } from "react-icons/gi";
