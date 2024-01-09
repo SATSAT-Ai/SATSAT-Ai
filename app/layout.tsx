@@ -1,25 +1,31 @@
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
+import { Montserrat } from "next/font/google";
 import "./globals.scss";
 import { SATSATmetadata } from "@/utils/metadata";
 import NextTopLoader from "nextjs-toploader";
 import "react-tooltip/dist/react-tooltip.css";
+import { Toaster } from "react-hot-toast";
+import { getServerSession } from "next-auth";
+import SessionProvider from "@/components/SessionProvider";
+import { options } from "./api/auth/[...nextauth]/options";
 
-const poppins = Poppins({
+const montserrat = Montserrat({
 	subsets: ["latin"],
-	weight: ["300", "400", "500", "700", "800", "900"],
+	weight: ["200", "300", "400", "500", "600", "700", "900"],
+	// roboto weight: ["300", "400", "500", "700", "800", "900"],
 });
 
 export const metadata: Metadata = SATSATmetadata;
 
-export default function RootLayout({
+export default async function RootLayout({
 	children,
 }: {
 	children: React.ReactNode;
 }) {
+	const session = await getServerSession(options);
 	return (
 		<html lang="en">
-			<body className={poppins.className}>
+			<body className={montserrat.className}>
 				<NextTopLoader
 					showSpinner={false}
 					color="#29a173"
@@ -31,7 +37,8 @@ export default function RootLayout({
 					speed={350}
 					shadow="0 0 10px #29a173,0 0 5px #29a173"
 				/>
-				{children}
+				<Toaster />
+				<SessionProvider session={session}>{children}</SessionProvider>
 			</body>
 		</html>
 	);
