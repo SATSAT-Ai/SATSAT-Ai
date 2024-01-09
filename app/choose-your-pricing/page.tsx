@@ -1,6 +1,6 @@
-import { pricingData } from "../../pricingdata";
+import { pricingData } from "../../utils/pricingdata";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { Iprices } from "@/interface";
+import { Iprices } from "@/interface/interface";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
