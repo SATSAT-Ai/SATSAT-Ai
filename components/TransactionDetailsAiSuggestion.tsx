@@ -28,7 +28,8 @@ const TransactionDetailsAiSuggestion = ({
 	showMore,
 	loading,
 }: ITransactionDetailsSuggestion) => {
-	const [typeWriterComplete, setTypeWriterComplete] = useState<boolean>(false);
+	const [isTypeWriterComplete, setIsTypeWriterComplete] =
+		useState<boolean>(false);
 
 	const list_suggestions: Isuggestions[] = [
 		{
@@ -60,7 +61,7 @@ const TransactionDetailsAiSuggestion = ({
 			<div className="h-10 w-10 rounded-full shadow-md gradient-upgrade aspect-square">
 				<Image
 					className={`${
-						(loading && "ai-spin") || (!typeWriterComplete && "ai-spin")
+						(loading && "ai-spin") || (!isTypeWriterComplete && "ai-spin")
 					} rounded-full h-10 w-10 p-2`}
 					src={suggestionImage}
 					alt="ai suggestion"
@@ -78,8 +79,8 @@ const TransactionDetailsAiSuggestion = ({
 								key={suggestions.id}
 								showCaret={false}
 								color="white"
-								interval={20}
-								setTypeWriterComplete={setTypeWriterComplete}
+								typingSpeed={20}
+								setIsTypeWriterComplete={setIsTypeWriterComplete}
 								timeToStartNewText={20}
 							/>
 						</li>
@@ -102,8 +103,8 @@ const TransactionDetailsAiSuggestion = ({
 											key={list_suggestions.id}
 											showCaret={false}
 											color="white"
-											interval={20}
-											setTypeWriterComplete={setTypeWriterComplete}
+											typingSpeed={20}
+											setIsTypeWriterComplete={setIsTypeWriterComplete}
 											timeToStartNewText={20}
 										/>
 									</li>
