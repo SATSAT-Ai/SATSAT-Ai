@@ -1,6 +1,6 @@
 import Image from "next/image";
 import NotificationIcon from "@/public/notificationIcon.svg";
-import { Inotification } from "@/interface";
+import { Inotification } from "@/interface/interface";
 import { Dispatch, SetStateAction } from "react";
 
 const NotificationLogic = ({
