@@ -3,34 +3,40 @@ import { useState, useEffect, Dispatch, SetStateAction, memo } from "react";
 
 interface ITypeWrite {
 	text: string | string[];
+	maxWidth?: number;
 	color?: string;
 	showCaret?: boolean;
-	interval?: number;
-	setTypeWriterComplete?: Dispatch<SetStateAction<boolean>>;
+	typingSpeed?: number;
+	setIsTypeWriterComplete?: Dispatch<SetStateAction<boolean>>;
 	loop?: boolean;
 	timeToStartNewText?: number;
 	fontSize?: number;
+	showCaretOnComplete?: boolean;
+	caretColor?: string;
 }
 
 const TypeWrite = ({
 	text,
 	color,
 	showCaret,
-	interval = 60,
-	setTypeWriterComplete,
+	typingSpeed = 60,
+	setIsTypeWriterComplete,
 	loop = false,
 	timeToStartNewText = 2000,
 	fontSize = 20,
+	showCaretOnComplete = false,
+	maxWidth,
+	caretColor,
 }: ITypeWrite) => {
 	const [typedText, setTypedText] = useState("");
 	const [cursorVisible, setCursorVisible] = useState(true);
 	const [currentWordIndex, setCurrentWordIndex] = useState(0);
 
 	useEffect(() => {
-		if (setTypeWriterComplete) {
-			setTypeWriterComplete(typedText === text);
+		if (setIsTypeWriterComplete) {
+			setIsTypeWriterComplete(typedText === text);
 		}
-	}, [currentWordIndex, setTypeWriterComplete, text, typedText]);
+	}, [currentWordIndex, setIsTypeWriterComplete, text, typedText]);
 
 	useEffect(() => {
 		const sentence = Array.isArray(text) ? text : [text];
@@ -48,7 +54,7 @@ const TypeWrite = ({
 
 					return prevTypedText;
 				});
-			}, interval);
+			}, typingSpeed);
 		};
 
 		let timeOutId: string | number | NodeJS.Timeout | undefined;
@@ -60,32 +66,49 @@ const TypeWrite = ({
 				simulateTypewriterEffect(sentence[currentWordIndex]);
 			}, timeToStartNewText); //when to start the new text
 		} else {
+			setCursorVisible(showCaretOnComplete ?? false);
 			if (loop) {
 				timeOutId = setTimeout(() => {
 					setCursorVisible(true);
 					setCurrentWordIndex(0);
-				}, interval); //when to loop the new text
+				}, typingSpeed); //speed of typing the text
 			}
 		}
 
 		return () => {
 			clearTimeout(timeOutId);
 		};
-	}, [currentWordIndex, interval, loop, text, timeToStartNewText]);
+	}, [
+		currentWordIndex,
+		typingSpeed,
+		loop,
+		text,
+		timeToStartNewText,
+		showCaretOnComplete,
+	]);
 
 	return (
-		<div
-			className={`flex items-center flex-wrap ${
+		<p
+			className={`${
 				color ? `text-[${color}]` : "text-mid--yellow"
-			} text-text-normal md:text-[${fontSize}]`}
+			} text-text-normal h-12 md:text-[${fontSize}]`}
+			style={
+				maxWidth
+					? {
+							maxWidth: `${maxWidth}px`,
+					  }
+					: {
+							maxWidth: "100%",
+					  }
+			}
 		>
-			<span>{typedText}</span>
+			<>{typedText}</>
 			{cursorVisible && showCaret && (
 				<span
 					className={`${
 						cursorVisible
 							? `animate-pulse ${
-									color ? `text-[${color}]` : "text-mid--yellow"
+									caretColor ? `text-[${caretColor}]` : "text-mid--yellow"
 							  }`
 							: ""
 					}`}
@@ -93,7 +116,7 @@ const TypeWrite = ({
 					|
 				</span>
 			)}
-		</div>
+		</p>
 	);
 };
 
