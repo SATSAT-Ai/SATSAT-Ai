@@ -1,6 +1,6 @@
 import NorthIcon from "@mui/icons-material/North";
 
-const ChatScrolltoBottom = ({ scrolltoTop }: { scrolltoTop: () => void }) => {
+const ChatScrolltoTop = ({ scrolltoTop }: { scrolltoTop: () => void }) => {
 	return (
 		<button
 			type="button"
@@ -16,4 +16,4 @@ const ChatScrolltoBottom = ({ scrolltoTop }: { scrolltoTop: () => void }) => {
 	);
 };
 
-export default ChatScrolltoBottom;
+export default ChatScrolltoTop;
