@@ -1,6 +1,6 @@
 "use client";
 
-import { IDashboardSidebarData } from "@/interface";
+import { IDashboardSidebarData } from "@/interface/interface";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
