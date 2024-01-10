@@ -1,6 +1,6 @@
 "use client";
 
-import { Ichat } from "@/interface";
+import { Ichat } from "@/interface/interface";
 import { useState, useEffect, useRef } from "react";
 import { BsArchiveFill } from "react-icons/bs";
 import { MdDelete } from "react-icons/md";
