@@ -1,4 +1,3 @@
-import { pricingData } from "../../utils/pricingdata";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { Iprices } from "@/interface/interface";
 import { Metadata } from "next";
@@ -6,6 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MdVerified } from "react-icons/md";
 import SubscribeButton from "@/components/SubscribeButton";
+import { pricingData } from "@/utils/pricingData";
 
 export const metadata: Metadata = {
 	title: "SATSAT AI subscription plan",
