@@ -7,7 +7,13 @@ import { IUser } from "./ChatMain";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 
-const OutgoingMessage = ({ message }: { message: IUser }) => {
+const OutgoingMessage = ({
+	message,
+	fontSize,
+}: {
+	message: IUser;
+	fontSize?: number;
+}) => {
 	const handleTextAreaInput = (e: any) => {
 		e.target.style.height = "auto";
 		e.target.style.height = `${e.target.scrollHeight}px`;
@@ -65,11 +71,20 @@ const OutgoingMessage = ({ message }: { message: IUser }) => {
 	return (
 		<>
 			{!editChat ? (
-				<div className="flex items-end gap-3 ml-auto">
+				<div className="flex items-end gap-3 ml-auto w-fit">
 					<div className="outmessage flex shadow-lg flex-col items-end gap-3 p-4 rounded-3xl text-white">
-						<div style={{ overflowWrap: "anywhere" }}>
+						<div
+							style={{
+								overflowWrap: "anywhere",
+							}}
+						>
 							{theOutGoingMessage.message?.split("\n").map((message, index) => (
-								<p key={index}>
+								<p
+									key={index}
+									style={{
+										fontSize: `${fontSize ? fontSize : 16}px`,
+									}}
+								>
 									{message}
 									<br />
 								</p>
@@ -96,6 +111,7 @@ const OutgoingMessage = ({ message }: { message: IUser }) => {
 							onKeyDown={(e) => handleKeydown(e)}
 							autoFocus
 							autoCorrect="true"
+							style={{ fontSize }}
 							className={` text-white w-full bg-transparent custom-scroll border-none outline-none`}
 							{...register("updatedMessage", {
 								required: { value: true, message: "Message cannot be empty" },
