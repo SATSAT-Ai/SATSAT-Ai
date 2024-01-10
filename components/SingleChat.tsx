@@ -1,6 +1,6 @@
 "use client";
 
-import { Ichat } from "@/interface";
+import { Ichat } from "@/interface/interface";
 import Link from "next/link";
 import { PiChatCircleTextFill } from "react-icons/pi";
 import { SlOptions } from "react-icons/sl";
