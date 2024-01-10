@@ -17,7 +17,7 @@ export const options: NextAuthOptions = {
 					isVerified: false,
 				};
 
-				if (email !== "kamasahdickson19@gmail.com") {
+				if (email !== "demo@gmail.com") {
 					throw new Error("testing error");
 				}
 
