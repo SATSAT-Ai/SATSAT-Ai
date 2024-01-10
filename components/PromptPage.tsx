@@ -1,14 +1,177 @@
+"use client";
+
 import IncomingMessage from "./IncomingMessage";
 import OutgoingMessage from "./OutgoingMessage";
 import TelegramIcon from "@mui/icons-material/Telegram";
+import {
+	useState,
+	KeyboardEvent,
+	useRef,
+	useLayoutEffect,
+	useEffect,
+} from "react";
+import { AiMessage, IUser, IdeFault } from "./ChatMain";
+import { useForm } from "react-hook-form";
+import ChatScrolltoBottom from "@/components/ChatScrolltoBottom";
 
 const PromptPage = () => {
+	const { register, watch, handleSubmit, reset, setFocus } =
+		useForm<IdeFault>();
+
+	const chatContainerRef = useRef<null | HTMLDivElement>(null);
+	const inputRef = useRef<null | HTMLTextAreaElement>(null);
+	const [scrollToBottom, setScrollToBottom] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [isFirstChat, setIsFirstChat] = useState(false);
+	const [glow, setGlow] = useState(true);
+
+	const [conversations, setConversations] = useState([
+		{
+			message: "Can you show me my monthly spending trends?",
+			from: "User",
+		},
+		{
+			id: "lorcerm",
+			from: "Ai",
+			firstText: `Of course! Here's a breakdown of your monthly spending trends`,
+			list: [
+				{ id: "lorem", title: "", msg: "January:GHS 1500" },
+				{ id: "loreem", title: "", msg: "Febuary:GHS 1800" },
+				{ id: "3loreem", title: "", msg: "March:GHS 1400" },
+			],
+			endingText: `Is there anything else you'd like to inquire about?`,
+		},
+		{
+			from: "User",
+			message: "What about my total income for the past quarter?",
+		},
+		{
+			from: "Ai",
+			id: "lorem",
+			firstText: `Your total income for the past quarter is GHS 10,500.`,
+			list: [],
+			endingText: `Is there anything else you'd like to inquire about?`,
+		},
+	]);
+
+	useLayoutEffect(() => {
+		handleScrollToBottom();
+
+		const handleScroll = () => {
+			const containerRef = chatContainerRef.current;
+			if (containerRef) {
+				const scrollHeight = containerRef.scrollHeight;
+				const clientHeight = containerRef.clientHeight;
+				const scrollTop = containerRef.scrollTop;
+
+				setScrollToBottom(
+					clientHeight < scrollHeight &&
+						scrollTop + clientHeight < scrollHeight - 180
+				);
+			}
+		};
+		const containerRef = chatContainerRef.current;
+		containerRef?.addEventListener("scroll", handleScroll);
+
+		return () => {
+			containerRef?.removeEventListener("scroll", handleScroll);
+		};
+	}, [conversations]);
+
+	const handleTextAreaResize = (e: any) => {
+		e.target.style.height = "auto";
+		e.target.style.height = `${e.target.scrollHeight}px`;
+	};
+
+	const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+		const WatchedUserMessage = watch("userMessage");
+
+		if (e.key === "Enter" && !e.shiftKey) {
+			e.preventDefault();
+			if (!isFirstChat && WatchedUserMessage?.trim()) {
+				///clear default chats when user  initiate first conversation
+				setConversations([]);
+				setIsFirstChat(true);
+			}
+			//sendMesssage
+			if (WatchedUserMessage?.trim()) {
+				setConversations((prev) => [
+					...prev,
+					{
+						message: WatchedUserMessage,
+						from: "User",
+					},
+					{
+						from: "Ai",
+						id: "lore34m",
+						firstText: `Alright your total income for the past quarter is GHS 10,500.`,
+						list: [],
+						endingText: `Is there anything else you'd like to inquire about?`,
+					},
+				]);
+
+				reset();
+			}
+		}
+	};
+
+	const handleScrollToBottom = () => {
+		if (chatContainerRef?.current) {
+			chatContainerRef.current.scrollTo({
+				top: chatContainerRef.current.scrollHeight,
+				behavior: "smooth",
+			});
+		}
+	};
+
+	useEffect(() => {
+		const glowInput = (event: MouseEvent) => {
+			if (!inputRef.current?.contains(event.target as Node)) {
+				setGlow(false);
+			} else {
+				setGlow(true);
+			}
+		};
+
+		window.addEventListener("mousedown", glowInput);
+
+		return () => {
+			window.removeEventListener("mousedown", glowInput);
+		};
+	}, []);
+
+	const onSubmit = (data: IdeFault) => {
+		if (!isFirstChat && data.userMessage?.trim()) {
+			///clear default chats when user  initiate first conversation
+			setConversations([]);
+			setIsFirstChat(true);
+		}
+		//if there is no chatContainerId create one or add up to existing;
+		if (data?.userMessage?.trim()) {
+			//sendMessage;
+
+			setConversations((prev) => [
+				...prev,
+				{
+					message: data.userMessage,
+					from: "User",
+				},
+				{
+					from: "Ai",
+					id: "lore34m",
+					firstText: `Alright your total income for the past quarter is GHS 10,500.`,
+					list: [],
+					endingText: `Is there anything else you'd like to inquire about?`,
+				},
+			]);
+			setFocus("userMessage", { shouldSelect: true });
+			reset();
+		}
+	};
+
 	return (
-		<div className="grid grid-cols-1 z-0 md:gap-0 p-5 sm:p-10 lg:grid-cols-2 text-grey-lightest">
-			<div className="pb-5 lg:pb-0 lg:pr-5">
-				<h2 className="text-[30px] silver-text sm:text-[36px] text-center sm:text-left font-semibold text-white">
-					Chat With Your Financial Data
-				</h2>
+		<div className="flex flex-col z-0 md:gap-0 p-5 sm:p-7 lg:flex-row text-grey-lightest h-full lg:h-[800px] gap-7">
+			<div className="pb-5 lg:pb-0 lg:pr-5 flex-1">
 				<ul className="flex text-center items-center sm:text-left gap-3 flex-col">
 					<li>
 						<p className="mb-2 capitalize text-brand-green text-text-20">
@@ -40,7 +203,7 @@ const PromptPage = () => {
 							you need, precisely when you need them.
 						</span>
 					</li>
-					<li className="hidden md:block">
+					<li>
 						<p className="mb-2 capitalize text-brand-green text-text-20">
 							Secure, Effortless, and Personalized
 						</p>
@@ -53,52 +216,91 @@ const PromptPage = () => {
 					</li>
 				</ul>
 			</div>
-			<div className="pt-5 mx-auto lg:pt-0 before:absolute before:top-0 before:left-0 before:w-full before:h-[1px] before:bg-silver-gradient2 lg:before:h-full lg:before:w-[1px] lg:before:top-0 lg:before:left-0 before:rounded-lg lg:before:bg-silver-gradient lg:pl-5 relative flex flex-col gap-5">
-				<OutgoingMessage
-					message={{
-						message: "Can you show me my monthly spending trends?",
-						from: "User",
-					}}
-				/>
-				<IncomingMessage
-					message={{
-						id: "lorem",
-						firstText: `Of course! Here's a breakdown of your monthly spending trends`,
-						list: [
-							{ id: "lorem", title: "", msg: "January:GHS 1500" },
-							{ id: "loreem", title: "", msg: "Febuary:GHS 1800" },
-							{ id: "3loreem", title: "", msg: "March:GHS 1400" },
-						],
-						endingText: `Is there anything else you'd like to inquire about?`,
-					}}
-				/>
-				<OutgoingMessage
-					message={{
-						message: "Can you show me my total income for the past quarter?",
-						from: "User",
-					}}
-				/>
-				<IncomingMessage
-					message={{
-						id: "lorem",
-						firstText: `Your total income for the past quarter is GHS 10,500.`,
-						list: [],
-						endingText: `Is there anything else you'd like to inquire about?`,
-					}}
-				/>
+			<div className="flex flex-col gap-5 flex-1 w-full items-center">
 				<div
-					tabIndex={0}
-					className="flex mt-auto border items-center p-2 justify-between rounded-xl px-2 gap-5"
+					ref={chatContainerRef}
+					className=" text-white p-5 w-full custom-scroll2 relative overflow-y-auto overflow-x-clip lg:overscroll-y-none h-[450px] md:h-full"
 				>
-					<textarea
-						rows={1}
-						disabled
-						className="w-full outline-none bg-brand-green border-none h-auto bg-transparent"
-						placeholder="Send your message..."
-					/>
+					<div
+						className={`bottom-0 ${
+							scrollToBottom ? "visible" : "invisible"
+						} sticky ml-3 top-[60%] md:top-[75%]`}
+					>
+						<ChatScrolltoBottom scrollToBottom={handleScrollToBottom} />
+					</div>
 
-					<TelegramIcon fontSize="large" color="inherit" />
+					<ul className="w-full flex flex-col gap-5 h-[450px]">
+						{conversations.map((conversation) => {
+							if (conversation.from === "User") {
+								return (
+									<li key={conversation.message}>
+										<OutgoingMessage
+											message={conversation as IUser}
+											fontSize={15}
+										/>
+									</li>
+								);
+							} else if (conversation.from === "Ai") {
+								return (
+									<li key={conversation.id}>
+										<IncomingMessage
+											message={conversation as unknown as AiMessage}
+											fontSize={15}
+											typeWrite={false}
+										/>
+									</li>
+								);
+							}
+						})}
+					</ul>
 				</div>
+				<form
+					onSubmit={handleSubmit(onSubmit)}
+					className="text-white p-0 w-full mx-2 mt-auto"
+				>
+					<div className="bg-[#071f07] rounded-lg max-w-3xl mx-auto">
+						<div
+							className={`before:opacity-0 before:z-[-1] after:z-[-1] after:absolute after:top-[-1px] after:left-[-1px] before:rounded-lg after:rounded-lg rounded-lg before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between custom-block text-text-normal text-white font-medium flex items-center gap-2 ${
+								!glow ? "glow4" : ""
+							}`}
+						>
+							<div
+								tabIndex={0}
+								className={`flex w-full mt-auto ${
+									!glow ? "border-none" : " border-[1px]"
+								} border-white border items-center p-1 justify-between rounded-lg px-2 gap-5`}
+							>
+								<textarea
+									// onFocus={() => setglow(false)}
+									disabled={loading}
+									rows={1}
+									onInput={(e) => handleTextAreaResize(e)}
+									autoCorrect="true"
+									onKeyDown={(e) => (handleKeyDown(e), handleTextAreaResize(e))}
+									className="w-full caret-brand-green text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal rounded-lg outline-none bg-brand-green border-none h-auto bg-transparent"
+									placeholder="Chat SATSAT AI..."
+									{...register("userMessage", {
+										required: false,
+									})}
+									ref={inputRef}
+								/>
+								<button
+									type="submit"
+									aria-label="send message"
+									disabled={loading}
+								>
+									<TelegramIcon
+										tabIndex={0}
+										fontSize="large"
+										className="active:scale-[1.02]"
+										color="inherit"
+										aria-hidden="false"
+									/>
+								</button>
+							</div>
+						</div>
+					</div>
+				</form>
 			</div>
 		</div>
 	);
