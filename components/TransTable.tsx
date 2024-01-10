@@ -7,9 +7,9 @@ import {
 } from "@mui/x-data-grid";
 import Image from "next/image";
 
-import { getProviderImage } from "@/providerImages";
+import { getProviderImage } from "@/utils/providerImages";
 import Link from "next/link";
-import { Data } from "@/interface";
+import { Data } from "@/interface/interface";
 import { useState } from "react";
 
 export default function TransTable() {
