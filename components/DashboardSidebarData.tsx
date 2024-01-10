@@ -11,7 +11,7 @@ import { Dispatch, SetStateAction } from "react";
 import Image from "next/image";
 import Logo from "@/public/satsat-logo.svg";
 import LogoSmall from "@/public/satsat-icon.svg";
-import { IDashboardSidebarData } from "@/interface";
+import { IDashboardSidebarData } from "@/interface/interface";
 import PageWithSubPath from "./PageWithSubPath";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
 import PaidIcon from "@mui/icons-material/Paid";
