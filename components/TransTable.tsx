@@ -7,10 +7,10 @@ import {
 } from "@mui/x-data-grid";
 import Image from "next/image";
 
-import { getProviderImage } from "@/utils/providerImages";
 import Link from "next/link";
 import { Data } from "@/interface/interface";
 import { useState } from "react";
+import { getProviderImage } from "@/utils/providerImages";
 
 export default function TransTable() {
 	const rows: Data[] = [
