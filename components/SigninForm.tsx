@@ -51,7 +51,6 @@ const SigninForm = () => {
 			if (response?.ok) {
 				toast.dismiss();
 				toast.success("Logged in successfully!");
-				router.refresh();
 				// params.set("email", data.email);
 				router.push("/dashboard");
 
