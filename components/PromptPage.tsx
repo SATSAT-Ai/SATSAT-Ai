@@ -19,7 +19,7 @@ const PromptPage = () => {
 		useForm<IdeFault>();
 
 	const chatContainerRef = useRef<null | HTMLDivElement>(null);
-	const inputRef = useRef<null | HTMLTextAreaElement>(null);
+	const inputRef = useRef<null | HTMLDivElement>(null);
 	const [scrollToBottom, setScrollToBottom] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [isFirstChat, setIsFirstChat] = useState(false);
@@ -265,13 +265,13 @@ const PromptPage = () => {
 							}`}
 						>
 							<div
+								ref={inputRef}
 								tabIndex={0}
 								className={`flex w-full mt-auto ${
 									!glow ? "border-none" : " border-[1px]"
 								} border-white border items-center p-1 justify-between rounded-lg px-2 gap-5`}
 							>
 								<textarea
-									// onFocus={() => setglow(false)}
 									disabled={loading}
 									rows={1}
 									onInput={(e) => handleTextAreaResize(e)}
@@ -282,7 +282,6 @@ const PromptPage = () => {
 									{...register("userMessage", {
 										required: false,
 									})}
-									ref={inputRef}
 								/>
 								<button
 									type="submit"
