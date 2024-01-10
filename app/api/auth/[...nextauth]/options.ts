@@ -5,8 +5,6 @@ import axios from "axios";
 export const options: NextAuthOptions = {
 	providers: [
 		CredentialProvider({
-			id: "credentials",
-			name: "Credentials",
 			credentials: {},
 			async authorize(credentials) {
 				const { email } = credentials as { email: string };
