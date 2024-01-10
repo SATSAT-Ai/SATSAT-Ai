@@ -4,14 +4,7 @@ import IncomingMessage from "@/components/IncomingMessage";
 import OutgoingMessage from "@/components/OutgoingMessage";
 import ChatScrolltoBottom from "@/components/ChatScrolltoBottom";
 import ChatScrolltoTop from "@/components/ChatScrolltoTop";
-import {
-	useRef,
-	useState,
-	KeyboardEvent,
-	useLayoutEffect,
-	useContext,
-	useEffect,
-} from "react";
+import { useRef, useState, KeyboardEvent, useContext, useEffect } from "react";
 import TelegramIcon from "@mui/icons-material/Telegram";
 import { useForm } from "react-hook-form";
 import { ChatContext } from "@/context/ChatContext";
@@ -19,21 +12,21 @@ import { IoMdHelpCircleOutline } from "react-icons/io";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import Link from "next/link";
 
-type Messagefrom = "User" | "Ai";
+type MessageFrom = "User" | "Ai";
 export interface IUser {
-	from: Messagefrom;
+	from: MessageFrom;
 	message: string;
 }
 
-interface AiMessage {
-	from: Messagefrom;
+export interface AiMessage {
+	from: MessageFrom;
 	id: string;
 	firstText: string;
 	list: { id: string; title: string; msg: string }[];
 	endingText: string;
 }
 
-interface Idefault {
+export interface IdeFault {
 	userMessage: string;
 }
 
@@ -43,6 +36,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 	const [scrollToBottom, setScrollToBottom] = useState(false);
 	const [scrollToTop, setScrollToTop] = useState(false);
 	const [showHelpOptions, setShowHelpOptions] = useState(false);
+	const [loading, setLoading] = useState(false);
 
 	const {
 		formState: { errors },
@@ -51,81 +45,13 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		handleSubmit,
 		reset,
 		setFocus,
-	} = useForm<Idefault>();
-
-	useEffect(() => {
-		const handleShowHelpOption = (event: MouseEvent) => {
-			if (helpOptionsRef?.current?.contains(event.target as Node)) {
-				return;
-			} else {
-				setShowHelpOptions(false);
-			}
-		};
-
-		window.addEventListener("mousedown", handleShowHelpOption);
-
-		return () => {
-			window.removeEventListener("mousedown", handleShowHelpOption);
-		};
-	}, [showHelpOptions]);
-
-	// const [conversations, setConversations] = useState<IUser[]>([
-	// 	{
-	// 		from: "User",
-	// 		message: "Can you show me my monthly spending trends?",
-	// 	},
-	// 	{
-	// 		id: "lorem",
-	// 		from: "Ai",
-	// 		firstText: `Of course! Here's a breakdown of your monthly spending trends`,
-	// 		list: [
-	// 			{ id: "lorem", title: "", msg: "January:GHS 1500" },
-	// 			{ id: "loreem", title: "", msg: "Febuary:GHS 1800" },
-	// 			{ id: "3loreem", title: "", msg: "March:GHS 1400" },
-	// 		],
-	// 		endingText: `Is there anything else you'd like to inquire about?`,
-	// 	},
-	// 	{
-	// 		from: "User",
-	// 		message: "What about my total income for the past quarter?",
-	// 	},
-	// 	{
-	// 		id: "lorem",
-	// 		from: "Ai",
-	// 		firstText: `Of course! Here's a breakdown of your monthly spending trends`,
-	// 		list: [
-	// 			{ id: "lorem", title: "", msg: "January:GHS 1500" },
-	// 			{ id: "loreem", title: "", msg: "Febuary:GHS 1800" },
-	// 			{ id: "3loreem", title: "", msg: "March:GHS 1400" },
-	// 		],
-	// 		endingText: `Is there anything else you'd like to inquire about?`,
-	// 	},
-	// 	{
-	// 		from: "User",
-	// 		message: "What about my total income for the past quarter?",
-	// 	},
-	// 	{
-	// 		id: "lorem",
-	// 		from: "Ai",
-	// 		firstText: `Of course! Here's a breakdown of your monthly spending trends`,
-	// 		list: [
-	// 			{ id: "lorem", title: "", msg: "January:GHS 1500" },
-	// 			{ id: "loreem", title: "", msg: "Febuary:GHS 1800" },
-	// 			{ id: "3loreem", title: "", msg: "March:GHS 1400" },
-	// 		],
-	// 		endingText: `Is there anything else you'd like to inquire about?`,
-	// 	},
-	// 	{
-	// 		from: "User",
-	// 		message: "What about my total income for the past quarter?",
-	// 	},
-	// ]);
+	} = useForm<IdeFault>();
 
 	const {
 		isOldConversation,
+		conversations,
 		setIsOldConversation,
 		setConversations,
-		conversations,
 	} = useContext(ChatContext);
 
 	const [chatSuggestions, setChatSuggestions] = useState([
@@ -164,7 +90,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		e.target.style.height = `${e.target.scrollHeight}px`;
 	};
 
-	const onSubmit = (data: Idefault) => {
+	const onSubmit = (data: IdeFault) => {
 		//if there is no chatContainerId create one or add up to existing;
 		if (data.userMessage.trim()) {
 			//sendMessage;
@@ -223,7 +149,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		}
 	};
 
-	useLayoutEffect(() => {
+	useEffect(() => {
 		handleScrollToBottom();
 
 		const handleScroll = () => {
@@ -255,9 +181,9 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 				<main
 					ref={chatContainerRef}
 					className=" text-white w-full flex flex-col gap-5  p-5
-			custom-scroll2 relative overflow-auto"
+			custom-scroll2 relative overflow-y-auto"
 				>
-					<div className="fixed bottom-20 -translate-x-1/2 left-1/2">
+					<div className="fixed bottom-24 -translate-x-1/2 left-1/2">
 						{scrollToTop && isOldConversation && (
 							<ChatScrolltoTop scrolltoTop={scrolltoTop} />
 						)}
@@ -323,6 +249,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 						className="flex  w-full mt-auto border border-white items-center p-1 justify-between rounded-lg px-2 gap-5"
 					>
 						<textarea
+							disabled={loading}
 							rows={1}
 							onInput={(e) => handleTextAreaResize(e)}
 							autoFocus
@@ -334,7 +261,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 								required: false,
 							})}
 						/>
-						<button type="submit">
+						<button type="submit" disabled={loading}>
 							<TelegramIcon
 								tabIndex={0}
 								fontSize="large"
