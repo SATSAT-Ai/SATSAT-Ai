@@ -5,7 +5,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MdVerified } from "react-icons/md";
 import SubscribeButton from "@/components/SubscribeButton";
-import { pricingData } from "@/utils/pricingData";
+import { pricingData } from "@/pricingData";
 
 export const metadata: Metadata = {
 	title: "SATSAT AI subscription plan",
