@@ -104,7 +104,7 @@ const PromptPage = () => {
 					{
 						from: "Ai",
 						id: "lore34m",
-						firstText: `Alright your total income for the past quarter is GHS 10,500.`,
+						firstText: `Here is a demo response from satsat Ai.`,
 						list: [],
 						endingText: `Is there anything else you'd like to inquire about?`,
 					},
@@ -127,9 +127,9 @@ const PromptPage = () => {
 	useEffect(() => {
 		const glowInput = (event: MouseEvent) => {
 			if (!inputRef.current?.contains(event.target as Node)) {
-				setGlow(false);
-			} else {
 				setGlow(true);
+			} else {
+				setGlow(false);
 			}
 		};
 
@@ -236,7 +236,7 @@ const PromptPage = () => {
 									<li key={conversation.message}>
 										<OutgoingMessage
 											message={conversation as IUser}
-											fontSize={15}
+											fontSize={17}
 										/>
 									</li>
 								);
@@ -245,7 +245,7 @@ const PromptPage = () => {
 									<li key={conversation.id}>
 										<IncomingMessage
 											message={conversation as unknown as AiMessage}
-											fontSize={15}
+											fontSize={17}
 											typeWrite={false}
 										/>
 									</li>
@@ -261,14 +261,14 @@ const PromptPage = () => {
 					<div className="bg-[#071f07] rounded-lg max-w-3xl mx-auto">
 						<div
 							className={`before:opacity-0 before:z-[-1] after:z-[-1] after:absolute after:top-[-1px] after:left-[-1px] before:rounded-lg after:rounded-lg rounded-lg before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between custom-block text-text-normal text-white font-medium flex items-center gap-2 ${
-								!glow ? "glow4" : ""
+								glow ? "glow4" : ""
 							}`}
 						>
 							<div
 								ref={inputRef}
 								tabIndex={0}
 								className={`flex w-full mt-auto ${
-									!glow ? "border-none" : " border-[1px]"
+									glow ? "border-none" : " border-[1px]"
 								} border-white border items-center p-1 justify-between rounded-lg px-2 gap-5`}
 							>
 								<textarea
