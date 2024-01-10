@@ -10,7 +10,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Data } from "@/interface/interface";
 import { useState } from "react";
-import { getProviderImage } from "@/utils/providerImages";
+import { getProviderImage } from "@/providerImages";
 
 export default function TransTable() {
 	const rows: Data[] = [
