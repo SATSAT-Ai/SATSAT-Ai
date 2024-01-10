@@ -49,14 +49,12 @@ const SigninForm = () => {
 			// 	router.replace(`/signin/verify?${params}`);
 			// }
 
-			if (response?.ok) {
+			if (response?.ok && !loading) {
 				toast.dismiss();
 				toast.success("Logged in successfully!");
 				// params.set("email", data.email);
 				router.push("/dashboard");
-				if (loading) {
-					toast.loading("Please wait...");
-				}
+
 				// router.replace(`/signin/verify?${params}`);
 			}
 			if (response?.error) {
