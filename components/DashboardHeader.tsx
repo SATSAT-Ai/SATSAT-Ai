@@ -9,15 +9,18 @@ import { useState, useContext, useEffect, useRef } from "react";
 import satsatLogo from "../public/satsat-logo.svg";
 import { AppContext } from "@/context/AppContext";
 import NotificationLogic from "./NotificationLogic";
-import { Inotification } from "@/interface";
+import { Inotification } from "@/interface/interface";
 import { usePathname } from "next/navigation";
 import { RiMenu4Fill } from "react-icons/ri";
+import { signOut } from "next-auth/react";
+import { useSession } from "next-auth/react";
 
 const DashboardHeader = () => {
 	const pathname = usePathname();
 	const notificationRef = useRef<null | HTMLLIElement>(null);
-	const optionsRef = useRef<null | HTMLDivElement>(null);
-
+	const optionsRef = useRef<null | HTMLLIElement>(null);
+	const [loading, setLoading] = useState(false);
+	const session = useSession();
 	const { hideSidebar, setHideSidebar } = useContext(AppContext);
 	const [showNotification, setShowNotification] = useState(false);
 	const [showMoreOptions, setShowMoreOptions] = useState(false);
@@ -75,8 +78,15 @@ const DashboardHeader = () => {
 		(notification) => notification.read === false
 	);
 
-	const handleLogout = () => {
+	const handleLogout = async () => {
 		//logout
+		setLoading(true);
+		try {
+			await signOut();
+		} catch (e) {
+			setLoading(false);
+			console.log(e);
+		}
 	};
 
 	return (
@@ -101,6 +111,7 @@ const DashboardHeader = () => {
 					width={100}
 					alt="SATSAT-Ai"
 					className={`md:${hideSidebar ? "flex" : "hidden"} h-auto w-auto`}
+					priority
 				/>
 			</Link>
 
@@ -181,21 +192,21 @@ const DashboardHeader = () => {
 					<div className="flex items-center gap-3">
 						<div className="sm:flex flex-col hidden">
 							<p className="text-text-12 text-grey-lightest">Welcome!</p>
-							<span className="text-[14px]">Kamasah Dickson</span>
+							<span className="text-[14px]">
+								{session.data?.user.email.split("@")[0]}
+							</span>
 						</div>
 					</div>
 				</li>
-				<li className="relative">
-					<div ref={optionsRef}>
-						<button
-							onClick={() => setShowMoreOptions((prev) => !prev)}
-							type="button"
-							aria-label="options"
-							className="bg-grey-light hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:scale-[1.02]"
-						>
-							<ExpandMoreIcon fontSize="medium" color="primary" />
-						</button>
-					</div>
+				<li ref={optionsRef} className="relative">
+					<button
+						onClick={() => setShowMoreOptions((prev) => !prev)}
+						type="button"
+						aria-label="options"
+						className="bg-grey-light hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:scale-[1.02]"
+					>
+						<ExpandMoreIcon fontSize="medium" color="primary" />
+					</button>
 
 					{showMoreOptions && (
 						<div className="bg-grey-light no-select border z-40 border-white/10 absolute top-12 right-0 p-3 rounded-xl">
@@ -209,13 +220,18 @@ const DashboardHeader = () => {
 									</li>
 
 									<div className=" my-2 w-full h-[1px] bg-white/10"></div>
-									<li className=" cursor-pointer active:scale-[1.02] text-white hover:text-white transition-opacity bg-brand-green rounded-md py-2 text-center hover:opacity-80 px-4">
+									<li
+										className={`cursor-pointer ${
+											loading ? "bg-mid--yellow" : "active:scale-[1.02]"
+										} text-white hover:text-white transition-opacity bg-brand-green rounded-md py-2 text-center px-4`}
+									>
 										<button
 											type="button"
-											className="text-text-normal"
+											className="text-[14px] flex w-full text-center justify-center items-center gap-4"
 											onClick={handleLogout}
 										>
-											Logout
+											{loading ? "Signing out" : "Sign Out"}
+											{loading && <div className="loader"></div>}
 										</button>
 									</li>
 								</ul>
