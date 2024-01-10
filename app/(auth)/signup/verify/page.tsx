@@ -23,7 +23,7 @@ const page = () => {
 							/>
 							<p className="text-mid--yellow text-center my-6">
 								Enter the signup code we just sent to
-								{/* render dynamic imail address */}
+								{/* render dynamic email address */}
 								{" kamasahdickson19@gmail.com"}
 							</p>
 							<VerifyAccount />
