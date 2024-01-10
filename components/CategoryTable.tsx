@@ -1,4 +1,4 @@
-import { ICategory } from "@/interface";
+import { ICategory } from "@/interface/interface";
 import Table from "@mui/joy/Table";
 import Link from "next/link";
 
