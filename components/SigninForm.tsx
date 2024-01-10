@@ -36,6 +36,7 @@ const SigninForm = () => {
 			const response = await signIn("credentials", {
 				email: data.email,
 				redirect: false,
+				callbackUrl: "/dashboard",
 			});
 
 			// if (data.rememberMe) {
@@ -53,6 +54,9 @@ const SigninForm = () => {
 				toast.success("Logged in successfully!");
 				// params.set("email", data.email);
 				router.push("/dashboard");
+				if (loading) {
+					toast.loading("Please wait...");
+				}
 				// router.replace(`/signin/verify?${params}`);
 			}
 			if (response?.error) {
