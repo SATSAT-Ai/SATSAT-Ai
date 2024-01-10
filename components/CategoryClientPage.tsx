@@ -6,7 +6,7 @@ import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 import DropDown from "./ui/Dropdown";
 import { DatePickerWithRange } from "./DateRangePicker";
-import { ICategory } from "@/interface";
+import { ICategory } from "@/interface/interface";
 
 const CategoryClientPage = () => {
 	const [date, setDate] = useState<DateRange | undefined>({
