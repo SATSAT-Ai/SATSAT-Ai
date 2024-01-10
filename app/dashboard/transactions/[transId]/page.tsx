@@ -1,5 +1,5 @@
 import TransactionDetails from "@/components/TransactionDetailsPage";
-import { Data } from "@/interface";
+import { Data } from "@/interface/interface";
 
 const page = ({ params: { transId } }: { params: { transId: string } }) => {
 	// fetch data based on paramId
