@@ -2,7 +2,7 @@
 
 import { PieChart } from "@mui/x-charts/PieChart";
 import PieChartAmount from "./PieChartAmount";
-import { ItransactionsData } from "@/interface";
+import { ItransactionsData } from "@/interface/interface";
 
 type dataProp = {
 	id: number;
