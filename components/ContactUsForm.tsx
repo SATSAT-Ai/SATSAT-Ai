@@ -44,7 +44,7 @@ const ContactUsForm = () => {
 					<div className="w-full mb-5 flex flex-col">
 						<label
 							className="text-text-normal text-mid--yellow"
-							htmlFor="firstname"
+							htmlFor="firstName"
 						>
 							First Name
 						</label>
@@ -57,7 +57,7 @@ const ContactUsForm = () => {
 									: "border-b-grey-light focus:border-b-white"
 							}  bg-transparent  outline-none `}
 							type="text"
-							id="firstname"
+							id="firstName"
 							{...register("firstName", {
 								required: { value: true, message: "Field is required" },
 								maxLength: 20,
