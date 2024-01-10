@@ -6,14 +6,14 @@ import LineChart from "@/components/LineChart";
 import PieCharts from "@/components/PieCharts";
 import StatementSelector from "@/components/StatementSelector";
 import { AppContext } from "@/context/AppContext";
-import { ItransactionsData } from "@/interface";
-import { useContext } from "react";
+import { ItransactionsData } from "@/interface/interface";
+import { useContext, useEffect } from "react";
 import { useState } from "react";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
 
 const DashboardClientPage = () => {
-	const { hideSidebar } = useContext(AppContext);
+	const { hideSidebar, setHideSidebar } = useContext(AppContext);
 
 	const data = [
 		{ id: 0, value: 10, label: "series A" },
@@ -102,8 +102,15 @@ const DashboardClientPage = () => {
 		to: addDays(new Date(), 5),
 	});
 
+	//
+	useEffect(() => {
+		if (window.innerWidth > 768) {
+			setHideSidebar(false);
+		}
+	}, [setHideSidebar]);
+
 	return (
-		<div className="min-h-screen text-white sm:px-3 my-max z-10 ">
+		<div className="text-white sm:px-3 my-max z-10 ">
 			<div
 				className={`flex flex-col lg:flex-nowrap justify-between flex-wrap ${
 					hideSidebar ? "sm:flex-row" : "sm:flex-col"
