@@ -53,7 +53,6 @@ const SigninForm = () => {
 				toast.success("Logged in successfully!");
 				// params.set("email", data.email);
 				router.push("/dashboard");
-
 				// router.replace(`/signin/verify?${params}`);
 			}
 			if (response?.error) {
