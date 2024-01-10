@@ -5,10 +5,13 @@ import { FcGoogle } from "react-icons/fc";
 import logo from "@/public/satsat-logo.svg";
 import Image from "next/image";
 import { useForm } from "react-hook-form";
-import { africanCountries } from "@/africanCountries";
+import { africanCountries } from "@/utils/africanCountries";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
-// import toast, { Toaster } from 'react-hot-toast';
+import axios from "axios";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import toast from "react-hot-toast";
 
 export type FormValues = {
 	fullName: string;
@@ -17,15 +20,35 @@ export type FormValues = {
 };
 
 const SignupForm = () => {
+	const [loading, setLoading] = useState(false);
+
+	// const router = useRouter();
 	const {
 		handleSubmit,
 		formState: { errors, isValid },
 		register,
 	} = useForm<FormValues>();
 
-	const onSubmit = (data: FormValues) => {
-		//process data
-		console.log(data);
+	const onSubmit = async (data: FormValues) => {
+		setLoading(true);
+		toast.loading("Please wait...");
+		try {
+			const response = await axios.post("/api/auth/register", {
+				fullName: data.fullName,
+				email: data.email,
+				country: data.country,
+			});
+
+			toast.dismiss();
+			toast.success("Signed up successfully!");
+
+			//redirect users based on response
+			// router.push("signup/verify");
+		} catch (error) {
+			toast.dismiss();
+			setLoading(false);
+			console.log(error);
+		}
 	};
 
 	const filteredCountry = africanCountries.filter(
@@ -37,7 +60,14 @@ const SignupForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className="flex flex-col md:flex-[.9] gap-3 items-start md:w-full max-w-sm mx-auto"
 		>
-			<Image src={logo} alt="satsat-ai" height={150} width={150} quality={90} />
+			<Image
+				src={logo}
+				alt="satsat-ai"
+				height={150}
+				width={150}
+				quality={90}
+				priority
+			/>
 			<p className="text-mid--yellow mt-5 text-text-normal">
 				Please fill your detail to create your account.
 			</p>
@@ -46,7 +76,8 @@ const SignupForm = () => {
 					Full Name
 				</label>
 				<input
-					className={`placeholder:text-grey-lightest/60 border ${
+					disabled={loading}
+					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
 						errors.fullName
 							? "border-crimson"
 							: isValid
@@ -70,7 +101,8 @@ const SignupForm = () => {
 					Email
 				</label>
 				<input
-					className={`placeholder:text-grey-lightest/60 border ${
+					disabled={loading}
+					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
 						errors.email
 							? "border-crimson"
 							: isValid
@@ -94,6 +126,7 @@ const SignupForm = () => {
 					Country
 				</label>
 				<Select
+					disabled={loading}
 					color="neutral"
 					placeholder="Country"
 					variant="outlined"
@@ -138,10 +171,21 @@ const SignupForm = () => {
 				</Link>
 			</span>
 			<button
-				className="border mt-5 font-medium text-[17px] active:scale-[1.001] hover:text-darker transition-colors duration-200 hover:border-mid--yellow hover:bg-mid--yellow border-brand-green block w-full p-2 rounded-lg text-mid--yellow"
+				disabled={loading}
+				className={`border mt-5 font-medium text-[17px] active:scale-[1.001] hover:text-darker transition-colors duration-200 
+				${
+					loading
+						? "bg-grey-light cursor-default"
+						: "border-brand-green text-mid--yellow hover:bg-mid--yellow hover:border-mid--yellow "
+				}
+				  block w-full p-2 rounded-lg`}
 				type="submit"
 			>
-				Signup
+				{loading ? (
+					<p className="text-center gap-4 text-white">Please wait...</p>
+				) : (
+					"Sign up"
+				)}
 			</button>
 			<div className="flex items-center justify-center w-full">
 				<div className=" my-7 w-full h-[1px] gradient3"></div>
@@ -150,7 +194,11 @@ const SignupForm = () => {
 				<div className=" my-7 w-full h-[1px] gradient4"></div>
 			</div>
 			<button
-				className="mt-5 font-semibold text-[17px] transition-colors duration-20 bg-white w-full p-3 rounded-3xl text-darker hover:bg-transparent border flex items-center justify-center gap-3 hover:text-white active:scale-[1.01] hover:border-white"
+				disabled={loading}
+				className={`mt-5 ${
+					!loading &&
+					"active:scale-[1.01] hover:bg-transparent hover:text-white hover:border-white"
+				} font-semibold text-[17px] transition-colors duration-20 bg-white w-full p-3 rounded-3xl text-darker border flex items-center justify-center gap-3`}
 				type="button"
 			>
 				Signup with Google
