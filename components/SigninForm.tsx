@@ -4,22 +4,70 @@ import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
 import Checkbox from "@mui/joy/Checkbox";
+import { signIn } from "next-auth/react";
+import { useState } from "react";
+import toast from "react-hot-toast";
+import { useRouter, useSearchParams } from "next/navigation";
 
 type FormValues = {
 	email: string;
-	password: string;
 	rememberMe: boolean;
 };
 
 const SigninForm = () => {
+	const searchParams = useSearchParams();
+	const router = useRouter();
+	const params = new URLSearchParams(searchParams);
+
 	const {
 		handleSubmit,
 		register,
 		formState: { errors, isValid },
 	} = useForm<FormValues>();
 
+	const [loading, setLoading] = useState(false);
+
 	const onSubmit = async (data: FormValues) => {
-		console.log(data);
+		setLoading(true);
+
+		toast.loading("Please wait...");
+
+		try {
+			const response = await signIn("credentials", {
+				email: data.email,
+				redirect: false,
+			});
+
+			// if (data.rememberMe) {
+			// 	// do something or persist session
+			// }
+
+			// if (data.email) {
+			// 	params.set("email", data.email);
+			// 	router.refresh();
+			// 	router.replace(`/signin/verify?${params}`);
+			// }
+
+			if (response?.ok) {
+				toast.dismiss();
+				toast.success("Logged in successfully!");
+				router.refresh();
+				// params.set("email", data.email);
+				router.push("/dashboard");
+
+				// router.replace(`/signin/verify?${params}`);
+			}
+			if (response?.error) {
+				setLoading(false);
+				toast.dismiss();
+				toast.error(response.error);
+				console.log(response?.error);
+			}
+		} catch (e) {
+			setLoading(false);
+			toast.error("Error signing in!");
+			console.log(e);
+		}
 	};
 
 	return (
@@ -37,7 +85,8 @@ const SigninForm = () => {
 					Email
 				</label>
 				<input
-					className={`placeholder:text-grey-lightest/60 text-white border ${
+					disabled={loading}
+					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 						errors.email
 							? "border-crimson"
 							: isValid
@@ -60,7 +109,7 @@ const SigninForm = () => {
 			<div className=" text-white w-full justify-between flex items-center gap-5">
 				<Checkbox
 					color="success"
-					disabled={false}
+					disabled={loading}
 					label="Remember me"
 					size="sm"
 					variant="soft"
@@ -69,13 +118,23 @@ const SigninForm = () => {
 				/>
 			</div>
 			<button
-				className="border mt-5 font-medium text-[17px] active:scale-[1.001] hover:text-darker transition-colors duration-200 hover:border-mid--yellow hover:bg-mid--yellow border-brand-green block w-full p-2 rounded-lg text-mid--yellow"
+				className={`border mt-5 font-medium text-[17px] active:scale-[1.001] hover:text-darker transition-colors duration-200 
+				${
+					loading
+						? "bg-grey-light cursor-default"
+						: "border-brand-green text-mid--yellow hover:bg-mid--yellow hover:border-mid--yellow "
+				}
+				  block w-full p-2 rounded-lg`}
 				type="submit"
 			>
-				Sign in
+				{loading ? (
+					<p className="text-center gap-4 text-white">Please wait...</p>
+				) : (
+					"Sign in"
+				)}
 			</button>
 			<span className="text-white text-text-12 text-center w-full mt-3">
-				Dont have an account?{" "}
+				{`Don't`} have an account?{" "}
 				<Link className="text-brand-green" href={"/choose-your-pricing"}>
 					Sign up
 				</Link>
