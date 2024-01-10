@@ -1,6 +1,6 @@
 import SouthIcon from "@mui/icons-material/South";
 
-const ChatScrolltoTop = ({
+const ChatScrolltoBottom = ({
 	scrollToBottom,
 }: {
 	scrollToBottom: () => void;
@@ -20,4 +20,4 @@ const ChatScrolltoTop = ({
 	);
 };
 
-export default ChatScrolltoTop;
+export default ChatScrolltoBottom;
