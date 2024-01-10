@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Montserrat } from "next/font/google";
+import { Roboto } from "next/font/google";
 import "./globals.scss";
 import { SATSATmetadata } from "@/utils/metadata";
 import NextTopLoader from "nextjs-toploader";
@@ -9,10 +9,9 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
 import { options } from "./api/auth/[...nextauth]/options";
 
-const montserrat = Montserrat({
-	subsets: ["latin"],
-	weight: ["200", "300", "400", "500", "600", "700", "900"],
-	// roboto weight: ["300", "400", "500", "700", "800", "900"],
+const roboto = Roboto({
+	subsets: ["latin", "greek"],
+	weight: ["300", "400", "500", "700", "900"],
 });
 
 export const metadata: Metadata = SATSATmetadata;
@@ -25,7 +24,7 @@ export default async function RootLayout({
 	const session = await getServerSession(options);
 	return (
 		<html lang="en">
-			<body className={montserrat.className}>
+			<body className={roboto.className}>
 				<NextTopLoader
 					showSpinner={false}
 					color="#29a173"
