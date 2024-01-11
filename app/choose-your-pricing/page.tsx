@@ -15,7 +15,7 @@ const page = () => {
 	return (
 		<>
 			<Header />
-			<main className="min-h-screen bg-darker relative overflow-x-clip">
+			<main className="min-h-svh bg-darker relative overflow-x-clip">
 				<div className=" animate-pulse green-blob2 w-96 h-96 top-[-5%] md:top-[-10%] right-[-50%] md:right-[-15%]"></div>
 				<div className=" animate-pulse yellow-blob3 w-96 h-96 bottom-[-10%] md:bottom-[0%] left-[-10%]"></div>
 				<section>

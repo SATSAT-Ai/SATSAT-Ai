@@ -11,7 +11,7 @@ const UploadSteps = () => {
 	);
 
 	return (
-		<div className="min-h-screen text-white sm:px-5 my-max z-10 ">
+		<div className="min-h-svh text-white sm:px-5 my-max z-10 ">
 			<div className="flex flex-col sm:flex-row items-center gap-5 py-3">
 				<h2 className="text-center text-[25px] sm:text-[35px] py-4 lg:text-text-50 w-full font-medium">
 					{uploadStep == 1

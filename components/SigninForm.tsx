@@ -75,10 +75,12 @@ const SigninForm = () => {
 			onSubmit={handleSubmit(onSubmit)}
 			className="flex flex-col md:flex-[.9] gap-3 items-start md:w-full max-w-sm mx-auto"
 		>
-			<p className="text-mid--yellow text-[27px]">Welcome back!</p>
-			<p className="text-mid--yellow text-text-normal">
-				Please fill your details to log into your account.
-			</p>
+			<div>
+				<p className="text-mid--yellow text-[27px] mb-1">Welcome back!</p>
+				<p className="text-mid--yellow text-text-normal">
+					Please fill your details to log into your account.
+				</p>
+			</div>
 
 			<div className="w-full flex mt-5 flex-col">
 				<label className="mb-2 text-text-normal text-mid--yellow" htmlFor="">
@@ -106,7 +108,7 @@ const SigninForm = () => {
 				)}
 			</div>
 
-			<div className=" text-white w-full justify-between flex items-center gap-5">
+			{/* <div className=" text-white w-full justify-between flex items-center gap-5">
 				<Checkbox
 					color="success"
 					disabled={loading}
@@ -116,7 +118,7 @@ const SigninForm = () => {
 					style={{ color: "white" }}
 					{...register("rememberMe")}
 				/>
-			</div>
+			</div> */}
 			<button
 				className={`border mt-5 font-medium text-[17px] active:scale-[1.001] hover:text-darker transition-colors duration-200 
 				${

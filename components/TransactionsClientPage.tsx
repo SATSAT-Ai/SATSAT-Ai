@@ -14,7 +14,7 @@ const TransactionsClientPage = () => {
 	});
 
 	return (
-		<div className="min-h-screen text-white sm:py-5 sm:my-max">
+		<div className="min-h-svh text-white sm:py-5 sm:my-max">
 			<div className="flex mt-4 justify-center lg:justify-between flex-wrap flex-col-reverse md:flex-row items-center gap-5 w-full">
 				<h1 className="text-center m-0 font-semibold text-[27px] md:text-text-40">
 					Transaction History

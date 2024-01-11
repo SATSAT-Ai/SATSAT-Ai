@@ -14,7 +14,7 @@ const Features = () => {
 		<>
 			<Header />
 
-			<main className="bg-darker min-h-screen w-full py-10 relative overflow-hidden">
+			<main className="bg-darker min-h-svh w-full py-10 relative overflow-hidden">
 				<div className="green-blob w-96 h-96 animate-pulse top-[-10%] md:top-[-20%] left-[50%]"></div>
 
 				<div className="my-max pt-5">

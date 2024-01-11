@@ -112,7 +112,7 @@ const CategoryClientPage = () => {
 	]);
 
 	return (
-		<main className="p-5 min-h-screen">
+		<main className="p-5 min-h-svh">
 			<div className="pt-5 mb-10">
 				<div className="flex items-center justify-between gap-5 flex-wrap sm:flex-nowrap ">
 					<h1 className="text-white text-[35px] w-fit md:text-[45px] m-0 text-center lg:text-left ">

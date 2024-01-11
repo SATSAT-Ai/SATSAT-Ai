@@ -8,7 +8,7 @@ const page = () => {
 	return (
 		<>
 			<Header />
-			<div className=" flex relative overflow-x-clip items-center justify-center min-h-screen bg-darker">
+			<div className=" flex relative overflow-x-clip items-center justify-center min-h-svh bg-darker">
 				<div className=" animate-pulse green-blob2 w-96 h-96 top-[-30%] lg:top-[-30%] left-[50%] "></div>
 				<main>
 					<div className="my-max">

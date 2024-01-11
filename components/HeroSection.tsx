@@ -13,7 +13,7 @@ const HeroSection = () => {
 		<>
 			<div className=" w-full text-center flex flex-col relative z-0 ">
 				<div className="green-blob2 w-[550px] h-[400px] animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
-				<div className=" min-h-screen py-20 relative my-max flex flex-col items-center justify-between h-full w-full">
+				<div className=" min-h-svh py-20 relative my-max flex flex-col items-center justify-between h-full w-full">
 					<section>
 						<h1 className="text-brand-green mb-5 font-bold max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
 							SATSAT AI
@@ -54,7 +54,7 @@ const HeroSection = () => {
 
 			<div
 				ref={sectionRef}
-				className="relative flex flex-col items-center min-h-screen pt-16 z-[1] snap-start"
+				className="relative flex flex-col items-center min-h-svh pt-16 z-[1] snap-start"
 			>
 				<h2 className="md:text-text-50 silver-text text-[35px] py-7 text-center sm:text-left font-semibold text-white">
 					Chat With Your Financial Data
