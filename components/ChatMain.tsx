@@ -218,7 +218,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 						<h1 className="text-white text-text-40 text-center sm:text-text-60">
 							SATSAT AI
 						</h1>
-						{/* <div className="text-white mt-10 max-w-xs md:max-w-2xl mx-auto">
+						<div className="text-white mt-10 max-w-xs md:max-w-2xl mx-auto">
 							<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
 								Chat suggestions
 							</h2>
@@ -235,7 +235,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 									);
 								})}
 							</div>
-						</div> */}
+						</div>
 					</div>
 				</main>
 			)}
