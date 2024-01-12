@@ -180,7 +180,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 			{conversations.length >= 1 ? (
 				<main
 					ref={chatContainerRef}
-					className=" text-white w-full flex flex-col gap-5  p-5
+					className=" text-white w-full flex h-full flex-col gap-5  p-5
 			custom-scroll2 relative overflow-y-auto"
 				>
 					<div className="fixed bottom-24 -translate-x-1/2 left-1/2">
@@ -213,7 +213,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 					})}
 				</main>
 			) : (
-				<main className=" relative flex flex-col h-screen items-center justify-center px-3">
+				<main className=" relative flex flex-col h-full items-center justify-center px-3">
 					<div className="w-full pt-5 pb-36 md:pb-0 overflow-y-auto custom-scroll">
 						<h1 className="text-white text-text-40 text-center sm:text-text-60">
 							SATSAT AI
