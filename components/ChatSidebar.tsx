@@ -225,7 +225,7 @@ const ChatSidebar = () => {
 
 	return (
 		<aside
-			className={` bg-[#071f07] shadow-md py-2 transition-transform duration-500 fixed lg:static h-screen top-0 right-0  ${
+			className={` bg-[#071f07] shadow-md py-2 transition-transform duration-500 fixed lg:static h-full top-0 right-0  ${
 				hideChatSidebar ? "translate-x-full" : "translate-x-0"
 			}`}
 		>
@@ -248,7 +248,7 @@ const ChatSidebar = () => {
 					</Link>
 				</div>
 				<div
-					className={`flex flex-col overflow-auto w-full px-2 custom-scroll  gap-2 `}
+					className={`flex flex-col h-[600px] overflow-auto w-full px-2 custom-scroll  gap-2 `}
 				>
 					{chats.map((chat) => {
 						return (
