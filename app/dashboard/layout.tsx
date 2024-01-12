@@ -16,7 +16,7 @@ const layout = ({ children }: { children: ReactNode }) => {
 					<ThemeProvider theme={theme}>
 						<DashboardSidebar />
 					</ThemeProvider>
-					<div className="flex-[10] h-screen z-10 overflow-x-auto">
+					<div className="flex-[10] h-full z-10 overflow-x-auto">
 						<ThemeProvider theme={theme}>
 							<DashboardHeader />
 						</ThemeProvider>
