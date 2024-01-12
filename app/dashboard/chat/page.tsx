@@ -10,10 +10,10 @@ export const metadata: Metadata = {
 const page = () => {
 	return (
 		<>
-			<div className="flex overflow-clip justify-between">
-				<div className="flex flex-[3] h-screen overflow-hidden w-full flex-col">
+			<div className="flex h-full overflow-clip justify-between">
+				<div className="flex  flex-[3] h-screen overflow-hidden w-full flex-col">
 					<ToggleSidebars />
-					<ChatMain />
+					{/* <ChatMain /> */}
 				</div>
 				<ChatSidebar />
 			</div>
