@@ -10,11 +10,11 @@ export const metadata: Metadata = {
 const page = () => {
 	return (
 		<div className="h-full flex overflow-clip">
-			{/* <div className="flex flex-[3] w-full flex-col">
+			<div className="flex flex-[3] w-full flex-col">
 				<ToggleSidebars />
 				<ChatMain />
 			</div>
-			<ChatSidebar /> */}
+			<ChatSidebar />
 		</div>
 	);
 };
