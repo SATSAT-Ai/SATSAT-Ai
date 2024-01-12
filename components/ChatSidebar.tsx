@@ -21,9 +21,7 @@ const ChatSidebar = () => {
 
 	useLayoutEffect(() => {
 		const handleResize = () => {
-			if (window.innerWidth < 768) {
-				setHideChatSidebar(true);
-			} else if (window.innerWidth < 1025) {
+			if (window.innerWidth < 768 || window.innerWidth < 1025) {
 				setHideChatSidebar(true);
 			} else {
 				setHideChatSidebar(false);
@@ -36,8 +34,7 @@ const ChatSidebar = () => {
 		return () => {
 			window.removeEventListener("resize", handleResize);
 		};
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [setHideChatSidebar]);
 
 	const [chats, setChats] = useState([
 		{
