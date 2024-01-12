@@ -248,7 +248,7 @@ const ChatSidebar = () => {
 					</Link>
 				</div>
 				<div
-					className={`flex flex-col h-[600px] overflow-auto w-full px-2 custom-scroll  gap-2 `}
+					className={`flex flex-col overflow-auto w-full px-2 custom-scroll  gap-2 `}
 				>
 					{chats.map((chat) => {
 						return (
