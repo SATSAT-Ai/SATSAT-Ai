@@ -8,7 +8,7 @@ const page = ({ params: { chatId } }: { params: { chatId: string } }) => {
 			<div className=" sticky overflow-y-auto overflow-x-clip  top-10 w-full h-screen gap-5">
 				<div className="flex justify-between">
 					<div className="flex flex-[3] h-screen overflow-hidden w-full flex-col">
-						{/* <ToggleSidebars /> */}
+						<ToggleSidebars />
 						{<ChatMain chatContainerId={chatId} />}
 					</div>
 					<ChatSidebar />
