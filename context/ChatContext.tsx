@@ -28,7 +28,7 @@ export const ChatContext = createContext<Ichat>({
 });
 
 const ChatContextProvider = ({ children }: { children: ReactNode }) => {
-	const [hideChatSidebar, setHideChatSidebar] = useState(true);
+	const [hideChatSidebar, setHideChatSidebar] = useState(false);
 	const [isOldConversation, setIsOldConversation] = useState(false);
 	const [conversations, setConversations] = useState<IUser[]>([]);
 
