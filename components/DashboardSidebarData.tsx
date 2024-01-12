@@ -242,7 +242,7 @@ const DashboardSidebarWithData = ({
 							aria-label="upgrade your plan"
 							className={`${
 								hideSidebar && "md:mx-auto"
-							} flex flex-col mx-3 w-fit gap-7`}
+							} flex flex-col mx-3 w-fit gap-7 py-2`}
 						>
 							<div className="md:mb-5 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
 								<div className="mr-auto">
