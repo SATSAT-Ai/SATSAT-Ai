@@ -8,7 +8,7 @@ import CustomGlowButton from "@/components/ui/CustomGlowButton";
 
 const page = () => {
 	return (
-		<div className=" bg-darker min-h-svh">
+		<div className=" bg-darker min-h-screen">
 			<div className="green-blob !fixed w-96 h-96 top-[-0%] lg:top-[10%] md:top-[50%] left-[35%]"></div>
 			<div className="yellow-blob2 w-96 !fixed h-96 top-[-20%] sm:top-[-10%] lg:top-[-5%] right-[0%]"></div>
 			<Header position="sticky" />

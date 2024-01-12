@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export default function NotFound() {
 	return (
-		<main className="bg-darker min-h-svh w-full relative pb-20">
+		<main className="bg-darker min-h-screen w-full relative pb-20">
 			<div className="flex items-center justify-center w-full h-full pt-20">
 				<Image src={NotfoundImage} width={200} height={300} alt="404" />
 			</div>

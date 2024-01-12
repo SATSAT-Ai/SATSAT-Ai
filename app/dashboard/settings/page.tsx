@@ -6,7 +6,7 @@ export const metadata: Metadata = {
 };
 const page = () => {
 	return (
-		<div className="min-h-svh text-white p-5 my-max">
+		<div className="min-h-screen text-white p-5 my-max">
 			<SettingsSteps />
 		</div>
 	);
