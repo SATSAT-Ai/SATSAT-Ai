@@ -225,12 +225,12 @@ const ChatSidebar = () => {
 
 	return (
 		<aside
-			className={` bg-[#071f07] shadow-md py-2 transition-transform duration-500 fixed lg:static h-full top-0 right-0  ${
+			className={` bg-[#071f07] shadow-md py-3 transition-transform duration-500 fixed lg:static h-full top-0 right-0  ${
 				hideChatSidebar ? "translate-x-full" : "translate-x-0"
 			}`}
 		>
-			<div className=" overflow-auto px-2 flex flex-col h-full justify-between">
-				<div className="flex sticky py-2 px-5 justify-between w-full items-center gap-5">
+			<div className=" overflow-auto gap-4 px-2 flex flex-col h-full justify-between">
+				<div className="flex sticky px-5 justify-between w-full items-center gap-5">
 					<div
 						tabIndex={0}
 						onClick={() => setHideChatSidebar(true)}
