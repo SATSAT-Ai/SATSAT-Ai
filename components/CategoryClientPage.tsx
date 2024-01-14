@@ -157,9 +157,9 @@ const CategoryClientPage = () => {
 								onClick={() => setSelectedDropDownCategory(category)}
 								className={`${
 									selectedDropDownCategory === category
-										? "bg-mid--yellow"
+										? "bg-[#25966bf6]"
 										: "bg-white/10"
-								} hover:bg-mid--yellow  py-2 px-3 rounded-lg `}
+								} hover:bg-[#25966bf6]  py-2 px-3 rounded-lg `}
 								key={index}
 							>
 								{category}
