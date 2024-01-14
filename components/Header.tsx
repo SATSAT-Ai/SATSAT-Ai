@@ -7,7 +7,6 @@ import { MdMenu, MdArrowForward } from "react-icons/md";
 import { useState, useEffect } from "react";
 import MobileNav from "./MobileNav";
 import { signOut, useSession } from "next-auth/react";
-import CustomGlowButton from "./ui/CustomGlowButton";
 
 const Header = ({ position }: { position?: string }) => {
 	const { data: session } = useSession();
@@ -16,6 +15,25 @@ const Header = ({ position }: { position?: string }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const pathname = usePathname();
+
+	const navLinks: { path: string; name: string }[] = [
+		{
+			path: "/",
+			name: "Home",
+		},
+		{
+			path: "/about",
+			name: "About",
+		},
+		{
+			path: "/how-it-works",
+			name: "How It Works",
+		},
+		{
+			path: "/features",
+			name: "Features",
+		},
+	];
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -79,43 +97,34 @@ const Header = ({ position }: { position?: string }) => {
 						onClick={() => setShowNav(true)}
 					/>
 					<ul className="hidden sm:flex items-center gap-3 sm:gap-5 text-[15px] md:text-text-normal font-medium">
-						<li
-							className={`${
-								pathname == "/"
-									? "text-mid--yellow font-medium"
-									: "text-white hover:text-mid--yellow"
-							}`}
-						>
-							<Link href={"/"}>Home</Link>
-						</li>
-						<li
-							className={`hidden md:flex ${
-								pathname == "/about"
-									? "text-mid--yellow font-medium"
-									: "text-white hover:text-mid--yellow"
-							}`}
-						>
-							<Link href={"/about"}>About</Link>
-						</li>
-
-						<li
-							className={`${
-								pathname == "/how-it-works"
-									? "text-mid--yellow font-medium"
-									: "text-white hover:text-mid--yellow"
-							}`}
-						>
-							<Link href={"/how-it-works"}>How It Works</Link>
-						</li>
-						<li
-							className={`${
-								pathname == "/features"
-									? "text-mid--yellow font-medium"
-									: "text-white hover:text-mid--yellow"
-							}`}
-						>
-							<Link href={"/features"}>Features</Link>
-						</li>
+						{navLinks.map((links) => {
+							if (links.name === "About") {
+								return (
+									<li
+										key={links.name}
+										className={`hidden md:flex ${
+											pathname == "/about"
+												? "text-mid--yellow font-medium"
+												: "text-white hover:text-mid--yellow"
+										}`}
+									>
+										<Link href={"/about"}>About</Link>
+									</li>
+								);
+							}
+							return (
+								<li
+									key={links.name}
+									className={`flex ${
+										pathname === links.path
+											? "text-mid--yellow font-medium"
+											: "text-white hover:text-mid--yellow"
+									}`}
+								>
+									<Link href={links.path}>{links.name}</Link>
+								</li>
+							);
+						})}
 
 						{session?.user?.email ? (
 							<>
@@ -153,14 +162,6 @@ const Header = ({ position }: { position?: string }) => {
 									<Link href={"/signin"}>Sign in</Link>
 								</li>
 								{pathname !== "/choose-your-pricing" && (
-									// <Link
-									// 	className="text-[15px] flex items-center !rounded-3xl gap-3 font-normal hover:shadow-none hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button2"
-									// 	href={"/choose-your-pricing"}
-									// >
-									// 	Get Started
-									// 	<MdArrowForward color="white" size="24" />
-									// </Link>
-
 									<li>
 										<Link
 											href={"/choose-your-pricing"}
