@@ -25,7 +25,7 @@ const CategoryTable = ({ categoryData }: { categoryData: ICategory[] }) => {
 	});
 
 	return (
-		<div className="h-full -z-10 flex-[2] pt-3 overscroll-y-none lg:rounded-none rounded-lg overflow-y-auto bg-[#ffffff20] custom-scroll2">
+		<div className="h-full -z-10 flex-[2] pt-3 lg:overscroll-y-none lg:rounded-none rounded-lg overflow-y-auto bg-[#ffffff20] custom-scroll2">
 			<Table
 				sx={{
 					"& thead th:nth-of-type(1)": {
