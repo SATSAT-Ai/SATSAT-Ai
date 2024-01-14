@@ -18,20 +18,22 @@ const HeroSection = () => {
 						<h1 className="text-brand-green mb-5 font-bold max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
 							SATSAT AI
 						</h1>
-						<TypeWrite
-							text={[
-								"Query your financial data with natural language",
-								"Budget management and forecasts",
-								"Wealth of data-driven financial insights",
-								"Alternative credit scoring",
-								"Insurance and loan offers",
-							]}
-							showCaret={true}
-							loop={true}
-							timeToStartNewText={4700}
-							typingSpeed={55}
-							showCaretOnComplete={true}
-						/>
+						<div className="h-12">
+							<TypeWrite
+								text={[
+									"Query your financial data with natural language",
+									"Budget management and forecasts",
+									"Wealth of data-driven financial insights",
+									"Alternative credit scoring",
+									"Insurance and loan offers",
+								]}
+								showCaret={true}
+								loop={true}
+								timeToStartNewText={4700}
+								typingSpeed={55}
+								showCaretOnComplete={true}
+							/>
+						</div>
 						<div className="w-fit mt-3 mx-auto">
 							<CustomGlowButton
 								href="/choose-your-pricing"
