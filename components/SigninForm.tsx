@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
-import Checkbox from "@mui/joy/Checkbox";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
@@ -53,6 +52,7 @@ const SigninForm = () => {
 				toast.dismiss();
 				toast.success("Logged in successfully!");
 				// params.set("email", data.email);
+				router.refresh();
 				router.push("/dashboard");
 
 				// router.replace(`/signin/verify?${params}`);
