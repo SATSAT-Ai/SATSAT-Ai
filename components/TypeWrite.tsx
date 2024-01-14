@@ -27,7 +27,7 @@ const TypeWrite = ({
 	showCaretOnComplete = false,
 	maxWidth,
 	caretColor,
-}: ITypeWrite) => {
+}: ITypeWrite): JSX.Element => {
 	const [typedText, setTypedText] = useState("");
 	const [cursorVisible, setCursorVisible] = useState(true);
 	const [currentWordIndex, setCurrentWordIndex] = useState(0);
@@ -67,6 +67,7 @@ const TypeWrite = ({
 			}, timeToStartNewText); //when to start the new text
 		} else {
 			setCursorVisible(showCaretOnComplete ?? false);
+
 			if (loop) {
 				timeOutId = setTimeout(() => {
 					setCursorVisible(true);
@@ -91,7 +92,7 @@ const TypeWrite = ({
 		<p
 			className={`${
 				color ? `text-[${color}]` : "text-mid--yellow"
-			} text-text-normal h-12 md:text-[${fontSize}]`}
+			} text-text-normal  md:text-[${fontSize}]`}
 			style={
 				maxWidth
 					? {
