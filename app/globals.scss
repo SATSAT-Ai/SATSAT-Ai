@@ -448,7 +448,7 @@
 .glow2 {
 	&::before,
 	&::after {
-		animation: glow 5s linear infinite;
+		animation: glow 8s linear infinite;
 	}
 }
 .glow3 {
@@ -471,6 +471,15 @@
 
 	&:hover::before {
 		opacity: 0;
+	}
+
+	&:disabled {
+		&::before,
+		&::after {
+			animation: none;
+			background-size: auto;
+			background: none;
+		}
 	}
 }
 
