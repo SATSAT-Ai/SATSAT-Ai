@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useCallback, useEffect, useState } from "react";
 import chatbot from "@/public/chatbot.svg";
 import Image from "next/image";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -32,15 +34,6 @@ const IncomingMessage = ({ message, fontSize, typeWrite }: IcomingProp) => {
 				<div className="flex items-end mr-auto gap-3">
 					<Image src={chatbot} height={35} width={35} alt="satsat-ai" />
 					<div className=" flex inMessage w-full shadow-lg flex-col gap-1 p-4 rounded-3xl text-white">
-						{/* {message.firstText && (
-							<p
-								style={{
-									fontSize: `${fontSize ? fontSize : 16}px`,
-								}}
-							>
-								{message.firstText}
-							</p>
-						)} */}
 						<TypeWrite
 							text={message.firstText}
 							fontSize={fontSize}
