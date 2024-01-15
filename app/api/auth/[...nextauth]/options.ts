@@ -7,14 +7,16 @@ export const options: NextAuthOptions = {
 		CredentialProvider({
 			credentials: {},
 			async authorize(credentials) {
-				const { email } = credentials as { email: string };
-				// console.log({ credentials });
+				const { email } = credentials as {
+					email: string;
+				};
+
 				const user = {
 					id: "1",
 					name: "dickson",
 					email,
 					role: "admin",
-					isVerified: false,
+					currentPlan: "Pro",
 				};
 
 				if (email !== "demo@gmail.com") {
@@ -26,23 +28,36 @@ export const options: NextAuthOptions = {
 		}),
 	],
 
+	session: {
+		strategy: "jwt",
+		maxAge: 60 * 60 * 24 * 7, // 7 days
+		updateAge: 60 * 60 * 24 * 3, //  inactive for 3 days, sign in and verify
+		// maxAge: 60 * 60 * 24, //24hrs
+	},
+
+	jwt: {
+		maxAge: 60 * 60 * 24 * 7, // 7 days
+	},
+
 	callbacks: {
 		async jwt({ token, user }) {
 			if (user) {
-				(token.role = user.role), (token.isVerified = user.isVerified);
+				token.role = user.role;
+				token.currentPlan = user.currentPlan;
 			}
 			return token;
 		},
 
 		async session({ session, token }) {
 			if (session?.user) {
-				(session.user.role = token.role),
-					(session.user.isVerified = token.isVerified);
+				session.user.role = token.role;
+				session.user.currentPlan = token.currentPlan;
 			}
 			return session;
 		},
 	},
 
+	secret: process.env.NEXTAUTH_SECRET,
 	pages: {
 		signIn: "/signin",
 		signOut: "/signout",
