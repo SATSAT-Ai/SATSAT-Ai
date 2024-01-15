@@ -12,6 +12,7 @@ export interface Iprices {
 	category: string;
 	privileges: string[];
 	price: string;
+	annualPrice?: string;
 }
 
 export interface Inotification {
