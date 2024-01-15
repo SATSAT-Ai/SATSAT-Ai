@@ -237,7 +237,7 @@ const DashboardSidebarWithData = ({
 							})}
 						</ul>
 						<Link
-							href={"#"}
+							href={"/choose-your-pricing"}
 							id="upgrade-plan"
 							aria-label="upgrade your plan"
 							className={`${
