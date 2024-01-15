@@ -7,19 +7,19 @@ declare module "next-auth" {
 			id: string;
 			role: string;
 			email: string;
-			isVerified: boolean;
+			currentPlan: string;
 		} & DefaultSession;
 	}
 
 	interface User extends DefaultUser {
 		role: string;
-		isVerified: boolean;
+		currentPlan: string;
 	}
 }
 
 declare module "next-auth/jwt" {
 	interface JWT extends DefaultJWT {
 		role: string;
-		isVerified: boolean;
+		currentPlan: string;
 	}
 }
