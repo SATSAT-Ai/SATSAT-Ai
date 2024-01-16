@@ -296,11 +296,7 @@
 	}
 
 	.unique {
-		background-color: #005031;
-
-		.verify {
-			display: none;
-		}
+		background-color: #123829;
 
 		h2 {
 			color: #fff;
@@ -328,10 +324,7 @@
 		}
 
 		&:hover {
-			background-color: #123829;
-			.verify {
-				display: block;
-			}
+			background-color: #005031;
 		}
 	}
 
@@ -342,6 +335,9 @@
 				&:hover {
 					background-color: #29a173;
 				}
+			}
+			p {
+				color: #c18e3b;
 			}
 		}
 	}
