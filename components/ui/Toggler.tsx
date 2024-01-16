@@ -1,9 +1,5 @@
-"use client";
-
 import { Dispatch, SetStateAction } from "react";
 import { Switch } from "@headlessui/react";
-import discountImage from "@/public/50-percent-off-1-svgrepo-com.svg";
-import Image from "next/image";
 
 export default function Toggler({
 	enabled,
