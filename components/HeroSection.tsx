@@ -29,7 +29,7 @@ const HeroSection = () => {
 								]}
 								showCaret={true}
 								loop={true}
-								timeToStartNewText={4700}
+								timeToStartNewText={4000}
 								typingSpeed={55}
 								showCaretOnComplete={true}
 							/>
