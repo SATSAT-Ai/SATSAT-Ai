@@ -54,7 +54,7 @@ const ChatSuggestionIntro = ({
 					<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
 						Chat suggestions
 					</h2>
-					<div className="flex flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
+					{/* <div className="flex flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
 						{chatSuggestions.map((suggestions) => {
 							return (
 								<button
@@ -66,7 +66,7 @@ const ChatSuggestionIntro = ({
 								</button>
 							);
 						})}
-					</div>
+					</div> */}
 				</div>
 			</div>
 			<form
