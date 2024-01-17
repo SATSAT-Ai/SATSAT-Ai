@@ -62,7 +62,7 @@ const ChatIntro = ({
 	};
 
 	return (
-		<div className=" flex flex-col gap-5 pt-5 px-5">
+		<div className=" flex flex-col gap-5 h-full pt-5 px-5">
 			<div className="fixed bottom-24 -translate-x-1/2 left-1/2">
 				{scrollToTop && isOldConversation && (
 					<ChatScrolltoTop scrolltoTop={scrolltoTop} />
@@ -94,7 +94,7 @@ const ChatIntro = ({
 
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="text-white sticky bottom-3 p-5 mt-auto"
+				className="text-white sticky bottom-5 p-5 mt-auto"
 			>
 				<div className="bg-[#071f07] rounded-lg max-w-3xl mx-auto">
 					<div
