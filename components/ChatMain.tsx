@@ -11,19 +11,16 @@ import { ChatContext } from "@/context/ChatContext";
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { HiOutlineExternalLink } from "react-icons/hi";
 import Link from "next/link";
+import ToggleSidebars from "./ToggleSidebars";
 
 type MessageFrom = "User" | "Ai";
 export interface IUser {
 	from: MessageFrom;
-	message: string;
-}
-
-export interface AiMessage {
-	from: MessageFrom;
 	id: string;
-	firstText: string;
-	list: { id: string; title: string; msg: string }[];
-	endingText: string;
+	message?: string;
+	list?: { id: string; msg: string }[];
+	firstText?: string;
+	endingText?: string;
 }
 
 export interface IdeFault {
@@ -37,6 +34,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 	const [scrollToTop, setScrollToTop] = useState(false);
 	const [showHelpOptions, setShowHelpOptions] = useState(false);
 	const [loading, setLoading] = useState(false);
+	const [conversations, setConversations] = useState<IUser[]>([]);
 
 	const {
 		formState: { errors },
@@ -47,12 +45,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		setFocus,
 	} = useForm<IdeFault>();
 
-	const {
-		isOldConversation,
-		conversations,
-		setIsOldConversation,
-		setConversations,
-	} = useContext(ChatContext);
+	const { isOldConversation, setIsOldConversation } = useContext(ChatContext);
 
 	const [chatSuggestions, setChatSuggestions] = useState([
 		{
@@ -94,12 +87,20 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		//if there is no chatContainerId create one or add up to existing;
 		if (data.userMessage.trim()) {
 			//sendMessage;
-
 			setConversations((prev) => [
 				...prev,
 				{
+					id: "skdfksdjf",
 					message: data.userMessage,
 					from: "User",
+				},
+
+				{
+					from: "Ai",
+					id: "lore34m",
+					firstText: "Here is a demo response from satsat Ai.",
+					list: [],
+					endingText: `Is there anything else you'd like to inquire about?`,
 				},
 			]);
 			setFocus("userMessage", { shouldSelect: true });
@@ -121,8 +122,16 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 				setConversations((prev) => [
 					...prev,
 					{
+						id: "skdfjkjr",
 						message: WatchedUserMessage,
 						from: "User",
+					},
+					{
+						from: "Ai",
+						id: "lore34m",
+						firstText: "Here is a demo response from satsat Ai.",
+						list: [],
+						endingText: `Is there anything else you'd like to inquire about? Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?`,
 					},
 				]);
 
@@ -155,8 +164,8 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		const handleScroll = () => {
 			const containerRef = chatContainerRef.current;
 			if (containerRef) {
-				const scrollHeight = containerRef.scrollHeight;
 				const clientHeight = containerRef.clientHeight;
+				const scrollHeight = containerRef.scrollHeight;
 				const scrollTop = containerRef.scrollTop;
 
 				setScrollToTop(scrollTop === scrollHeight - clientHeight);
@@ -180,42 +189,49 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 			{conversations.length >= 1 ? (
 				<main
 					ref={chatContainerRef}
-					className=" text-white w-full flex h-full flex-col gap-5  p-5
+					className=" text-white w-full h-full
 			custom-scroll2 relative overflow-y-auto"
 				>
-					<div className="fixed bottom-24 -translate-x-1/2 left-1/2">
-						{scrollToTop && isOldConversation && (
-							<ChatScrolltoTop scrolltoTop={scrolltoTop} />
-						)}
+					<ToggleSidebars />
+					<div className=" flex flex-col gap-5 p-5">
+						<div className="fixed bottom-24 -translate-x-1/2 left-1/2">
+							{scrollToTop && isOldConversation && (
+								<ChatScrolltoTop scrolltoTop={scrolltoTop} />
+							)}
 
-						{scrollToBottom && (
-							<ChatScrolltoBottom scrollToBottom={handleScrollToBottom} />
-						)}
+							{scrollToBottom && (
+								<ChatScrolltoBottom scrollToBottom={handleScrollToBottom} />
+							)}
+						</div>
+
+						{conversations.map((conversation: IUser) => {
+							if (conversation.from === "User") {
+								return (
+									<OutgoingMessage
+										key={conversation.id}
+										message={conversation}
+									/>
+								);
+							} else if (conversation.from === "Ai") {
+								return (
+									<IncomingMessage
+										endingText={conversation.endingText as string}
+										key={conversation.id}
+										list={conversation.list!}
+										firstText={conversation.firstText as string}
+										typeWrite={true}
+									/>
+								);
+							}
+						})}
 					</div>
-
-					{/* main chats */}
-					{conversations.map((conversation) => {
-						if (conversation.from === "User") {
-							return (
-								<OutgoingMessage
-									key={conversation.message}
-									message={conversation as IUser}
-								/>
-							);
-						} else if (conversation.from === "Ai") {
-							return (
-								<IncomingMessage
-									key={conversation.message}
-									message={conversation as unknown as AiMessage}
-								/>
-							);
-						}
-					})}
 				</main>
 			) : (
-				<main className=" relative flex flex-col h-full items-center justify-center px-3">
-					<div className="w-full pt-5 pb-36 md:pb-0 overflow-y-auto custom-scroll">
-						<h1 className="text-white text-text-40 text-center sm:text-text-60">
+				<main className=" h-full">
+					<ToggleSidebars />
+
+					<div className="w-full flex  flex-col h-full items-center justify-center pb-10 overflow-y-auto custom-scroll">
+						<h1 className="text-white text-text-40 mb-0 text-center sm:text-text-60">
 							SATSAT AI
 						</h1>
 						<div className="text-white mt-10 max-w-xs md:max-w-2xl mx-auto">
