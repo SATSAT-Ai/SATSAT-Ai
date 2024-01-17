@@ -71,12 +71,12 @@ const ChatSuggestionIntro = ({
 			</div>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="text-white sticky bottom-3 p-5 mt-auto"
+				className="text-white sticky bottom-5 p-5 flex max-w-3xl mx-auto flex-col gap-5 w-full mt-auto"
 			>
-				<div className="bg-[#071f07] rounded-lg max-w-3xl mx-auto">
+				<div className="bg-[#071f07] rounded-lg max-w-3xl w-full order-1 mx-auto">
 					<div
 						tabIndex={0}
-						className="flex  w-full mt-auto border border-white items-center p-1 justify-between rounded-lg px-2 gap-5"
+						className="flex w-full mt-auto border border-white items-center p-1 justify-between rounded-lg px-2 gap-5"
 					>
 						<textarea
 							disabled={loading}
@@ -102,9 +102,9 @@ const ChatSuggestionIntro = ({
 						</button>
 					</div>
 				</div>
-				<div ref={helpOptionsRef}>
+				<div ref={helpOptionsRef} className="max-w-3xl ml-auto">
 					{showHelpOptions && (
-						<div className="absolute right-5 lg:right-20 bottom-36 bg-[#062506] shadow-md w-[200px] p-3 rounded-lg">
+						<div className="right-4 absolute bottom-36 bg-[#062506] shadow-md w-[200px] p-3 rounded-lg">
 							<ul className="flex cursor-pointer items-start w-full text-[14px] font-medium flex-col gap-1 ">
 								<li
 									onClick={() => setShowHelpOptions(false)}
@@ -151,7 +151,7 @@ const ChatSuggestionIntro = ({
 					{conversationLength < 1 && (
 						<div
 							onClick={() => setShowHelpOptions((prev) => !prev)}
-							className="absolute active:scale-[1.04] bottom-24 cursor-pointer right-5 transition-colors duration-200 p-2 w-fit hover:bg-grey-light rounded-full bg-brand-green-darker lg:right-20"
+							className="ml-auto active:scale-[1.04] cursor-pointer  transition-colors duration-200 p-2 w-fit hover:bg-grey-light rounded-full bg-brand-green-darker"
 						>
 							<IoMdHelpCircleOutline color="white" size={25} />
 						</div>
