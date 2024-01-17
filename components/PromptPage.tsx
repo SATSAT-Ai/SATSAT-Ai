@@ -10,7 +10,7 @@ import {
 	useLayoutEffect,
 	useEffect,
 } from "react";
-import { AiMessage, IUser, IdeFault } from "./ChatMain";
+import { IUser, IdeFault } from "./ChatMain";
 import { useForm } from "react-hook-form";
 import ChatScrolltoBottom from "@/components/ChatScrolltoBottom";
 
@@ -25,30 +25,36 @@ const PromptPage = () => {
 	const [isFirstChat, setIsFirstChat] = useState(false);
 	const [glow, setGlow] = useState(true);
 
-	const [conversations, setConversations] = useState([
+	const [conversations, setConversations] = useState<IUser[]>([
 		{
+			id: "skdjfksdjf",
 			message: "Can you show me my monthly spending trends?",
 			from: "User",
 		},
+
 		{
-			id: "lorcerm",
 			from: "Ai",
-			firstText: `Of course! Here's a breakdown of your monthly spending trends`,
+			id: "lorcerm",
+			firstText: "Here is a demo response from satsat Ai.",
+
 			list: [
-				{ id: "lorem", title: "", msg: "January:GHS 1500" },
-				{ id: "loreem", title: "", msg: "Febuary:GHS 1800" },
-				{ id: "3loreem", title: "", msg: "March:GHS 1400" },
+				{ id: "lorem", msg: "January:GHS 1500" },
+				{ id: "loreem", msg: "Febuary:GHS 1800" },
+				{ id: "3loreem", msg: "March:GHS 1400" },
 			],
 			endingText: `Is there anything else you'd like to inquire about?`,
 		},
+
 		{
+			id: "skdjfkwer",
 			from: "User",
 			message: "What about my total income for the past quarter?",
 		},
 		{
 			from: "Ai",
 			id: "lorem",
-			firstText: `Your total income for the past quarter is GHS 10,500.`,
+			firstText: "Here is a demo response from satsat Ai.",
+
 			list: [],
 			endingText: `Is there anything else you'd like to inquire about?`,
 		},
@@ -98,13 +104,15 @@ const PromptPage = () => {
 				setConversations((prev) => [
 					...prev,
 					{
+						id: "skdjfksdjf",
 						message: WatchedUserMessage,
 						from: "User",
 					},
+
 					{
 						from: "Ai",
 						id: "lore34m",
-						firstText: `Here is a demo response from satsat Ai.`,
+						firstText: "Here is a demo response from satsat Ai.",
 						list: [],
 						endingText: `Is there anything else you'd like to inquire about?`,
 					},
@@ -153,13 +161,15 @@ const PromptPage = () => {
 			setConversations((prev) => [
 				...prev,
 				{
+					id: "skdjfksdjf",
 					message: data.userMessage,
 					from: "User",
 				},
+
 				{
 					from: "Ai",
 					id: "lore34m",
-					firstText: `Alright your total income for the past quarter is GHS 10,500.`,
+					firstText: "Here is a demo response from satsat Ai.",
 					list: [],
 					endingText: `Is there anything else you'd like to inquire about?`,
 				},
@@ -230,21 +240,21 @@ const PromptPage = () => {
 					</div>
 
 					<ul className="w-full flex flex-col gap-5 h-[450px]">
-						{conversations.map((conversation) => {
+						{conversations.map((conversation: IUser) => {
 							if (conversation.from === "User") {
 								return (
-									<li key={conversation.message}>
-										<OutgoingMessage
-											message={conversation as IUser}
-											fontSize={17}
-										/>
+									<li key={conversation.id}>
+										<OutgoingMessage message={conversation} fontSize={17} />
 									</li>
 								);
 							} else if (conversation.from === "Ai") {
 								return (
 									<li key={conversation.id}>
 										<IncomingMessage
-											message={conversation as unknown as AiMessage}
+											key={conversation.id}
+											list={conversation.list!}
+											firstText={conversation.firstText as string}
+											endingText={conversation.endingText as string}
 											fontSize={17}
 											typeWrite={false}
 										/>
