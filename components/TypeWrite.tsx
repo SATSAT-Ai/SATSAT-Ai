@@ -13,6 +13,7 @@ interface ITypeWrite {
 	fontSize?: number;
 	showCaretOnComplete?: boolean;
 	caretColor?: string;
+	fontWeight?: "normal" | "medium";
 }
 
 const TypeWrite = ({
@@ -27,6 +28,7 @@ const TypeWrite = ({
 	showCaretOnComplete = false,
 	maxWidth,
 	caretColor,
+	fontWeight,
 }: ITypeWrite): JSX.Element => {
 	const [typedText, setTypedText] = useState("");
 	const [cursorVisible, setCursorVisible] = useState(true);
@@ -92,16 +94,17 @@ const TypeWrite = ({
 		<p
 			className={`${
 				color ? `text-[${color}]` : "text-mid--yellow"
-			} text-text-normal  md:text-[${fontSize}]`}
-			style={
-				maxWidth
-					? {
-							maxWidth: `${maxWidth}px`,
-					  }
-					: {
-							maxWidth: "100%",
-					  }
-			}
+			} text-text-normal  ${
+				fontWeight == "normal"
+					? "font-normal"
+					: fontWeight === "medium"
+					? "font-medium"
+					: "font-normal"
+			}  md:text-[${fontSize}]`}
+			style={{
+				overflowWrap: "anywhere",
+				maxWidth: `${maxWidth ? `${maxWidth}px` : "100%"}`,
+			}}
 		>
 			<>{typedText}</>
 			{cursorVisible && showCaret && (
