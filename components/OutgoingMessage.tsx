@@ -25,11 +25,11 @@ const OutgoingMessage = ({
 		formState: { errors },
 		register,
 	} = useForm<{ updatedMessage: string }>({
-		defaultValues: { updatedMessage: message.message },
+		defaultValues: { updatedMessage: message.message as string },
 	});
 
 	const [editChat, setEditChat] = useState(false);
-	const [theOutGoingMessage, setTheOutGoingMessage] = useState(message);
+	const [theOutGoingMessage, setTheOutGoingMessage] = useState<IUser>(message);
 	const WatchMessage = watch();
 
 	const onSubmit = ({ updatedMessage }: { updatedMessage: string }) => {
@@ -78,17 +78,19 @@ const OutgoingMessage = ({
 								overflowWrap: "anywhere",
 							}}
 						>
-							{theOutGoingMessage.message?.split("\n").map((message, index) => (
-								<p
-									key={index}
-									style={{
-										fontSize: `${fontSize ? fontSize : 16}px`,
-									}}
-								>
-									{message}
-									<br />
-								</p>
-							))}
+							{(theOutGoingMessage.message as string)
+								?.split("\n")
+								.map((message, index) => (
+									<p
+										key={index}
+										style={{
+											fontSize: `${fontSize ? fontSize : 16}px`,
+										}}
+									>
+										{message}
+										<br />
+									</p>
+								))}
 						</div>
 
 						<MdEditNote
