@@ -75,3 +75,10 @@ export interface ICategory {
 	number: number;
 	Amount: number;
 }
+
+export interface IncomeStreams {
+	date: string;
+	name: string;
+	number: number;
+	amount: number;
+}
