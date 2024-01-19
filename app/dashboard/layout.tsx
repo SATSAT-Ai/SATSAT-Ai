@@ -7,10 +7,20 @@ import { theme } from "./theme";
 import ChatContextProvider from "@/context/ChatContext";
 
 const layout = ({ children }: { children: ReactNode }) => {
+	const colors = ["green-blob", "yellow-blob2"];
+
 	return (
 		<div className="bg-darker">
-			<div className="green-blob !fixed w-96 h-96 top-[-0%] lg:top-[10%] md:top-[50%] left-[35%]"></div>
-			<div className="yellow-blob2 w-96 !fixed h-96 top-[-20%] sm:top-[-10%] lg:top-[-5%] right-[0%]"></div>
+			<div
+				className={`${
+					colors[Math.floor(Math.random() * colors.length)]
+				} !fixed w-96 h-96 top-[-0%] lg:top-[10%] md:top-[50%] left-[35%]`}
+			></div>
+			<div
+				className={`${
+					colors[Math.floor(Math.random() * colors.length)]
+				} w-96 !fixed h-96 top-[-20%] sm:top-[-10%] lg:top-[-5%] right-[0%]`}
+			></div>
 			<div className="flex relative max-w-[1440px] mx-auto">
 				<ContextProvider>
 					<ThemeProvider theme={theme}>
