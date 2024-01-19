@@ -61,7 +61,8 @@
 	}
 
 	.custom-scroll,
-	.custom-scroll2 {
+	.custom-scroll2,
+	.custom-scroll3 {
 		&::-webkit-scrollbar-track-piece,
 		&::-webkit-scrollbar {
 			background-color: #050d0a;
@@ -80,6 +81,16 @@
 
 		&::-webkit-scrollbar-thumb {
 			background-color: #2aa274;
+		}
+	}
+	.custom-scroll3 {
+		&::-webkit-scrollbar-track-piece,
+		&::-webkit-scrollbar {
+			background-color: #123829;
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: #c18e3b;
 		}
 	}
 
