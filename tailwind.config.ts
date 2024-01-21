@@ -73,7 +73,7 @@ const config: Config = {
 			"grey-lightest": "#a3a3a3",
 			white: "#fff",
 			darker: "#050d0a",
-			"mid--yellow": "#c18e3b",
+			"mid--yellow": "#c98821",
 			"grey-light": "#444c48",
 			transparent: "transparent",
 			crimson: "crimson",
