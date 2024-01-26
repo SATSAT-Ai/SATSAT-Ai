@@ -90,7 +90,7 @@
 		}
 
 		&::-webkit-scrollbar-thumb {
-			background-color: #c18e3b;
+			background-color: #c98821;
 		}
 	}
 
@@ -128,13 +128,13 @@
 		width: rem(11);
 		height: rem(11);
 		border: 2px solid #f3f3f3;
-		border-top: 2px solid #c18e3b;
+		border-top: 2px solid #c98821;
 		border-radius: 50%;
 		animation: spin 0.3s linear infinite;
 	}
 
 	.outmessage {
-		background: linear-gradient(45deg, #2aa27438, #c18e3b50);
+		background: linear-gradient(45deg, #2aa27438, #c9882150);
 	}
 	.inMessage {
 		background-color: #2aa27438;
@@ -207,7 +207,7 @@
 	.yellow-blob,
 	.yellow-blob2,
 	.yellow-blob3 {
-		background-color: #c18e3b;
+		background-color: #c98821;
 		border-radius: 50%;
 		position: absolute;
 		transform: translateX(-50%);
@@ -221,11 +221,11 @@
 		filter: blur(rem(190));
 	}
 	.my-shadow {
-		box-shadow: -7px 1px 20px -9px #29a173, 1px -1px 20px -7px #c18e3b;
+		box-shadow: -7px 1px 20px -9px #29a173, 1px -1px 20px -7px #c98821;
 	}
 
 	.gradient {
-		background: linear-gradient(to top, #29a173, #c18e3b);
+		background: linear-gradient(to top, #29a173, #c98821);
 	}
 
 	.gradient2 {
@@ -255,7 +255,7 @@
 	.icon .MuiSvgIcon-root {
 		color: white;
 		@media (min-width: em(768)) {
-			color: #c18e3b;
+			color: #c98821;
 		}
 	}
 
@@ -288,7 +288,7 @@
 			}
 
 			ul li .check {
-				color: #c18e3b;
+				color: #c98821;
 			}
 
 			.line {
@@ -299,7 +299,7 @@
 				background-color: #fff;
 				color: #29a173;
 				&:hover {
-					background-color: #c18e3b;
+					background-color: #c98821;
 					color: white;
 				}
 			}
@@ -318,7 +318,7 @@
 		}
 
 		ul li .check {
-			color: #c18e3b;
+			color: #c98821;
 		}
 
 		.line {
@@ -329,7 +329,7 @@
 			background-color: #fff;
 			color: #29a173;
 			&:hover {
-				background-color: #c18e3b;
+				background-color: #c98821;
 				color: white;
 			}
 		}
@@ -348,7 +348,7 @@
 				}
 			}
 			p {
-				color: #c18e3b;
+				color: #c98821;
 			}
 		}
 	}
