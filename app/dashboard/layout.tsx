@@ -21,7 +21,7 @@ const layout = ({ children }: { children: ReactNode }) => {
 					colors[Math.floor(Math.random() * colors.length)]
 				} w-96 !fixed h-96 top-[-20%] sm:top-[-10%] lg:top-[-5%] right-[0%]`}
 			></div>
-			<div className="flex relative max-w-[1440px] mx-auto">
+			<div className="flex relative max-w-[1440px] mx-auto overflow-clip">
 				<ContextProvider>
 					<ThemeProvider theme={theme}>
 						<DashboardSidebar />
