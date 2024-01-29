@@ -22,12 +22,12 @@ const Features = () => {
 						Features
 					</h1>
 
-					<div className="grid grid-cols-1  sm:grid-cols-2 lg:grid-cols-3 mt-20 gap-5">
+					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-20 gap-5">
 						{featuresData.map((data) => {
 							return (
 								<div
 									key={data.title}
-									className="text-white bg-brand-green-darker p-4 rounded-2xl"
+									className="text-white p-4 bg-[#071f07] rounded-2xl"
 								>
 									{data.icon}
 									<h2 className="text-text-20 font-medium mt-2">
