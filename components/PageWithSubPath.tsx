@@ -22,6 +22,7 @@ const PageWithSubPath = ({
 	isActive: () => string;
 }) => {
 	const [showSubpath, setShowSubpath] = useState(false);
+
 	const [showSub, setShowSub] = useState(() =>
 		pathname.includes(routeWithSubpath.path)
 	);
@@ -31,6 +32,8 @@ const PageWithSubPath = ({
 			setShowSubpath(true);
 		}
 	}, [showSub]);
+
+	const subpathHeight = routeWithSubpath.subPaths?.map((paths) => paths); // used to determine the height of subpath container based on number of paths
 
 	return (
 		<>
@@ -55,16 +58,23 @@ const PageWithSubPath = ({
 				id={routeWithSubpath.name}
 				className={`${
 					showSub
-						? ` rounded-md md:shadow-none relative  md:pb-0 bg-brand-green/10`
+						? ` rounded-md md:shadow-none relative md:pb-0 bg-brand-green/10`
 						: !showSubpath
 						? "md:hover:bg-white/10"
 						: "text-white"
 				} text-text-normal  rounded-md md:rounded-none  md:justify-start md:w-full flex cursor-pointer items-center gap-3 relative`}
 			>
 				<div
-					className={`flex gap-2 flex-col ${
-						showSubpath ? "h-fit" : "h-10 md:h-11 "
+					className={`flex gap-2 flex-col duration-100 ${
+						showSubpath ? "animate-accordion-up" : "h-10 md:h-11"
 					} overflow-hidden  w-full `}
+					style={{
+						height: showSubpath
+							? subpathHeight?.length! > 1
+								? "138px"
+								: "90px"
+							: "40px",
+					}}
 				>
 					<div
 						className={`${
