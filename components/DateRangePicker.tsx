@@ -1,6 +1,4 @@
-"use client";
-
-import { useState, Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction } from "react";
 import { format } from "date-fns";
 import { Calendar as CalendarIcon } from "lucide-react";
 
@@ -18,14 +16,29 @@ interface IdateRange {
 	setDate: Dispatch<SetStateAction<DateRange | undefined>>;
 	date: DateRange | undefined;
 	className?: string;
+	parsedTimeStamps?: Date[];
 }
 
-export function DatePickerWithRange({ className, setDate, date }: IdateRange) {
-	const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+export function DatePickerWithRange({
+	className,
+	setDate,
+	date,
+	parsedTimeStamps,
+}: IdateRange) {
+	//*disable dates which are not included in transaction
+	const shouldDisableDateRange = (date: Date | string) => {
+		const parsedDates = parsedTimeStamps?.map((dateString: Date): string => {
+			return format(dateString, "yyyy-MM-dd");
+		});
+
+		const parsedArg = new Date(date);
+		const currentDateString = format(parsedArg, "yyyy-MM-dd");
+		return !parsedDates?.includes(currentDateString);
+	};
 
 	return (
-		<div className={cn("grid gap-2 text-[13px]", className)}>
-			<Popover open={isCalendarOpen} onOpenChange={setIsCalendarOpen}>
+		<div className={cn("grid gap-2 text-[13px] ", className)}>
+			<Popover>
 				<PopoverTrigger asChild>
 					<Button
 						id="date"
@@ -35,7 +48,7 @@ export function DatePickerWithRange({ className, setDate, date }: IdateRange) {
 							!date && "text-muted-foreground"
 						)}
 					>
-						<CalendarIcon className="mr-2 h-4 w-4" />
+						<CalendarIcon className="mr-2 h-4 w-4 text-[inherit]" />
 						{date?.from ? (
 							date.to ? (
 								<>
@@ -46,21 +59,18 @@ export function DatePickerWithRange({ className, setDate, date }: IdateRange) {
 								format(date.from, "LLL dd, y")
 							)
 						) : (
-							<span>Select Date range</span>
+							<span className="text-white">Select Date range</span>
 						)}
 					</Button>
 				</PopoverTrigger>
-				<PopoverContent className="w-full p-0 " align="start">
+				<PopoverContent className="w-full p-0 relative -left-10" align="start">
 					<Calendar
+						// disabled={shouldDisableDateRange}
 						initialFocus
 						mode="range"
 						defaultMonth={date?.from}
 						selected={date}
 						onSelect={setDate}
-						// onSelect={(selectedDate) => (
-						// 	setDate(selectedDate),
-						// 	selectedDate?.from && selectedDate?.to && setIsCalendarOpen(false)
-						// )}
 						title="Select Date range"
 						numberOfMonths={1}
 					/>
