@@ -46,7 +46,7 @@ const ChatSuggestionIntro = ({
 }: IchatIntro) => {
 	return (
 		<>
-			<div className="w-full flex flex-col h-full items-center md:justify-center overflow-y-auto custom-scroll">
+			<div className="w-full flex h-full flex-col items-center justify-center overflow-y-auto custom-scroll">
 				<h1 className="text-white text-text-40 mb-0 text-center sm:text-text-60">
 					SATSAT AI
 				</h1>
@@ -54,7 +54,7 @@ const ChatSuggestionIntro = ({
 					<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
 						Chat suggestions
 					</h2>
-					{/* <div className="flex flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
+					<div className="flex flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
 						{chatSuggestions.map((suggestions) => {
 							return (
 								<button
@@ -66,45 +66,19 @@ const ChatSuggestionIntro = ({
 								</button>
 							);
 						})}
-					</div> */}
+					</div>
 				</div>
 			</div>
 			<form
 				onSubmit={handleSubmit(onSubmit)}
-				className="text-white sticky bottom-5 p-5 flex max-w-3xl mx-auto flex-col gap-5 w-full mt-auto"
+				className="text-white sticky  left-auto right-auto bottom-5 p-5  max-w-3xl mx-auto w-full mt-auto"
 			>
-				<div className="bg-[#071f07] rounded-lg max-w-3xl w-full order-1 mx-auto">
-					<div
-						tabIndex={0}
-						className="flex w-full mt-auto border border-white items-center p-1 justify-between rounded-lg px-2 gap-5"
-					>
-						<textarea
-							disabled={loading}
-							rows={1}
-							onInput={(e) => handleTextAreaResize(e)}
-							autoFocus
-							autoCorrect="true"
-							onKeyDown={(e) => (handleKeyDown(e), handleTextAreaResize(e))}
-							className="w-full text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal outline-none bg-brand-green border-none h-auto bg-transparent"
-							placeholder="Message SATSAT AI..."
-							{...register("userMessage", {
-								required: false,
-							})}
-						/>
-						<button type="submit" disabled={loading}>
-							<TelegramIcon
-								tabIndex={0}
-								fontSize="large"
-								className="active:scale-[1.02]"
-								color="inherit"
-								aria-hidden="false"
-							/>
-						</button>
-					</div>
-				</div>
-				<div ref={helpOptionsRef} className="max-w-3xl ml-auto">
+				<div
+					ref={helpOptionsRef}
+					className="max-w-3xl absolute  bottom-28 right-5 ml-auto"
+				>
 					{showHelpOptions && (
-						<div className="right-4 absolute bottom-36 bg-[#062506] shadow-md w-[200px] p-3 rounded-lg">
+						<div className="right-1 absolute bottom-14 bg-[#062506] shadow-md w-[200px] p-3 rounded-lg">
 							<ul className="flex cursor-pointer items-start w-full text-[14px] font-medium flex-col gap-1 ">
 								<li
 									onClick={() => setShowHelpOptions(false)}
@@ -156,6 +130,35 @@ const ChatSuggestionIntro = ({
 							<IoMdHelpCircleOutline color="white" size={25} />
 						</div>
 					)}
+				</div>
+				<div className="bg-[#071f07] rounded-lg max-w-3xl w-full order-1 mx-auto">
+					<div
+						tabIndex={0}
+						className="flex w-full mt-auto border border-white items-center p-1 justify-between rounded-lg px-2 gap-5"
+					>
+						<textarea
+							disabled={loading}
+							rows={1}
+							onInput={(e) => handleTextAreaResize(e)}
+							autoFocus
+							autoCorrect="true"
+							onKeyDown={(e) => (handleKeyDown(e), handleTextAreaResize(e))}
+							className="w-full text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal outline-none bg-brand-green border-none h-auto bg-transparent"
+							placeholder="Message SATSAT AI..."
+							{...register("userMessage", {
+								required: false,
+							})}
+						/>
+						<button type="submit" disabled={loading}>
+							<TelegramIcon
+								tabIndex={0}
+								fontSize="large"
+								className="active:scale-[1.02]"
+								color="inherit"
+								aria-hidden="false"
+							/>
+						</button>
+					</div>
 				</div>
 			</form>
 		</>
