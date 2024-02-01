@@ -24,7 +24,7 @@ export default async function RootLayout({
 	const session = await getServerSession(options);
 	return (
 		<html lang="en">
-			<body className={roboto.className}>
+			<body className={`antialiased ${roboto.className}`}>
 				<NextTopLoader
 					showSpinner={false}
 					color="#29a173"
