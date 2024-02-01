@@ -218,7 +218,7 @@ const ChatSidebar = () => {
 
 	return (
 		<aside
-			className={` bg-[#071f07] shadow-md py-3 transition-transform duration-500 fixed lg:static h-full top-0 right-0  ${
+			className={` bg-[#071f07] shadow-md py-3 w-72 transition-transform duration-500 fixed lg:static h-full top-0 right-0  ${
 				hideChatSidebar ? "translate-x-full" : "translate-x-0"
 			}`}
 		>
