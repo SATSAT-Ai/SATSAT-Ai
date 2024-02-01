@@ -73,7 +73,6 @@ const PieCharts = ({
 							outerRadius: 90,
 							paddingAngle: 5,
 							highlightScope: { faded: "global", highlighted: "item" },
-
 							faded: {
 								innerRadius: 30,
 								additionalRadius: -30,
