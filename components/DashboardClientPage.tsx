@@ -6,11 +6,11 @@ import LineChart from "@/components/LineChart";
 import PieCharts from "@/components/PieCharts";
 import StatementSelector from "@/components/StatementSelector";
 import { AppContext } from "@/context/AppContext";
-import { ItransactionsData } from "@/interface/interface";
-import { useContext, useEffect } from "react";
-import { useState } from "react";
+import { IncomeStreams, ItransactionsData } from "@/interface/interface";
+import { useContext, useEffect, useState } from "react";
 import { DateRange } from "react-day-picker";
 import { addDays } from "date-fns";
+import { timeStampsAndValue } from "@/TesttimeStamp";
 
 const DashboardClientPage = () => {
 	const { hideSidebar, setHideSidebar } = useContext(AppContext);
@@ -95,14 +95,60 @@ const DashboardClientPage = () => {
 
 	const statements = ["Mobile Money Statement", "Bank Statement"];
 
+	const [incomeStreams, setIncomeStreams] = useState<IncomeStreams[]>([
+		{
+			date: "12-01-2023",
+			name: "Frozen yoghurt",
+			number: 6,
+			amount: 24,
+		},
+		{
+			date: "12-01-2023",
+			name: "Ice cream sandwich",
+			number: 237,
+			amount: 9.0,
+		},
+		{
+			date: "12-01-2023",
+			name: "Eclair",
+			number: 262,
+			amount: 19.0,
+		},
+		{
+			date: "12-01-2023",
+			name: "Cupcake",
+			number: 305,
+			amount: 3.7,
+		},
+		{
+			date: "12-01-2023",
+			name: "Gingerbread",
+			number: 345,
+			amount: 16.7,
+		},
+	]);
+
 	const [selectedStatement, setSelectedStatement] = useState(statements[0]);
 
+	const dateRanges: Date[] = [];
+	const dateRangeWithValue = [];
+	for (const timeStamp in timeStampsAndValue) {
+		const parsedDate = parseInt(timeStamp) * 1000;
+		const value = timeStampsAndValue[parseInt(timeStamp)];
+		dateRanges.push(new Date(parsedDate));
+		dateRangeWithValue.push({ date: parsedDate, value });
+	}
+
+	// Sort by date
+	dateRanges.sort((a: Date, b: Date) => a.getTime() - b.getTime());
+	dateRangeWithValue.sort((a, b) => a.date - b.date);
+
 	const [date, setDate] = useState<DateRange | undefined>({
-		from: new Date(),
-		to: addDays(new Date(), 5),
+		from: dateRanges[0] ?? new Date(),
+		to: addDays(dateRanges[0], 5),
 	});
 
-	//
+	// show sidebar on larger screens initial
 	useEffect(() => {
 		if (window.innerWidth > 768) {
 			setHideSidebar(false);
@@ -110,7 +156,7 @@ const DashboardClientPage = () => {
 	}, [setHideSidebar]);
 
 	return (
-		<div className="text-white sm:px-3 my-max z-10 ">
+		<div className="text-white sm:px-3 my-max2 z-10 overflow-clip ">
 			<div
 				className={`flex flex-col lg:flex-nowrap justify-between flex-wrap ${
 					hideSidebar ? "sm:flex-row" : "sm:flex-col"
@@ -174,11 +220,16 @@ const DashboardClientPage = () => {
 						Top 5 Income Streams
 					</h3>
 					<div className="overflow-x-auto w-full">
-						<IncomeTable />
+						<IncomeTable incomeData={incomeStreams} />
 					</div>
 				</div>
 			</div>
-			<LineChart />
+			<LineChart
+				date={date}
+				setDate={setDate}
+				parsedTimeStamps={dateRanges}
+				dateRangeWithValue={dateRangeWithValue}
+			/>
 		</div>
 	);
 };
