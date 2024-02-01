@@ -1,6 +1,7 @@
+import { IncomeStreams } from "@/interface/interface";
 import Table from "@mui/joy/Table";
 
-const IncomeTable = () => {
+const IncomeTable = ({ incomeData }: { incomeData: IncomeStreams[] }) => {
 	function createData(
 		date: string,
 		name: string,
@@ -10,18 +11,15 @@ const IncomeTable = () => {
 		return { date, name, number, amount };
 	}
 
-	const rows = [
-		createData("12-01-2023", "Frozen yoghurt", 6, 24),
-		createData("12-01-2023", "Ice cream sandwich", 237, 9.0),
-		createData("12-01-2023", "Eclair", 262, 16.0),
-		createData("12-01-2023", "Cupcake", 305, 3.7),
-		createData("12-01-2023", "Gingerbread", 356, 16.0),
-	];
+	const rows = incomeData.map((incomeStreams: IncomeStreams) => {
+		const { date, name, number, amount } = incomeStreams;
+		return createData(date, name, number, amount);
+	});
+
 	return (
 		<Table
 			sx={{
 				"& thead th:nth-of-type(1)": {
-					// width: "40%",
 					borderTopLeftRadius: "7px",
 					borderBottomLeftRadius: "7px",
 				},
