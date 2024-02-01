@@ -19,6 +19,7 @@ import createAccountImage from "../public/create-account.svg";
 import chatWithAiImage from "../public/chat-with-ai.svg";
 import { MdArrowForward, MdPlayCircle } from "react-icons/md";
 import { MdStar } from "react-icons/md";
+import TypeWriteInview from "@/components/TypeWriteInview";
 
 export const metadata: Metadata = {
 	title: "Welcome to SATSAT AI - Chat with your financial documents",
@@ -36,11 +37,13 @@ export default function Home() {
 						<h2 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
 							WHAT IS SATSAT AI?
 						</h2>
-						<p className="text-mid--yellow max-w-lg mx-auto text-text-normal md:text-text-normal">
-							SATSAT AI is your all-in-one intelligence platform. It combines
+						<div className="text-mid--yellow max-w-lg mx-auto text-text-normal md:text-text-normal">
+							<TypeWriteInview
+								text="SATSAT AI is your all-in-one intelligence platform. It combines
 							cutting edge AI technology to query your financial data with
-							natural language.
-						</p>
+							natural language."
+							/>
+						</div>
 						<div className=" relative mt-10 z-0 md:mt-20 grid gap-5 mx-auto grid-cols-1 sm:grid-cols-2 max-w-4xl">
 							<div className="yellow-blob -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
 
@@ -111,17 +114,16 @@ export default function Home() {
 						<h3 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
 							WHY SATSAT AI?
 						</h3>
-						<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-							SATSAT AI is an financial intelligence platform; it is a paradigm
+						<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
+							<TypeWriteInview
+								text="SATSAT AI is an financial intelligence platform; a paradigm
 							shift in how you harness the wisdom hidden within your financial
 							documents. We are here to empower your organization, save you time
-							and resources.
-						</p>
+							and resources. Here is what sets SATSAT AI apart:"
+							/>
+						</div>
 
 						<div className=" relative  mt-10 md:mt-20 mx-auto max-w-4xl">
-							<h3 className=" text-center font-normal text-text-normal  max-w-4xl mr-auto md:text-left text-mid--yellow">
-								Here is what sets SATSAT AI apart:
-							</h3>
 							<div className=" grid gap-5 grid-cols-1 z-0 relative sm:grid-cols-2">
 								<div className="green-blob -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[25%] right-[-30%]"></div>
 								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center text-center justify-center">
@@ -199,10 +201,12 @@ export default function Home() {
 						<h4 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
 							CHAT WITH SATSAT AI
 						</h4>
-						<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-							Querying your financial data has never been easy, with SAT SAT AI
-							you need not worry about anything
-						</p>
+						<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
+							<TypeWriteInview
+								text="Querying your financial data has never been easy, with SAT SAT AI
+							you need not worry about anything"
+							/>
+						</div>
 
 						<div className="mt-20 md:max-w-5xl mx-auto grid gap-10 grid-cols-1 lg:grid-cols-2">
 							<div className="text-left relative">
@@ -268,11 +272,13 @@ export default function Home() {
 						<h4 className="text-brand-green text-text-40 md:text-text-60 max-w-5xl mx-auto lg:text-text-80">
 							FINANCIAL SERVICE PROVIDERS
 						</h4>
-						<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-							SATSAT AI scans documents such as invoices, mobile money
+						<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
+							<TypeWriteInview
+								text="SATSAT AI scans documents such as invoices, mobile money
 							statements, bank statements, receipts etc. These are some of the
-							service providers and banks we provide our services to.
-						</p>
+							service providers and banks we provide our services to."
+							/>
+						</div>
 
 						<Marquee autoFill speed={100} gradient gradientColor="#050d0a">
 							<div className="flex items-center w-full gap-5 justify-between mt-20 h-full">
@@ -334,12 +340,14 @@ export default function Home() {
 							<h4 className="text-brand-green text-text-40 md:text-text-50 lg:text-text-80 max-w-5xl mx-auto">
 								ANALYZING YOUR DATA WITH SATSAT AI
 							</h4>
-							<p className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-								SATSAT AI is a revolution in how we harness knowledge buried
+							<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
+								<TypeWriteInview
+									text="SATSAT AI is a revolution in how we harness knowledge buried
 								within our documents. Whether you are in healthcare, legal,
 								finance, or any other industry, SATSAT AI empowers you to
-								transform your data into a dynamic source of insights.
-							</p>
+								transform your data into a dynamic source of insights."
+								/>
+							</div>
 
 							<div className="py-20">
 								<div className="text-left relative max-w-2xl mx-auto">
