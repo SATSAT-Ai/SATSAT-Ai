@@ -14,6 +14,9 @@ import { usePathname } from "next/navigation";
 import { RiMenu4Fill } from "react-icons/ri";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
+import InsightsIcon from "@mui/icons-material/Insights";
+import TryIcon from "@mui/icons-material/Try";
+import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
 
 const DashboardHeader = () => {
 	const pathname = usePathname();
@@ -115,7 +118,7 @@ const DashboardHeader = () => {
 				/>
 			</Link>
 
-			<ul className="flex gap-2 sm:gap-5 items-center justify-end">
+			<ul className="flex gap-4 sm:gap-6 items-center justify-end">
 				<li ref={notificationRef} className="relative" tabIndex={0}>
 					<NotificationsIcon
 						fontSize="medium"
@@ -189,7 +192,21 @@ const DashboardHeader = () => {
 				</li>
 
 				<li className="flex items-center gap-3">
-					<div className="flex items-center gap-3">
+					<div className="flex items-center gap-2">
+						<Link href={"/profile"}>
+							{session.data?.user.user?.image ? (
+								<Image
+									src={session.data.user.user.image}
+									height={50}
+									width={50}
+									alt={session.data.user.user?.name!}
+									className="border border-[wheat] rounded-full"
+								/>
+							) : (
+								<AccountCircleOutlinedIcon fontSize="large" color="inherit" />
+							)}
+						</Link>
+
 						<div className="sm:flex flex-col hidden">
 							<p className="text-text-12 text-grey-lightest">Welcome!</p>
 							<span className="text-[14px]">
@@ -209,13 +226,33 @@ const DashboardHeader = () => {
 					</button>
 
 					{showMoreOptions && (
-						<div className="bg-grey-light no-select border z-40 border-white/10 absolute top-12 right-0 p-3 rounded-xl">
+						<div className="bg-[#071f07] no-select border z-40 border-grey-light absolute top-12 right-0 p-3 rounded-xl">
 							<div className="flex items-center w-full justify-between gap-5">
 								<ul className="flex flex-col">
 									<li className=" text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
 										<Link href={"/profilt"} className="flex items-center gap-2">
-											<PersonPinIcon fontSize="medium" color="inherit" />{" "}
+											<PersonPinIcon fontSize="medium" color="inherit" />
 											Profile
+										</Link>
+									</li>
+									<li className=" md:hidden text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
+										<Link href={"/profile"} className="flex items-center gap-2">
+											<InsightsIcon
+												fontSize="medium"
+												color="inherit"
+												className="cursor-pointer active:scale-[1.02]"
+											/>
+											Insights
+										</Link>
+									</li>
+									<li className="md:hidden text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
+										<Link href={"/profilt"} className="flex items-center gap-2">
+											<TryIcon
+												fontSize="medium"
+												color="inherit"
+												className="cursor-pointer active:scale-[1.02]"
+											/>
+											Chat AI
 										</Link>
 									</li>
 
@@ -223,7 +260,7 @@ const DashboardHeader = () => {
 									<li
 										className={`cursor-pointer ${
 											loading ? "bg-mid--yellow" : "active:scale-[1.02]"
-										} text-white hover:text-white transition-opacity bg-brand-green rounded-md py-2 text-center px-4`}
+										} text-white hover:text-white hover:bg-mid--yellow duration-150 transition-colors bg-brand-green rounded-md py-2 text-center px-4`}
 									>
 										<button
 											type="button"
