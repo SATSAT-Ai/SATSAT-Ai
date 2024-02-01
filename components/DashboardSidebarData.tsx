@@ -1,6 +1,4 @@
 import Link from "next/link";
-import DashboardIcon from "@mui/icons-material/Dashboard";
-import ChatIcon from "@mui/icons-material/Chat";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
@@ -14,11 +12,13 @@ import LogoSmall from "@/public/satsat-icon.svg";
 import { IDashboardSidebarData } from "@/interface/interface";
 import PageWithSubPath from "./PageWithSubPath";
 import UploadFileIcon from "@mui/icons-material/UploadFile";
-import PaidIcon from "@mui/icons-material/Paid";
 import CategoryIcon from "@mui/icons-material/Category";
 import PriceCheckIcon from "@mui/icons-material/PriceCheck";
 import { Tooltip } from "react-tooltip";
-
+import SyncAltIcon from "@mui/icons-material/SyncAlt";
+import TryIcon from "@mui/icons-material/Try";
+import InsightsIcon from "@mui/icons-material/Insights";
+import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 interface IDashboardSideber {
 	pathname: string;
 	setHideSidebar: Dispatch<SetStateAction<boolean>>;
@@ -32,13 +32,18 @@ const DashboardSidebarWithData = ({
 }: IDashboardSideber) => {
 	const dashboardSidebarData: IDashboardSidebarData[] = [
 		{
-			icon: <DashboardIcon fontSize="medium" />,
+			icon: <DashboardCustomizeIcon fontSize="medium" />,
 			name: "Dashboard",
 			path: "/dashboard",
 		},
 		{
+			icon: <InsightsIcon fontSize="medium" />,
+			name: "Insights",
+			path: "/dashboard/insights",
+		},
+		{
 			path: "/dashboard/transactions",
-			icon: <PaidIcon fontSize="medium" />,
+			icon: <SyncAltIcon fontSize="medium" />,
 			name: "Transactions",
 			subPaths: [
 				{
@@ -59,7 +64,7 @@ const DashboardSidebarWithData = ({
 			name: "Upload",
 		},
 		{
-			icon: <ChatIcon fontSize="medium" />,
+			icon: <TryIcon fontSize="medium" />,
 			name: "Chat",
 			path: "/dashboard/chat",
 		},
@@ -126,7 +131,7 @@ const DashboardSidebarWithData = ({
 			<div
 				className={`h-screen flex w-full sticky top-0 items-center md:items-start flex-col gap-3 `}
 			>
-				<div className="w-full h-full overflow-y-auto custom-scroll2">
+				<div className="w-full h-full">
 					<div
 						id="close-sidebar"
 						tabIndex={0}
@@ -144,7 +149,7 @@ const DashboardSidebarWithData = ({
 						/>
 					</div>
 					<div
-						className={`w-full pb-3 hidden md:block font-medium ${
+						className={`w-full pb-5 hidden md:block font-medium ${
 							hideSidebar && pathname.includes("/chat")
 								? "flex !w-fit pl-6"
 								: hideSidebar
@@ -184,7 +189,11 @@ const DashboardSidebarWithData = ({
 						</div>
 					)}
 					<div className="flex flex-col gap-5 h-[88%] justify-between">
-						<ul className="flex md:w-full w-fit mx-auto flex-col gap-3">
+						<ul
+							className={`flex md:w-full w-fit mx-auto flex-col gap-3 overflow-y-auto ${
+								hideSidebar ? "h-[80%]" : "h-[70%]"
+							} custom-scroll3`}
+						>
 							{dashboardSidebarData.map((routes: IDashboardSidebarData) => {
 								if (routes.subPaths) {
 									return (
