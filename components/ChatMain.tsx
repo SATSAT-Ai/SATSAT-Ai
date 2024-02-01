@@ -4,7 +4,7 @@ import { useRef, useState, KeyboardEvent, useContext, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { ChatContext } from "@/context/ChatContext";
 import ToggleSidebars from "./ToggleSidebars";
-import ChatIntro from "./ChatIntro";
+import ChatPage from "./ChatPage";
 import ChatSuggestionIntro from "./ChatSuggestionIntro";
 
 type MessageFrom = "User" | "Ai";
@@ -123,7 +123,11 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 						from: "Ai",
 						id: "lore34m",
 						firstText: "Here is a demo response from satsat Ai.",
-						list: [],
+						list: [
+							{ id: "lorem", msg: "January:GHS 1500" },
+							{ id: "loreem", msg: "Febuary:GHS 1800" },
+							{ id: "3loreem", msg: "March:GHS 1400" },
+						],
 						endingText: `Is there anything else you'd like to inquire about? Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?`,
 					},
 				]);
@@ -168,9 +172,6 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 		};
 	}, [conversations]);
 
-	// const onTypingChange = () => {
-	// 	handleScrollToBottom();
-	// };
 	return (
 		<>
 			<main
@@ -180,7 +181,7 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 			>
 				<ToggleSidebars />
 				{conversations.length >= 1 ? (
-					<ChatIntro
+					<ChatPage
 						chatContainerRef={chatContainerRef}
 						scrollToTop={scrollToTop}
 						handleScrollToBottom={handleScrollToBottom}
@@ -190,12 +191,9 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 						handleSubmit={handleSubmit}
 						onSubmit={onSubmit}
 						loading={loading}
-						setShowHelpOptions={setShowHelpOptions}
 						handleTextAreaResize={handleTextAreaResize}
 						handleKeyDown={handleKeyDown}
-						helpOptionsRef={helpOptionsRef}
 						register={register}
-						showHelpOptions={showHelpOptions}
 					/>
 				) : (
 					<ChatSuggestionIntro
