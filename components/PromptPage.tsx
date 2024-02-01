@@ -229,7 +229,7 @@ const PromptPage = () => {
 			<div className="flex flex-col gap-5 flex-1 w-full items-center">
 				<div
 					ref={chatContainerRef}
-					className=" text-white p-5 w-full custom-scroll2 relative overflow-y-auto overflow-x-clip lg:overscroll-y-none h-[450px] md:h-full"
+					className=" text-white px-5 w-full custom-scroll2 relative overflow-y-auto overflow-x-clip lg:overscroll-y-none h-[450px] md:h-full"
 				>
 					<div
 						className={`bottom-0 ${
