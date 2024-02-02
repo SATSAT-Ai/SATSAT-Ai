@@ -565,3 +565,7 @@ error [data-filepond-item-state*="error"] .filepond--item-panel,
 		padding: 16px 20px !important;
 	}
 }
+
+.MuiPaper-elevation {
+	max-height: 400px !important;
+}
