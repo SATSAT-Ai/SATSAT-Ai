@@ -112,7 +112,7 @@ const CategoryClientPage = () => {
 	]);
 
 	return (
-		<main className="p-5 min-h-screen">
+		<main className="p-5 ">
 			<div className="pt-5 mb-10">
 				<div className="flex items-center justify-between gap-5 flex-wrap sm:flex-nowrap ">
 					<h1 className="text-white text-[35px] w-fit md:text-[45px] m-0 text-center lg:text-left ">
@@ -157,9 +157,9 @@ const CategoryClientPage = () => {
 								onClick={() => setSelectedDropDownCategory(category)}
 								className={`${
 									selectedDropDownCategory === category
-										? "bg-[#25966bf6]"
-										: "bg-white/10"
-								} hover:bg-[#25966bf6]  py-2 px-3 rounded-lg `}
+										? "bg-brand-green-darker border border-[wheat] text-[wheat]"
+										: " hover:bg-[#25966bf6] bg-white/10"
+								}  py-2 px-3 rounded-lg `}
 								key={index}
 							>
 								{category}
