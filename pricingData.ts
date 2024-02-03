@@ -10,7 +10,7 @@ export const pricingData = [
 		id: "pro",
 		category: "pro",
 		privileges: [
-			"Scan up to 20 pages",
+			"Scan 20 pages monthly",
 			"Insights",
 			"Access to API",
 			"$1 per 3 pages for extra",
@@ -22,7 +22,7 @@ export const pricingData = [
 		id: "plus",
 		category: "plus",
 		privileges: [
-			"Scan up to 50 pages",
+			"Scan 50 pages monthly",
 			"Insights",
 			"Access to API",
 			"Access to chatbot",
