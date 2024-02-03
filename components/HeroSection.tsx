@@ -5,6 +5,7 @@ import TypeWrite from "@/components/TypeWrite";
 import PromptPage from "@/components/PromptPage";
 import CustomGlowButton from "./ui/CustomGlowButton";
 import { useRef } from "react";
+import SparklesCore from "@/components/ui/Particles";
 
 const HeroSection = () => {
 	const sectionRef = useRef<null | HTMLDivElement>(null);
@@ -12,8 +13,21 @@ const HeroSection = () => {
 	return (
 		<>
 			<div className=" w-full text-center flex flex-col relative z-0 ">
-				<div className="green-blob2 w-[550px] h-[400px] animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
-				<div className=" min-h-screen py-20 relative my-max flex flex-col items-center justify-between h-full w-full">
+				<div className="green-blob2 z-10 w-[550px] h-[400px] animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
+				<div className="absolute source-out z-10 inset-0 w-full h-full bg-black [mask-image:radial-gradient(550px_400px_at_top,transparent_90%,white)]"></div>
+				<div className="absolute source-out h-full bottom-0 z-[1] left-0 w-full">
+					<SparklesCore
+						id="tsparticlesfullpage"
+						background="transparent"
+						minSize={0.8}
+						maxSize={1.8}
+						particleDensity={20}
+						className="w-full h-full"
+						particleColor="#29a173"
+					/>
+				</div>
+
+				<div className="z-10 min-h-screen py-20 relative my-max flex flex-col items-center justify-between h-full w-full">
 					<section>
 						<h1 className="text-brand-green mb-5 font-bold max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
 							SATSAT AI
@@ -29,11 +43,12 @@ const HeroSection = () => {
 								]}
 								showCaret={true}
 								loop={true}
-								timeToStartNewText={4000}
+								timeToStartNewText={3500}
 								typingSpeed={55}
 								showCaretOnComplete={true}
 							/>
 						</div>
+
 						<div className="w-fit mt-3 mx-auto">
 							<CustomGlowButton
 								href="/choose-your-pricing"
