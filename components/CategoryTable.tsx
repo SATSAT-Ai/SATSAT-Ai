@@ -71,7 +71,7 @@ const CategoryTable = ({ categoryData }: { categoryData: ICategory[] }) => {
 							<td>{row.amount}</td>
 							<td className="active:scale-[1.02]">
 								<Link
-									className="py-2 text-text-12 px-3 transition-colors duration-200  rounded-lg color-white bg-darker hover:bg-white hover:text-darker shadow"
+									className="py-2 text-text-12 px-3 transition-colors duration-75 rounded-lg color-white bg-darker hover:bg-white hover:text-darker shadow"
 									href={`/dashboard/transactions/categories/${row.id}`}
 								>
 									Details
