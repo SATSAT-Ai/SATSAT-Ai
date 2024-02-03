@@ -358,6 +358,11 @@
 	}
 }
 
+.source-out {
+	mask-composite: subtract;
+	mask-image: radial-gradient(circle at top, transparent 400px, white);
+}
+
 .not-reconcilable-row {
 	background-color: crimson !important;
 }
