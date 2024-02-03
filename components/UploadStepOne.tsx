@@ -4,6 +4,7 @@ import { Dispatch, SetStateAction } from "react";
 import receiptImage from "@/public/receipt.png";
 import invoiceImage from "@/public/invoice.png";
 import mobileMoneyImage from "@/public/mobile-money.png";
+import CustomGlowButton from "./ui/CustomGlowButton";
 
 const UploadStepOne = ({
 	selectedStatement,
@@ -23,23 +24,23 @@ const UploadStepOne = ({
 
 	const documents = [
 		{
-			name: "bank-statement",
+			name: "Bank statement",
 			value: "Bank Statement",
 			image: bankStatementimage,
 		},
 		{
-			name: "mobile-money-statement",
+			name: "Mobile Money Statement",
 			value: "Mobile Money",
 			image: mobileMoneyImage,
 		},
 
 		{
-			name: "invoice",
+			name: "Invoice",
 			value: "Invoice",
 			image: invoiceImage,
 		},
 		{
-			name: "receipt",
+			name: "Receipt",
 			value: "Receipt",
 			image: receiptImage,
 		},
@@ -54,10 +55,10 @@ const UploadStepOne = ({
 							<li
 								key={document.name}
 								onClick={() => setSelectedStatement(document.name)}
-								className={`border border-white p-5 ${
+								className={` p-5 ${
 									selectedStatement == document.name
-										? "bg-brand-green-darker hover:bg-brand-green-darker"
-										: "bg-transparent hover:bg-brand-green-darker/30"
+										? "bg-brand-green-darker border-[wheat] border hover:bg-brand-green-darker"
+										: "bg-transparent border border-white hover:border-[wheat] hover:bg-brand-green-darker/30"
 								}  cursor-pointer rounded-lg flex w-44 h-44 p-2 items-center justify-center flex-col max-w-[200px] gap-3`}
 							>
 								<Image
@@ -76,16 +77,12 @@ const UploadStepOne = ({
 					})}
 				</ul>
 				<div className="flex items-center mt-5 gap-5 md:justify-end justify-center">
-					<button
-						onClick={handleMoveForward}
+					<CustomGlowButton
+						buttonType="button"
 						disabled={!selectedStatement}
-						className={`${"bg-white"} flex items-center gap-3 rounded-lg disabled:active:scale-100 disabled:bg-grey-lightest disabled:hover:text-darker disabled:hover:bg-grey-lightest active:scale-[1.02] hover:bg-darker hover:text-white py-2 px-5 text-darker font-medium`}
-						type="button"
-					>
-						{/* <CircularProgress size="sm" variant="solid" /> */}
-						{/* Loading... */}
-						Continue
-					</button>
+						name="Continue"
+						handleClick={handleMoveForward}
+					/>
 				</div>
 			</div>
 		</div>
