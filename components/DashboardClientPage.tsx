@@ -93,7 +93,7 @@ const DashboardClientPage = () => {
 		},
 	];
 
-	const statements = ["Mobile Money Statement", "Bank Statement"];
+	const statements = ["Mobile Money", "Bank Statement"];
 
 	const [incomeStreams, setIncomeStreams] = useState<IncomeStreams[]>([
 		{
