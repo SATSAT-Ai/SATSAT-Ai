@@ -569,3 +569,7 @@ error [data-filepond-item-state*="error"] .filepond--item-panel,
 .MuiPaper-elevation {
 	max-height: 400px !important;
 }
+
+.MuiDataGrid-panel {
+	position: fixed !important;
+}
