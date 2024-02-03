@@ -20,7 +20,7 @@ const TypeWriteInview = ({ text }: { text: string }) => {
 					text={text}
 					showCaret={true}
 					loop={false}
-					typingSpeed={45}
+					typingSpeed={35}
 					showCaretOnComplete={false}
 					timeToStartNewText={0}
 				/>
