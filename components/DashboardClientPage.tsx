@@ -145,7 +145,7 @@ const DashboardClientPage = () => {
 
 	const [date, setDate] = useState<DateRange | undefined>({
 		from: dateRanges[0] ?? new Date(),
-		to: addDays(dateRanges[0], 5),
+		to: addDays(dateRanges[0], 6),
 	});
 
 	// show sidebar on larger screens initial
