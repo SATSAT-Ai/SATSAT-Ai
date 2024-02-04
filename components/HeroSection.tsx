@@ -21,7 +21,7 @@ const HeroSection = () => {
 						background="transparent"
 						minSize={0.8}
 						maxSize={1.8}
-						particleDensity={20}
+						particleDensity={25}
 						className="w-full h-full"
 						particleColor="#29a173"
 					/>
