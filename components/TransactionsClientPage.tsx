@@ -6,7 +6,7 @@ import { addDays } from "date-fns";
 import StatementSelector from "./StatementSelector";
 
 const TransactionsClientPage = () => {
-	const statements = ["Mobile Money Statement", "Bank Statement"];
+	const statements = ["Mobile Money", "Bank Statement"];
 	const [selectedStatement, setSelectedStatement] = useState(statements[0]);
 	const [date, setDate] = useState<DateRange | undefined>({
 		from: new Date(),
@@ -14,8 +14,8 @@ const TransactionsClientPage = () => {
 	});
 
 	return (
-		<div className=" text-white sm:my-5 sm:my-max">
-			<div className="flex mt-4 justify-center lg:justify-between flex-wrap flex-col-reverse md:flex-row items-center gap-5 w-full">
+		<div className=" text-white mt-5 sm:my-max">
+			<div className="flex justify-center lg:justify-between flex-wrap flex-col-reverse md:flex-row items-center gap-5 w-full">
 				<h1 className="text-center m-0 font-semibold text-[27px] md:text-text-40">
 					Transaction History
 				</h1>
@@ -29,11 +29,21 @@ const TransactionsClientPage = () => {
 					/>
 				</div>
 			</div>
-			<div className="mt-5 relative z-0 my-max  ">
+			<div className="relative z-0 my-max h-screen lg:h-full">
+				<div className="flex gap-7 my-3 justify-center lg:justify-start items-center font-medium">
+					<div className="flex items-center gap-3">
+						<div className="bg-brand-green-darker h-3 w-7 rounded-sm "></div>
+						Concileable
+					</div>
+					<div className="flex items-center gap-3">
+						<div className="bg-crimson h-3 w-7 rounded-sm "></div>
+						Irreconcilable
+					</div>
+				</div>
 				<div className="w-full min-h-[450px] overflow-x-auto">
 					<TransTable />
 				</div>
-				<p className="text-center text-text-12 my-5">Scroll left or right</p>
+				<p className="text-center text-text-12">Scroll left or right</p>
 			</div>
 		</div>
 	);
