@@ -1,10 +1,9 @@
 import { featuresData } from "@/utils/featuresData";
 import React from "react";
-import Link from "next/link";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-
+import Feature from "@/components/Feature";
 export const metadata: Metadata = {
 	title: "SATSAT-Ai Features",
 };
@@ -25,24 +24,13 @@ const Features = () => {
 					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-20 gap-5">
 						{featuresData.map((data) => {
 							return (
-								<div
+								<Feature
+									title={data.title}
+									link={data.link}
+									para={data.para}
+									icon={data.icon}
 									key={data.title}
-									className="text-white p-4 bg-[#071f07] rounded-2xl"
-								>
-									{data.icon}
-									<h2 className="text-text-20 font-medium mt-2">
-										{data.title}
-									</h2>
-									<p className="mb-3 mt-1 text-white/80 font-normal text-text-normal">
-										{data.para}
-									</p>
-									<Link
-										className="text-mid--yellow visited:text-brand-green"
-										href={data.link}
-									>
-										Learn More
-									</Link>
-								</div>
+								/>
 							);
 						})}
 					</div>
