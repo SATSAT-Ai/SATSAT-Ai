@@ -1,22 +1,19 @@
 "use client";
 
 import NotificationsIcon from "@mui/icons-material/Notifications";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useContext, useEffect, useRef } from "react";
 import satsatLogo from "../public/satsat-logo.svg";
 import { AppContext } from "@/context/AppContext";
-import NotificationLogic from "./NotificationLogic";
 import { Inotification } from "@/interface/interface";
 import { usePathname } from "next/navigation";
 import { RiMenu4Fill } from "react-icons/ri";
 import { signOut } from "next-auth/react";
 import { useSession } from "next-auth/react";
-import InsightsIcon from "@mui/icons-material/Insights";
-import TryIcon from "@mui/icons-material/Try";
 import AccountCircleOutlinedIcon from "@mui/icons-material/AccountCircleOutlined";
+import DashboardNotification from "./DashboardNotification";
+import DashboardOptions from "./DashboardOptions";
 
 const DashboardHeader = () => {
 	const pathname = usePathname();
@@ -137,57 +134,15 @@ const DashboardHeader = () => {
 					)}
 					{/* notification */}
 					{showNotification && (
-						<div className="bg-grey-light no-select border z-40 border-white/10 w-[300px] sm:w-[350px] absolute top-12 p-3 rounded-xl right-full md:right-1/2 md:translate-x-1/3 translate-x-[27%] sm:translate-x-0 sm:-right-2">
-							<div className="flex items-center w-full justify-between gap-5">
-								<div className="flex items-center gap-3">
-									<h5>Notifications</h5>
-									{notificationCount(unreadNotification) >= 1 && (
-										<div className=" text-white text-[10px] flex items-center justify-center rounded-full bg-brand-green-darker border -top-2 h-4 text-center w-4">
-											{notificationCount(unreadNotification)}
-										</div>
-									)}
-								</div>
-
-								{readTarget === 0 && notificationCount() >= 1 && (
-									<span
-										onClick={handleMarkAsRead}
-										className="cursor-pointer active:scale-[1.01] text-text-12 text-mid--yellow"
-									>
-										Mark all as read
-									</span>
-								)}
-							</div>
-							<div className=" pb-3 border-b border-white/10 mt-3">
-								<ul className="flex items-center gap-5 text-text-12">
-									<li
-										onClick={() => setReadTarget(0)}
-										className={`${
-											readTarget == 0
-												? "text-brand-green relative "
-												: notificationCount(unreadNotification) >= 1 &&
-												  "before:absolute before:w-1 before:h-1 before:bg-brand-green before:rounded-full before:top-5 before:translate-x-[-50%] before:left-[50%]"
-										} cursor-pointer active:scale-[1.01] relative`}
-									>
-										Unread
-									</li>
-									<li
-										onClick={() => setReadTarget(1)}
-										className={`${
-											readTarget == 1 && "text-brand-green relative "
-										} cursor-pointer active:scale-[1.01]`}
-									>
-										Read
-									</li>
-								</ul>
-							</div>
-							<div className="h-[150px] overflow-y-auto custom-scroll">
-								<NotificationLogic
-									readTarget={readTarget}
-									fakeNotification={fakeNotification}
-									setFakeNotification={setFakeNotification}
-								/>
-							</div>
-						</div>
+						<DashboardNotification
+							fakeNotification={fakeNotification}
+							handleMarkAsRead={handleMarkAsRead}
+							notificationCount={notificationCount}
+							readTarget={readTarget}
+							setFakeNotification={setFakeNotification}
+							setReadTarget={setReadTarget}
+							unreadNotification={unreadNotification}
+						/>
 					)}
 				</li>
 
@@ -215,67 +170,13 @@ const DashboardHeader = () => {
 						</div>
 					</div>
 				</li>
-				<li ref={optionsRef} className="relative">
-					<button
-						onClick={() => setShowMoreOptions((prev) => !prev)}
-						type="button"
-						aria-label="options"
-						className="bg-grey-light hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:scale-[1.02]"
-					>
-						<ExpandMoreIcon fontSize="medium" color="primary" />
-					</button>
-
-					{showMoreOptions && (
-						<div className="bg-[#071f07] no-select border z-40 border-grey-light absolute top-12 right-0 p-3 rounded-xl">
-							<div className="flex items-center w-full justify-between gap-5">
-								<ul className="flex flex-col">
-									<li className=" text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
-										<Link href={"/profilt"} className="flex items-center gap-2">
-											<PersonPinIcon fontSize="medium" color="inherit" />
-											Profile
-										</Link>
-									</li>
-									<li className=" md:hidden text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
-										<Link href={"/profile"} className="flex items-center gap-2">
-											<InsightsIcon
-												fontSize="medium"
-												color="inherit"
-												className="cursor-pointer active:scale-[1.02]"
-											/>
-											Insights
-										</Link>
-									</li>
-									<li className="md:hidden text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
-										<Link href={"/profilt"} className="flex items-center gap-2">
-											<TryIcon
-												fontSize="medium"
-												color="inherit"
-												className="cursor-pointer active:scale-[1.02]"
-											/>
-											Chat AI
-										</Link>
-									</li>
-
-									<div className=" my-2 w-full h-[1px] bg-white/10"></div>
-									<li
-										className={`cursor-pointer ${
-											loading ? "bg-mid--yellow" : "active:scale-[1.02]"
-										} text-white hover:text-white hover:bg-mid--yellow duration-150 transition-colors bg-brand-green rounded-md py-2 text-center px-4`}
-									>
-										<button
-											type="button"
-											className="text-[14px] flex w-full text-center justify-center items-center gap-4"
-											onClick={handleLogout}
-										>
-											{loading ? "Signing out" : "Sign Out"}
-											{loading && <div className="loader"></div>}
-										</button>
-									</li>
-								</ul>
-							</div>
-						</div>
-					)}
-				</li>
+				<DashboardOptions
+					handleLogout={handleLogout}
+					loading={loading}
+					optionsRef={optionsRef}
+					setShowMoreOptions={setShowMoreOptions}
+					showMoreOptions={showMoreOptions}
+				/>
 			</ul>
 		</header>
 	);
