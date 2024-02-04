@@ -21,7 +21,7 @@ const CategoryClientPage = () => {
 		"Clothing",
 		"Entertainment",
 	];
-	const statements = ["Mobile Money Statement", "Bank Statement"];
+	const statements = ["Mobile Money", "Bank Statement"];
 	const [selectedDropDownStatement, setSelectedDropDownStatement] = useState(
 		statements[0]
 	);
