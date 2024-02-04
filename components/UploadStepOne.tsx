@@ -29,7 +29,7 @@ const UploadStepOne = ({
 			image: bankStatementimage,
 		},
 		{
-			name: "Mobile Money Statement",
+			name: "Mobile Money",
 			value: "Mobile Money",
 			image: mobileMoneyImage,
 		},
