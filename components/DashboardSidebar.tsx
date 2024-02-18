@@ -35,7 +35,7 @@ const DashboardSidebar = () => {
 			<DashboardSidebarWithData
 				hideSidebar={hideSidebar}
 				setHideSidebar={setHideSidebar}
-				pathname={pathname}
+				pathname={pathname!}
 			/>
 		</aside>
 	);
