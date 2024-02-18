@@ -246,7 +246,7 @@ const ChatSidebar = () => {
 						return (
 							<SingleChat
 								key={chat.id}
-								pathname={pathname}
+								pathname={pathname!}
 								chat={chat}
 								setIsOldConversation={setIsOldConversation}
 							/>
