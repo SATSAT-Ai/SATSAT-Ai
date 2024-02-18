@@ -93,7 +93,7 @@ const DashboardHeader = () => {
 		<header
 			className={`sticky z-40 backdrop-blur-lg md:h-20 h-16 top-0 bg-white/10 text-white px-3 md:px-5 flex items-center ${
 				hideSidebar ? "justify-between" : "justify-end"
-			} gap-5 ${pathname.includes("/dashboard/chat") && "hidden"}`}
+			} gap-5 ${pathname?.includes("/dashboard/chat") && "hidden"}`}
 		>
 			{hideSidebar && (
 				<div
