@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 const Page = () => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
-	const email = searchParams.get("email");
+	const email = searchParams?.get("email");
 
 	if (!email) {
 		router.refresh();
