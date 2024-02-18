@@ -96,7 +96,7 @@ const TransactionDetails = ({ transData }: { transData: Data[] }) => {
 									.slice(0, showMore)
 									.map(([keys, values]) => {
 										if (keys === "reconcilable") {
-											values = value.reconcilable.toString();
+											values = value?.reconcilable?.toString();
 										}
 										if (keys === "Amount") {
 											return;
