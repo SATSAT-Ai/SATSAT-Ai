@@ -7,16 +7,18 @@ import { signIn } from "next-auth/react";
 import { useState } from "react";
 import toast from "react-hot-toast";
 import { useRouter, useSearchParams } from "next/navigation";
+import Checkbox from "@mui/joy/Checkbox";
 
 type FormValues = {
 	email: string;
 	rememberMe: boolean;
+	phone: number;
 };
 
 const SigninForm = () => {
-	const searchParams = useSearchParams();
+	// const searchParams = useSearchParams();
 	const router = useRouter();
-	const params = new URLSearchParams(searchParams);
+	// const params = new URLSearchParams(searchParams);
 
 	const {
 		handleSubmit,
@@ -48,11 +50,10 @@ const SigninForm = () => {
 			// 	router.replace(`/signin/verify?${params}`);
 			// }
 
-			if (response?.ok && !loading) {
+			if (response?.ok) {
 				toast.dismiss();
 				toast.success("Logged in successfully!");
 				// params.set("email", data.email);
-				router.refresh();
 				router.push("/dashboard");
 
 				// router.replace(`/signin/verify?${params}`);
@@ -104,6 +105,31 @@ const SigninForm = () => {
 				{errors.email && (
 					<p className="text-crimson pt-1 text-text-12">
 						{errors.email.message}
+					</p>
+				)}
+			</div>
+			<div className="w-full flex flex-col">
+				<label className="mb-2 text-text-normal text-mid--yellow" htmlFor="">
+					Phone
+				</label>
+				<input
+					disabled={loading}
+					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
+						errors.phone
+							? "border-crimson"
+							: isValid
+							? "border-brand-green"
+							: "border-white"
+					} bg-transparent p-2 rounded-lg`}
+					type="tel"
+					placeholder="+233"
+					{...register("phone", {
+						required: { value: true, message: "Phone is required" },
+					})}
+				/>
+				{errors.phone && (
+					<p className="text-crimson pt-1 text-text-12">
+						{errors.phone.message}
 					</p>
 				)}
 			</div>
