@@ -1,0 +1,20 @@
+{
+	"apiVersion": "API Version",
+	"postmanCollection": "Postman Collection",
+	"authentication": "Authentication",
+	"authorization": "Authorization",
+	"scopes": "Scopes",
+	"apiClient": "API Client",
+	"makingRequests": "Making Requests",
+	"accountHolders": "Account Holders",
+	"users": "Users",
+	"profiles": "Profiles",
+	"invoices": "Invoices",
+	"statements": "Statements",
+	"receipts": "Receipts",
+	"alternativeCreditScoring": "Alternative Credit Scoring",
+	"insights": "Insights",
+	"partners": "Partners",
+	"rateLimitingAndThrottling": "Rate Limiting And Throttling",
+	"errorCodes": "Error Codes"
+}

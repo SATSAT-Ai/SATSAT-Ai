@@ -1,0 +1,170 @@
+@use "../sass/utilities/functions" as *;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	*::selection {
+		background-color: #29a173;
+		color: #fff;
+	}
+
+	body {
+		min-height: 100vh;
+		scroll-behavior: smooth;
+		overflow-y: auto;
+
+		&::-webkit-scrollbar-track-piece,
+		&::-webkit-scrollbar {
+			background-color: #050d0a;
+			width: rem(14);
+		}
+
+		&::-webkit-scrollbar-thumb {
+			background-color: #a3a3a3;
+			&:hover {
+				background-color: #29a173;
+			}
+		}
+	}
+
+	img {
+		user-select: none;
+		pointer-events: none;
+		-webkit-user-select: none;
+	}
+
+	p {
+		font-size: rem(16);
+		font-weight: 400;
+		line-height: 1.5;
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		line-height: 1.4;
+		font-weight: 700;
+		margin-bottom: 1.2rem;
+	}
+
+	.silver-text {
+		background: radial-gradient(
+			70.71% 70.71% at 50% 50%,
+			#fff 30%,
+			rgba(255, 255, 255, 0.5) 84.77%
+		);
+		background-clip: text;
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+	}
+}
+
+@layer components {
+	.button {
+		padding-inline: rem(15);
+		padding-block: rem(10);
+		border-radius: rem(8);
+		font-size: rem(16);
+	}
+
+	.button2 {
+		padding-inline: rem(15);
+		padding-block: rem(10);
+		font-size: rem(16);
+		box-shadow: 0px 0px 10px 0px #2aa274;
+		background-color: transparent;
+		color: #a3a3a3;
+
+		&:hover {
+			box-shadow: none;
+			background-color: #2aa274;
+			box-shadow: 0px 0px 10px 0px #2aa274;
+			color: white;
+		}
+	}
+}
+
+@layer utilities {
+	.my-max {
+		width: min(100% - 20px, 1200px);
+		margin-inline: auto;
+	}
+
+	.green-blob,
+	.green-blob2 {
+		background-color: #2aa274;
+		border-radius: 50%;
+		position: absolute;
+		transform: translateX(-50%);
+		filter: blur(rem(150));
+	}
+
+	.green-blob2 {
+		filter: blur(rem(160));
+	}
+
+	.yellow-blob,
+	.yellow-blob2 {
+		background-color: #c98821;
+		border-radius: 50%;
+		position: absolute;
+		transform: translateX(-50%);
+		filter: blur(rem(150));
+	}
+
+	.yellow-blob2 {
+		filter: blur(rem(140));
+	}
+
+	.glow {
+		&::before,
+		&::after {
+			background: linear-gradient(
+				45deg,
+				#a3a3a3,
+				#4ef3b4,
+				#174634,
+				#fff,
+				#050d0a,
+				#ffb847,
+				#444c48
+			);
+		}
+	}
+
+	.glow {
+		&::before,
+		&::after {
+			content: "";
+			position: absolute;
+			left: -1px;
+			top: -1px;
+			background-size: 400%;
+			width: calc(100% + 2px);
+			height: calc(100% + 2px);
+			z-index: -1;
+			animation: glow 12s linear infinite;
+		}
+
+		&::before {
+			filter: blur(20px);
+			opacity: 0;
+			transition: opacity 0.5s ease-in-out;
+		}
+
+		&:hover::before {
+			opacity: 100;
+		}
+	}
+
+	@keyframes glow {
+		0% {
+			background-position: 0 0;
+		}
+		100% {
+			background-position: 400% 0;
+		}
+	}
+}
