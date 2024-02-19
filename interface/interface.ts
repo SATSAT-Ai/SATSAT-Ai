@@ -5,6 +5,7 @@ export interface featureData {
 	title: string;
 	para: string;
 	link: string;
+	id: string;
 }
 
 export interface Iprices {
