@@ -13,7 +13,12 @@ export const SATSATmetadata: Metadata = {
 		{ name: "Kamasah Dickson", url: "" },
 		{ name: "Emmanuel Jean Kamasah", url: "" },
 	],
-	keywords: ["Nextjs", "React", "Server components", "SATSAT-AI"],
+	keywords: [
+		"scan financial documents",
+		"financial insights",
+		" Ai in finance",
+		"SATSAT-AI",
+	],
 	creator: "Kamasah Dickson",
 
 	openGraph: {
