@@ -14,14 +14,15 @@ const theme = {
 	),
 
 	project: {
-		link: "https://localhost:3000/API",
+		link: "https://github.com/SATSAT-Ai/SATSAT-Ai",
 	},
 	banner: {
 		key: "2.0-release",
 		text: (
-			<a href="https://satsat-ai" target="_blank">
-				🎉 lorem 2.0 is released. Read more →
-			</a>
+			<p href="/" target="_blank">
+				🎉 Welcome to SATSAT AI 1.0 Docs
+				{/* Read more → */}
+			</p>
 		),
 	},
 	footer: {
@@ -36,7 +37,7 @@ const theme = {
 		),
 	},
 
-	docsRepositoryBase: "https://github.com/satsat-ai-docs",
+	docsRepositoryBase: "https://github.com/SATSAT-Ai/SATSAT-Ai/blob/main",
 	useNextSeoProps() {
 		return {
 			titleTemplate: "%s – SATSAT-Ai",
@@ -50,6 +51,7 @@ const theme = {
 				property="og:description"
 				content="SATSAT Ai is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language."
 			/>
+			<link rel="icon" href="/icon.svg" type="image/svg+xml" />
 		</>
 	),
 
