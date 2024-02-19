@@ -1,4 +1,5 @@
 "use client";
+
 import Image from "next/image";
 import satsatLogo from "../public/satsat-logo.svg";
 import Link from "next/link";
@@ -7,6 +8,12 @@ import { MdMenu, MdArrowForward } from "react-icons/md";
 import { useState, useEffect } from "react";
 import MobileNav from "./MobileNav";
 import { signOut, useSession } from "next-auth/react";
+import ProductDropDown from "./ui/ProductsDropDown";
+import DevelopersDropDown from "./ui/DevelopersDropDown";
+import SolutionsDropDown from "./ui/SolutionsDropDown";
+import CustomGlowButton from "./ui/CustomGlowButton";
+
+export type dropdown = "products" | "solutions" | "developers" | "";
 
 const Header = ({ position }: { position?: string }) => {
 	const { data: session } = useSession();
@@ -15,24 +22,38 @@ const Header = ({ position }: { position?: string }) => {
 	const [scrolled, setScrolled] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const pathname = usePathname();
+	const [showDropDown, setShowDropDown] = useState(false);
+	const [dropDownType, setDropDownType] = useState<dropdown>("");
 
-	const navLinks: { path: string; name: string }[] = [
+	type linkType = "dropdown" | "link";
+
+	const navLinks: { path: string; name: string; type: linkType }[] = [
 		{
-			path: "/",
-			name: "Home",
+			path: "/products",
+			name: "Products",
+			type: "dropdown",
 		},
 		{
-			path: "/about",
-			name: "About",
+			path: "/solutions",
+
+			name: "Solutions",
+			type: "dropdown",
+		},
+
+		{
+			path: "/developers",
+			name: "Developers",
+			type: "dropdown",
 		},
 		{
-			path: "/how-it-works",
-			name: "How It Works",
+			path: "/contact",
+			name: "Support",
+			type: "link",
 		},
-		{
-			path: "/features",
-			name: "Features",
-		},
+		// {
+		// 	path: "/how-it-works",
+		// 	name: "How It Works",
+		// },
 	];
 
 	useEffect(() => {
@@ -63,121 +84,164 @@ const Header = ({ position }: { position?: string }) => {
 
 	return (
 		<>
-			<div className={`sm:hidden`}>
-				<MobileNav setShowNav={setShowNav} showNav={showNav} />
+			<div className={`md:hidden`}>
+				<MobileNav
+					setShowNav={setShowNav}
+					showNav={showNav}
+					dropDownType={dropDownType}
+					setDropDownType={setDropDownType}
+					scrolled={scrolled}
+				/>
 			</div>
+
 			<header
-				className={`py-3 z-10 ${
+				onMouseLeave={() => setShowDropDown(false)}
+				className={` z-10 ${
 					position ?? "fixed"
-				} top-0 w-full transition-background duration-300 ${
-					scrolled
-						? `${
-								pathname == "/choose-your-pricing"
-									? "bg-brand-green-darker/70"
-									: "bg-white/10"
-						  } backdrop-blur-md saturate-150`
-						: "bg-none backdrop-blur-none"
-				} top-0`}
+				} top-0 w-full z-30 transition-background duration-300 `}
+				style={{
+					boxShadow: scrolled ? "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px" : "",
+				}}
 			>
-				<div className="my-max flex items-center justify-between w-full">
-					<Link href={"/"}>
-						<Image
-							className="h-auto w-auto"
-							src={satsatLogo}
-							height={120}
-							width={120}
-							alt="SATSAT-Ai"
-							priority
+				<div
+					className={`${
+						scrolled
+							? `${
+									pathname == "/choose-your-pricing"
+										? "bg-brand-green-darker/70"
+										: showDropDown
+										? " bg-brand-green/10"
+										: "bg-white/10"
+							  } backdrop-blur-xl saturate-150`
+							: `bg-none backdrop-blur-none ${
+									showDropDown ? "bg-brand-green-darker/60" : "bg-transparent"
+							  } `
+					} top-0 py-3`}
+				>
+					<div className={` my-max flex items-center justify-between w-full`}>
+						<Link href={"/"}>
+							<Image
+								className="h-auto w-auto"
+								src={satsatLogo}
+								height={120}
+								width={120}
+								alt="SATSAT-Ai"
+								priority
+							/>
+						</Link>
+						<MdMenu
+							className="md:hidden ml-auto cursor-pointer"
+							color="white"
+							size="25"
+							onClick={() => setShowNav(true)}
 						/>
-					</Link>
-					<MdMenu
-						className="sm:hidden ml-auto cursor-pointer"
-						color="white"
-						size="25"
-						onClick={() => setShowNav(true)}
-					/>
-					<ul className="hidden sm:flex items-center gap-3 sm:gap-5 text-[15px] md:text-text-normal font-medium">
-						{navLinks.map((links) => {
-							if (links.name === "About") {
+						<ul className="hidden md:flex items-center gap-3 sm:gap-5 text-[15px] md:text-text-normal font-medium">
+							{navLinks.map((links) => {
+								if (links.type === "dropdown") {
+									return (
+										<li
+											onMouseOver={() => (
+												setShowDropDown(true),
+												setDropDownType(
+													links.name.toLocaleLowerCase() as dropdown
+												)
+											)}
+											key={links.name}
+											className={`flex ${
+												showDropDown &&
+												dropDownType === links.name.toLocaleLowerCase()
+													? "text-mid--yellow font-medium"
+													: "text-white hover:text-mid--yellow"
+											} hover:cursor-pointer`}
+										>
+											{links.name}
+										</li>
+									);
+								}
 								return (
 									<li
+										onMouseOver={() => setShowDropDown(false)}
 										key={links.name}
-										className={`hidden md:flex ${
-											pathname == "/about"
+										className={`flex ${
+											pathname === links.path
 												? "text-mid--yellow font-medium"
 												: "text-white hover:text-mid--yellow"
 										}`}
 									>
-										<Link href={"/about"}>About</Link>
+										<Link href={links.path}>{links.name}</Link>
 									</li>
 								);
-							}
-							return (
-								<li
-									key={links.name}
-									className={`flex ${
-										pathname === links.path
-											? "text-mid--yellow font-medium"
-											: "text-white hover:text-mid--yellow"
-									}`}
-								>
-									<Link href={links.path}>{links.name}</Link>
-								</li>
-							);
-						})}
+							})}
 
-						{session?.user?.email ? (
-							<>
-								<li className={`text-white hover:text-mid--yellow font-medium`}>
-									<Link href={"/dashboard"}>Dashboard</Link>
-								</li>
-
-								<li
-									className={`text-[15px] px-5 ${
-										loading
-											? " bg-grey-light font-medium button2 hover:bg-grey-light !shadow-none"
-											: " cursor-pointer active:scale-[1.02] bg-mid--yellow button2"
-									} flex items-center !rounded-3xl gap-3 font-normal shadow-none transition-colors duration-200 text-white `}
-								>
-									<button
-										disabled={loading}
-										type="button"
-										onClick={handleSignOut}
-										className="flex items-center font-medium text-white gap-4"
+							{session?.user?.email ? (
+								<>
+									<li
+										className={`text-white hover:text-mid--yellow font-medium`}
 									>
-										{loading ? "Signing out" : "Sign Out"}
-										{loading && <div className="loader"></div>}
-									</button>
-								</li>
-							</>
-						) : (
-							<>
-								<li
-									className={`${
-										pathname == "/signin"
-											? "text-mid--yellow font-medium"
-											: "text-white hover:text-mid--yellow"
-									}`}
-								>
-									<Link href={"/signin"}>Sign in</Link>
-								</li>
-								{pathname !== "/choose-your-pricing" && (
-									<li>
-										<Link
-											href={"/choose-your-pricing"}
-											className={`px-7 before:opacity-0 hover:before:opacity-100 before:z-[-1] after:z-[-1]  before:rounded-3xl after:absolute after:rounded-3xl after:top-[-1px] after:left-[-1px]  before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative rounded-3xl bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between py-3 custom-block glow4 text-text-normal text-white font-medium flex items-center gap-2`}
-										>
-											<div style={{ order: 2 }}>
-												{<MdArrowForward color="white" size="24" />}
-											</div>
-											Get Started
-										</Link>
+										<Link href={"/dashboard"}>Dashboard</Link>
 									</li>
-								)}
-							</>
-						)}
-					</ul>
+
+									<li
+										className={`text-[15px] px-5 ${
+											loading
+												? " bg-grey-light font-medium button2 hover:bg-grey-light !shadow-none"
+												: " cursor-pointer active:scale-[1.02] bg-mid--yellow button2"
+										} flex items-center !rounded-3xl gap-3 font-normal shadow-none transition-colors duration-200 text-white `}
+									>
+										<button
+											disabled={loading}
+											type="button"
+											onClick={handleSignOut}
+											className="flex items-center  font-medium text-white gap-4"
+										>
+											{loading ? "Signing out" : "Sign Out"}
+											{loading && <div className="loader"></div>}
+										</button>
+									</li>
+								</>
+							) : (
+								<>
+									<li
+										className={`${
+											pathname == "/signin"
+												? "text-mid--yellow font-medium"
+												: "text-white hover:text-mid--yellow"
+										}`}
+									>
+										<Link href={"/signin"}>Sign in</Link>
+									</li>
+									{pathname !== "/choose-your-pricing" && (
+										<button type="button" aria-label="get started now">
+											<CustomGlowButton
+												href="/choose-your-pricing"
+												name="Get Started"
+												icon={<MdArrowForward color="white" size="24" />}
+												iconPosition="right"
+											/>
+										</button>
+									)}
+								</>
+							)}
+						</ul>
+					</div>
 				</div>
+
+				{showDropDown &&
+					(dropDownType === "developers" ? (
+						<DevelopersDropDown
+							className="hidden md:block"
+							scrolled={scrolled}
+						/>
+					) : dropDownType === "products" ? (
+						<ProductDropDown className="hidden md:block" scrolled={scrolled} />
+					) : showDropDown && dropDownType === "solutions" ? (
+						<SolutionsDropDown
+							scrolled={scrolled}
+							className="hidden md:block"
+						/>
+					) : (
+						<></>
+					))}
 			</header>
 		</>
 	);
