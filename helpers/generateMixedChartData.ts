@@ -133,7 +133,7 @@ export const generateMixedCharData = (
 				selectedPrevWeek; // Adjust for starting week of prev month weeks
 			const prevMonths = Math.max(
 				1,
-				Math.floor(differenceInDays(monthStart, from) / 30) + 1
+				Math.floor(differenceInDays(monthStart, from) / 30)
 			);
 
 			const selectedWeek = getWeekOfMonth(monthStart);
