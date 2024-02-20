@@ -30,6 +30,9 @@
 		--input: 39, 77%, 83%;
 		--ring: 212.7 26.8% 83.9;
 		--radius: 8px;
+		// ===================sdfsdfafsadf============
+		--bg-color: #141414;
+		--card-color: #171717;
 	}
 
 	*::selection {
@@ -578,3 +581,27 @@ error [data-filepond-item-state*="error"] .filepond--item-panel,
 .MuiDataGrid-panel {
 	position: fixed !important;
 }
+
+// =========================card===============================!
+
+.card-child::before {
+	background: radial-gradient(
+		800px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+		// rgba(255, 255, 255, 0.06),
+		var(--before-color),
+		transparent 50%
+	);
+	z-index: 3;
+}
+
+.card-child::after {
+	background: radial-gradient(
+		600px circle at var(--mouse-x, 0) var(--mouse-y, 0),
+		// rgba(255, 255, 255, 0.4),
+		var(--after-color),
+		transparent 30%
+	);
+	z-index: 1;
+}
+
+// =========================card===============================
