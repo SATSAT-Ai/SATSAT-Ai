@@ -1,5 +1,4 @@
 import { featuresData } from "@/utils/featuresData";
-import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Feature from "@/components/Feature";
@@ -7,7 +6,6 @@ import GlowCardParent from "@/components/ui/GlowCardParent";
 import GlowCard from "@/components/ui/GlowCard";
 import { featureData } from "@/interface/interface";
 import ActiveFeature from "../../../components/ui/ActiveFeature";
-
 
 export const generateMetadata = ({
 	params: { featureId },
@@ -55,7 +53,6 @@ const TargetFeature = ({
 								>
 									<Feature
 										title={data.title}
-										link={data.link}
 										para={data.para}
 										icon={data.icon}
 									/>
