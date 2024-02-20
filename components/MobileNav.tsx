@@ -2,17 +2,70 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdClose } from "react-icons/md";
+import satsatLogo from "../public/satsat-logo.svg";
+
 import { SetStateAction, Dispatch, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
+import { dropdown } from "./Header";
+import DevelopersDropDown from "./ui/DevelopersDropDown";
+import ProductDropDown from "./ui/ProductsDropDown";
+import SolutionsDropDown from "./ui/SolutionsDropDown";
+import Image from "next/image";
 interface navProps {
+	setDropDownType: Dispatch<SetStateAction<dropdown>>;
 	setShowNav: Dispatch<SetStateAction<boolean>>;
 	showNav: boolean;
+	dropDownType: dropdown;
+	scrolled: boolean;
 }
 
-const MobileNav = ({ setShowNav, showNav }: navProps) => {
+type linkType = "dropdown" | "link";
+
+const MobileNav = ({
+	setShowNav,
+	showNav,
+	setDropDownType,
+	dropDownType,
+	scrolled,
+}: navProps) => {
 	const pathname = usePathname();
 	const { data: session } = useSession();
 	const [loading, setLoading] = useState(false);
+	const [showModal, setShowModal] = useState(false);
+
+	const navLinks: { path: string; name: string; type: linkType }[] = [
+		{
+			path: "/products",
+			name: "Products",
+			type: "dropdown",
+		},
+
+		{
+			path: "/solutions",
+
+			name: "Solutions",
+			type: "dropdown",
+		},
+		// {
+		// 	path: "/about",
+		// 	name: "About",
+		// 	type: "link",
+		// },
+		{
+			path: "/developers",
+			name: "Developers",
+			type: "dropdown",
+		},
+		{
+			path: "/contact",
+			name: "Support",
+			type: "link",
+		},
+		// {
+		// 	path: "/how-it-works",
+		// 	name: "How It Works",
+		// },
+	];
 
 	const handleSignOut = async () => {
 		setLoading(true);
@@ -29,7 +82,7 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 		<>
 			{
 				<div
-					onClick={() => setShowNav(false)}
+					onClick={() => (setShowNav(false), setShowModal(false))}
 					className={`  ${
 						showNav
 							? "translate-x-0"
@@ -41,54 +94,84 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 				className={` ${
 					showNav ? "delay-100 translate-x-0" : " translate-x-full"
 				}
-					 flex z-50 overflow-y-scroll scrollbar-hidden flex-col transition-transform duration-100 fixed top-0 right-0 w-3/4 bg-brand-green-darker/90 h-screen justify-center items-center gap-5 font-medium text-[17px]`}
+					 flex z-50 overflow-y-scroll scrollbar-hidden flex-col transition-transform duration-100 fixed top-0 right-0 w-[85%] bg-[#071f07] h-screen justify-center items-center gap-5 font-medium text-[17px]`}
 			>
 				<MdClose
-					onClick={() => setShowNav(false)}
+					onClick={() => (setShowNav(false), setShowModal(false))}
 					color="white"
 					size="25"
 					className="absolute cursor-pointer top-5 right-4"
 				/>
-				<li
-					onClick={() => setShowNav(false)}
-					className={`${
-						pathname == "/"
-							? "text-mid--yellow"
-							: "text-white hover:text-mid--yellow font-medium"
-					}`}
-				>
-					<Link href={"/"}>Home</Link>
-				</li>
-
-				<li
-					onClick={() => setShowNav(false)}
-					className={`${
-						pathname == "/about"
-							? "text-mid--yellow"
-							: "text-white hover:text-mid--yellow font-medium"
-					}`}
-				>
-					<Link href={"/about"}>About</Link>
-				</li>
-				<li
-					className={`${
-						pathname == "/how-it-works"
-							? "text-mid--yellow font-medium"
-							: "text-white hover:text-mid--yellow font-medium"
-					}`}
-				>
-					<Link href={"/how-it-works"}>How It Works</Link>
-				</li>
-				<li
-					onClick={() => setShowNav(false)}
-					className={`${
-						pathname == "/features"
-							? "text-mid--yellow"
-							: "text-white hover:text-mid--yellow font-medium"
-					}`}
-				>
-					<Link href={"/features"}>Features</Link>
-				</li>
+				{navLinks.map((links) => {
+					return (
+						<li
+							key={links.path}
+							className={`${
+								pathname == links.path
+									? "text-mid--yellow"
+									: "text-white hover:text-mid--yellow font-medium"
+							}`}
+						>
+							{links.type === "dropdown" ? (
+								<button
+									onClick={() => (
+										setShowModal(true),
+										setDropDownType(links.name.toLocaleLowerCase() as dropdown)
+									)}
+									type="button"
+								>
+									{links.name}
+								</button>
+							) : (
+								<Link onClick={() => setShowNav(false)} href={links.path}>
+									{links.name}
+								</Link>
+							)}
+						</li>
+					);
+				})}
+				{/* ===========modal=========== */}
+				{showModal && (
+					<div className="absolute top-0 min-h-screen shadow-md w-full bg-[#071f07] text-white">
+						<div className=" bg-[#071f07] z-20 absolute top-0 left-0 w-full px-5 py-3 flex items-center gap-5 justify-between">
+							<Link href={"/"}>
+								<Image
+									className="h-auto w-auto"
+									src={satsatLogo}
+									height={120}
+									width={120}
+									alt="SATSAT-Ai"
+									priority
+								/>
+							</Link>
+							<MdClose
+								onClick={() => setShowModal(false)}
+								color="white"
+								size="25"
+								className="ml-auto cursor-pointer"
+							/>
+						</div>
+						{dropDownType === "developers" ? (
+							<DevelopersDropDown
+								scrolled={scrolled}
+								cardClassName="grid-cols-1"
+								className="!min-h-screen overscroll-none pt-[64px] pb-5 px-0 bg-transparent backdrop-filter-none backdrop-blur-none rounded-none"
+							/>
+						) : dropDownType === "products" ? (
+							<ProductDropDown
+								scrolled={scrolled}
+								className="!min-h-screen overscroll-none pt-[64px] backdrop-filter-none pb-5 px-0 bg-transparent backdrop-blur-none rounded-none"
+							/>
+						) : dropDownType === "solutions" ? (
+							<SolutionsDropDown
+								scrolled={scrolled}
+								className="!min-h-screen overscroll-none pt-[64px] pb-5 px-0 bg-transparent backdrop-filter-none backdrop-blur-none rounded-none"
+							/>
+						) : (
+							<></>
+						)}
+					</div>
+				)}
 
 				{!session?.user ? (
 					<li
@@ -106,14 +189,6 @@ const MobileNav = ({ setShowNav, showNav }: navProps) => {
 					</li>
 				)}
 				{pathname !== "/choose-your-pricing" && !session?.user ? (
-					// <li onClick={() => setShowNav(false)}>
-					// 	<Link
-					// 		className="flex items-center !rounded-3xl gap-3 font-normal hover:shadow-none hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button2"
-					// 		href={"/choose-your-pricing"}
-					// 	>
-					// 		Get Started
-					// 	</Link>
-					// </li>
 					<li onClick={() => setShowNav(false)}>
 						<Link
 							className={`px-7 before:opacity-0 hover:before:opacity-100 before:z-[-1] after:z-[-1]  before:rounded-3xl after:absolute after:rounded-3xl after:top-[-1px] after:left-[-1px]  before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative rounded-3xl bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between py-3 custom-block glow4 text-text-normal text-white font-medium flex items-center gap-2`}
