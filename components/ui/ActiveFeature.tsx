@@ -27,7 +27,6 @@ const ActiveFeature = ({
 			>
 				<Feature
 					title={activeFeatureData.title}
-					link={activeFeatureData.link}
 					para={activeFeatureData.para}
 					icon={activeFeatureData.icon}
 				/>
