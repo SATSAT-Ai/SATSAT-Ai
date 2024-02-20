@@ -1,21 +1,8 @@
-"use client";
-
 import NotfoundImage from "../public/Notfound.svg";
 import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
+import Link from "next/link";
 
 export default function NotFound() {
-	const router = useRouter();
-	const pathname = usePathname();
-
-	const redirectToDocs = () => {
-		router.push("/docs/getting-started");
-	};
-
-	const redirectToHome = () => {
-		router.push("/");
-	};
-
 	return (
 		<main className="bg-darker min-h-screen w-full relative pb-20">
 			<div className="flex items-center justify-center w-full h-full pt-20">
@@ -25,21 +12,12 @@ export default function NotFound() {
 				The page you are looking for cannot be found.
 			</p>
 
-			{pathname?.startsWith("/docs/") || pathname === "/docs" ? (
-				<button
-					className=" active:scale-[1.01] button w-fit hover:bg-brand-green border border-white block mx-auto transition-all text-white hover:border-none"
-					onClick={redirectToDocs}
-				>
-					Head to Documentation{" "}
-				</button>
-			) : (
-				<button
-					className=" active:scale-[1.01] button w-fit hover:bg-brand-green border border-white block mx-auto transition-all text-white hover:border-none"
-					onClick={redirectToHome}
-				>
-					Back to Home
-				</button>
-			)}
+			<Link
+				href="/"
+				className=" active:scale-[1.01] button w-fit hover:bg-brand-green border border-white block mx-auto transition-all text-white hover:border-none"
+			>
+				Back to Home
+			</Link>
 		</main>
 	);
 }
