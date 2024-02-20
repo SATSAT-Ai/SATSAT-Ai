@@ -1,9 +1,11 @@
 import { featuresData } from "@/utils/featuresData";
-import React from "react";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Feature from "@/components/Feature";
+import GlowCardParent from "@/components/ui/GlowCardParent";
+import GlowCard from "@/components/ui/GlowCard";
+
 export const metadata: Metadata = {
 	title: "SATSAT-Ai Features",
 };
@@ -21,19 +23,22 @@ const Features = () => {
 						Features
 					</h1>
 
-					<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-20 gap-5">
+					<GlowCardParent className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-20 gap-5">
 						{featuresData.map((data) => {
 							return (
-								<Feature
-									title={data.title}
-									link={data.link}
-									para={data.para}
-									icon={data.icon}
+								<GlowCard
 									key={data.title}
-								/>
+									cardClassName="bg-[#071f07] text-white "
+								>
+									<Feature
+										title={data.title}
+										para={data.para}
+										icon={data.icon}
+									/>
+								</GlowCard>
 							);
 						})}
-					</div>
+					</GlowCardParent>
 				</div>
 			</main>
 			<Footer />
