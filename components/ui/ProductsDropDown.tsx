@@ -179,12 +179,9 @@ const ProductDropDown = ({
 												linkTo={product.link}
 												key={product.product}
 												cardClassName="bg-[#071f07] gap-5 p-0 cursor-pointer"
-												className="p-3  duration-100 transition-colors rounded-md"
+												className="p-3 duration-100 transition-colors rounded-md"
 											>
-												<Link
-													href={"/"}
-													className=" flex items-center gap-3 justify-start"
-												>
+												<div className=" flex items-center gap-3 justify-start">
 													<Image
 														src={product.img}
 														alt={product.product}
@@ -204,7 +201,7 @@ const ProductDropDown = ({
 														fontSize="medium"
 														className="ml-auto"
 													/>
-												</Link>
+												</div>
 											</GlowCard>
 										);
 									})}
