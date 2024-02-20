@@ -1,9 +1,8 @@
 import PersonPinIcon from "@mui/icons-material/PersonPin";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import Link from "next/link";
-import InsightsIcon from "@mui/icons-material/Insights";
-import TryIcon from "@mui/icons-material/Try";
 import { Dispatch, MutableRefObject, SetStateAction } from "react";
+import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 
 interface IdashboardOptions {
 	optionsRef: MutableRefObject<HTMLLIElement | null>;
@@ -32,7 +31,7 @@ const DashboardOptions = ({
 			</button>
 
 			{showMoreOptions && (
-				<div className="bg-[#071f07] no-select border z-40 border-grey-light absolute top-12 right-0 p-3 rounded-xl">
+				<div className="bg-[#071f07] w-52 no-select border z-40 border-grey-light absolute top-12 right-0 p-3 rounded-xl">
 					<div className="flex items-center w-full justify-between gap-5">
 						<ul className="flex flex-col">
 							<li className=" text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
@@ -44,24 +43,13 @@ const DashboardOptions = ({
 									Profile
 								</Link>
 							</li>
-							<li className=" md:hidden text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
-								<Link href={"/profile"} className="flex items-center gap-2">
-									<InsightsIcon
-										fontSize="medium"
-										color="inherit"
-										className="cursor-pointer active:scale-[1.02]"
-									/>
-									Insights
-								</Link>
-							</li>
-							<li className="md:hidden text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
-								<Link href={"/profilt"} className="flex items-center gap-2">
-									<TryIcon
-										fontSize="medium"
-										color="inherit"
-										className="cursor-pointer active:scale-[1.02]"
-									/>
-									Chat AI
+							<li className="text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
+								<Link
+									href={"/dashboard/whats-new"}
+									className="flex items-center gap-2"
+								>
+									<RocketLaunchIcon fontSize="medium" color="inherit" />
+									{`What's new`}
 								</Link>
 							</li>
 
