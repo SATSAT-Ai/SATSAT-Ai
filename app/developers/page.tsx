@@ -1,12 +1,12 @@
-import React from "react";
 import devPortalImage from "@/public/devportal.svg";
 import Image from "next/image";
+import "../globals.scss";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { MdArrowForward } from "react-icons/md";
 import CustomGlowButton from "@/components/ui/CustomGlowButton";
 
-const page = () => {
+const Developers = () => {
 	return (
 		<div className=" bg-darker min-h-screen">
 			<div className="green-blob !fixed w-96 h-96 top-[-0%] lg:top-[10%] md:top-[50%] left-[35%]"></div>
@@ -40,7 +40,7 @@ const page = () => {
 
 					<button type="button" aria-label="get started now" className="mt-5">
 						<CustomGlowButton
-							href="/developers/api-satsat-ai"
+							href="/developers/getting-started"
 							name="Get Started"
 							icon={<MdArrowForward color="white" size="24" />}
 							iconPosition="right"
@@ -63,4 +63,4 @@ const page = () => {
 	);
 };
 
-export default page;
+export default Developers;
