@@ -20,8 +20,8 @@ const HeroSection = () => {
 						id="tsparticlesfullpage"
 						background="transparent"
 						minSize={0.8}
-						maxSize={1.8}
-						particleDensity={25}
+						maxSize={2}
+						particleDensity={30}
 						className="w-full h-full"
 						particleColor="#29a173"
 					/>
