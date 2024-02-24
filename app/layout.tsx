@@ -9,6 +9,7 @@ import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
 import { options } from "./api/auth/[...nextauth]/options";
 import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const roboto = Roboto({
 	subsets: ["latin", "greek"],
@@ -40,6 +41,7 @@ export default async function RootLayout({
 				<Toaster />
 				<SessionProvider session={session}>{children}</SessionProvider>
 				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
