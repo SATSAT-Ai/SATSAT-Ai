@@ -8,6 +8,7 @@ import { Toaster } from "react-hot-toast";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
 import { options } from "./api/auth/[...nextauth]/options";
+import { Analytics } from "@vercel/analytics/react";
 
 const roboto = Roboto({
 	subsets: ["latin", "greek"],
@@ -38,6 +39,7 @@ export default async function RootLayout({
 				/>
 				<Toaster />
 				<SessionProvider session={session}>{children}</SessionProvider>
+				<Analytics />
 			</body>
 		</html>
 	);
