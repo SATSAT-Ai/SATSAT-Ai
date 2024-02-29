@@ -12,6 +12,9 @@ import ProductDropDown from "./ui/ProductsDropDown";
 import DevelopersDropDown from "./ui/DevelopersDropDown";
 import SolutionsDropDown from "./ui/SolutionsDropDown";
 import CustomGlowButton from "./ui/CustomGlowButton";
+import SignOutButton from "./ui/SignOutButton";
+import GetStartedButton from "./ui/GetStartedButton";
+import TopBanner from "./ui/TopBanner";
 
 export type dropdown = "products" | "solutions" | "developers" | "";
 
@@ -103,6 +106,7 @@ const Header = ({ position }: { position?: string }) => {
 					boxShadow: scrolled ? "rgba(0, 0, 0, 0.25) 0px 25px 50px -12px" : "",
 				}}
 			>
+				<TopBanner />
 				<div
 					className={`${
 						scrolled
@@ -181,23 +185,10 @@ const Header = ({ position }: { position?: string }) => {
 										<Link href={"/dashboard"}>Dashboard</Link>
 									</li>
 
-									<li
-										className={`text-[15px] px-5 ${
-											loading
-												? " bg-grey-light font-medium button2 hover:bg-grey-light !shadow-none"
-												: " cursor-pointer active:scale-[1.02] bg-mid--yellow button2"
-										} flex items-center !rounded-3xl gap-3 font-normal shadow-none transition-colors duration-200 text-white `}
-									>
-										<button
-											disabled={loading}
-											type="button"
-											onClick={handleSignOut}
-											className="flex items-center  font-medium text-white gap-4"
-										>
-											{loading ? "Signing out" : "Sign Out"}
-											{loading && <div className="loader"></div>}
-										</button>
-									</li>
+									<SignOutButton
+										loading={loading}
+										handleSignOut={handleSignOut}
+									/>
 								</>
 							) : (
 								<>
@@ -211,14 +202,7 @@ const Header = ({ position }: { position?: string }) => {
 										<Link href={"/signin"}>Sign in</Link>
 									</li>
 									{pathname !== "/choose-your-pricing" && (
-										<button type="button" aria-label="get started now">
-											<CustomGlowButton
-												href="/choose-your-pricing"
-												name="Get Started"
-												icon={<MdArrowForward color="white" size="24" />}
-												iconPosition="right"
-											/>
-										</button>
+										<GetStartedButton showIcon={true} />
 									)}
 								</>
 							)}
