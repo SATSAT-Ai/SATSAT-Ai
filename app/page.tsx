@@ -7,22 +7,21 @@ import accessBankImage from "../public/Access-bank.svg";
 import airtelTigoImage from "../public/airteltigo.svg";
 import calbankImage from "../public/calbank.svg";
 import Marquee from "react-fast-marquee";
-import PageScroller from "@/components/PageScroller";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import CustomGlowButton from "@/components/ui/CustomGlowButton";
 import HeroSection from "@/components/HeroSection";
 import Link from "next/link";
 import chatBot from "../public/chatbot.svg";
 import createAccountImage from "../public/create-account.svg";
 import chatWithAiImage from "../public/chat-with-ai.svg";
-import { MdArrowForward, MdPlayCircle } from "react-icons/md";
 import { MdStar } from "react-icons/md";
 import TypeWriteInview from "@/components/TypeWriteInview";
+import GetStartedButton from "@/components/ui/GetStartedButton";
+import PageScroller from "./dashboard/(components)/PageScroller";
 
 export const metadata: Metadata = {
-	title: "Welcome to SATSAT AI - Chat with your financial documents",
+	title: "Welcome to SatSat-Ai - Chat with your financial documents",
 };
 
 export default function Home() {
@@ -34,12 +33,12 @@ export default function Home() {
 
 				<div className="my-max">
 					<section className="text-center flex flex-col">
-						<h2 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
+						<h2 className="text-brand-green text-text-24 sm:text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
 							WHAT IS SATSAT AI?
 						</h2>
 						<div className="text-mid--yellow max-w-lg mx-auto text-text-normal md:text-text-normal">
 							<TypeWriteInview
-								text="SATSAT AI is your all-in-one intelligence platform. It combines
+								text="SatSat AI is your all-in-one intelligence platform. It combines
 							cutting edge AI technology to query your financial data with
 							natural language."
 							/>
@@ -59,7 +58,7 @@ export default function Home() {
 									Effortless Ingestion
 								</h3>
 								<p className="text-white/70">
-									Upload your financial data and SATSAT AI takes care of the
+									Upload your financial data and SatSat AI takes care of the
 									rest.
 								</p>
 							</div>
@@ -101,25 +100,20 @@ export default function Home() {
 									Book a demo
 								</Link>
 
-								<CustomGlowButton
-									name="Get Started Now"
-									href="/choose-your-pricing"
-									icon={<MdArrowForward color="white" size="25" />}
-									iconPosition={"right"}
-								/>
+								<GetStartedButton showIcon={true} name="Get Started Now" />
 							</div>
 						</div>
 					</section>
 					<section className="text-center flex flex-col">
-						<h3 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
+						<h3 className="text-brand-green text-text-24 sm:text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
 							WHY SATSAT AI?
 						</h3>
 						<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
 							<TypeWriteInview
-								text="SATSAT AI is an financial intelligence platform; a paradigm
+								text="SatSat AI is an financial intelligence platform; a paradigm
 							shift in how you harness the wisdom hidden within your financial
 							documents. We are here to empower your organization, save you time
-							and resources. Here is what sets SATSAT AI apart:"
+							and resources. Here is what sets SatSat AI apart:"
 							/>
 						</div>
 
@@ -138,7 +132,7 @@ export default function Home() {
 										Data Security and Privacy
 									</h3>
 									<p className="text-white/70">
-										We understand the importance of data security. SATSAT AI
+										We understand the importance of data security. SatSat AI
 										ensures maximum protection and security using cutting edge
 										industry security and privacy practices, so you can harness
 										the power of AI with peace of mind.
@@ -174,7 +168,7 @@ export default function Home() {
 									</h3>
 									<p className="text-white/70">
 										Your employees can access answers to their questions in mere
-										seconds without wading through endless documents. SATSAT AI
+										seconds without wading through endless documents. SatSat AI
 										scans, understands, and presents relevant information
 										ensuring you spend less time searching and more time acting
 									</p>
@@ -187,18 +181,13 @@ export default function Home() {
 									>
 										Book a demo
 									</Link>
-									<CustomGlowButton
-										name="Get Started Now"
-										href="/choose-your-pricing"
-										icon={<MdArrowForward color="white" size="25" />}
-										iconPosition={"right"}
-									/>
+									<GetStartedButton showIcon={true} name="Get Started Now" />
 								</div>
 							</div>
 						</div>
 					</section>
 					<section className=" z-10  text-center flex flex-col ">
-						<h4 className="text-brand-green text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
+						<h4 className="text-brand-green text-text-24 sm:text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
 							CHAT WITH SATSAT AI
 						</h4>
 						<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
@@ -212,23 +201,26 @@ export default function Home() {
 							<div className="text-left relative">
 								<div className="yellow-blob w-72 h-72 md:w-96 md:h-96 top-[70%] left-[-35%] md:top-[-25%]"></div>
 
-								<h4 className="text-brand-green mb-3 font-semibold text-text-20 md:text-text-40">
+								<h4 className="text-brand-green mb-3 font-semibold text-text-24 md:text-text-40">
 									How To Get Started
 								</h4>
 								<p className="text-mid--yellow mb-5 max-w-md">
 									Enjoy fast, secure and reliable way of Querying your financial
-									data with SATSAT AI
+									data with SatSat AI
 								</p>
-								<div className="mt-7 relative z-[1] w-fit">
-									<CustomGlowButton
-										name="Get Started Now"
+
+								<div className="relative z-[1] mt-7">
+									<GetStartedButton
+										className={"w-fit"}
 										icon={<MdStar size={25} />}
-										href="/choose-your-pricing"
+										showIcon={true}
+										name="Get Started Now"
+										iconPosition="left"
 									/>
 								</div>
 							</div>
-							<div className="flex flex-col sm:flex-row gap-5 lg:flex-col">
-								<div className="flex sm:flex-col md:flex-col lg:flex-row gap-5 bg-white/10 px-5 py-5 rounded-2xl">
+							<div className="flex flex-col sm:flex-row gap-5 lg:flex-row">
+								<div className="flex sm:flex-col md:flex-col lg:flex-col gap-5 bg-[#071f07] px-5 py-5 rounded-3xl">
 									<Image
 										src={createAccountImage}
 										height={10}
@@ -237,15 +229,15 @@ export default function Home() {
 										className="h-[80px] w-[80px]"
 									/>
 									<div className="flex flex-col items-start">
-										<h4 className="text-brand-green mb-2 font-medium text-[18px]">
+										<h4 className="text-brand-green mb-2 font-medium text-text-20">
 											Create Your Account
 										</h4>
-										<p className="text-mid--yellow text-[14px] text-left max-w-2xl">
+										<p className="text-mid--yellow text-text-14 text-left max-w-2xl">
 											Your account and personal identity are guaranteed safe.
 										</p>
 									</div>
 								</div>
-								<div className="flex sm:flex-col md:flex-col lg:flex-row gap-5 bg-white/10 px-5 py-5 rounded-2xl">
+								<div className="flex sm:flex-col md:flex-col lg:flex-col gap-5 bg-[#071f07] px-5 py-5 rounded-3xl">
 									<Image
 										src={chatWithAiImage}
 										height={10}
@@ -254,11 +246,11 @@ export default function Home() {
 										className="h-[80px] w-[80px]"
 									/>
 									<div className="flex flex-col items-start">
-										<h4 className="text-brand-green font-medium text-[18px] mb-2">
+										<h4 className="text-brand-green font-medium text-text-20 mb-2">
 											Start chatting with Ai
 										</h4>
-										<p className="text-mid--yellow text-[14px] text-left max-w-2xl">
-											Upload your financial data and start chatting with sat sat
+										<p className="text-mid--yellow text-text-14 text-left max-w-2xl">
+											Upload your financial data and start chatting with SatSat
 											ai
 										</p>
 									</div>
@@ -269,12 +261,12 @@ export default function Home() {
 				</div>
 				<div>
 					<section className="text-center flex flex-col w-full overflow-x-auto ">
-						<h4 className="text-brand-green text-text-40 md:text-text-60 max-w-5xl mx-auto lg:text-text-80">
+						<h4 className="text-brand-green  my-max text-text-24 sm:text-text-40 md:text-text-60 mx-auto lg:text-text-80">
 							FINANCIAL SERVICE PROVIDERS
 						</h4>
-						<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
+						<div className="text-mid--yellow px-2 max-w-xl mx-auto text-text-normal md:text-text-normal">
 							<TypeWriteInview
-								text="SATSAT AI scans documents such as invoices, mobile money
+								text="SatSat AI scans documents such as invoices, mobile money
 							statements, bank statements, receipts etc. These are some of the
 							service providers and banks we provide our services to."
 							/>
@@ -337,14 +329,14 @@ export default function Home() {
 
 					<section className="text-center flex flex-col ">
 						<div className="my-max">
-							<h4 className="text-brand-green text-text-40 md:text-text-50 lg:text-text-80 max-w-5xl mx-auto">
+							<h4 className="text-brand-green text-text-24 sm:text-text-40 md:text-text-50 lg:text-text-80 max-w-5xl mx-auto">
 								ANALYZING YOUR DATA WITH SATSAT AI
 							</h4>
 							<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
 								<TypeWriteInview
-									text="SATSAT AI is a revolution in how we harness knowledge buried
+									text="SatSat AI is a revolution in how we harness knowledge buried
 								within our documents. Whether you are in healthcare, legal,
-								finance, or any other industry, SATSAT AI empowers you to
+								finance, or any other industry, SatSat AI empowers you to
 								transform your data into a dynamic source of insights."
 								/>
 							</div>
@@ -358,10 +350,10 @@ export default function Home() {
 											Who we serve
 										</span>
 
-										<div className="relative z-[1] w-fit">
-											<CustomGlowButton
+										<div className="relative z-[1]">
+											<GetStartedButton
+												showIcon={true}
 												name="Get Started Now"
-												href="/choose-your-pricing"
 											/>
 										</div>
 									</div>
