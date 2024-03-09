@@ -7,7 +7,7 @@ import PricingClientPage from "@/components/PricingClientPage";
 import { options } from "../api/auth/[...nextauth]/options";
 
 export const metadata: Metadata = {
-	title: "SATSAT AI subscription plan",
+	title: "SatSat AI Subscription Plan",
 };
 
 const Page = async () => {
