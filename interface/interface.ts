@@ -8,7 +8,7 @@ export interface featureData {
 	id: string;
 }
 
-export interface Iprices {
+export interface IPrices {
 	id: string;
 	category: string;
 	privileges: string[];
@@ -24,7 +24,7 @@ export interface Inotification {
 	time: string;
 }
 
-export interface ItransactionsData {
+export interface ITransactionsData {
 	id: string;
 	data: {
 		percentage: string;
