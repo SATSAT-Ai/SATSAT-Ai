@@ -20,7 +20,7 @@ const theme = {
 		key: "2.0-release",
 		text: (
 			<p href="/" target="_blank">
-				🎉 Welcome to SATSAT AI 1.0 Docs
+				🎉 Welcome to SatSat Ai API Docs
 				{/* Read more → */}
 			</p>
 		),
@@ -30,7 +30,7 @@ const theme = {
 			<span>
 				MIT {new Date().getFullYear()} ©{" "}
 				<a href="https://satsat-ai" target="_blank">
-					SATSAT-AI
+					SatSat-Ai
 				</a>{" "}
 				| All rights reserved
 			</span>
@@ -49,7 +49,7 @@ const theme = {
 			<meta property="og:title" content="SATSAT-Ai" />
 			<meta
 				property="og:description"
-				content="SATSAT Ai is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language."
+				content="SatSat AI is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language."
 			/>
 			<link rel="icon" href="/icon.svg" type="image/svg+xml" />
 		</>
