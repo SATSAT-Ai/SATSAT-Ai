@@ -5,8 +5,8 @@ import SubscribeButton from "@/components/SubscribeButton";
 import { pricingData } from "@/pricingData";
 import Toggler from "@/components/ui/Toggler";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import { Iprices } from "@/interface/interface";
 import { useState } from "react";
+import { IPrices } from "@/interface/interface";
 
 const PricingClientPage = () => {
 	const [enabled, setEnabled] = useState(true);
@@ -15,7 +15,7 @@ const PricingClientPage = () => {
 		<>
 			<Toggler enabled={enabled} setEnabled={setEnabled} />
 			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center w-full gap-5 mt-7 my-max">
-				{pricingData.map((prices: Iprices) => {
+				{pricingData.map((prices: IPrices) => {
 					return (
 						<div
 							key={prices.id}
@@ -74,10 +74,14 @@ const PricingClientPage = () => {
 									{enabled ? prices.annualPrice : prices.price}
 								</p>
 							</h3>
+
 							{prices.category == "enterprise" ? (
-								<SubscribeButton name="Contact Sales" type="contact-sales" />
+								<SubscribeButton
+									name="Contact Sales"
+									buttonType={prices.category}
+								/>
 							) : (
-								<SubscribeButton name="Signup" type="signup" />
+								<SubscribeButton name="Signup" buttonType={prices.category} />
 							)}
 						</div>
 					);
