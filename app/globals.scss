@@ -127,15 +127,6 @@
 		padding-block: 5rem;
 	}
 
-	.loader {
-		width: rem(11);
-		height: rem(11);
-		border: 2px solid #f3f3f3;
-		border-top: 2px solid #c98821;
-		border-radius: 50%;
-		animation: spin 0.3s linear infinite;
-	}
-
 	.outmessage {
 		background: linear-gradient(45deg, #2aa27438, #c9882150);
 	}
@@ -361,9 +352,19 @@
 	}
 }
 
+.walkthroughTarget {
+	color: red;
+	z-index: 102;
+	position: relative;
+	user-select: none;
+}
+
 .source-out {
 	mask-composite: subtract;
-	mask-image: radial-gradient(circle at top, transparent 400px, white);
+	mask-image: radial-gradient(circle at top, transparent 150px, white);
+	@media (min-width: em(768)) {
+		mask-image: radial-gradient(circle at top, transparent 300px, white);
+	}
 }
 
 .not-reconcilable-row {
@@ -406,6 +407,12 @@
 	}
 }
 .glow3 {
+	button {
+		background-color: #133a2a;
+		&:hover {
+			background: #133a2a;
+		}
+	}
 	&::before,
 	&::after {
 		background: linear-gradient(
@@ -418,6 +425,15 @@
 			#4ef3b4,
 			#174634
 		);
+		border-radius: 10px;
+	}
+
+	&::before {
+		opacity: 0.5 !important;
+	}
+
+	&:hover::before {
+		opacity: 0.6 !important;
 	}
 }
 .glow4 {
@@ -470,12 +486,7 @@
 		animation: glow 8s linear infinite;
 	}
 }
-.glow3 {
-	&::before,
-	&::after {
-		animation-play-state: paused;
-	}
-}
+
 .glow4 {
 	&::before,
 	&::after {
@@ -508,6 +519,33 @@
 	}
 	100% {
 		background-position: 400% 0;
+	}
+}
+
+@keyframes increase-height {
+	from {
+		height: 0;
+	}
+	to {
+		height: 60px;
+	}
+}
+@keyframes increase-width {
+	from {
+		width: 0;
+	}
+	to {
+		width: 80px;
+	}
+}
+@media (min-width: 375px) {
+	@keyframes increase-width {
+		from {
+			width: 0;
+		}
+		to {
+			width: 131px;
+		}
 	}
 }
 
