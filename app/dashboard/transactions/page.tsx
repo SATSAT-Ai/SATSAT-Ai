@@ -1,8 +1,8 @@
-import TransactionsClientPage from "@/components/TransactionsClientPage";
 import { Metadata } from "next";
+import TransactionsClientPage from "../(components)/TransactionsClientPage";
 
 export const metadata: Metadata = {
-	title: "SATSAT-AI Transactions",
+	title: "SatSat-Ai Transactions",
 };
 
 const Page = () => {

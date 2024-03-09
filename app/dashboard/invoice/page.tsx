@@ -1,10 +1,10 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "SATSAT-AI Invoice",
+	title: "SatSat-Ai Invoice",
 };
 const page = () => {
-	return <p>Hello</p>
+	return <p>Hello</p>;
 };
 
 export default page;

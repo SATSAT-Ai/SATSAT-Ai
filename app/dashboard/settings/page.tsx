@@ -1,8 +1,8 @@
-import SettingsSteps from "@/components/SettingsSteps";
 import { Metadata } from "next";
+import SettingsSteps from "../(components)/SettingsSteps";
 
 export const metadata: Metadata = {
-	title: "SATSAT-AI settings",
+	title: "SatSat-Ai settings",
 };
 const page = () => {
 	return (

@@ -1,4 +1,4 @@
-import CategoryDetails from "@/components/CategoryDetails";
+import CategoryDetails from "@/app/dashboard/(components)/CategoryDetails";
 
 const page = ({
 	params: { categoryId },

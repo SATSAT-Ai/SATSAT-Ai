@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-	title: "SATSAT-AI receipts",
+	title: "SatSat-Ai receipts",
 };
 const page = () => {
 	return <div>page</div>;
