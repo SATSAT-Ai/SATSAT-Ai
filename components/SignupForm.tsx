@@ -25,7 +25,7 @@ export type FormValues = {
 	phone: number;
 };
 
-const SignupForm = () => {
+const SignUpForm = () => {
 	const [loading, setLoading] = useState(false);
 	const filteredCountry: { value: string; label: string }[] =
 		africanCountries.filter((country) => country.label === "Ghana");
@@ -319,4 +319,4 @@ const SignupForm = () => {
 	);
 };
 
-export default SignupForm;
+export default SignUpForm;
