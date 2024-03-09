@@ -38,14 +38,14 @@ const Developers = () => {
 						praesentium ullam corrupti itaque dicta nisi quas commodi
 					</p>
 
-					<button type="button" aria-label="get started now" className="mt-5">
-						<CustomGlowButton
-							href="/developers/getting-started"
-							name="Get Started"
-							icon={<MdArrowForward color="white" size="24" />}
-							iconPosition="right"
-						/>
-					</button>
+					<CustomGlowButton
+						className="mt-5 w-fit"
+						href="/developers/getting-started"
+						name="Get Started"
+						icon={<MdArrowForward color="white" size="24" />}
+						iconPosition="right"
+						buttonType="Link"
+					/>
 
 					<div className=" absolute bottom-0 h-full w-0 md:w-[1.7px] top-0 right-0 rounded-lg bg-silver-gradient"></div>
 				</div>
