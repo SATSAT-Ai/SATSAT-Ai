@@ -75,7 +75,7 @@ const SolutionsDropDown = ({
 						<Link
 							href={solution.link}
 							key={solution.id}
-							className="hover:bg-brand-green-darker flex border border-brand-green/40 items-center justify-between gap-5 bg-brand-green-darker/50 text-white text-normal p-2 text-[15px] rounded-lg font-medium"
+							className="hover:bg-brand-green-darker flex border border-brand-green/40 items-center justify-between gap-5 bg-brand-green-darker/50 text-mid--yellow md:text-white text-normal p-2 text-[15px] rounded-lg font-medium"
 						>
 							{solution.solution}
 							<KeyboardArrowRight color="inherit" fontSize="medium" />
@@ -97,7 +97,7 @@ const SolutionsDropDown = ({
 							<p className="pb-3 text-text-20 font-medium text-white">
 								Credit Scoring Services
 							</p>
-							<span className="text-mid--yellow text-normal">
+							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
 								Provide accurate credit scoring services tailored to your
 								business needs. Our advanced algorithms ensure precise
 								evaluations, helping you make informed decisions.
@@ -116,7 +116,7 @@ const SolutionsDropDown = ({
 							<p className="pb-3 text-text-20 font-medium text-white">
 								Business Intelligence Platform
 							</p>
-							<span className="text-mid--yellow text-normal">
+							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
 								Harness the power of data with our Business Intelligence
 								Platform. Gain actionable insights, visualize trends, and make
 								data-driven decisions to drive business growth and success.
@@ -135,7 +135,7 @@ const SolutionsDropDown = ({
 							<p className="pb-3 text-text-20 font-medium text-white">
 								Accounting Software Integration
 							</p>
-							<span className="text-mid--yellow text-normal">
+							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
 								Seamlessly integrate your accounting software with our platform
 								for streamlined operations. Sync data, automate tasks, and gain
 								better control over your finances.
