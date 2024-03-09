@@ -1,9 +1,9 @@
-import ChatSidebar from "@/components/ChatSidebar";
 import { Metadata } from "next";
-import ChatMain from "@/components/ChatMain";
+import ChatMain from "../(components)/ChatMain";
+import ChatSidebar from "../(components)/ChatSidebar";
 
 export const metadata: Metadata = {
-	title: "SATSAT-AI Chat with your financial data",
+	title: "SatSat-Ai Chat with your financial data",
 };
 
 const page = () => {
