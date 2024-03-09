@@ -25,7 +25,7 @@ const Modal = ({
 
 	return (
 		<div
-			onClick={() => setShowModal && setShowModal(false)}
+			onClick={() => setShowModal!(false)}
 			className={` ${
 				showModal ? "block" : "hidden"
 			} fixed top-0 left-0 w-full h-full bg-darker/90 z-50 flex items-center justify-center`}
@@ -52,7 +52,7 @@ const Modal = ({
 				)}
 				<div className="mt-5 flex items-center w-full justify-center gap-4">
 					<button
-						onClick={() => setShowModal && setShowModal(false)}
+						onClick={() => setShowModal!(false)}
 						className="py-1 rounded px-7 ease-in transition-colors active:scale-[1.01] bg-[crimson] text-white"
 						type="button"
 					>
