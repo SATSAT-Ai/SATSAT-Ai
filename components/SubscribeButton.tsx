@@ -1,21 +1,23 @@
 "use client";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
-type button = "contact-sales" | "signup";
-
-const SubscribeButton = ({ name, type }: { name: string; type: button }) => {
+const SubscribeButton = ({
+	name,
+	buttonType,
+}: {
+	name: string;
+	buttonType: string;
+}) => {
 	const router = useRouter();
-
-	enum buttonType {
-		contact_sales = "contact-sales",
-	}
+	const searchParams = useSearchParams();
+	const params = new URLSearchParams(searchParams!);
 
 	const handlePlan = () => {
-		if (type === buttonType.contact_sales) {
-			//!redirect to contact sales page
+		params.set("plan", buttonType);
+		if (buttonType === "enterprise") {
+			router.replace(`/contact?${params}`);
 		} else {
-			//!if user already has an account, upgrade plan or redirect to signup
-			// router.push("/signup");
+			router.replace(`/signup?${params}`);
 		}
 	};
 
