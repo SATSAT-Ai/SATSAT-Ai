@@ -1,18 +1,12 @@
 "use client";
 
-import IncomingMessage from "./IncomingMessage";
-import OutgoingMessage from "./OutgoingMessage";
+import { IUser, IdeFault } from "@/app/dashboard/(components)/ChatMain";
+import ChatScrollToBottom from "@/app/dashboard/(components)/ChatScrollToBottom";
+import IncomingMessage from "@/app/dashboard/(components)/IncomingMessage";
+import OutgoingMessage from "@/app/dashboard/(components)/OutgoingMessage";
 import TelegramIcon from "@mui/icons-material/Telegram";
-import {
-	useState,
-	KeyboardEvent,
-	useRef,
-	useLayoutEffect,
-	useEffect,
-} from "react";
-import { IUser, IdeFault } from "./ChatMain";
+import { useState, KeyboardEvent, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
-import ChatScrolltoBottom from "@/components/ChatScrolltoBottom";
 
 const PromptPage = () => {
 	const { register, watch, handleSubmit, reset, setFocus } =
@@ -34,13 +28,13 @@ const PromptPage = () => {
 
 		{
 			from: "Ai",
-			id: "lorcerm",
-			firstText: "Here is a demo response from satsat Ai.",
+			id: "lorcermk",
+			firstText: "Here is a demo response from SatSat AI.",
 
 			list: [
 				{ id: "lorem", msg: "January:GHS 1500" },
-				{ id: "loreem", msg: "Febuary:GHS 1800" },
-				{ id: "3loreem", msg: "March:GHS 1400" },
+				{ id: "lorem", msg: "February:GHS 1800" },
+				{ id: "lorem", msg: "March:GHS 1400" },
 			],
 			endingText: `Is there anything else you'd like to inquire about?`,
 		},
@@ -53,16 +47,26 @@ const PromptPage = () => {
 		{
 			from: "Ai",
 			id: "lorem",
-			firstText: "Here is a demo response from satsat Ai.",
+			firstText: "Here is a demo response from SatSat AI.",
 
 			list: [],
 			endingText: `Is there anything else you'd like to inquire about?`,
 		},
 	]);
 
-	useLayoutEffect(() => {
-		handleScrollToBottom();
+	const handleScrollToBottom = () => {
+		if (chatContainerRef?.current) {
+			chatContainerRef.current.scrollTo({
+				top: chatContainerRef.current.scrollHeight,
+				behavior: "smooth",
+			});
+		}
+	};
 
+	useEffect(() => {
+		handleScrollToBottom(); //scroll to chat bottom when page loads
+
+		//show the scrollToBottom icon when user is above threshold
 		const handleScroll = () => {
 			const containerRef = chatContainerRef.current;
 			if (containerRef) {
@@ -99,20 +103,20 @@ const PromptPage = () => {
 				setConversations([]);
 				setIsFirstChat(true);
 			}
-			//sendMesssage
+			//sendMessage
 			if (WatchedUserMessage?.trim()) {
 				setConversations((prev) => [
 					...prev,
 					{
-						id: "skdjfksdjf",
-						message: WatchedUserMessage,
+						id: WatchedUserMessage.slice(0, 10),
+						message: WatchedUserMessage?.trim(),
 						from: "User",
 					},
 
 					{
 						from: "Ai",
 						id: "lore34m",
-						firstText: "Here is a demo response from satsat Ai.",
+						firstText: "Here is a demo response from SatSat AI.",
 						list: [],
 						endingText: `Is there anything else you'd like to inquire about?`,
 					},
@@ -120,15 +124,6 @@ const PromptPage = () => {
 
 				reset();
 			}
-		}
-	};
-
-	const handleScrollToBottom = () => {
-		if (chatContainerRef?.current) {
-			chatContainerRef.current.scrollTo({
-				top: chatContainerRef.current.scrollHeight,
-				behavior: "smooth",
-			});
 		}
 	};
 
@@ -154,22 +149,20 @@ const PromptPage = () => {
 			setConversations([]);
 			setIsFirstChat(true);
 		}
-		//if there is no chatContainerId create one or add up to existing;
+
 		if (data?.userMessage?.trim()) {
 			//sendMessage;
-
 			setConversations((prev) => [
 				...prev,
 				{
-					id: "skdjfksdjf",
+					id: data.userMessage.slice(0, 10),
 					message: data.userMessage,
 					from: "User",
 				},
-
 				{
 					from: "Ai",
 					id: "lore34m",
-					firstText: "Here is a demo response from satsat Ai.",
+					firstText: "Here is a demo response from SatSat AI.",
 					list: [],
 					endingText: `Is there anything else you'd like to inquire about?`,
 				},
@@ -180,29 +173,29 @@ const PromptPage = () => {
 	};
 
 	return (
-		<div className="flex flex-col z-0 md:gap-0 p-5 sm:p-7 lg:flex-row text-grey-lightest h-full lg:h-[800px] gap-7">
+		<div className="flex flex-col z-0 md:gap-0 p-5 sm:p-7 lg:flex-row text-white h-full lg:h-[800px] gap-7">
 			<div className="pb-5 lg:pb-0 lg:pr-5 flex-1">
-				<ul className="flex text-center items-center sm:text-left gap-3 flex-col">
+				<ul className="flex text-center items-center sm:text-left flex-col gap-5">
 					<li>
-						<p className="mb-2 capitalize text-brand-green text-text-20">
+						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-text-24">
 							Streamline your finances with smart chatbot analysis
 						</p>
-						<span className="text-text-normal font-normal">
+						<span className="text-text-14 sm:text-text-normal font-normal">
 							Managing your finances has never been this intuitive and
 							hassle-free. Our platform empowers you to effortlessly interact
 							with your financial data through our advanced AI chatbot. Simply
-							upload your bank statement, and within moments, gain access to a
-							wealth of insights and trends about your spending habits, income
-							sources, and more. No more crunching numbers or deciphering
+							upload your financial statement, and within moments, gain access
+							to a wealth of insights and trends about your spending habits,
+							income sources, and more. No more crunching numbers or deciphering
 							complex spreadsheets. Our user-friendly chat interface puts all
 							the information you need at your fingertips.
 						</span>
 					</li>
 					<li>
-						<p className="mb-2 capitalize text-brand-green text-text-20">
+						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-text-24">
 							Gain Valuable insights instantly
 						</p>
-						<span className="text-text-normal font-normal">
+						<span className="text-text-14 sm:text-text-normal font-normal">
 							With our financial statements analyzer, understanding your
 							financial health is a breeze. Want to know your monthly spending
 							trends? Curious about how much you spent on dining out last month?
@@ -214,10 +207,10 @@ const PromptPage = () => {
 						</span>
 					</li>
 					<li>
-						<p className="mb-2 capitalize text-brand-green text-text-20">
+						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-text-24">
 							Secure, Effortless, and Personalized
 						</p>
-						<span className="text-text-normal font-normal">
+						<span className="text-text-14 sm:text-text-normal font-normal">
 							Rest easy knowing your financial data is handled with the
 							utmost,security. Our platform employs industry-leading encryption
 							protocols to safeguard your sensitive information. Your data is
@@ -236,7 +229,7 @@ const PromptPage = () => {
 							scrollToBottom ? "visible" : "invisible"
 						} sticky ml-3 top-[60%] md:top-[75%]`}
 					>
-						<ChatScrolltoBottom scrollToBottom={handleScrollToBottom} />
+						<ChatScrollToBottom scrollToBottom={handleScrollToBottom} />
 					</div>
 
 					<ul className="w-full flex flex-col gap-5 h-[450px]">
@@ -288,7 +281,7 @@ const PromptPage = () => {
 									autoCorrect="true"
 									onKeyDown={(e) => (handleKeyDown(e), handleTextAreaResize(e))}
 									className="w-full caret-brand-green text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal rounded-lg outline-none bg-brand-green border-none h-auto bg-transparent"
-									placeholder="Chat SATSAT AI..."
+									placeholder="Chat SatSat AI..."
 									{...register("userMessage", {
 										required: false,
 									})}
