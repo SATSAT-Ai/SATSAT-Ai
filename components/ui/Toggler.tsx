@@ -21,15 +21,17 @@ export default function Toggler({
 				checked={enabled}
 				onChange={setEnabled}
 				className={`${
-					enabled ? "bg-teal-900 bg-brand-green" : "bg-grey-light bg-teal-700"
+					enabled
+						? "bg-teal-900 bg-brand-green/45  border-brand-green"
+						: " border-white/20 bg-grey-light bg-teal-700"
 				}
-          relative inline-flex  h-[33px] w-[60px] shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2  focus-visible:ring-white/75`}
+          relative inline-flex  h-[33px] w-[61px] shrink-0 cursor-pointer rounded-full border-2 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
 			>
 				<span className="sr-only">Use setting</span>
 				<span
 					aria-hidden="true"
 					className={`${enabled ? "translate-x-8" : "translate-x-[3px]"}
-            pointer-events-none relative top-1/2 -translate-y-1/2 inline-block h-[20px] w-[20px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
+            pointer-events-none relative top-1/2 -translate-y-1/2 inline-block h-[22px] w-[22px] transform rounded-full bg-white shadow-lg ring-0 transition duration-200 ease-in-out`}
 				/>
 			</Switch>
 			<button
