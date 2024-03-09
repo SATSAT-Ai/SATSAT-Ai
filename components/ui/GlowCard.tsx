@@ -1,5 +1,5 @@
 import { ClassValue } from "clsx";
-import React, { ReactNode } from "react";
+import React, { DOMAttributes, ReactNode } from "react";
 import { cn } from "../../lib/utils";
 import Link from "next/link";
 
@@ -11,7 +11,9 @@ const GlowCard = ({
 	children,
 	type = "card",
 	linkTo,
+	onCardClick,
 }: {
+	onCardClick?: () => void;
 	cardClassName?: ClassValue;
 	className?: ClassValue;
 	customBackgroundColorBefore?: string;
@@ -22,6 +24,7 @@ const GlowCard = ({
 }) => {
 	return type === "link" ? (
 		<Link
+			onClick={onCardClick}
 			href={linkTo || ""}
 			className={cn(
 				`relative overflow-clip flex flex-col w-full text-white rounded-xl hover:before:opacity-100 before:opacity-0 after:opacity-0 before:h-full after:h-full before:left-0 after:left-0 before:bottom-0 after:bottom-0 before:top-0 after:top-0 before:transition-opacity after:transition-opacity before:duration-[500ms] before:w-full after:w-full after:duration-[500ms] before:absolute after:absolute after:rounded-[inherit] before:rounded-[inherit] card-child group-hover:before:opacity-100 group-hover:after:opacity-100`,
