@@ -1,9 +1,9 @@
 "use client";
+
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdClose } from "react-icons/md";
 import satsatLogo from "../public/satsat-logo.svg";
-
 import { SetStateAction, Dispatch, useState } from "react";
 import { signOut, useSession } from "next-auth/react";
 import { dropdown } from "./Header";
@@ -11,6 +11,8 @@ import DevelopersDropDown from "./ui/DevelopersDropDown";
 import ProductDropDown from "./ui/ProductsDropDown";
 import SolutionsDropDown from "./ui/SolutionsDropDown";
 import Image from "next/image";
+import SignOutButton from "./ui/SignOutButton";
+import GetStartedButton from "./ui/GetStartedButton";
 interface navProps {
 	setDropDownType: Dispatch<SetStateAction<dropdown>>;
 	setShowNav: Dispatch<SetStateAction<boolean>>;
@@ -46,11 +48,7 @@ const MobileNav = ({
 			name: "Solutions",
 			type: "dropdown",
 		},
-		// {
-		// 	path: "/about",
-		// 	name: "About",
-		// 	type: "link",
-		// },
+
 		{
 			path: "/developers",
 			name: "Developers",
@@ -79,7 +77,7 @@ const MobileNav = ({
 	};
 
 	return (
-		<>
+		<div className="md:hidden">
 			{
 				<div
 					onClick={() => (setShowNav(false), setShowModal(false))}
@@ -159,6 +157,7 @@ const MobileNav = ({
 							/>
 						) : dropDownType === "products" ? (
 							<ProductDropDown
+								toggleNavToFalse={() => setShowNav(false)}
 								scrolled={scrolled}
 								className="!min-h-screen overscroll-none pt-[64px] backdrop-filter-none pb-5 px-0 bg-transparent backdrop-blur-none rounded-none"
 							/>
@@ -190,31 +189,16 @@ const MobileNav = ({
 				)}
 				{pathname !== "/choose-your-pricing" && !session?.user ? (
 					<li onClick={() => setShowNav(false)}>
-						<Link
-							className={`px-7 before:opacity-0 hover:before:opacity-100 before:z-[-1] after:z-[-1]  before:rounded-3xl after:absolute after:rounded-3xl after:top-[-1px] after:left-[-1px]  before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative rounded-3xl bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between py-3 custom-block glow4 text-text-normal text-white font-medium flex items-center gap-2`}
-							href={"/choose-your-pricing"}
-						>
-							Get Started Now
-						</Link>
+						<GetStartedButton showIcon={false} />
 					</li>
 				) : (
 					pathname !== "/choose-your-pricing" &&
 					session?.user && (
-						<li className="flex items-center !rounded-3xl font-medium gap-3 hover:shadow-none hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button2">
-							<button
-								disabled={loading}
-								type="button"
-								onClick={handleSignOut}
-								className="flex items-center gap-4"
-							>
-								{loading ? "Signing out" : "Sign Out"}
-								{loading && <div className="loader"></div>}
-							</button>
-						</li>
+						<SignOutButton loading={loading} handleSignOut={handleSignOut} />
 					)
 				)}
 			</ul>
-		</>
+		</div>
 	);
 };
 
