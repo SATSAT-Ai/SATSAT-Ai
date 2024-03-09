@@ -8,8 +8,9 @@ import { Toaster } from "react-hot-toast";
 import { getServerSession } from "next-auth";
 import SessionProvider from "@/components/SessionProvider";
 import { options } from "./api/auth/[...nextauth]/options";
-import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Analytics } from "@vercel/analytics/react";
+import QueryProvider from "@/components/QueryProvider";
 
 const roboto = Roboto({
 	subsets: ["latin", "greek"],
@@ -24,6 +25,7 @@ export default async function RootLayout({
 	children: React.ReactNode;
 }) {
 	const session = await getServerSession(options);
+
 	return (
 		<html lang="en">
 			<body className={`antialiased ${roboto.className}`}>
@@ -39,7 +41,9 @@ export default async function RootLayout({
 					shadow="0 0 10px #29a173,0 0 5px #29a173"
 				/>
 				<Toaster />
-				<SessionProvider session={session}>{children}</SessionProvider>
+				<SessionProvider session={session}>
+					<QueryProvider>{children}</QueryProvider>
+				</SessionProvider>
 				<Analytics />
 				<SpeedInsights />
 			</body>
