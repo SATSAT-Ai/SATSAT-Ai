@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import TypeWrite from "./TypeWrite";
 
-const TypeWriteInview = ({ text }: { text: string }) => {
+const TypeWriteInView = ({ text }: { text: string; fontSize?: number }) => {
 	const [ref, inView] = useInView({
 		triggerOnce: true,
 	});
@@ -20,7 +20,7 @@ const TypeWriteInview = ({ text }: { text: string }) => {
 					text={text}
 					showCaret={true}
 					loop={false}
-					typingSpeed={35}
+					typingSpeed={20}
 					showCaretOnComplete={false}
 					timeToStartNewText={0}
 				/>
@@ -29,4 +29,4 @@ const TypeWriteInview = ({ text }: { text: string }) => {
 	);
 };
 
-export default TypeWriteInview;
+export default TypeWriteInView;
