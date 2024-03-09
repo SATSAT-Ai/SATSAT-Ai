@@ -32,7 +32,7 @@ const developerPortal: {
 		id: "dev-docs",
 		portal: "Developer docs",
 		desc: "Learn about using our API",
-		link: "/developers/getting-started",
+		link: "/developers/api-docs",
 		icon: <BsFileEarmarkCode size={25} color="#c18e3b" />,
 	},
 
@@ -54,7 +54,7 @@ const developerPortal: {
 		id: "api-refrence",
 		desc: "Explore our API",
 		portal: "Api reference",
-		link: "/developers/getting-started",
+		link: "/developers/api-docs",
 		icon: <VscReferences size={25} color="#c18e3b" />,
 	},
 	{
@@ -117,7 +117,7 @@ const DevelopersDropDown = ({
 								{portal.icon}
 								<p className="flex flex-col">
 									<span className="font-medium">{portal.portal}</span>
-									<span className="text-mid--yellow font-normal">
+									<span className="text-mid--yellow font-normal text-text-14 sm:text-text-normal">
 										{portal.desc}
 									</span>
 								</p>
@@ -139,9 +139,9 @@ const DevelopersDropDown = ({
 							<p className="pb-3 text-text-20 font-medium text-white">
 								Feedback
 							</p>
-							<span className="text-mid--yellow text-normal">
+							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
 								We value your input! Share your feedback with us to help improve
-								SATSAT Ai. Your suggestions and comments are essential in
+								SatSat AI. Your suggestions and comments are essential in
 								shaping the future of our platform.
 							</span>
 						</div>
@@ -159,8 +159,8 @@ const DevelopersDropDown = ({
 							<p className="pb-3 text-text-20 font-medium text-white">
 								Product Overview
 							</p>
-							<span className="text-mid--yellow text-normal">
-								Learn more about SATSAT Ai and its features. Discover how our
+							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
+								Learn more about SatSat AI and its features. Discover how our
 								platform utilizes AI to provide insights into financial data,
 								streamline processes, and empower decision-making.
 							</span>
@@ -177,8 +177,8 @@ const DevelopersDropDown = ({
 					<Link href={"/"} className=" flex items-center gap-3 justify-between">
 						<div>
 							<p className="pb-3 text-text-20 font-medium text-white">FAQ</p>
-							<span className="text-mid--yellow text-normal">
-								Explore frequently asked questions about SATSAT Ai and find
+							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
+								Explore frequently asked questions about SatSat AI and find
 								answers to common inquiries regarding our platform, solutions,
 								integration, security, and more.
 							</span>
