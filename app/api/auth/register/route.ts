@@ -1,24 +1,54 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import axios from "axios";
+import { getServerSession } from "next-auth";
+import { options } from "../[...nextauth]/options";
 
-export const POST = async (request: Request) => {
+export const POST = async (req: NextRequest) => {
 	try {
-		const { fullName, email, country } = await request.json();
+		const session = await getServerSession(options);
+		const { country_id, fullName, email, phone, starting_plan } =
+			await req.json();
 
-		if (fullName && email && country) {
-			// const response  = await axios.post('url',{
-			//     fullName,
-			//     email,
-			//     country
-			// })
-		} else {
-			throw new Error("An error occurred");
+		//if user already exist
+		if (session && session.user.email === email) {
+			return NextResponse.json(
+				{ message: "You are already logged in" },
+				{ status: 400 }
+			);
+		} else if (session && session.user) {
+			return NextResponse.json(
+				{
+					message: "Cannot signup when you are logged in",
+				},
+				{ status: 400 }
+			);
 		}
 
-		console.log({ fullName, email, country });
-	} catch (e) {
-		console.log({ e });
+		const response = await axios.post(
+			`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/users`,
+			{
+				name: fullName,
+				email,
+				country_id,
+				phone,
+				starting_plan: starting_plan.toUpperCase(),
+			}
+		);
+		if (response.status === 201) {
+			return NextResponse.json({
+				message: " Account has been created",
+				userId: response.data.user.id,
+				success: true,
+			});
+		}
+	} catch (error: any) {
+		return NextResponse.json(
+			{
+				message: error?.response?.data?.error,
+			},
+			{
+				status: error?.response?.status,
+			}
+		);
 	}
-
-	return NextResponse.json({ message: "success" });
 };
