@@ -1,6 +1,6 @@
-import ChatMain from "@/components/ChatMain";
-import ChatSidebar from "@/components/ChatSidebar";
-import ToggleSidebars from "@/components/ToggleSidebars";
+import ChatMain from "../../(components)/ChatMain";
+import ChatSidebar from "../../(components)/ChatSidebar";
+import ToggleSidebars from "../../(components)/ToggleSidebars";
 
 const page = ({ params: { chatId } }: { params: { chatId: string } }) => {
 	return (
