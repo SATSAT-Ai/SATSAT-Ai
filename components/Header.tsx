@@ -4,14 +4,13 @@ import Image from "next/image";
 import satsatLogo from "../public/satsat-logo.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { MdMenu, MdArrowForward } from "react-icons/md";
+import { MdMenu } from "react-icons/md";
 import { useState, useEffect } from "react";
 import MobileNav from "./MobileNav";
 import { signOut, useSession } from "next-auth/react";
 import ProductDropDown from "./ui/ProductsDropDown";
 import DevelopersDropDown from "./ui/DevelopersDropDown";
 import SolutionsDropDown from "./ui/SolutionsDropDown";
-import CustomGlowButton from "./ui/CustomGlowButton";
 import SignOutButton from "./ui/SignOutButton";
 import GetStartedButton from "./ui/GetStartedButton";
 import TopBanner from "./ui/TopBanner";
@@ -38,7 +37,6 @@ const Header = ({ position }: { position?: string }) => {
 		},
 		{
 			path: "/solutions",
-
 			name: "Solutions",
 			type: "dropdown",
 		},
@@ -53,10 +51,6 @@ const Header = ({ position }: { position?: string }) => {
 			name: "Support",
 			type: "link",
 		},
-		// {
-		// 	path: "/how-it-works",
-		// 	name: "How It Works",
-		// },
 	];
 
 	useEffect(() => {
@@ -87,15 +81,13 @@ const Header = ({ position }: { position?: string }) => {
 
 	return (
 		<>
-			<div className={`md:hidden`}>
-				<MobileNav
-					setShowNav={setShowNav}
-					showNav={showNav}
-					dropDownType={dropDownType}
-					setDropDownType={setDropDownType}
-					scrolled={scrolled}
-				/>
-			</div>
+			<MobileNav
+				setShowNav={setShowNav}
+				showNav={showNav}
+				dropDownType={dropDownType}
+				setDropDownType={setDropDownType}
+				scrolled={scrolled}
+			/>
 
 			<header
 				onMouseLeave={() => setShowDropDown(false)}
@@ -144,6 +136,7 @@ const Header = ({ position }: { position?: string }) => {
 								if (links.type === "dropdown") {
 									return (
 										<li
+											tabIndex={0}
 											onMouseOver={() => (
 												setShowDropDown(true),
 												setDropDownType(
@@ -201,9 +194,11 @@ const Header = ({ position }: { position?: string }) => {
 									>
 										<Link href={"/signin"}>Sign in</Link>
 									</li>
-									{pathname !== "/choose-your-pricing" && (
-										<GetStartedButton showIcon={true} />
-									)}
+									<li>
+										{pathname !== "/choose-your-pricing" && (
+											<GetStartedButton showIcon={true} />
+										)}
+									</li>
 								</>
 							)}
 						</ul>
