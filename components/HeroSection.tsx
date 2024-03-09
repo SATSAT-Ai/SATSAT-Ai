@@ -3,9 +3,9 @@
 import { TbSquareRoundedArrowDownFilled } from "react-icons/tb";
 import TypeWrite from "@/components/TypeWrite";
 import PromptPage from "@/components/PromptPage";
-import CustomGlowButton from "./ui/CustomGlowButton";
 import { useRef } from "react";
 import SparklesCore from "@/components/ui/Particles";
+import GetStartedButton from "./ui/GetStartedButton";
 
 const HeroSection = () => {
 	const sectionRef = useRef<null | HTMLDivElement>(null);
@@ -14,13 +14,12 @@ const HeroSection = () => {
 		<>
 			<div className=" w-full text-center flex flex-col relative z-0 ">
 				<div className="green-blob2 z-10 w-[550px] h-[400px] animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
-				<div className="absolute source-out z-10 inset-0 w-full h-full bg-black [mask-image:radial-gradient(550px_400px_at_top,transparent_90%,white)]"></div>
 				<div className="absolute source-out h-full bottom-0 z-[1] left-0 w-full">
 					<SparklesCore
 						id="tsparticlesfullpage"
 						background="transparent"
 						minSize={0.8}
-						maxSize={2}
+						maxSize={1.9}
 						particleDensity={30}
 						className="w-full h-full"
 						particleColor="#29a173"
@@ -39,7 +38,7 @@ const HeroSection = () => {
 									"Budget management and forecasts",
 									"Wealth of data-driven financial insights",
 									"Alternative credit scoring",
-									"Insurance and loan offers",
+									"Analyze bank and mobile money statements,invoices and receipts",
 								]}
 								showCaret={true}
 								loop={true}
@@ -49,12 +48,11 @@ const HeroSection = () => {
 							/>
 						</div>
 
-						<div className="w-fit mt-3 mx-auto">
-							<CustomGlowButton
-								href="/choose-your-pricing"
-								name="Get Started Now"
-							/>
-						</div>
+						<GetStartedButton
+							showIcon={false}
+							name="Get Started Now"
+							className="w-fit mx-auto"
+						/>
 					</section>
 					<button
 						aria-label="to next section"
