@@ -23,7 +23,7 @@ const featuredProducts: {
 }[] = [
 	{
 		id: "jdkfjrw",
-		productName: "Scan Statements",
+		productName: "Scan Documents",
 		description: "Scan mobile money, bank statements, Invoices and receipts",
 		img: ScanIcon,
 		link: "/",
@@ -80,8 +80,10 @@ const products = [
 const ProductDropDown = ({
 	scrolled,
 	className,
+	toggleNavToFalse,
 }: {
 	scrolled: boolean;
+	toggleNavToFalse?: () => void | undefined;
 	className?: ClassValue;
 }) => {
 	return (
@@ -101,7 +103,7 @@ const ProductDropDown = ({
 						<Link key={featured.id} href={featured.link}>
 							<GlowCard
 								cardClassName="bg-[#0e2b0e] shadow-sm cursor-pointer p-3 rounded-md flex-row items-center gap-5 justify-between"
-								className="flex flex-col text-center sm:text-left justify-center sm:flex-row items-center md:justify-between gap-5"
+								className="flex w-full flex-col text-center sm:text-left sm:flex-row items-center md:justify-between gap-5"
 							>
 								<Image
 									src={featured.img}
@@ -114,7 +116,7 @@ const ProductDropDown = ({
 									<p className="text-white pb-2 font-medium text-text-20">
 										{featured.productName}
 									</p>
-									<span className="text-mid--yellow max-w-sm w-full block">
+									<span className="text-mid--yellow mx-auto text-text-14 sm:text-text-normal max-w-sm w-full block">
 										{featured.description}
 									</span>
 								</div>
@@ -140,7 +142,7 @@ const ProductDropDown = ({
 								<p className="text-white font-medium pb-2 text-text-20">
 									Discover Powerful Features
 								</p>
-								<span className="text-[#d6d6d6] ">
+								<span className="text-mid--yellow md:text-[#d6d6d6] text-text-14 sm:text-text-normal">
 									Explore the capabilities that set us apart. From advanced
 									scanning to intuitive dashboards, our platform offers a suite
 									of tools designed to streamline your workflow and drive
@@ -152,7 +154,7 @@ const ProductDropDown = ({
 								<p className="text-white pb-2 font-medium text-text-20">
 									Enhance Your Workflow
 								</p>
-								<span className="text-[#d6d6d6]">
+								<span className="text-mid--yellow md:text-[#d6d6d6] text-text-14 sm:text-text-normal">
 									Take your operations to the next level with our innovative
 									features. Whether{` you're `}a small business or a large
 									enterprise, our solutions are tailored to meet your needs.
@@ -171,41 +173,44 @@ const ProductDropDown = ({
 
 						<div className="flex-[2] md:flex justify-center w-full">
 							<ul>
-								<GlowCardParent className="grid grid-cols-1 md:flex md:flex-col gap-2">
-									{products.map((product) => {
-										return (
-											<GlowCard
-												type="link"
-												linkTo={product.link}
-												key={product.product}
-												cardClassName="bg-[#071f07] gap-5 p-0 cursor-pointer"
-												className="p-3 duration-100 transition-colors rounded-md"
-											>
-												<div className=" flex items-center gap-3 justify-start">
-													<Image
-														src={product.img}
-														alt={product.product}
-														height={25}
-														width={25}
-													/>
-													<div>
-														<p className="font-medium text-[17px] text-white">
-															{product.product}
-														</p>
-														<span className="text-mid--yellow text-normal">
-															{product.details}
-														</span>
+								<li>
+									<GlowCardParent className="grid grid-cols-1 md:flex md:flex-col gap-2">
+										{products.map((product) => {
+											return (
+												<GlowCard
+													onCardClick={toggleNavToFalse!}
+													type="link"
+													linkTo={product.link}
+													key={product.product}
+													cardClassName="bg-[#071f07] gap-5 p-0 cursor-pointer"
+													className="p-3 duration-100 transition-colors rounded-md"
+												>
+													<div className=" flex items-center gap-3 justify-start">
+														<Image
+															src={product.img}
+															alt={product.product}
+															height={25}
+															width={25}
+														/>
+														<div>
+															<p className="font-medium text-[17px] text-white">
+																{product.product}
+															</p>
+															<span className="text-mid--yellow text-text-14">
+																{product.details}
+															</span>
+														</div>
+														<KeyboardArrowRight
+															color="inherit"
+															fontSize="medium"
+															className="ml-auto"
+														/>
 													</div>
-													<KeyboardArrowRight
-														color="inherit"
-														fontSize="medium"
-														className="ml-auto"
-													/>
-												</div>
-											</GlowCard>
-										);
-									})}
-								</GlowCardParent>
+												</GlowCard>
+											);
+										})}
+									</GlowCardParent>
+								</li>
 							</ul>
 						</div>
 						<div className="flex-[2]">
@@ -213,7 +218,7 @@ const ProductDropDown = ({
 								<p className="text-white font-medium pb-2 text-text-20">
 									Streamline Your Workflow
 								</p>
-								<span className="text-[#d6d6d6]">
+								<span className="text-mid--yellow md:text-[#d6d6d6] text-text-14 sm:text-text-normal">
 									Our platform is designed to simplify complex processes and
 									optimize efficiency. With intuitive interfaces and seamless
 									integration, you can automate tedious tasks and focus on what
@@ -225,7 +230,7 @@ const ProductDropDown = ({
 								<p className="text-white pb-2 font-medium text-text-20">
 									Gain Actionable Insights
 								</p>
-								<span className="text-[#d6d6d6]">
+								<span className="text-mid--yellow md:text-[#d6d6d6] text-text-14 sm:text-text-normal">
 									Unlock the power of data with our advanced analytics tools.
 									From customizable reports to real-time metrics,{` you'll `}
 									have access to valuable insights that drive informed
