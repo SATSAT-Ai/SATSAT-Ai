@@ -3,10 +3,10 @@ import openGraphImage from "../public/prompt-page-large.jpg";
 import { Metadata } from "next";
 
 export const SATSATmetadata: Metadata = {
-	title: "SATSAT-AI",
+	title: "SatSat-Ai",
 	description:
-		"SATSAT AI is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language.",
-	applicationName: "SATSAT AI",
+		"SatSat AI is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language.",
+	applicationName: "SatSat AI",
 	icons: [icon],
 
 	authors: [
@@ -17,25 +17,25 @@ export const SATSATmetadata: Metadata = {
 		"scan financial documents",
 		"financial insights",
 		" Ai in finance",
-		"SATSAT-AI",
+		"SatSat-Ai",
 	],
 	creator: "Kamasah Dickson",
 
 	openGraph: {
-		title: "SATSAT-AI",
+		title: "SatSat-Ai",
 		type: "website",
 		emails: ["kamasahdickson@gmail.com"],
-		siteName: "SATSAT-AI",
+		siteName: "SatSat-Ai",
 		description:
-			"SATSAT AI is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language.",
+			"SatSat AI is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language.",
 		images: [openGraphImage, icon],
 	},
 
 	twitter: {
 		card: "summary_large_image",
-		title: "SATSAT-AI",
+		title: "SatSat-Ai",
 		description:
-			"SATSAT AI is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language.",
+			"SatSat AI is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language.",
 		images: [openGraphImage as unknown as string],
 		creator: "@jeanlinux",
 	},
