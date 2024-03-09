@@ -10,8 +10,8 @@ import PieCharts from "./PieCharts";
 import DoughnutChart from "./DoughnutChart";
 import IncomeTable from "./IncomeTable";
 import LineChart from "./LineChart";
-import { timeStampsAndValue } from "@/TestTimeStamp";
 import Skeleton from "@mui/material/Skeleton";
+import { timeStampsAndValue } from "@/helpers/TestTimeStamp";
 
 const DashboardClientPage = () => {
 	const { hideSidebar, setHideSidebar } = useContext(AppContext);
