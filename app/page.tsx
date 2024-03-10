@@ -16,9 +16,9 @@ import chatBot from "../public/chatbot.svg";
 import createAccountImage from "../public/create-account.svg";
 import chatWithAiImage from "../public/chat-with-ai.svg";
 import { MdStar } from "react-icons/md";
-import TypeWriteInView from "@/components/TypeWriteInView";
 import GetStartedButton from "@/components/ui/GetStartedButton";
 import PageScroller from "./dashboard/(components)/PageScroller";
+import TypeWriteInView from "@/components/TypeWriteInView";
 
 export const metadata: Metadata = {
 	title: "Welcome to SatSat-Ai - Chat with your financial documents",
