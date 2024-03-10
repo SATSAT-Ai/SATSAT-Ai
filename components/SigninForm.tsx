@@ -1,5 +1,4 @@
 "use client";
-
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
@@ -69,7 +68,7 @@ const SignInForm = () => {
 			toast.error(signInResponse.error);
 		}
 		if (signInResponse?.ok) {
-			toast.success('Logged in successfully')
+			toast.success("Logged in successfully");
 			router.push("/dashboard");
 		}
 		// //!remove
