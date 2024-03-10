@@ -4,7 +4,7 @@ import signupImage from "@/public/signupImage.svg";
 import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SignUpForm from "../../../components/SignUpForm";
+import SignUpForm from "@/components/SignUpForm";
 
 export const metadata: Metadata = {
 	title: "SatSat-Ai Get started!",
