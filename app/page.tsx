@@ -16,9 +16,9 @@ import chatBot from "../public/chatbot.svg";
 import createAccountImage from "../public/create-account.svg";
 import chatWithAiImage from "../public/chat-with-ai.svg";
 import { MdStar } from "react-icons/md";
-import TypeWriteInview from "@/components/TypeWriteInView";
 import GetStartedButton from "@/components/ui/GetStartedButton";
 import PageScroller from "./dashboard/(components)/PageScroller";
+import TypeWriteInView from "@/components/TypeWriteInView";
 
 export const metadata: Metadata = {
 	title: "Welcome to SatSat-Ai - Chat with your financial documents",
@@ -37,7 +37,7 @@ export default function Home() {
 							WHAT IS SATSAT AI?
 						</h2>
 						<div className="text-mid--yellow max-w-lg mx-auto text-text-normal md:text-text-normal">
-							<TypeWriteInview
+							<TypeWriteInView
 								text="SatSat AI is your all-in-one intelligence platform. It combines
 							cutting edge AI technology to query your financial data with
 							natural language."
@@ -109,7 +109,7 @@ export default function Home() {
 							WHY SATSAT AI?
 						</h3>
 						<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-							<TypeWriteInview
+							<TypeWriteInView
 								text="SatSat AI is an financial intelligence platform; a paradigm
 							shift in how you harness the wisdom hidden within your financial
 							documents. We are here to empower your organization, save you time
@@ -191,7 +191,7 @@ export default function Home() {
 							CHAT WITH SATSAT AI
 						</h4>
 						<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-							<TypeWriteInview
+							<TypeWriteInView
 								text="Querying your financial data has never been easy, with SAT SAT AI
 							you need not worry about anything"
 							/>
@@ -265,7 +265,7 @@ export default function Home() {
 							FINANCIAL SERVICE PROVIDERS
 						</h4>
 						<div className="text-mid--yellow px-2 max-w-xl mx-auto text-text-normal md:text-text-normal">
-							<TypeWriteInview
+							<TypeWriteInView
 								text="SatSat AI scans documents such as invoices, mobile money
 							statements, bank statements, receipts etc. These are some of the
 							service providers and banks we provide our services to."
@@ -333,7 +333,7 @@ export default function Home() {
 								ANALYZING YOUR DATA WITH SATSAT AI
 							</h4>
 							<div className="text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-								<TypeWriteInview
+								<TypeWriteInView
 									text="SatSat AI is a revolution in how we harness knowledge buried
 								within our documents. Whether you are in healthcare, legal,
 								finance, or any other industry, SatSat AI empowers you to
