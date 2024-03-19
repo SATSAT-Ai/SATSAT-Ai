@@ -1,4 +1,5 @@
 "use client";
+
 import Link from "next/link";
 import { FcGoogle } from "react-icons/fc";
 import { useForm } from "react-hook-form";
@@ -92,6 +93,7 @@ const SignInForm = () => {
 					Email
 				</label>
 				<input
+					data-test="email_input"
 					disabled={loading}
 					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 						errors.email
@@ -107,13 +109,17 @@ const SignInForm = () => {
 					})}
 				/>
 				{errors.email && (
-					<p className="text-crimson pt-1 text-text-12">
+					<p
+						data-test="signin_error_message"
+						className="text-crimson pt-1 text-text-12"
+					>
 						{errors.email.message}
 					</p>
 				)}
 			</div>
 
 			<button
+				data-test="signin_user_button"
 				disabled={loading}
 				className={`mt-5 font-medium text-[17px] ${
 					loading ? "active:scale-100" : "active:scale-[1.01]"
