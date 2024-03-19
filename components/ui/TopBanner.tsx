@@ -10,7 +10,7 @@ const TopBanner = () => {
 
 	return (
 		showBanner && (
-			<div className="text-white flex items-center gap-5 px-5 py-1 justify-between w-full text-center bg-darker">
+			<div className="text-white flex items-center gap-5 px-5 py-2 justify-between w-full text-center bg-darker">
 				<p className="flex-[11] font-medium text-text-14 sm:text-text-normal">
 					To Get Early Access To SatSat Ai, Please{" "}
 					<button
@@ -23,9 +23,8 @@ const TopBanner = () => {
 				</p>
 				<MdClose
 					color="white"
-					className="cursor-pointer active:scale-[1.01]"
+					className="cursor-pointer active:scale-[1.02] text-text-24 transition-colors duration-100 hover:bg-grey-light rounded-full p-1"
 					onClick={() => setShowBanner(false)}
-					size={25}
 				/>
 			</div>
 		)
