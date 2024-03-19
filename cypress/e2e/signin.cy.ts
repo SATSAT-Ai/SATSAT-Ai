@@ -33,7 +33,7 @@ describe("Signs in user", () => {
 
 		cy.getElement("email_input")
 			.should("not.be.disabled")
-			.type("testing@gmail.com"); //wrong email credentials
+			.type("demo@gmail.com"); //wrong email credentials
 		cy.getElement("signin_user_button")
 			.click()
 			.should("be.disabled")
@@ -57,7 +57,7 @@ describe("Signs in user", () => {
 			cy.getElement("verify_signin_button").click().should("be.disabled");
 			cy.getElement("signin_verification_input").should("be.disabled");
 			signIn("credentials", {
-				email: "testing@gmail.com",
+				email: "demo@gmail.com",
 				password: data.password,
 				redirect: false,
 				callbackUrl: "/dashboard",
