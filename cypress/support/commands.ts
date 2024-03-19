@@ -11,7 +11,20 @@
 //
 //
 // -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
+Cypress.Commands.add("getElement", (eleId: string) => {
+	return cy.get(`[data-test="${eleId}"]`);
+});
+Cypress.Commands.add(
+	"targetElementNavigate",
+	(dropDownId: string, eleId: string) => {
+		return cy
+			.getElement(dropDownId)
+			.should("be.visible")
+			.getElement(eleId)
+			.visit(`${eleId}`);
+	}
+);
+
 //
 //
 // -- This is a child command --
@@ -25,13 +38,41 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 //
-// declare global {
-//   namespace Cypress {
-//     interface Chainable {
-//       login(email: string, password: string): Chainable<void>
-//       drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
-//       visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
-//     }
-//   }
-// }
+
+export {};
+declare global {
+	namespace Cypress {
+		interface Chainable {
+			/**
+			 *Get an element from the dom using  data-test attr
+			 * @eleId is a data-test name.
+			 * This command:
+			 * cy.getElement("pricing-button"), will select an element with a [data-test="pricing-button"]
+			 **/
+
+			getElement(eleId: string): Chainable<JQuery<HTMLElement>>;
+
+			/**
+			 *dropDownId Gets an a dropdown element from nav using the data-test attr and check if its visible.
+			 * @eleId is a data-test name.
+			 * @dropDownId is a dropdown element
+			 * 
+			 * command e.g:
+			 *  cy
+			.getElement(dropDownId)
+			.should("be.visible")
+			.getElement(eleId)
+			.click()
+			.visit(`/feature/${eleId}`);"
+			 **/
+
+			targetElementNavigate(
+				dropDownId: string,
+				eleId: string
+			): Chainable<Cypress.AUTWindow>;
+			// drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+			// dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
+			// visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>
+		}
+	}
+}
