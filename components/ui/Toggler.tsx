@@ -18,6 +18,7 @@ export default function Toggler({
 				Monthly
 			</button>
 			<Switch
+				data-test={"toggle-switch"}
 				checked={enabled}
 				onChange={setEnabled}
 				className={`${

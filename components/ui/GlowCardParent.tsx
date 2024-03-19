@@ -8,7 +8,7 @@ type cardProp = {
 	children: React.ReactNode;
 };
 
-const GlowCardParent = ({ children, className }: cardProp) => {
+const GlowCardParent = ({ children, className, ...restProps }: cardProp) => {
 	const parentCardRef = useRef<null | HTMLDivElement>(null);
 
 	useEffect(() => {
@@ -30,7 +30,11 @@ const GlowCardParent = ({ children, className }: cardProp) => {
 	}, []);
 
 	return (
-		<div className={cn("group w-full", className)} ref={parentCardRef}>
+		<div
+			{...restProps}
+			className={cn("group w-full", className)}
+			ref={parentCardRef}
+		>
 			{children}
 		</div>
 	);

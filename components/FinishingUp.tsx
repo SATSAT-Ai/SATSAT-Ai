@@ -38,6 +38,7 @@ const FinishingUp = () => {
 			</ul>
 
 			<button
+				data-test="finishingUpButton"
 				type="button"
 				onClick={() => router.push("/signin")}
 				className="w-full block text-center font-normal hover:bg-brand-green/70 transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green/80 button"

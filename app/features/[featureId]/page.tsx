@@ -48,6 +48,7 @@ const TargetFeature = ({
 							}
 							return (
 								<GlowCard
+									data-test={"active-feature"}
 									key={data.title}
 									cardClassName="bg-[#071f07] text-white "
 								>

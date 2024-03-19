@@ -77,11 +77,16 @@ const PricingClientPage = () => {
 
 							{prices.category == "enterprise" ? (
 								<SubscribeButton
+									data-test={`category-${prices?.id?.toLowerCase()}`}
 									name="Contact Sales"
 									buttonType={prices.category}
 								/>
 							) : (
-								<SubscribeButton name="Signup" buttonType={prices.category} />
+								<SubscribeButton
+									data-test={`category-${prices?.id?.toLowerCase()}`}
+									name="Signup"
+									buttonType={prices.category}
+								/>
 							)}
 						</div>
 					);

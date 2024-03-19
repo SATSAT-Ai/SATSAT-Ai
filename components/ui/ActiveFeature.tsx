@@ -23,6 +23,7 @@ const ActiveFeature = ({
 			key={activeFeatureData.id}
 		>
 			<div
+				data-test={`${activeFeatureData.id}-active`}
 				className={`p-3 h-full before:opacity-30 before:hover:opacity-30 before:z-[-1] after:z-[-1]  before:rounded-2xl after:absolute after:rounded-2xl after:top-[-1px] after:left-[-1px]  before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative rounded-2xl bg-gradient-to-tr from-[#071f07] to-[#071f07] justify-between custom-block glow text-text-normal text-white font-medium flex items-center gap-2`}
 			>
 				<Feature

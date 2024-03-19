@@ -91,6 +91,7 @@ const DevelopersDropDown = ({
 }) => {
 	return (
 		<div
+			data-test="dev-dropdown"
 			className={cn(
 				`bg-[#071f07]/60 w-full p-5 h-[66vh] xl:h-[56vh] overflow-y-auto custom-scroll2 backdrop-blur-xl absolute z-10 ${
 					!scrolled
@@ -109,6 +110,7 @@ const DevelopersDropDown = ({
 				{developerPortal.map((portal) => {
 					return (
 						<Link
+							data-test={portal.link}
 							href={portal.link}
 							key={portal.id}
 							className="flex border border-brand-green/40 items-center justify-between gap-5 hover:bg-brand-green-darker bg-brand-green-darker/50 text-white text-normal p-2 rounded-lg font-medium"

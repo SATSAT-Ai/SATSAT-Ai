@@ -7,6 +7,7 @@ const GetStartedButton = ({
 	className,
 	icon = <MdArrowForward color="white" size="24" />,
 	iconPosition = "right",
+	...restProps
 }: {
 	showIcon?: boolean;
 	iconPosition?: "right" | "left";
@@ -16,6 +17,7 @@ const GetStartedButton = ({
 }) => {
 	return showIcon ? (
 		<CustomGlowButton
+			{...restProps}
 			href="/choose-your-pricing"
 			name={name}
 			icon={icon}
@@ -24,6 +26,7 @@ const GetStartedButton = ({
 		/>
 	) : (
 		<CustomGlowButton
+			{...restProps}
 			href="/choose-your-pricing"
 			className={className}
 			name={name}

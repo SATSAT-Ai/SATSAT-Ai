@@ -44,32 +44,43 @@ const featuredProducts: {
 	},
 ];
 
-const products = [
+const products: {
+	id: string;
+	product: string;
+	details: string;
+	img: any;
+	link: string;
+}[] = [
 	{
+		id: "statement-scan",
 		product: "Documents",
 		details: "Scan PDF, OCR, CSV and More",
 		img: Documents,
 		link: "/features/statement-scan",
 	},
 	{
+		id: "fraud-detection",
 		product: "Fraud",
 		img: FraudImage,
 		details: "Smart Fraud Detection",
 		link: "/features/fraud-detection",
 	},
 	{
+		id: "insights-to-financial-documents",
 		product: "Insights",
 		img: ExtractInsightIcon,
 		details: "Insights to financial documents",
 		link: "/features/insights-to-financial-documents",
 	},
 	{
+		id: "client-profile-management",
 		product: "Clients",
 		img: ClientProfileImage,
 		details: "Client Profile Management",
 		link: "/features/client-profile-management",
 	},
 	{
+		id: "ai-chatbot",
 		product: "Chat",
 		img: ChatBotImage,
 		details: "AI ChatBot",
@@ -88,6 +99,7 @@ const ProductDropDown = ({
 }) => {
 	return (
 		<GlowCardParent
+			data-test="prod-dropDown"
 			className={cn(
 				`bg-[#071f07]/60 py-5 h-[61vh] lg:h-[86vh] overflow-y-auto custom-scroll2 overscroll-none w-full px-5 backdrop-blur-xl absolute z-10 ${
 					!scrolled
@@ -164,6 +176,7 @@ const ProductDropDown = ({
 							</div>
 							<div className=" w-fit mt-5 z-20 relative">
 								<CustomGlowButton
+									data-test="explore-all-features"
 									name="Explore All Features"
 									buttonType="Link"
 									href="/features"
@@ -178,10 +191,11 @@ const ProductDropDown = ({
 										{products.map((product) => {
 											return (
 												<GlowCard
+													data-test={`${product.link}`}
 													onCardClick={toggleNavToFalse!}
 													type="link"
 													linkTo={product.link}
-													key={product.product}
+													key={product.id}
 													cardClassName="bg-[#071f07] gap-5 p-0 cursor-pointer"
 													className="p-3 duration-100 transition-colors rounded-md"
 												>

@@ -52,6 +52,7 @@ const HeroSection = () => {
 							showIcon={false}
 							name="Get Started Now"
 							className="w-fit mx-auto"
+							data-test="choose-pricing-button"
 						/>
 					</section>
 					<button

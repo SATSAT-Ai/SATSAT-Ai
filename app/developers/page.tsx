@@ -39,8 +39,9 @@ const Developers = () => {
 					</p>
 
 					<CustomGlowButton
+						data-test={"developer-docs-button"}
 						className="mt-5 w-fit"
-						href="/developers/getting-started"
+						href="/developers/api-docs"
 						name="Get Started"
 						icon={<MdArrowForward color="white" size="24" />}
 						iconPosition="right"

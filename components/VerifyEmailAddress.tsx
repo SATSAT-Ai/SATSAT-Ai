@@ -110,6 +110,7 @@ const VerifyEmailAddress = ({
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="w-full mb-5 flex flex-col">
 				<input
+					data-test="email-verification-code"
 					disabled={loading}
 					placeholder="Verification Code"
 					className={`placeholder:text-grey-lightest/60 outline-none text-white border ${
@@ -128,7 +129,10 @@ const VerifyEmailAddress = ({
 					})}
 				/>
 				{errors.verification_code && (
-					<p className="text-crimson pt-1 text-text-12">
+					<p
+						data-test="emailCodeError"
+						className="text-crimson pt-1 text-text-12"
+					>
 						{errors.verification_code.message}
 					</p>
 				)}
@@ -143,6 +147,7 @@ const VerifyEmailAddress = ({
 				</button>
 			) : (
 				<button
+					data-test="verifyEmailButton"
 					disabled={loading}
 					type="submit"
 					className="w-full block text-center font-normal bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white hover:bg-brand-green button"
@@ -155,6 +160,7 @@ const VerifyEmailAddress = ({
 
 				{countDown === 0 ? (
 					<button
+						data-test="resendEmailButton"
 						disabled={loading}
 						onClick={handleResend}
 						type="button"

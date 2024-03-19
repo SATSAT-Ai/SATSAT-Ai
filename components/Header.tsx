@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import satsatLogo from "../public/satsat-logo.svg";
+import SatSatAiLogo from "../public/satsat-logo.svg";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { MdMenu } from "react-icons/md";
@@ -115,13 +115,13 @@ const Header = ({ position }: { position?: string }) => {
 					} top-0 py-3`}
 				>
 					<div className={` my-max flex items-center justify-between w-full`}>
-						<Link href={"/"}>
+						<Link href={"/"} data-test="SatSat-Ai-logo">
 							<Image
 								className="h-auto w-auto"
-								src={satsatLogo}
+								src={SatSatAiLogo}
 								height={120}
 								width={120}
-								alt="SATSAT-Ai"
+								alt="SatSat-Ai"
 								priority
 							/>
 						</Link>
@@ -136,6 +136,7 @@ const Header = ({ position }: { position?: string }) => {
 								if (links.type === "dropdown") {
 									return (
 										<li
+											data-test={`dropdown-${links.name}`}
 											tabIndex={0}
 											onMouseOver={() => (
 												setShowDropDown(true),
@@ -165,7 +166,9 @@ const Header = ({ position }: { position?: string }) => {
 												: "text-white hover:text-mid--yellow"
 										}`}
 									>
-										<Link href={links.path}>{links.name}</Link>
+										<Link href={links.path} data-test={links.name}>
+											{links.name}
+										</Link>
 									</li>
 								);
 							})}
@@ -179,6 +182,7 @@ const Header = ({ position }: { position?: string }) => {
 									</li>
 
 									<SignOutButton
+										data-test="signOut-button"
 										loading={loading}
 										handleSignOut={handleSignOut}
 									/>
@@ -192,11 +196,16 @@ const Header = ({ position }: { position?: string }) => {
 												: "text-white hover:text-mid--yellow"
 										}`}
 									>
-										<Link href={"/signin"}>Sign in</Link>
+										<Link data-test={"signIn"} href={"/signin"}>
+											Sign in
+										</Link>
 									</li>
-									<li>
+									<li data-test="pricing-button">
 										{pathname !== "/choose-your-pricing" && (
-											<GetStartedButton showIcon={true} />
+											<GetStartedButton
+												showIcon={true}
+												data-test="choose-pricing-button"
+											/>
 										)}
 									</li>
 								</>
@@ -213,7 +222,7 @@ const Header = ({ position }: { position?: string }) => {
 						/>
 					) : dropDownType === "products" ? (
 						<ProductDropDown className="hidden md:block" scrolled={scrolled} />
-					) : showDropDown && dropDownType === "solutions" ? (
+					) : dropDownType === "solutions" ? (
 						<SolutionsDropDown
 							scrolled={scrolled}
 							className="hidden md:block"

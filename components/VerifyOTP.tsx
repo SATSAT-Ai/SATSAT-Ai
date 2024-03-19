@@ -92,6 +92,7 @@ const VerifyOTP = ({
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="w-full mb-5 flex flex-col">
 				<input
+					data-test="optVerificationInput"
 					disabled={loading}
 					placeholder="OTP Code"
 					className={`placeholder:text-grey-lightest/60 outline-none text-white border ${
@@ -110,7 +111,10 @@ const VerifyOTP = ({
 					})}
 				/>
 				{errors.otpCode && (
-					<p className="text-crimson pt-1 text-text-12">
+					<p
+						data-test="optErrorMessage"
+						className="text-crimson pt-1 text-text-12"
+					>
 						{errors.otpCode.message}
 					</p>
 				)}
@@ -125,6 +129,7 @@ const VerifyOTP = ({
 				</button>
 			) : (
 				<button
+					data-test="verifyOtp"
 					disabled={loading}
 					type="submit"
 					className="w-full block text-center font-normal bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white hover:bg-brand-green button"
@@ -137,6 +142,7 @@ const VerifyOTP = ({
 
 				{countDown === 0 ? (
 					<button
+						data-test="resendOtp"
 						disabled={loading}
 						onClick={handleResendOTP}
 						type="button"

@@ -1,13 +1,17 @@
 "use client";
 import { useRouter, useSearchParams } from "next/navigation";
+import { HTMLAttributes } from "react";
+
+type SubScribeButton = HTMLAttributes<HTMLButtonElement> & {
+	name: string;
+	buttonType: string;
+};
 
 const SubscribeButton = ({
 	name,
 	buttonType,
-}: {
-	name: string;
-	buttonType: string;
-}) => {
+	...restProps
+}: SubScribeButton) => {
 	const router = useRouter();
 	const searchParams = useSearchParams();
 	const params = new URLSearchParams(searchParams!);
@@ -23,6 +27,7 @@ const SubscribeButton = ({
 
 	return (
 		<button
+			{...restProps}
 			onClick={handlePlan}
 			type="button"
 			className="w-full shadow-md button block text-center font-normal hover:bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green button"

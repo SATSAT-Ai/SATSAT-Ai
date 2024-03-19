@@ -38,6 +38,7 @@ const EmailAlertModal = ({
 					</li>
 				</ul>
 				<button
+					data-test="modal"
 					onClick={() => setShowAlertModal(false)}
 					className="w-full bg-brand-green/60 hover:bg-brand-green/70 ease transition-colors duration-100 p-2 font-medium rounded-sm mt-5 active:scale-[1.01]"
 					type="button"

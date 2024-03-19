@@ -1,14 +1,15 @@
+import { HTMLAttributes } from "react";
 import LoadingSpinner from "./LoadingSpinner";
 
-const SignOutButton = ({
-	loading,
-	handleSignOut,
-}: {
+type signOutButton = HTMLAttributes<HTMLButtonElement> & {
 	loading: boolean;
 	handleSignOut: () => Promise<void>;
-}) => {
+};
+
+const SignOutButton = ({ loading, handleSignOut,...restProps }: signOutButton) => {
 	return (
 		<button
+		{...restProps}
 			type="button"
 			disabled={loading}
 			className={` ${

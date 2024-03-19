@@ -56,6 +56,7 @@ const SolutionsDropDown = ({
 	];
 	return (
 		<div
+		data-test="sol-dropdown"
 			className={cn(
 				`bg-[#071f07]/60 w-full p-5 h-[67vh] xl:h-[57vh] overflow-y-auto custom-scroll2 backdrop-blur-xl absolute z-10 ${
 					!scrolled

@@ -100,7 +100,11 @@ export default function Home() {
 									Book a demo
 								</Link>
 
-								<GetStartedButton showIcon={true} name="Get Started Now" />
+								<GetStartedButton
+									data-test="choose-pricing-button"
+									showIcon={true}
+									name="Get Started Now"
+								/>
 							</div>
 						</div>
 					</section>
@@ -181,7 +185,11 @@ export default function Home() {
 									>
 										Book a demo
 									</Link>
-									<GetStartedButton showIcon={true} name="Get Started Now" />
+									<GetStartedButton
+										data-test="choose-pricing-button"
+										showIcon={true}
+										name="Get Started Now"
+									/>
 								</div>
 							</div>
 						</div>
@@ -216,6 +224,7 @@ export default function Home() {
 										showIcon={true}
 										name="Get Started Now"
 										iconPosition="left"
+										data-test="choose-pricing-button"
 									/>
 								</div>
 							</div>
@@ -354,6 +363,7 @@ export default function Home() {
 											<GetStartedButton
 												showIcon={true}
 												name="Get Started Now"
+												data-test="choose-pricing-button"
 											/>
 										</div>
 									</div>
