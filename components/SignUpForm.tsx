@@ -6,14 +6,13 @@ import { useForm } from "react-hook-form";
 import { africanCountries } from "@/utils/africanCountries";
 import axios from "axios";
 import { useRouter, useSearchParams } from "next/navigation";
-import { useState, useEffect, Fragment, useContext } from "react";
+import { useState, useEffect, Fragment } from "react";
 import toast from "react-hot-toast";
 import { Listbox, Transition } from "@headlessui/react";
 import { HiChevronUpDown } from "react-icons/hi2";
 import LoadingSpinner from "./ui/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
 import { getCountryId } from "@/utils/getCountryId";
-import { bannerContext } from "./QueryProvider";
 
 export type FormValues = {
 	fullName: string;
@@ -39,7 +38,6 @@ const SignUpForm = () => {
 	const plan = searchParams?.get("plan");
 	const router = useRouter();
 	const params = new URLSearchParams(searchParams!);
-	const { setShowEarlyAccessModal } = useContext(bannerContext);
 	const {
 		handleSubmit,
 		formState: { errors, isValid },
@@ -60,43 +58,40 @@ const SignUpForm = () => {
 	}, [plan, router]);
 
 	const onSubmit = async (formData: FormValues) => {
-		setShowEarlyAccessModal(true);
+		setLoading(true);
+		toast.loading("Please wait...");
 
-		//TODO:uncomment
-		// setLoading(true);
-		// toast.loading("Please wait...");
+		try {
+			const response: {
+				data: { message: string; userId: string };
+				status: string | number;
+			} = await axios.post("/api/auth/register", {
+				country_id: data?.data?.data[0]?.id,
+				fullName: formData.fullName,
+				email: formData.email,
+				country: formData.country,
+				phone: formData.phone,
+				starting_plan: plan,
+			});
 
-		// try {
-		// 	const response: {
-		// 		data: { message: string; userId: string };
-		// 		status: string | number;
-		// 	} = await axios.post("/api/auth/register", {
-		// 		country_id: data?.data?.data[0]?.id,
-		// 		fullName: formData.fullName,
-		// 		email: formData.email,
-		// 		country: formData.country,
-		// 		phone: formData.phone,
-		// 		starting_plan: plan,
-		// 	});
+			toast.dismiss();
+			params.set("userId", response?.data?.userId);
+			toast.success(response?.data?.message);
+			const { userId } = response?.data;
 
-		// 	toast.dismiss();
-		// 	params.set("userId", response?.data?.userId);
-		// 	toast.success(response?.data?.message);
-		// 	const { userId } = response?.data;
-
-		// 	if (response.status == 200) {
-		// 		router.push(
-		// 			`/signup/verify?plan=${plan}${
-		// 				userId ? `&userId=${response?.data?.userId}` : ""
-		// 			}`
-		// 		);
-		// 	}
-		// } catch (error: any) {
-		// 	setLoading(false);
-		// console.log(error);
-		// toast.dismiss();
-		// toast.error(error?.response?.data?.message || error?.message);
-		// }
+			if (response.status == 200) {
+				router.push(
+					`/signup/verify?plan=${plan}${
+						userId ? `&userId=${response?.data?.userId}` : ""
+					}`
+				);
+			}
+		} catch (error: any) {
+			setLoading(false);
+			console.log(error);
+			toast.dismiss();
+			toast.error(error?.response?.data?.message || error?.message);
+		}
 	};
 
 	const handleCountryChange = (event: any) => {
@@ -116,6 +111,7 @@ const SignUpForm = () => {
 					Full Name
 				</label>
 				<input
+					data-test="fullName"
 					disabled={loading}
 					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
 						errors.fullName
@@ -131,7 +127,10 @@ const SignUpForm = () => {
 					})}
 				/>
 				{
-					<p className="text-crimson h-2 text-text-12">
+					<p
+						data-test={"fullName-error"}
+						className="text-crimson h-2 text-text-12"
+					>
 						{errors.fullName && errors.fullName.message}
 					</p>
 				}
@@ -141,6 +140,7 @@ const SignUpForm = () => {
 					Email
 				</label>
 				<input
+					data-test="email"
 					disabled={loading}
 					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
 						errors.email
@@ -156,7 +156,10 @@ const SignUpForm = () => {
 					})}
 				/>
 				{
-					<p className="text-crimson h-2 text-text-12">
+					<p
+						data-test={"email-error"}
+						className="text-crimson h-2 text-text-12"
+					>
 						{errors.email && errors.email.message}
 					</p>
 				}
@@ -209,7 +212,10 @@ const SignUpForm = () => {
 								leaveFrom="opacity-100"
 								leaveTo="opacity-0"
 							>
-								<Listbox.Options className="absolute z-[1] placeholder:text-grey-lightest/60 mt-1 w-full overflow-auto rounded-md  text-[wheat] bg-[#123829] py-1 text-[14px] text-base shadow-lg focus:outline-none sm:text-sm">
+								<Listbox.Options
+									data-test="countryOptions"
+									className="absolute z-[1] placeholder:text-grey-lightest/60 mt-1 w-full overflow-auto rounded-md  text-[wheat] bg-[#123829] py-1 text-[14px] text-base shadow-lg focus:outline-none sm:text-sm"
+								>
 									{filteredCountry.map((country, countryIdx) => (
 										<Listbox.Option
 											placeholder="Ghana"
@@ -240,7 +246,10 @@ const SignUpForm = () => {
 					</Listbox>
 
 					{
-						<p className="text-crimson h-2 text-text-12">
+						<p
+							data-test={"country-error"}
+							className="text-crimson h-2 text-text-12"
+						>
 							{errors.country && errors.country.message}
 						</p>
 					}
@@ -251,6 +260,7 @@ const SignUpForm = () => {
 						Phone
 					</label>
 					<input
+						data-test="phone"
 						disabled={loading}
 						className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 							errors.phone
@@ -266,7 +276,10 @@ const SignUpForm = () => {
 						})}
 					/>
 					{
-						<p className="text-crimson h-2 text-text-12">
+						<p
+							data-test={"phone-error"}
+							className="text-crimson h-2 text-text-12"
+						>
 							{errors.phone && errors.phone.message}
 						</p>
 					}
@@ -276,6 +289,7 @@ const SignUpForm = () => {
 			<span className="text-white text-text-14 font-light text-right w-full">
 				Already having an account?{" "}
 				<Link
+					data-test="signInPage"
 					className="font-medium text-text-14 text-mid--yellow"
 					href="/signin"
 				>
@@ -283,6 +297,7 @@ const SignUpForm = () => {
 				</Link>
 			</span>
 			<button
+				data-test="signUpButton"
 				disabled={loading}
 				className={`mt-5 text-white font-medium text-[17px] active:scale-[1.001] transition-colors duration-150 ease-in
 				${
@@ -305,6 +320,7 @@ const SignUpForm = () => {
 				<div className=" my-7 w-full h-[1px] gradient4"></div>
 			</div>
 			<button
+				data-test="googleButton"
 				disabled={loading}
 				className={`mt-2 transition-colors duration-200 ease-in ${
 					!loading &&
