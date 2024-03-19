@@ -1,16 +1,16 @@
 "use client";
+
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
 import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
 import EmailAlertModal from "./ui/EmailAlertModal";
 import { IoChevronBackOutline } from "react-icons/io5";
-import { bannerContext } from "./QueryProvider";
 
 interface IVerifySignIn {
 	signInCode: string;
@@ -22,11 +22,11 @@ const UserVerificationForm = () => {
 	const [showAlertModal, setShowAlertModal] = useState(false);
 	const router = useRouter();
 	const email = (secureLocalStorage.getItem("signInEmail") as string) ?? "";
-	const { setShowEarlyAccessModal } = useContext(bannerContext);
 
 	const {
 		handleSubmit,
 		formState: { errors, isValid },
+		setError,
 		register,
 	} = useForm<IVerifySignIn>();
 
@@ -81,34 +81,33 @@ const UserVerificationForm = () => {
 	}, [countDown]);
 
 	const onSubmit = async (data: IVerifySignIn) => {
-		setShowEarlyAccessModal(true);
-
-		//TODO:uncomment
-		// setLoading(true);
-		// try {
-		// 	const signInResponse = await signIn("credentials", {
-		// 		email,
-		// 		password: data.signInCode,
-		// 		redirect: false,
-		// 		callbackUrl: "/dashboard",
-		// 	});
-		// 	if (signInResponse?.error) {
-		// 		setLoading(false);
-		// 		toast.dismiss();
-		// 		toast.error(signInResponse.error + " or Invalid token");
-		// 		console.log(signInResponse.error);
-		// 	}
-		// 	if (signInResponse?.ok) {
-		// 		toast.success("Verification successful");
-		// 		secureLocalStorage.removeItem("signInEmail");
-		// 		router.push("/dashboard");
-		// 	}
-		// } catch (error: any) {
-		// 	toast.dismiss();
-		// 	setLoading(false);
-		// 	toast.error("An error occurred");
-		// 	console.log(error);
-		// }
+		setLoading(true);
+		try {
+			const signInResponse = await signIn("credentials", {
+				email,
+				password: data.signInCode,
+				redirect: false,
+				callbackUrl: "/dashboard",
+			});
+			if (signInResponse?.error) {
+				setLoading(false);
+				toast.dismiss();
+				toast.error(signInResponse.error + " or Invalid token");
+				console.log(signInResponse.error);
+				setError("signInCode", { message: "An error occurred" });
+			}
+			if (signInResponse?.ok) {
+				toast.success("Verification successful");
+				secureLocalStorage.removeItem("signInEmail");
+				router.push("/dashboard");
+			}
+		} catch (error: any) {
+			toast.dismiss();
+			setLoading(false);
+			toast.error("An error occurred or invalid token");
+			console.log(error);
+			setError("signInCode", { message: "An error occurred or invalid token" });
+		}
 	};
 	return (
 		<>
@@ -129,6 +128,7 @@ const UserVerificationForm = () => {
 			<form onSubmit={handleSubmit(onSubmit)}>
 				<div className="w-full mb-5 flex flex-col">
 					<input
+						data-test="signin_verification_input"
 						disabled={loading}
 						placeholder="Verification Code"
 						className={`placeholder:text-grey-lightest/60 outline-none text-white border ${
@@ -147,7 +147,10 @@ const UserVerificationForm = () => {
 						})}
 					/>
 					{errors.signInCode && (
-						<p className="text-crimson pt-1 text-text-12">
+						<p
+							data-test="signin_verification_error"
+							className="text-crimson pt-1 text-text-12"
+						>
 							{errors.signInCode.message}
 						</p>
 					)}
@@ -162,6 +165,7 @@ const UserVerificationForm = () => {
 					</button>
 				) : (
 					<button
+						data-test="verify_signin_button"
 						disabled={loading}
 						type="submit"
 						className="w-full block text-center font-normal bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white hover:bg-brand-green button"
@@ -174,8 +178,9 @@ const UserVerificationForm = () => {
 
 					{countDown === 0 ? (
 						<button
+							data-test="resendSignInToken"
 							disabled={loading}
-							// onClick={handleResendSignInCode}
+							onClick={handleResendSignInCode}
 							type="button"
 							className=" font-medium text-normal text-brand-green"
 						>
