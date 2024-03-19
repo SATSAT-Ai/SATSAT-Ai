@@ -12,7 +12,6 @@
 		"resolveJsonModule": true,
 		"isolatedModules": true,
 		"jsx": "preserve",
-		"baseUrl": "./app",
 		"incremental": true,
 		"types": ["cypress"],
 		"plugins": [
