@@ -17,42 +17,27 @@ export const options: NextAuthOptions = {
 					email !== process.env.CYPRESS_TEST_EMAIL
 				) {
 					//get user
-					// try {
-					// 	const response = await axios.post(
-					// 		`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/auth/login`,
-					// 		{
-					// 			email,
-					// 			password,
-					// 		}
-					// 	);
-					// 	if (response.status === 200) {
-					// 		return response.data.user;
-					// 	}
-					// } catch (error: any) {
-					// 	throw new Error(error?.response?.data?.error);
-					// }
-
+					try {
+						const response = await axios.post(
+							`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/auth/login`,
+							{
+								email,
+								password,
+							}
+						);
+						if (response.status === 200) {
+							return response.data.user;
+						}
+					} catch (error: any) {
+						throw new Error(error?.response?.data?.error);
+					}
+				} else {
 					const user = {
 						id: "1",
-						name: "dickson",
+						name: "Demo",
 						email,
 						role: "admin",
 						currentPlan: "Pro",
-					};
-
-					if (email !== "demo@gmail.com") {
-						throw new Error("User is not found");
-					}
-
-					return user;
-				} else {
-					//cypress test
-					const user = {
-						id: "1",
-						name: "cypressTest",
-						email,
-						role: "admin",
-						currentPlan: "free",
 					};
 
 					if (email !== process.env.CYPRESS_TEST_EMAIL) {
