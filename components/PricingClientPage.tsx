@@ -14,14 +14,14 @@ const PricingClientPage = () => {
 	return (
 		<>
 			<Toggler enabled={enabled} setEnabled={setEnabled} />
-			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center w-full gap-5 mt-7 my-max">
+			<div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 items-center w-full gap-5 mt-5 my-max">
 				{pricingData.map((prices: IPrices) => {
 					return (
 						<div
 							key={prices.id}
-							className={`h-ful cursor-pointer ${
+							className={`h-full cursor-pointer ${
 								prices.category == "plus" ? "unique" : "card" //custom classnames
-							} hover:text-white relative lg:h-auto p-6 max-w-sm md:max-w-full w-full mx-auto rounded-xl bg-white text-white`}
+							} hover:text-white relative lg:h-auto p-6 max-w-sm md:max-w-full w-full mx-auto rounded-2xl bg-white text-white`}
 						>
 							<h2
 								className={`  text-center text-text-24 uppercase text-brand-green`}
@@ -70,7 +70,7 @@ const PricingClientPage = () => {
 											) * 2}
 										</p>
 									)}
-								<p className="text-text-24 ">
+								<p className="text-text-20 sm:text-text-24 ">
 									{enabled ? prices.annualPrice : prices.price}
 								</p>
 							</h3>
@@ -92,7 +92,6 @@ const PricingClientPage = () => {
 					);
 				})}
 			</div>
-			<div>PricingClientPage</div>
 		</>
 	);
 };
