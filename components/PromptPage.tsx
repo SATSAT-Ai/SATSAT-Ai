@@ -173,7 +173,7 @@ const PromptPage = () => {
 	};
 
 	return (
-		<div className="flex flex-col z-0 md:gap-0 p-5 sm:p-7 lg:flex-row text-white h-full lg:h-[800px] gap-7">
+		<div className="flex flex-col z-0 md:gap-0 p-3 sm:p-7 lg:flex-row text-white h-full lg:h-[800px] gap-7">
 			<div className="pb-5 lg:pb-0 lg:pr-5 flex-1">
 				<ul className="flex text-center items-center sm:text-left flex-col gap-5">
 					<li>
@@ -222,7 +222,7 @@ const PromptPage = () => {
 			<div className="flex flex-col gap-5 flex-1 w-full items-center">
 				<div
 					ref={chatContainerRef}
-					className=" text-white px-5 w-full custom-scroll2 relative overflow-y-auto overflow-x-clip lg:overscroll-y-none h-[450px] md:h-full"
+					className=" text-white px-2 sm:px-5 w-full custom-scroll2 relative overflow-y-auto overflow-x-clip lg:overscroll-y-none h-[450px] md:h-full"
 				>
 					<div
 						className={`bottom-0 ${
@@ -237,7 +237,7 @@ const PromptPage = () => {
 							if (conversation.from === "User") {
 								return (
 									<li key={conversation.id}>
-										<OutgoingMessage message={conversation} fontSize={17} />
+										<OutgoingMessage message={conversation} />
 									</li>
 								);
 							} else if (conversation.from === "Ai") {
@@ -248,7 +248,6 @@ const PromptPage = () => {
 											list={conversation.list!}
 											firstText={conversation.firstText as string}
 											endingText={conversation.endingText as string}
-											fontSize={17}
 											typeWrite={false}
 										/>
 									</li>
