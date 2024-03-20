@@ -54,25 +54,25 @@ const SignInForm = () => {
 	const onSubmit = async (data: FormValues) => {
 		setLoading(true);
 		toast.loading("Please wait...");
-		// secureLocalStorage.setItem("signInEmail", data.email);
-		// sendOneTimeCodeMutation.mutate(data.email);
-		// //!remove
-		const signInResponse = await signIn("credentials", {
-			email: data.email,
-			redirect: false,
-			callbackUrl: "/dashboard",
-		});
+		secureLocalStorage.setItem("signInEmail", data.email);
+		sendOneTimeCodeMutation.mutate(data.email);
+		// // //!remove
+		// const signInResponse = await signIn("credentials", {
+		// 	email: data.email,
+		// 	redirect: false,
+		// 	callbackUrl: "/dashboard",
+		// });
 
-		if (signInResponse?.error) {
-			setLoading(false);
-			toast.dismiss();
-			toast.error(signInResponse.error);
-		}
-		if (signInResponse?.ok) {
-			toast.dismiss();
-			toast.success("Logged in successfully");
-			router.push("/dashboard");
-		}
+		// if (signInResponse?.error) {
+		// 	setLoading(false);
+		// 	toast.dismiss();
+		// 	toast.error(signInResponse.error);
+		// }
+		// if (signInResponse?.ok) {
+		// 	toast.dismiss();
+		// 	toast.success("Logged in successfully");
+		// 	router.push("/dashboard");
+		// }
 		// //!remove
 	};
 
