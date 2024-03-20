@@ -9,11 +9,11 @@ export default function Toggler({
 	setEnabled: Dispatch<SetStateAction<boolean>>;
 }) {
 	return (
-		<div className="pt-7 mx-auto w-fit flex items-center text-white gap-5">
+		<div className="pt-2 mx-auto w-fit flex items-center text-white gap-2 sm:gap-5">
 			<button
 				type="button"
 				onClick={() => setEnabled(false)}
-				className="text-text-24 font-medium capitalize text-brand-green"
+				className="text-text-20 sm:text-text-24 md:text-[30px] font-medium capitalize text-brand-green"
 			>
 				Monthly
 			</button>
@@ -38,10 +38,10 @@ export default function Toggler({
 			<button
 				type="button"
 				onClick={() => setEnabled(true)}
-				className="flex items-center gap-5 text-text-24 relative font-medium capitalize text-brand-green"
+				className="flex items-center gap-2 sm:gap-5 text-text-20 sm:text-text-24 md:text-[30px]  relative font-medium capitalize text-brand-green"
 			>
 				yearly
-				<p className="text-mid--yellow font-medium text-text-20 border border-mid--yellow rounded-lg py-1 px-2">
+				<p className="text-mid--yellow font-medium text-text-normal sm:text-text-20 border border-mid--yellow rounded-lg py-1 px-2">
 					50% off
 				</p>
 			</button>

@@ -38,7 +38,7 @@ const HeroSection = () => {
 									"Budget management and forecasts",
 									"Wealth of data-driven financial insights",
 									"Alternative credit scoring",
-									"Analyze bank and mobile money statements,invoices and receipts",
+									"Analyze bank and mobile money statements, invoices and receipts",
 								]}
 								showCaret={true}
 								loop={true}
