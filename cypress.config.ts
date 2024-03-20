@@ -6,10 +6,10 @@ export default defineConfig({
 		setupNodeEvents(on, config) {
 			// implement node event listeners here
 		},
-		baseUrl: process.env.WEBSITE_URL,
+		baseUrl: "https://test.satsat-ai.vercel.app",
 		chromeWebSecurity: false,
-		pageLoadTimeout: 100000,
-		defaultCommandTimeout: 60000,
-		requestTimeout: 40000,
+		pageLoadTimeout: 60000,
+		defaultCommandTimeout: 40000,
+		requestTimeout: 20000,
 	},
 });
