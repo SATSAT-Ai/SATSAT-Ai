@@ -13,8 +13,8 @@ export const options: NextAuthOptions = {
 				};
 
 				if (
-					password !== process.env.CYPRESS_TEST_PASSWORD &&
-					email !== process.env.CYPRESS_TEST_EMAIL
+					email !== process.env.CYPRESS_TEST_EMAIL &&
+					password !== process.env.CYPRESS_TEST_PASSWORD
 				) {
 					//get user
 					try {
