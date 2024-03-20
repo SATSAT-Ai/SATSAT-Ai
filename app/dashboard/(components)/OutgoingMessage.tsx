@@ -94,12 +94,14 @@ const OutgoingMessage = ({
 						</div>
 
 						<EditIcon
-							className="active:scale-[1.03] cursor-pointer"
-							fontSize="medium"
+							className="text-text-20 active:scale-[1.03] cursor-pointer"
 							onClick={() => setEditChat(true)}
 						/>
 					</div>
-					<PersonPinIcon fontSize="large" color="inherit" />
+					<PersonPinIcon
+						className="text-text-24 hidden sm:flex sm:text-[30px]"
+						color="inherit"
+					/>
 				</div>
 			) : (
 				<div className="flex  min-h-[40%] items-end gap-3 w-full ml-auto">
@@ -134,7 +136,10 @@ const OutgoingMessage = ({
 							</button>
 						</div>
 					</form>
-					<PersonPinIcon fontSize="large" color="inherit" />
+					<PersonPinIcon
+						className="text-text-24 hidden sm:flex sm:text-[30px]"
+						color="inherit"
+					/>
 				</div>
 			)}
 		</>

@@ -36,6 +36,7 @@ const IncomingMessage = ({
 		useState<IcurrentSection>("firstText");
 	const [isTypeWriterComplete, setIsTypeWriterComplete] = useState(false);
 	const [showMessageMore, setShowMessageMore] = useState(true);
+	const [loading, setLoading] = useState(false);
 
 	const handleCopyText = async () => {
 		//copy text
@@ -188,8 +189,14 @@ const IncomingMessage = ({
 				</div>
 			) : (
 				<div className="flex w-full items-end mr-auto gap-3">
-					<Image src={chatbot} height={35} width={35} alt="satsat-ai" />
-					<div className=" flex inMessage shadow-lg flex-col gap-1 p-4 rounded-3xl text-white">
+					<Image
+						className={`${loading ? "hidden md:flex" : "hidden sm:flex"}`}
+						src={chatbot}
+						height={30}
+						width={30}
+						alt="satsat-ai"
+					/>
+					<div className=" flex inMessage shadow-lg flex-col p-4 rounded-3xl text-white">
 						{firstText && (
 							<p
 								style={{
@@ -228,8 +235,7 @@ const IncomingMessage = ({
 						)}
 						<div className="flex items-center gap-3 mt-3">
 							<ContentCopyIcon
-								fontSize="small"
-								className="active:scale-[1.03] cursor-pointer"
+								className="text-text-20 active:scale-[1.03] cursor-pointer"
 								color="inherit"
 							/>
 						</div>
