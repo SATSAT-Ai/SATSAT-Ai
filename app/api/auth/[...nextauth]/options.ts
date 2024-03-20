@@ -17,20 +17,21 @@ export const options: NextAuthOptions = {
 					password !== process.env.CYPRESS_TEST_PASSWORD
 				) {
 					//get user
-					try {
-						const response = await axios.post(
-							`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/auth/login`,
-							{
-								email,
-								password,
-							}
-						);
-						if (response.status === 200) {
-							return response.data.user;
-						}
-					} catch (error: any) {
-						throw new Error(error?.response?.data?.error);
-					}
+					// try {
+					// 	const response = await axios.post(
+					// 		`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/auth/login`,
+					// 		{
+					// 			email,
+					// 			password,
+					// 		}
+					// 	);
+					// 	if (response.status === 200) {
+					// 		return response.data.user;
+					// 	}
+					// } catch (error: any) {
+					// 	throw new Error(error?.response?.data?.error);
+					// }
+					throw new Error("Please Join The Waitlist");
 				} else {
 					const user = {
 						id: "1",
