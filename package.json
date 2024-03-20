@@ -8,7 +8,7 @@
 		"start": "next start",
 		"lint": "next lint",
 		"cypress:open": "cypress open ",
-		"cypress:test": "cypress open --config baseUrl=http://localhost:3000"
+		"cypress:open-local": "cypress open --config baseUrl=http://localhost:3000"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.11.1",
