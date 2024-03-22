@@ -18,32 +18,27 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-dependencies-
 
-      - name: Build Next.js app
-        run: npm run build
+      - name: Build initial core (Focused on core creation)
+        run: npm run build:core
 
       - name: Save build artifacts
         uses: actions/upload-artifact@v4
         with:
-          name: build
-          path: dist
+          name: core-build
+          path: dist/core
 
   cypress-run:
     runs-on: ubuntu-latest
     needs: install-and-build
-    strategy:
-      fail-fast: false
-      matrix:
-        containers: [1, 2]
-
     steps:
       - uses: actions/checkout@v4
 
-      - name: Download build artifacts
+      - name: Download core build artifacts
         uses: actions/download-artifact@v4
         with:
-          name: build
+          name: core-build
 
-      - name: Run Cypress tests
+      - name: Run Cypress tests (Using pre-built core)
         uses: cypress-io/github-action@v6
         with:
           start: npm start
@@ -54,3 +49,11 @@ jobs:
       env:
         CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+
+
+
+
+
+    
+
