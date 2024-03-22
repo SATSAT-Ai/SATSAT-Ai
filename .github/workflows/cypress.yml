@@ -18,8 +18,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-dependencies-
 
-      - name: Build initial core (Focused on core creation)
-        run: npm run build:core
+      - name: Build initial
+        run: npm run build
 
       - name: Save build artifacts
         uses: actions/upload-artifact@v4
