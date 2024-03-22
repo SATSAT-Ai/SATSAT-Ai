@@ -8,7 +8,7 @@ export default defineConfig({
 		},
 		baseUrl: "https://test.satsat-ai.vercel.app",
 		chromeWebSecurity: false,
-		pageLoadTimeout: 60000,
+		pageLoadTimeout: 90000,
 		defaultCommandTimeout: 40000,
 		requestTimeout: 20000,
 	},

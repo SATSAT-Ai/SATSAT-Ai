@@ -92,7 +92,7 @@ const VerifyOTP = ({
 		<form onSubmit={handleSubmit(onSubmit)}>
 			<div className="w-full mb-5 flex flex-col">
 				<input
-					data-test="optVerificationInput"
+					data-test="otpVerificationInput"
 					disabled={loading}
 					placeholder="OTP Code"
 					className={`placeholder:text-grey-lightest/60 outline-none text-white border ${
