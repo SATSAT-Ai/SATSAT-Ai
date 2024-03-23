@@ -42,14 +42,15 @@ jobs:
             echo "Unable to determine package manager"
             exit 1
           fi
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "20"  # Optional, for specific Node.js version
-      - name: Setup Next.js
-        uses: actions/setup-nextjs@v4
-        with:
-          node-version: "20"  # Optional
+
+      # Install Next.js dependencies directly
+      - name: Install Next.js dependencies
+        run: npm install next
+
       - name: Restore cache
         uses: actions/cache@v4
         with:
