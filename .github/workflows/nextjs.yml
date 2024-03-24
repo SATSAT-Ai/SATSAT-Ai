@@ -64,8 +64,6 @@ jobs:
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json', '**/yarn.lock') }}-
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
-      - name: Install Cypress
-        run: ${{ steps.detect-package-manager.outputs.runner }} add --dev cypress
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
