@@ -1,6 +1,6 @@
 # Sample workflow for building a Next.js site with Cypress testing (no deployment)
 
-name: Build Next.js site with Cypress Tests (pnpm)
+name: Build Next.js site with Cypress Tests
 
 on:
   # Runs on pushes targeting the default branch
@@ -31,17 +31,24 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            # Fetches the latest installation instructions from pnpm.io
-            curl -sL https://pnpm.io/installation | grep -o '`bash.*?`$' | tr '\n' ' '
-          output: instructions  # Stores the extracted command in a variable
+            # Escape backslashes and dollar signs in the regular expression
+            curl -sL https://pnpm.io/installation | grep -o '\`bash.*?\`$' | tr '\n' ' '
 
-      - name: Install dependencies (pnpm)
-        # Uses the retrieved installation command from pnpm website (if successful)
-        run: ${{ steps.check_pnpm_installation.outputs.instructions }}  # Uncomment if Option 1 is used
+      ### Option 2: Use npm as an alternative (if pnpm installation issues persist)
+      # This step remains commented out, ready for use if needed.
+      # - name: Install dependencies (npm)  # Uncomment if pnpm issues persist
+      #   run: npm install
 
-      - name: Install dependencies (fallback - npm)  # Fallback if pnpm installation fails
-        run: npm install  # Installs using npm if pnpm installation fails
-        if: steps.check_pnpm_installation.outputs.instructions == ''  # Runs only if Option 1 fails
+      - name: Install dependencies (based on check)
+        run: |
+          # Check if pnpm installation instructions were retrieved
+          if [[ -n ${{ steps.check_pnpm_installation.outputs.result }} ]]; then
+            echo "Installing pnpm using retrieved instructions..."
+            ${{ steps.check_pnpm_installation.outputs.result }}  # Use retrieved command
+          else
+            echo "pnpm installation check failed, falling back to npm..."
+            npm install  # Fallback to npm if check fails
+          fi
 
       - name: Restore cache
         uses: actions/cache@v4
