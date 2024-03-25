@@ -50,7 +50,7 @@ const DoughnutChart = () => {
 								font: {
 									size: 16,
 									family: "'Poppins', sans-serif",
-									weight: "500",
+									weight: "bold",
 								},
 							},
 						},
