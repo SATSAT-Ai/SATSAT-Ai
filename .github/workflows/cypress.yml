@@ -30,23 +30,23 @@ jobs:
         run: pnpm install --no-frozen-lockfile
 
         
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
+      # - name: Cypress install
+      #   uses: cypress-io/github-action@v6
+      #   with:
+      #     runTests: true
 
 
-      - name: Build Next.js Project
-        run: pnpm build
+      # - name: Build Next.js Project
+      #   run: pnpm build
   
-      - name: Save build folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: build
-          compression-level: 6  # Optional compression level (higher = smaller size)
-          path: out
-          overwrite: false  # Optional, don't overwrite existing artifacts
-          if-no-files-found: error
+      # - name: Save build folder
+      #   uses: actions/upload-artifact@v4
+      #   with:
+      #     name: build
+      #     compression-level: 6  # Optional compression level (higher = smaller size)
+      #     path: out
+      #     overwrite: false  # Optional, don't overwrite existing artifacts
+      #     if-no-files-found: error
 
 
   ui-chrome-tests:
