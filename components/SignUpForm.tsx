@@ -42,6 +42,7 @@ const SignUpForm = () => {
 		handleSubmit,
 		formState: { errors, isValid },
 		register,
+		setValue,
 	} = useForm<FormValues>();
 
 	const { data } = useQuery({
@@ -94,10 +95,6 @@ const SignUpForm = () => {
 		}
 	};
 
-	const handleCountryChange = (event: any) => {
-		setSelectedCountry(event);
-	};
-
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
@@ -113,11 +110,11 @@ const SignUpForm = () => {
 				<input
 					data-test="fullName"
 					disabled={loading}
-					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
+					className={`focus:outline-none focus:ring focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
 						errors.fullName
-							? "border-crimson"
+							? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 							: isValid
-							? "border-brand-green"
+							? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
 							: "border-white"
 					} bg-transparent  p-[9px] rounded-lg text-white`}
 					type="text"
@@ -142,11 +139,11 @@ const SignUpForm = () => {
 				<input
 					data-test="email"
 					disabled={loading}
-					className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
+					className={`focus:outline-none focus:ring focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
 						errors.email
-							? "border-crimson"
+							? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 							: isValid
-							? "border-brand-green"
+							? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
 							: "border-white"
 					} bg-transparent  p-[9px] rounded-lg text-white`}
 					type="text"
@@ -171,21 +168,26 @@ const SignUpForm = () => {
 					</label>
 
 					<Listbox
-						{...register("phone", {
+						{...register("country", {
 							required: { value: true, message: "Country is required" },
 						})}
 						disabled={loading}
-						onChange={(e) => handleCountryChange(e)}
+						onChange={(e: any) =>
+							setValue("country", {
+								label: e.label,
+								value: e.value!,
+							})
+						}
 					>
 						<div className="relative">
 							<Listbox.Button
 								className={` ${
 									loading ? "cursor-default" : "cursor-pointer"
-								} relative h-11 w-full rounded-lg text-white hover:text-white  text-[14px] py-2 pl-3 pr-10 text-left border  focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ${
+								} relative h-11 w-full rounded-lg text-white hover:text-white  text-[14px] py-2 pl-3 pr-10 text-left border focus-visible:border-indigo-500 focus-visible:ring-2focus:outline-none focus:ring focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ${
 									errors.country
-										? "border-crimson"
+										? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 										: isValid
-										? "border-brand-green"
+										? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
 										: "border-white"
 								}`}
 							>
@@ -218,7 +220,6 @@ const SignUpForm = () => {
 								>
 									{filteredCountry.map((country, countryIdx) => (
 										<Listbox.Option
-											placeholder="Ghana"
 											key={countryIdx}
 											className={({ active }) =>
 												`relative cursor-pointer select-none  py-2 px-7 ${
@@ -226,6 +227,7 @@ const SignUpForm = () => {
 												}`
 											}
 											value={country}
+											onChange={() => setSelectedCountry(country)}
 										>
 											{({ selected }) => (
 												<>
@@ -262,11 +264,11 @@ const SignUpForm = () => {
 					<input
 						data-test="phone"
 						disabled={loading}
-						className={`disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
+						className={`focus:outline-none focus:ring focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 							errors.phone
-								? "border-crimson"
+								? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 								: isValid
-								? "border-brand-green"
+								? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
 								: "border-white"
 						} bg-transparent p-[9px] rounded-lg`}
 						type="tel"
@@ -290,7 +292,7 @@ const SignUpForm = () => {
 				Already having an account?{" "}
 				<Link
 					data-test="signInPage"
-					className="font-medium text-text-14 text-mid--yellow"
+					className="focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 focus:rounded-sm focus:outline-none focus:ring focus:ring-offset-1 font-medium text-text-14 text-mid--yellow"
 					href="/signin"
 				>
 					signin
@@ -299,7 +301,7 @@ const SignUpForm = () => {
 			<button
 				data-test="signUpButton"
 				disabled={loading}
-				className={`mt-5 text-white font-medium text-[17px] active:scale-[1.001] transition-colors duration-150 ease-in
+				className={`mt-5 disabled:cursor-not-allowed text-white font-medium text-[17px] active:scale-[1.001] transition-colors duration-150 ease-in
 				${
 					loading
 						? "bg-grey-light cursor-default"
