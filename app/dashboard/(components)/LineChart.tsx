@@ -70,7 +70,7 @@ const LineChart = ({
 		: [];
 
 	return (
-		<div  className="bg-white/10 rounded-2xl p-5 my-7">
+		<div className="bg-white/10 rounded-2xl p-5 my-7">
 			<div className=" hidden md:flex w-fit ml-auto">
 				<DatePickerWithRange
 					date={transactionDateRange}
@@ -149,7 +149,7 @@ const LineChart = ({
 								ticks: {
 									color: "#ddd",
 									font: {
-										weight: "400",
+										weight: "bold",
 									},
 								},
 							},
@@ -160,7 +160,7 @@ const LineChart = ({
 								ticks: {
 									color: "#ddd",
 									font: {
-										weight: "400",
+										weight: "bold",
 									},
 								},
 							},
