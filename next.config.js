@@ -5,7 +5,15 @@ const withNextra = require("nextra")({
 	themeConfig: "./theme.config.jsx",
 });
 
-module.exports = withNextra();
+const withPWA = require("next-pwa");
 
-// If you have other Next.js configurations, you can pass them as the parameter:
-// module.exports = withNextra({ /* other next.js config */ })
+module.exports = withNextra(
+	withPWA({
+		pwa: {
+			// disable: process.env.NODE_ENV === "development",
+			dest: "public",
+			register: true,
+			skipWaiting: true,
+		},
+	})
+);
