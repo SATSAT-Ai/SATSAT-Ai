@@ -26,13 +26,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Install pnpm
-        uses: actions/setup-node@v4
-        with:
-          cache: 'pnpm'  # Enable pnpm cache for Node.js Setup action
+      ### Option 1: Install pnpm globally (choose one)
 
-      - name: Install dependencies
-        run: pnpm install
+      # Option 1a: Using curl
+      - name: Install pnpm globally (curl)  # Uncomment if preferred
+        run: |
+          curl -sL https://pnpm.io/install.sh | bash
+
+      # Option 1b: Using wget (uncomment if preferred)
+      # - name: Install pnpm globally (wget)  # Uncomment if preferred
+      #   run: |
+      #     wget -qO- https://pnpm.io/install.sh | bash
+
+    
+
+      - name: Install dependencies (pnpm)
+        run: pnpm install  # Assuming pnpm is installed globally (Option 1)
 
       - name: Restore cache
         uses: actions/cache@v4
