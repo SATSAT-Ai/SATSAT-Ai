@@ -26,22 +26,22 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      ### Option 1: Install pnpm globally (choose one)
-
-      # Option 1a: Using curl
-      - name: Install pnpm globally (curl)  # Uncomment if preferred
-        run: |
-          curl -sL https://pnpm.io/install.sh | bash
-
-      # Option 1b: Using wget (uncomment if preferred)
-      # - name: Install pnpm globally (wget)  # Uncomment if preferred
-      #   run: |
-      #     wget -qO- https://pnpm.io/install.sh | bash
-
-    
+      ### Option 1: Check pnpm website for updated installation (preferred)
+      - name: Check pnpm installation guide
+        uses: actions/github-script@v6
+        with:
+          script: |
+            # Fetches the latest installation instructions from pnpm.io
+            curl -sL https://pnpm.io/installation | grep -o '`bash.*?`$' | tr '\n' ' '
+          output: instructions  # Stores the extracted command in a variable
 
       - name: Install dependencies (pnpm)
-        run: pnpm install  # Assuming pnpm is installed globally (Option 1)
+        # Uses the retrieved installation command from pnpm website (if successful)
+        run: ${{ steps.check_pnpm_installation.outputs.instructions }}  # Uncomment if Option 1 is used
+
+      - name: Install dependencies (fallback - npm)  # Fallback if pnpm installation fails
+        run: npm install  # Installs using npm if pnpm installation fails
+        if: steps.check_pnpm_installation.outputs.instructions == ''  # Runs only if Option 1 fails
 
       - name: Restore cache
         uses: actions/cache@v4
