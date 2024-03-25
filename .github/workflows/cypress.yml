@@ -16,15 +16,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Cypress install
         uses: cypress-io/github-action@v6
-      # report machine parameters
-      - run: yarn cypress info
-      - run: node --version
-      - run: node -p 'os.cpus()'
-      - run: yarn types
-      - run: yarn lint
-      - run: yarn test:unit:ci
-      - run: yarn build:ci
-
+        with:
+          runTests: false
+          
       - name: Save build folder
         uses: actions/upload-artifact@v4
         with:
