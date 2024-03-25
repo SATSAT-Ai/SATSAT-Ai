@@ -33,8 +33,11 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: build
+          compression-level: 6  # Optional compression level (higher = smaller size)
+          path: out
+          overwrite: false  # Optional, don't overwrite existing artifacts
           if-no-files-found: error
-          path: build
+
 
   ui-chrome-tests:
     timeout-minutes: 15
