@@ -16,8 +16,6 @@ jobs:
         uses: actions/checkout@v4
       - name: Cypress install
         uses: cypress-io/github-action@v6
-        with:
-          runTests: false
       # report machine parameters
       - run: yarn cypress info
       - run: node --version
