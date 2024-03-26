@@ -161,7 +161,7 @@ dependencies:
 
 devDependencies:
   '@tanstack/eslint-plugin-query':
-    specifier: ^5.20.1
+    specifier: ^5.28.6
     version: 5.28.6(eslint@8.57.0)(typescript@5.4.3)
   '@tanstack/react-query-devtools':
     specifier: ^5.28.6
