@@ -23,7 +23,7 @@
 		"@radix-ui/react-slot": "^1.0.2",
 		"@tailwindcss/aspect-ratio": "^0.4.2",
 		"@tanstack/react-query": "^5.24.1",
-		"@tsparticles/engine": "^3.2.1",
+		"@tsparticles/engine": "^3.3.0",
 		"@tsparticles/react": "^3.0.0",
 		"@tsparticles/slim": "^3.2.1",
 		"@vercel/analytics": "^1.2.2",

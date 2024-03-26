@@ -42,7 +42,7 @@ dependencies:
     specifier: ^5.24.1
     version: 5.28.6(react@18.2.0)
   '@tsparticles/engine':
-    specifier: ^3.2.1
+    specifier: ^3.3.0
     version: 3.3.0
   '@tsparticles/react':
     specifier: ^3.0.0
