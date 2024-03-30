@@ -18,9 +18,6 @@ jobs:
         with:
           node-version: 18.17  # Upgrade to the required version
           
-      - name: Check Node.js version
-        run: node -v
-      
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
@@ -33,7 +30,7 @@ jobs:
       - name: Cypress install
         uses: cypress-io/github-action@v6
         with:
-          runTests: true
+          runTests: false
 
 
       - name: Build Next.js Project
