@@ -218,11 +218,11 @@ const ChatSidebar = () => {
 
 	return (
 		<aside
-			className={` bg-[#071f07] shadow-md py-3 w-72 transition-transform duration-500 fixed lg:static h-full top-0 right-0  ${
-				hideChatSidebar ? "translate-x-full" : "translate-x-0"
+			className={` bg-[#071f07] shadow-md py-3 transition-all duration-300 text-nowrap fixed lg:static h-full top-0 right-0  ${
+				hideChatSidebar ? "w-0" : "w-72"
 			}`}
 		>
-			<div className=" overflow-auto gap-4 px-2 flex flex-col h-full justify-between">
+			<div className=" overflow-clip gap-4 px-2 flex flex-col h-full justify-between">
 				<div className="flex sticky px-5 justify-between w-full items-center gap-5">
 					<div
 						tabIndex={0}
@@ -240,7 +240,7 @@ const ChatSidebar = () => {
 					</Link>
 				</div>
 				<div
-					className={`flex flex-col h-[600px] overflow-auto w-full px-2 custom-scroll  gap-2 `}
+					className={`flex overflow-x-clip flex-col h-[600px] overflow-y-auto w-full px-2 custom-scroll  gap-2 `}
 				>
 					{chats.map((chat) => {
 						return (
