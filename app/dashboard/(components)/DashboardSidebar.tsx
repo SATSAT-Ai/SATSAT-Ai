@@ -26,7 +26,7 @@ const DashboardSidebar = () => {
 
 	return (
 		<aside
-			className={`bg-white/10 backdrop-blur-md transition-all duration-75 ease-out text-white z-40 md:relative fixed ${
+			className={`bg-white/10 backdrop-blur-md transition-all duration-200 ease-out text-white z-40 md:relative fixed ${
 				hideSidebar
 					? "md:w-32 -translate-x-full md:translate-x-0"
 					: "md:w-64 translate-x-0 overflow-hidden"
