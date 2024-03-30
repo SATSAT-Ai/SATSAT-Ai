@@ -1,13 +1,13 @@
-import icon from "../public/satsat-logo.svg";
-import openGraphImage from "../public/prompt-page-large.jpg";
+import icon from "@/public/satsat-logo.svg";
+import openGraphImage from "@/public/prompt-page-large.jpg";
 import { Metadata } from "next";
 
-export const SATSATmetadata: Metadata = {
+export const SatSatAiMetadata: Metadata = {
 	title: "SatSat-Ai",
 	description:
 		"SatSat AI is an all-in-one artificial intelligence platform that combines cutting-edge AI technology to query your financial data with natural language.",
 	applicationName: "SatSat AI",
-	icons: [icon],
+	icons: icon,
 
 	authors: [
 		{ name: "Kamasah Dickson", url: "" },
@@ -40,6 +40,8 @@ export const SATSATmetadata: Metadata = {
 		creator: "@jeanlinux",
 	},
 	metadataBase: new URL(process.env.WEBSITE_URL as string),
+
+	category: "technology",
 
 	alternates: {
 		canonical: process.env.WEBSITE_URL,
