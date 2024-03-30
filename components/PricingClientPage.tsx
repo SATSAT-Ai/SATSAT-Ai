@@ -2,7 +2,7 @@
 
 import { MdVerified } from "react-icons/md";
 import SubscribeButton from "@/components/SubscribeButton";
-import { pricingData } from "@/pricingData";
+import { pricingData } from "@/utils/pricingData";
 import Toggler from "@/components/ui/Toggler";
 import { BsFillCheckCircleFill } from "react-icons/bs";
 import { useState } from "react";
