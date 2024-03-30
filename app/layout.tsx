@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import "./globals.scss";
-import { SATSATmetadata } from "@/utils/metadata";
 import NextTopLoader from "nextjs-toploader";
 import "react-tooltip/dist/react-tooltip.css";
 import { Toaster } from "react-hot-toast";
@@ -11,13 +10,14 @@ import { options } from "./api/auth/[...nextauth]/options";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import QueryProvider from "@/components/QueryProvider";
+import { SatSatAiMetadata } from "@/utils/metadata";
 
 const roboto = Roboto({
 	subsets: ["latin", "greek"],
 	weight: ["300", "400", "500", "700", "900"],
 });
 
-export const metadata: Metadata = SATSATmetadata;
+export const metadata: Metadata = SatSatAiMetadata;
 
 export default async function RootLayout({
 	children,
