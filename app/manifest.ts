@@ -8,10 +8,9 @@ export default function manifest(): MetadataRoute.Manifest {
 			"SatSat AI is an all-in-one artificial intelligence platform...",
 		start_url: "/",
 		display: "standalone",
-		background_color: "#174634",
-		theme_color: "#29a173",
+		background_color: "#050d0a",
+		theme_color: "dark",
 		scope: "/",
-
 		screenshots: [
 			{
 				src: "/manifest-signin.jpg",
