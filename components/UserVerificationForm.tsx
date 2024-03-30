@@ -131,11 +131,11 @@ const UserVerificationForm = () => {
 						data-test="signin_verification_input"
 						disabled={loading}
 						placeholder="Verification Code"
-						className={`placeholder:text-grey-lightest/60 outline-none text-white border ${
+						className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green focus:ring-opacity-50 placeholder:text-grey-lightest/60 outline-none text-white border ${
 							errors.signInCode
-								? "border-crimson focus:border-crimson"
+								? "border-crimson focus:border-crimson focus:ring-offset-crimson focus:ring-crimson"
 								: isValid
-								? "border-brand-green"
+								? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
 								: "border-white"
 						} bg-transparent p-2 rounded-md`}
 						type="text"
@@ -149,30 +149,31 @@ const UserVerificationForm = () => {
 					{errors.signInCode && (
 						<p
 							data-test="signin_verification_error"
-							className="text-crimson pt-1 text-text-12"
+							className="text-crimson pt-2 text-text-12"
 						>
 							{errors.signInCode.message}
 						</p>
 					)}
 				</div>
-				{loading ? (
-					<button
-						disabled={loading}
-						type="button"
-						className="w-full block transition-colors duration-200 bg-brand-green button"
-					>
-						<LoadingSpinner className="mx-auto animate-[spin_0.4s_linear_infinite] border-transparent border-t-brand-green-darker h-6 w-6" />
-					</button>
-				) : (
-					<button
-						data-test="verify_signin_button"
-						disabled={loading}
-						type="submit"
-						className="w-full block text-center font-normal bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white hover:bg-brand-green button"
-					>
-						Continue
-					</button>
-				)}
+
+				<button
+					data-test="verify_signin_button"
+					disabled={loading}
+					className={`mt-5 disabled:cursor-not-allowed text-white font-medium text-[17px] active:scale-[1.001] transition-colors duration-150 ease-in
+					${
+						loading
+							? "bg-grey-light cursor-default"
+							: "bg-brand-green/80 hover:bg-mid--yellow/80"
+					}
+					  block w-full p-2 rounded-lg`}
+					type="submit"
+				>
+					{loading ? (
+						<LoadingSpinner className=" mx-auto animate-[spin_0.4s_linear_infinite] border-transparent border-t-mid--yellow h-5 w-5" />
+					) : (
+						"Continue"
+					)}
+				</button>
 				<span className="text-white flex items-center gap-3 mt-5 text-text-14 font-light text-right w-full">
 					{"Didn't received the code? "}
 

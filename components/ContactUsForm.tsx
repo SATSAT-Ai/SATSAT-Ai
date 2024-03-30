@@ -22,7 +22,6 @@ const ContactUsForm = () => {
 	} = useForm<FormValues>();
 
 	const onSubmit = (data: FormValues) => {
-		//use an email provider to process data
 		console.log(data);
 	};
 
@@ -34,28 +33,28 @@ const ContactUsForm = () => {
 	return (
 		<form
 			onSubmit={handleSubmit(onSubmit)}
-			className=" active:bg-transparent max-w-xl mx-auto my-20"
+			className=" active:bg-transparent max-w-xl mx-auto py-28"
 		>
 			<h1 className="text-center mb-10 text-brand-green text-text-40 md:text-text-60">
 				Contact Us
 			</h1>
-			<div className="flex flex-col gap-7">
-				<div className="flex flex-col sm:flex-row items-center gap-5">
+			<div className="flex flex-col sm:gap-5">
+				<div className="flex flex-col sm:flex-row items-center sm:gap-5">
 					<div className="w-full mb-5 flex flex-col">
 						<label
-							className="text-text-normal text-mid--yellow"
+							className="text-text-normal mb-2 text-mid--yellow"
 							htmlFor="firstName"
 						>
 							First Name
 						</label>
 						<input
-							className={`text-white placeholder:text-grey-lightest/60 border-b ${
+							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.firstName
-									? "border-b-crimson focus:border-b-crimson"
+									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 									: isValid
-									? "border-b-brand-green"
-									: "border-b-grey-light focus:border-b-white"
-							}  bg-transparent  outline-none `}
+									? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
+									: "border-[#444c48]"
+							} bg-transparent p-2 rounded-lg`}
 							type="text"
 							id="firstName"
 							{...register("firstName", {
@@ -65,26 +64,26 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.firstName && (
-							<p className="text-crimson pt-1 text-text-12">
+							<p className="text-crimson pt-2 text-text-12">
 								{errors.firstName.message}
 							</p>
 						)}
 					</div>
 					<div className="w-full mb-5 flex flex-col">
 						<label
-							className="text-text-normal text-mid--yellow"
+							className="text-text-normal mb-2 text-mid--yellow"
 							htmlFor="lastname"
 						>
 							Last Name
 						</label>
 						<input
-							className={`text-white placeholder:text-grey-lightest/60 border-b ${
+							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.lastName
-									? "border-b-crimson focus:border-b-crimson"
+									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 									: isValid
-									? "border-b-brand-green"
-									: "border-b-grey-light focus:border-b-white"
-							}  bg-transparent  outline-none `}
+									? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
+									: "border-[#444c48]"
+							} bg-transparent p-2 rounded-lg`}
 							type="text"
 							id="lastname"
 							{...register("lastName", {
@@ -94,28 +93,28 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.lastName && (
-							<p className="text-crimson pt-1 text-text-12">
+							<p className="text-crimson pt-2 text-text-12">
 								{errors.lastName.message}
 							</p>
 						)}
 					</div>
 				</div>
-				<div className="flex flex-col sm:flex-row items-center gap-5">
+				<div className="flex flex-col sm:flex-row items-center sm:gap-5">
 					<div className="w-full mb-5 flex flex-col">
 						<label
-							className="text-text-normal text-mid--yellow"
+							className="text-text-normal mb-2 text-mid--yellow"
 							htmlFor="email"
 						>
 							Email
 						</label>
 						<input
-							className={`text-white placeholder:text-grey-lightest/60 border-b ${
+							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.email
-									? "border-b-crimson focus:border-b-crimson"
+									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 									: isValid
-									? "border-b-brand-green"
-									: "border-b-grey-light focus:border-b-white"
-							}  bg-transparent  outline-none `}
+									? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
+									: "border-[#444c48]"
+							} bg-transparent p-2 rounded-lg`}
 							type="email"
 							id="email"
 							{...register("email", {
@@ -123,26 +122,26 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.email && (
-							<p className="text-crimson pt-1 text-text-12">
+							<p className="text-crimson pt-2 text-text-12">
 								{errors.email.message}
 							</p>
 						)}
 					</div>
 					<div className="w-full mb-5 flex flex-col">
 						<label
-							className="text-text-normal text-mid--yellow"
+							className="text-text-normal mb-2 text-mid--yellow"
 							htmlFor="number"
 						>
 							Phone Number
 						</label>
 						<input
-							className={`text-white placeholder:text-grey-lightest/60 border-b ${
+							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.phoneNumber
-									? "border-b-crimson focus:border-b-crimson"
+									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 									: isValid
-									? "border-b-brand-green"
-									: "border-b-grey-light focus:border-b-white"
-							}  bg-transparent  outline-none `}
+									? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
+									: "border-[#444c48]"
+							} bg-transparent p-2 rounded-lg`}
 							type="tel"
 							id="number"
 							{...register("phoneNumber", {
@@ -150,14 +149,14 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.phoneNumber && (
-							<p className="text-crimson pt-1 text-text-12">
+							<p className="text-crimson pt-2 text-text-12">
 								{errors.phoneNumber.message}
 							</p>
 						)}
 					</div>
 				</div>
 			</div>
-			<div className="flex flex-col gap-5 mt-7">
+			<div className="flex flex-col gap-5">
 				<p className="text-text-normal text-mid--yellow">Select subject</p>
 				<Select
 					color="neutral"
@@ -185,7 +184,7 @@ const ContactUsForm = () => {
 					<Option value={"Sales"}>Sales</Option>
 				</Select>
 				{errors.subject && (
-					<p className="text-crimson pt-1 text-text-12">
+					<p className="text-crimson pt-2 text-text-12">
 						{errors.subject.message}
 					</p>
 				)}
@@ -196,13 +195,13 @@ const ContactUsForm = () => {
 				</label>
 				<textarea
 					onInput={(e) => handleTextAreaResize(e)}
-					className={`text-white scrollbar-hidden placeholder:text-grey-lightest/60 border-b ${
+					className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 						errors.message
-							? "border-b-crimson focus:border-b-crimson"
+							? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 							: isValid
-							? "border-b-brand-green"
-							: "border-b-grey-light focus:border-b-white"
-					}  bg-transparent  outline-none `}
+							? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
+							: "border-[#444c48]"
+					} bg-transparent p-2 rounded-lg`}
 					id="message"
 					placeholder="Write your message..."
 					{...register("message", {
@@ -210,7 +209,7 @@ const ContactUsForm = () => {
 					})}
 				></textarea>
 				{errors.message && (
-					<p className="text-crimson pt-1 text-text-12">
+					<p className="text-crimson pt-2 text-text-12">
 						{errors.message.message}
 					</p>
 				)}
