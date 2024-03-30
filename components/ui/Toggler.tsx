@@ -23,8 +23,8 @@ export default function Toggler({
 				onChange={setEnabled}
 				className={`${
 					enabled
-						? "bg-teal-900 bg-brand-green/45  border-brand-green"
-						: " border-white/20 bg-grey-light bg-teal-700"
+						? "bg-brand-green/45  border-brand-green"
+						: " border-white/20 bg-grey-light"
 				}
           relative inline-flex  h-[33px] w-[61px] shrink-0 cursor-pointer rounded-full border-2 transition-colors duration-200 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75`}
 			>
