@@ -513,6 +513,19 @@
 	}
 }
 
+.animate-appear {
+	animation: appear 200ms ease-in;
+}
+
+@keyframes appear {
+	from {
+		text-wrap: nowrap;
+	}
+	to {
+		text-wrap: wrap;
+	}
+}
+
 @keyframes glow {
 	0% {
 		background-position: 0 0;
