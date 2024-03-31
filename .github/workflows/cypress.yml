@@ -25,7 +25,6 @@ jobs:
 
       - name: Update pnpm lockfile
         run: pnpm install --no-frozen-lockfile
-
         
       - name: Cypress install
         uses: cypress-io/github-action@v6
@@ -62,6 +61,7 @@ jobs:
       image: cypress/browsers:node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
       options: --user 1001
     needs: install
+    
     strategy:
       # when one test fails, DO NOT cancel the other
       # containers, because this will kill Cypress processes
@@ -72,6 +72,11 @@ jobs:
         # run copies of the current job in parallel
         containers: [1, 2, 3, 4, 5]
     steps:
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          
       - name: Checkout
         uses: actions/checkout@v4
 
@@ -88,6 +93,7 @@ jobs:
         run: ls /__e
 
       - name: "UI Tests - Chrome"
+        
         uses: cypress-io/github-action@v6
         with:
           start: pnpm start:ci
@@ -137,7 +143,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           config: '{"e2e":{"viewportWidth":375,"viewportHeight":667}}'
-          start: yarn start:ci
+          start: pnpm start:ci
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
@@ -182,7 +188,7 @@ jobs:
       - name: "UI Tests - Firefox"
         uses: cypress-io/github-action@v6
         with:
-          start: yarn start:ci
+          start: pnpm start:ci
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: firefox
@@ -228,7 +234,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           config: '{"e2e":{"viewportWidth":375,"viewportHeight":667}}'
-          start: yarn start:ci
+          start: pnpm start:ci
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: firefox
