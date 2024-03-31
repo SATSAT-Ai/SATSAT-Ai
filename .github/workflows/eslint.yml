@@ -30,6 +30,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v3
+        with:
+          version: 8
+          
       - name: Install ESLint
         run: |
           pnpm install eslint@8.10.0
