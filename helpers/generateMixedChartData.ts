@@ -15,6 +15,7 @@ import {
 	endOfMonth,
 	differenceInMonths,
 	endOfYear,
+	Day,
 } from "date-fns";
 import {
 	generateDayData,
@@ -30,6 +31,7 @@ export const generateMixedCharData = (
 	from: Date,
 	to: Date,
 	dateRangeWithValue: {
+		//timeStamps
 		date: number;
 		value: number;
 	}[]
@@ -87,7 +89,7 @@ export const generateMixedCharData = (
 					const weekSumValue = () => {
 						return timeStamps
 							.filter((entry) => {
-								const daySelected = getDay(from);
+								const daySelected = getDay(from) as Day;
 								const weekStart = startOfWeek(from, {
 									weekStartsOn: daySelected,
 								});
@@ -112,13 +114,11 @@ export const generateMixedCharData = (
 				}
 				//*days
 				const endingWeek = differenceInWeeks(to, from) * 7;
-				(data.days as unknown as {}) = generateDayData(
-					addDays(from, endingWeek),
-					to,
-					timeStamps
-				);
+				(data.days as unknown as { [key: string]: number } | undefined) =
+					generateDayData(addDays(from, endingWeek), to, timeStamps);
 			} else {
-				(data.days as unknown as {}) = generateDayData(from, to, timeStamps);
+				(data.days as unknown as { [key: string]: number } | undefined) =
+					generateDayData(from, to, timeStamps);
 			}
 		} else if (period === "months") {
 			console.log(period);
