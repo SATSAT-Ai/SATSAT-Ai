@@ -32,7 +32,16 @@ jobs:
         with:
           runTests: false
 
-
+      - name: Set environment variables
+        run: |
+          echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env.local
+          echo NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} >> .env.local
+          echo WEBSITE_URL=${{ secrets.WEBSITE_URL }} >> .env.local
+      - name: Cypress install
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          
       - name: Build Next.js Project
         run: pnpm build
   
