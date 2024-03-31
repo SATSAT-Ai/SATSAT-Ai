@@ -24,8 +24,8 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: read
-      security-events: write
-      actions: read # only required for a private repository by github/codeql-action/upload-sarif to get the Action run status
+      security-events: write  # Required for upload (optional)
+      actions: read       # Only required for private repository (optional upload)
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
@@ -34,22 +34,23 @@ jobs:
         uses: pnpm/action-setup@v3
         with:
           version: 8
-          
-      - name: Install ESLint
+
+      - name: Install ESLint and SARIF formatter
         run: |
           pnpm install eslint@8.10.0
           pnpm install @microsoft/eslint-formatter-sarif@2.1.7
 
       - name: Run ESLint
-        run: pnpm exec eslint .
-          --config .eslintrc.js
-          --ext .js,.jsx,.ts,.tsx
-          --format @microsoft/eslint-formatter-sarif
+        run: pnpm exec eslint . \
+          --config .eslintrc.js \
+          --ext .js,.jsx,.ts,.tsx \
+          --format @microsoft/eslint-formatter-sarif \
           --output-file eslint-results.sarif
         continue-on-error: true
 
-      - name: Upload analysis results to GitHub
-        uses: github/codeql-action/upload-sarif@v3
+      - name: Upload analysis results to GitHub (Optional)
+        uses: github/codeql-action/upload-sarif@v3  # Uncomment for upload
         with:
           sarif_file: eslint-results.sarif
-          wait-for-processing: true
+          wait_for_processing: true  # Wait for processing (optional)
+
