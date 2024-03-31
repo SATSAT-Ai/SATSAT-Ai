@@ -100,7 +100,7 @@ jobs:
         
         uses: cypress-io/github-action@v6
         with:
-          start: pnpm start:ci
+          start: pnpm start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
@@ -147,7 +147,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           config: '{"e2e":{"viewportWidth":375,"viewportHeight":667}}'
-          start: pnpm start:ci
+          start: pnpm start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
@@ -192,7 +192,7 @@ jobs:
       - name: "UI Tests - Firefox"
         uses: cypress-io/github-action@v6
         with:
-          start: pnpm start:ci
+          start: pnpm start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: firefox
@@ -238,7 +238,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           config: '{"e2e":{"viewportWidth":375,"viewportHeight":667}}'
-          start: pnpm start:ci
+          start: pnpm start
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: firefox
