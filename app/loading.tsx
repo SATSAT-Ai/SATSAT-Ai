@@ -1,11 +1,9 @@
-"use client";
-import { MoonLoader } from "react-spinners";
+import LoadingSpinner from "@/components/ui/LoadingSpinner";
 
 const Loading = () => {
 	return (
 		<div className="min-h-screen w-full bg-darker text-white flex gap-5 flex-col items-center justify-center">
-			<MoonLoader color="#29a173" />
-			<h1 className="text-text-24">Loading...</h1>
+			<LoadingSpinner className="mx-auto animate-[spin_0.4s_linear_infinite] border-transparent rounded-full border-2 border-t-brand-green h-14 w-14" />
 		</div>
 	);
 };
