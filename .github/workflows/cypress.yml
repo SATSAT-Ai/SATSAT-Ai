@@ -71,7 +71,11 @@ jobs:
       matrix:
         # run copies of the current job in parallel
         containers: [1, 2, 3, 4, 5]
+  
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Setup pnpm
         uses: pnpm/action-setup@v3
         with:
@@ -79,9 +83,6 @@ jobs:
           
       - name: Update pnpm lockfile
         run: pnpm install --no-frozen-lockfile
-        
-      - name: Checkout
-        uses: actions/checkout@v4
 
       - name: Download the build folders
         uses: actions/download-artifact@v4
