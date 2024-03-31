@@ -19,7 +19,7 @@ const PageWithSubPath = ({
 	pathname: string;
 	hideSidebar: boolean;
 	setHideSidebar: Dispatch<SetStateAction<boolean>>;
-	isActive: () => string;
+	isActive: string;
 }) => {
 	const [showSubpath, setShowSubpath] = useState(false);
 
@@ -78,7 +78,7 @@ const PageWithSubPath = ({
 				>
 					<div
 						className={`${
-							routeWithSubpath.path === isActive()
+							routeWithSubpath.path === isActive
 								? "md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow bg-mid--yellow text-white md:text-mid--yellow hover:bg-white/10 md:bg-transparent rounded-md shadow-md md:shadow-none"
 								: "hover:bg-white/10"
 						} text-text-normal w-fit md:mx-full rounded-md md:hover:bg-transparent md:rounded-none justify-center md:justify-start md:w-full flex items-center  cursor-pointer md:gap-6 gap-3 p-2 md:pl-6 md:py-2 relative`}
@@ -124,7 +124,7 @@ const PageWithSubPath = ({
 										id={subpath.name}
 										aria-label={subpath.name}
 										className={`${
-											subpath.path === isActive()
+											subpath.path === isActive
 												? "md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow bg-mid--yellow md:bg-transparent icon shadow-md md:shadow-none text-mid--yellow "
 												: "text-white "
 										} hover:bg-white/10 text-text-normal 0 justify-start mr-auto w-full rounded-md md:rounded-none  md:justify-start md:w-full flex cursor-pointer px-3 md:px-0 md:pl-6 py-2 items-center gap-3 relative`}
