@@ -50,7 +50,7 @@ jobs:
         with:
           name: build
           compression-level: 6  # Optional compression level (higher = smaller size)
-          path: out
+          path: build
           overwrite: false  # Optional, don't overwrite existing artifacts
           if-no-files-found: error
 
