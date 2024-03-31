@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import ChatMain from "../(components)/ChatMain";
 import ChatSidebar from "../(components)/ChatSidebar";
+import ChatSidebarEnterprise from "@/app/dashboard-enterprise/(components)/ChatSidebarEnterprise";
 
 export const metadata: Metadata = {
 	title: "SatSat-Ai Chat with your financial data",
@@ -9,9 +10,7 @@ export const metadata: Metadata = {
 const page = () => {
 	return (
 		<div className="h-full flex overflow-clip">
-			<div className="flex flex-[3] w-full flex-col">
-				<ChatMain />
-			</div>
+			<ChatMain />
 			<ChatSidebar />
 		</div>
 	);
