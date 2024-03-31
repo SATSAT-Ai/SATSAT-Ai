@@ -19,6 +19,7 @@ import SyncAltIcon from "@mui/icons-material/SyncAlt";
 import TryIcon from "@mui/icons-material/Try";
 import InsightsIcon from "@mui/icons-material/Insights";
 import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
+import { isActive } from "@/helpers/isRouteActive";
 interface IDashboardSideber {
 	pathname: string;
 	setHideSidebar: Dispatch<SetStateAction<boolean>>;
@@ -88,43 +89,7 @@ const DashboardSidebarWithData = ({
 			path: "/dashboard/settings",
 		},
 	];
-
-	const isActive = (): string => {
-		const currentPath = pathname.split("/");
-
-		if (currentPath.length >= 4) {
-			const processedBrowserPathname = currentPath.slice(0, -1).join("/");
-
-			const isPathSame = dashboardSidebarData.find(
-				(path) => path.path === processedBrowserPathname
-			);
-
-			const isIgnoredSubpaths = ["categories", "budget", "receipts"];
-			const ignored = isIgnoredSubpaths.some((subpath) =>
-				currentPath.includes(subpath as string)
-			);
-
-			if (!isPathSame) {
-				//consider subpaths
-				const isSubpathSame = dashboardSidebarData
-					.filter((path) => path.subPaths)
-					.flatMap((filteredPaths) => filteredPaths.subPaths)
-					.find((subpath) => subpath?.path === processedBrowserPathname);
-
-				if (isSubpathSame) {
-					return isSubpathSame.path;
-				}
-				if (ignored) {
-					return pathname;
-				}
-			}
-
-			if (isPathSame && !ignored) {
-				return isPathSame.path;
-			}
-		}
-		return pathname;
-	};
+	const isPathActive = isActive(pathname, dashboardSidebarData);
 
 	return (
 		<>
@@ -203,14 +168,16 @@ const DashboardSidebarWithData = ({
 											routeWithSubpath={routes}
 											pathname={pathname}
 											setHideSidebar={setHideSidebar}
-											isActive={isActive}
+											isActive={isPathActive}
 										/>
 									);
 								}
 								return (
 									<li key={routes.name} id={routes.name}>
 										<Tooltip
-											className={!hideSidebar ? "hidden" : "hidden md:flex"}
+											className={`text-nowrap ${
+												!hideSidebar ? "hidden" : "hidden md:flex"
+											}`}
 											anchorSelect={`#${routes.name}`}
 											place="right"
 											content={routes.name}
@@ -224,7 +191,7 @@ const DashboardSidebarWithData = ({
 											href={routes.path!}
 											aria-label={routes.name}
 											className={`${
-												routes.path === isActive()
+												routes.path === isPathActive
 													? " bg-mid--yellow md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow"
 													: "text-white"
 											} text-text-normal font-medium md:pl-6 w-fit md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex  cursor-pointer p-2 items-center gap-3 hover:bg-white/10 relative`}
@@ -250,7 +217,7 @@ const DashboardSidebarWithData = ({
 							id="upgrade-plan"
 							aria-label="upgrade your plan"
 							className={`${
-								hideSidebar && "md:mx-auto"
+								hideSidebar ? "md:mx-auto" : ""
 							} flex flex-col mx-3 w-fit gap-7 py-2`}
 						>
 							<div className="md:mb-2 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
@@ -268,7 +235,7 @@ const DashboardSidebarWithData = ({
 
 								<p
 									className={`${
-										hideSidebar ? "!hidden" : "flex"
+										hideSidebar ? "!hidden" : "animate-appear"
 									} hidden md:flex text-left text-[13px] font-normal`}
 								>
 									Upgrade your current plan and enjoy amazing features
