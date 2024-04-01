@@ -48,14 +48,19 @@ const VerificationStages = () => {
 
 	// if userId is wrong redirect to / else redirect to unverified step
 	useLayoutEffect(() => {
+		const axiosError = error as unknown as {
+			response: { data: { error: any } };
+			message: string;
+		};
+		if (!userId) {
+			toast.dismiss();
+			toast.error(axiosError?.response?.data?.error ?? "no userId found");
+			router.push("/");
+		}
 		if (!data?.data.user && error) {
-			const axiosError = error as unknown as {
-				response: { data: { error: any } };
-			};
 			toast.dismiss();
 			console.log(axiosError);
-			toast.error(axiosError?.response?.data?.error ?? "Something went wrong");
-			router.push("/");
+			toast.error(axiosError?.message ?? "Something went wrong");
 		}
 
 		if (data?.data?.user) {
@@ -65,7 +70,7 @@ const VerificationStages = () => {
 
 			setCurrentStep(isFullyVerified ? 3 : hasEmailVerification ? 2 : 1);
 		}
-	}, [data?.data.user, error, router]);
+	}, [data?.data.user, error, router, userId]);
 
 	return (
 		<>
