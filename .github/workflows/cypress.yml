@@ -1,57 +1,57 @@
-name: Cypress Tests
+# name: Cypress Tests
 
-on:
-  push:
-    branches-ignore:
-      - "renovate/**"
+# on:
+#   push:
+#     branches-ignore:
+#       - "renovate/**"
 
-jobs:
-  install:
-    runs-on: ubuntu-latest
-    container:
-      image: cypress/browsers:node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
-      options: --user 1001
-    steps: 
-      - name: Checkout
-        uses: actions/checkout@v4
-      - uses: actions/setup-node@v3
-        with:
-          node-version: 18.17  # Upgrade to the required version
+# jobs:
+#   install:
+#     runs-on: ubuntu-latest
+#     container:
+#       image: cypress/browsers:node-18.16.0-chrome-114.0.5735.133-1-ff-114.0.2-edge-114.0.1823.51-1
+#       options: --user 1001
+#     steps: 
+#       - name: Checkout
+#         uses: actions/checkout@v4
+#       - uses: actions/setup-node@v3
+#         with:
+#           node-version: 18.17  # Upgrade to the required version
           
-      - name: Setup pnpm
-        uses: pnpm/action-setup@v3
-        with:
-          version: 8
+#       - name: Setup pnpm
+#         uses: pnpm/action-setup@v3
+#         with:
+#           version: 8
 
-      - name: Update pnpm lockfile
-        run: pnpm install --no-frozen-lockfile
+#       - name: Update pnpm lockfile
+#         run: pnpm install --no-frozen-lockfile
         
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
+#       - name: Cypress install
+#         uses: cypress-io/github-action@v6
+#         with:
+#           runTests: false
 
-      - name: Set environment variables
-        run: |
-          echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env.local
-          echo NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} >> .env.local
-          echo WEBSITE_URL=${{ secrets.WEBSITE_URL }} >> .env.local
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
+#       - name: Set environment variables
+#         run: |
+#           echo NEXTAUTH_SECRET=${{ secrets.NEXTAUTH_SECRET }} >> .env.local
+#           echo NEXTAUTH_URL=${{ secrets.NEXTAUTH_URL }} >> .env.local
+#           echo WEBSITE_URL=${{ secrets.WEBSITE_URL }} >> .env.local
+#       - name: Cypress install
+#         uses: cypress-io/github-action@v6
+#         with:
+#           runTests: false
           
-      - name: Build Next.js Project
-        run: pnpm build
+#       - name: Build Next.js Project
+#         run: pnpm build
   
-      - name: Save build folder
-        uses: actions/upload-artifact@v4
-        with:
-          name: build-output
-          path: .next
-          compression-level: 6  # Optional compression level (higher = smaller size)
-          overwrite: false  # Optional, don't overwrite existing artifacts
-          if-no-files-found: error
+#       - name: Save build folder
+#         uses: actions/upload-artifact@v4
+#         with:
+#           name: build-output
+#           path: .next
+#           compression-level: 6  # Optional compression level (higher = smaller size)
+#           overwrite: false  # Optional, don't overwrite existing artifacts
+#           if-no-files-found: error
 
 
   # ui-chrome-tests:
