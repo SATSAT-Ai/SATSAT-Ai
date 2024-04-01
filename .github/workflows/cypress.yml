@@ -96,10 +96,6 @@ jobs:
         run: ls /__e
 
       - name: "UI Tests - Chrome"
-      - uses: actions/setup-node@v4
-        with:
-         node-version: 18.17.0
-        
       - uses: cypress-io/github-action@v6
         with:
           start: pnpm start
