@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import Select from "@mui/joy/Select";
 import Option from "@mui/joy/Option";
+import { useState } from "react";
 
 type FormValues = {
 	firstName: string;
@@ -18,8 +19,9 @@ const ContactUsForm = () => {
 		handleSubmit,
 		formState: { errors, isValid },
 		register,
-		control,
 	} = useForm<FormValues>();
+
+	const [loading, setLoading] = useState(false);
 
 	const onSubmit = (data: FormValues) => {
 		console.log(data);
@@ -34,13 +36,13 @@ const ContactUsForm = () => {
 		<form
 			data-test="contact-form"
 			onSubmit={handleSubmit(onSubmit)}
-			className=" active:bg-transparent max-w-xl mx-auto py-28"
+			className="  active:bg-transparent max-w-xl mx-auto py-28"
 		>
 			<h1 className="text-center mb-10 text-brand-green text-text-40 md:text-text-60">
 				Contact Us
 			</h1>
 			<div className="flex flex-col sm:gap-5">
-				<div className="flex flex-col sm:flex-row items-center sm:gap-5">
+				<div className="flex flex-col gap-2 sm:flex-row items-center sm:gap-5">
 					<div className="w-full mb-5 flex flex-col">
 						<label
 							className="text-text-normal mb-2 text-mid--yellow"
@@ -49,7 +51,7 @@ const ContactUsForm = () => {
 							First Name
 						</label>
 						<input
-							className={`text-white placeholder:text-grey-lightest/60 border-b ${
+							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.firstName
 									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 									: isValid
@@ -72,7 +74,7 @@ const ContactUsForm = () => {
 					</div>
 					<div className="w-full mb-5 flex flex-col">
 						<label
-							className="text-text-normal text-mid--yellow"
+							className="text-text-normal mb-2 text-mid--yellow"
 							htmlFor="lastname"
 						>
 							Last Name
@@ -104,7 +106,7 @@ const ContactUsForm = () => {
 						)}
 					</div>
 				</div>
-				<div className="flex flex-col sm:flex-row items-center sm:gap-5">
+				<div className="flex flex-col gap-2 sm:flex-row items-center sm:gap-5">
 					<div className="w-full mb-5 flex flex-col">
 						<label
 							className="text-text-normal mb-2 text-mid--yellow"
@@ -246,7 +248,15 @@ const ContactUsForm = () => {
 			<button
 				data-test="submit-form"
 				type="submit"
-				className="w-fit hover:bg-brand-green ease-in ml-auto mt-7 block text-center font-normal bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white button"
+				className={`mt-5 disabled:cursor-not-allowed focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 font-medium text-[17px] ${
+					loading ? "active:scale-100" : "active:scale-[1.01]"
+				} text-white transition-colors duration-150 ease-in
+			${
+				loading
+					? "bg-grey-light cursor-default"
+					: "hover:bg-brand-green/85 bg-brand-green/90"
+			}
+			  block w-full p-2 rounded-lg`}
 			>
 				Send Message
 			</button>
