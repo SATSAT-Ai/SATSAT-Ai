@@ -87,7 +87,12 @@ jobs:
           path: .next
 
       - name: Run development server
-        run: pnpm start
+        uses: actions/setup-node@v4
+        with:
+          node-version: 18.17.0
+
+      - name: Run development server
+        run: npm start
         
       - name: "UI Tests - Chrome"
         uses: actions/setup-node@v4
