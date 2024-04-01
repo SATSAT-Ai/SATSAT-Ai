@@ -31,7 +31,7 @@ const SignInForm = () => {
 		mutationKey: ["sendOneTimeCode"],
 		mutationFn: (email: string) => {
 			const response = axios.post(
-				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/auth/login/request`,
+				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/auth/login/request`,
 				{
 					email,
 				}
