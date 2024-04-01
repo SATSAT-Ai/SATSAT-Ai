@@ -38,11 +38,6 @@ jobs:
           echo NEXTAUTH_URL=$NEXTAUTH_URL >> .env.local
           echo WEBSITE_URL=${{ secrets.WEBSITE_URL }} >> .env.local
 
-      - name: Cypress install
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-
       - name: Build Next.js Project
         run: pnpm build
 
@@ -97,6 +92,7 @@ jobs:
           node-version: 18.17.0
       - uses: cypress-io/github-action@v6
         with:
+          # runTests: false
           # start: pnpm start
           # wait-on: "http://localhost:3000"
           # wait-on-timeout: 120
