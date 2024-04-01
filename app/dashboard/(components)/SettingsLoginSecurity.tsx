@@ -53,7 +53,7 @@ const SettingsLoginSecurity = () => {
 							})}
 						/>
 						{errors.oldEmail && (
-							<p className="text-crimson pt-1 text-text-12">
+							<p className="text-crimson pt-2 text-text-12">
 								{errors.oldEmail.message}
 							</p>
 						)}
@@ -74,7 +74,7 @@ const SettingsLoginSecurity = () => {
 							})}
 						/>
 						{errors.newEmail && (
-							<p className="text-crimson pt-1 text-text-12">
+							<p className="text-crimson pt-2 text-text-12">
 								{errors.newEmail.message}
 							</p>
 						)}

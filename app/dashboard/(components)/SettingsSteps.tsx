@@ -101,7 +101,7 @@ const SettingsSteps = () => {
 										})}
 									/>
 									{errors.firstName && (
-										<p className="text-crimson pt-1 text-text-12">
+										<p className="text-crimson pt-2 text-text-12">
 											{errors.firstName.message}
 										</p>
 									)}
@@ -122,7 +122,7 @@ const SettingsSteps = () => {
 										})}
 									/>
 									{errors.lastName && (
-										<p className="text-crimson pt-1 text-text-12">
+										<p className="text-crimson pt-2 text-text-12">
 											{errors.lastName.message}
 										</p>
 									)}
@@ -145,7 +145,7 @@ const SettingsSteps = () => {
 										})}
 									/>
 									{errors.phone && (
-										<p className="text-crimson pt-1 text-text-12">
+										<p className="text-crimson pt-2 text-text-12">
 											{errors.phone.message}
 										</p>
 									)}
@@ -166,7 +166,7 @@ const SettingsSteps = () => {
 										})}
 									/>
 									{errors.email && (
-										<p className="text-crimson pt-1 text-text-12">
+										<p className="text-crimson pt-2 text-text-12">
 											{errors.email.message}
 										</p>
 									)}
