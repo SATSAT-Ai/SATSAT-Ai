@@ -22,7 +22,7 @@ export interface IdeFault {
 }
 
 const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
-	const chatContainerRef = useRef<null | HTMLElement>(null);
+	const chatContainerRef = useRef<null | HTMLDivElement>(null);
 	const helpOptionsRef = useRef<null | HTMLDivElement>(null);
 	const [scrollToBottom, setScrollToBottom] = useState(false);
 	const [scrollToTop, setScrollToTop] = useState(false);
@@ -174,42 +174,44 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 
 	return (
 		<>
-			<main
-				ref={chatContainerRef}
-				className=" text-white w-full h-full
+			<main className="flex flex-[3] w-full flex-col">
+				<div
+					ref={chatContainerRef}
+					className=" text-white w-full h-full
 					custom-scroll2 relative flex flex-col justify-between overflow-y-auto"
-			>
-				<ToggleSidebars />
-				{conversations.length >= 1 ? (
-					<ChatPage
-						chatContainerRef={chatContainerRef}
-						scrollToTop={scrollToTop}
-						handleScrollToBottom={handleScrollToBottom}
-						scrollToBottom={scrollToBottom}
-						isOldConversation={isOldConversation}
-						conversations={conversations}
-						handleSubmit={handleSubmit}
-						onSubmit={onSubmit}
-						loading={loading}
-						handleTextAreaResize={handleTextAreaResize}
-						handleKeyDown={handleKeyDown}
-						register={register}
-					/>
-				) : (
-					<ChatSuggestionIntro
-						loading={loading}
-						handleSubmit={handleSubmit}
-						onSubmit={onSubmit}
-						handleTextAreaResize={handleTextAreaResize}
-						handleKeyDown={handleKeyDown}
-						register={register}
-						helpOptionsRef={helpOptionsRef}
-						showHelpOptions={showHelpOptions}
-						chatSuggestions={chatSuggestions}
-						setShowHelpOptions={setShowHelpOptions}
-						conversationLength={conversations.length}
-					/>
-				)}
+				>
+					<ToggleSidebars />
+					{conversations.length >= 1 ? (
+						<ChatPage
+							chatContainerRef={chatContainerRef}
+							scrollToTop={scrollToTop}
+							handleScrollToBottom={handleScrollToBottom}
+							scrollToBottom={scrollToBottom}
+							isOldConversation={isOldConversation}
+							conversations={conversations}
+							handleSubmit={handleSubmit}
+							onSubmit={onSubmit}
+							loading={loading}
+							handleTextAreaResize={handleTextAreaResize}
+							handleKeyDown={handleKeyDown}
+							register={register}
+						/>
+					) : (
+						<ChatSuggestionIntro
+							loading={loading}
+							handleSubmit={handleSubmit}
+							onSubmit={onSubmit}
+							handleTextAreaResize={handleTextAreaResize}
+							handleKeyDown={handleKeyDown}
+							register={register}
+							helpOptionsRef={helpOptionsRef}
+							showHelpOptions={showHelpOptions}
+							chatSuggestions={chatSuggestions}
+							setShowHelpOptions={setShowHelpOptions}
+							conversationLength={conversations.length}
+						/>
+					)}
+				</div>
 			</main>
 		</>
 	);
