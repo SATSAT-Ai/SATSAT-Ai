@@ -87,7 +87,7 @@ jobs:
           path: .next
 
       - name: Run development server
-        run: pnpm dev
+        run: pnpm start
         
       - name: "UI Tests - Chrome"
         uses: actions/setup-node@v4
