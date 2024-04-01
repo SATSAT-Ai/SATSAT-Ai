@@ -86,14 +86,6 @@ jobs:
           name: build-output
           path: .next
 
-      - name: Run development server
-        uses: actions/setup-node@v4
-        with:
-          node-version: 18.17.0
-
-      - name: Run development server
-        run: npm start
-        
       - name: "UI Tests - Chrome"
         uses: actions/setup-node@v4
         with:
@@ -101,14 +93,14 @@ jobs:
       - uses: cypress-io/github-action@v6
         with:
           # runTests: false
-          # start: pnpm start
-          # wait-on: "http://localhost:3000"
+          start: pnpm start
+          wait-on: "http://localhost:3000"
           # wait-on-timeout: 120
           browser: chrome
           record: true
           parallel: true
-          # group: "UI - Chrome"
-          # spec: cypress/tests/ui/*
+          group: "UI - Chrome"
+          spec: cypress/e2e/*
           config-file: cypress.config.ts
         env:
           CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
