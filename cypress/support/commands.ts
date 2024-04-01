@@ -21,9 +21,13 @@ Cypress.Commands.add(
 			.getElement(dropDownId)
 			.should("be.visible")
 			.getElement(eleId)
-			.visit(`${eleId}`);
+			.click();
 	}
 );
+
+Cypress.Commands.add("urlIncludes", (url: string) => {
+	return cy.url().should("include", url);
+});
 
 //
 //
@@ -51,6 +55,7 @@ declare global {
 			 **/
 
 			getElement(eleId: string): Chainable<JQuery<HTMLElement>>;
+			urlIncludes(url: string): Chainable<any>;
 
 			/**
 			 *dropDownId Gets an a dropdown element from nav using the data-test attr and check if its visible.
@@ -69,7 +74,7 @@ declare global {
 			targetElementNavigate(
 				dropDownId: string,
 				eleId: string
-			): Chainable<Cypress.AUTWindow>;
+			): Cypress.Chainable<JQuery<HTMLElement>>;
 			// drag(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
 			// dismiss(subject: string, options?: Partial<TypeOptions>): Chainable<Element>
 			// visit(originalFn: CommandOriginalFn, url: string, options: Partial<VisitOptions>): Chainable<Element>

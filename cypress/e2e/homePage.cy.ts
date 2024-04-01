@@ -7,13 +7,10 @@ describe("Buttons must redirect to expected pages", () => {
 		cy.visit("/");
 		cy.getElement("choose-pricing-button").as("pricingButton");
 		cy.get("@pricingButton").each(($button) => {
-			cy.wrap($button).should("not.be.disabled").should("have.attr", "href");
+			cy.wrap($button).as("button");
+			cy.get("@button").should("not.be.disabled").should("have.attr", "href");
+			cy.get("@button").click().should("not.be.disabled");
 		});
-		cy.get("@pricingButton").click({
-			multiple: true,
-		});
-		cy.url().should("include", "/choose-your-pricing");
+		cy.location("pathname").should("equal", "/choose-your-pricing");
 	});
-
-	it("should redirect all social links", () => {});
 });

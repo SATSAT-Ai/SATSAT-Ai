@@ -32,6 +32,7 @@ const ContactUsForm = () => {
 
 	return (
 		<form
+			data-test="contact-form"
 			onSubmit={handleSubmit(onSubmit)}
 			className=" active:bg-transparent max-w-xl mx-auto py-28"
 		>
@@ -48,7 +49,7 @@ const ContactUsForm = () => {
 							First Name
 						</label>
 						<input
-							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
+							className={`text-white placeholder:text-grey-lightest/60 border-b ${
 								errors.firstName
 									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 									: isValid
@@ -64,19 +65,20 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.firstName && (
-							<p className="text-crimson pt-2 text-text-12">
+							<p className="text-crimson pt-1 text-text-12">
 								{errors.firstName.message}
 							</p>
 						)}
 					</div>
 					<div className="w-full mb-5 flex flex-col">
 						<label
-							className="text-text-normal mb-2 text-mid--yellow"
+							className="text-text-normal text-mid--yellow"
 							htmlFor="lastname"
 						>
 							Last Name
 						</label>
 						<input
+							data-test="lastName"
 							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.lastName
 									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
@@ -85,7 +87,7 @@ const ContactUsForm = () => {
 									: "border-[#444c48]"
 							} bg-transparent p-2 rounded-lg`}
 							type="text"
-							id="lastname"
+							id="lastName"
 							{...register("lastName", {
 								required: { value: true, message: "Field is required" },
 								maxLength: 15,
@@ -93,7 +95,10 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.lastName && (
-							<p className="text-crimson pt-2 text-text-12">
+							<p
+								data-test="lastName-error"
+								className="text-crimson pt-2 text-text-12"
+							>
 								{errors.lastName.message}
 							</p>
 						)}
@@ -108,6 +113,7 @@ const ContactUsForm = () => {
 							Email
 						</label>
 						<input
+							data-test="email"
 							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.email
 									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
@@ -122,7 +128,10 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.email && (
-							<p className="text-crimson pt-2 text-text-12">
+							<p
+								data-test="email-error"
+								className="text-crimson pt-2 text-text-12"
+							>
 								{errors.email.message}
 							</p>
 						)}
@@ -135,6 +144,7 @@ const ContactUsForm = () => {
 							Phone Number
 						</label>
 						<input
+							data-test="phone"
 							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.phoneNumber
 									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
@@ -149,7 +159,10 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.phoneNumber && (
-							<p className="text-crimson pt-2 text-text-12">
+							<p
+								data-test="phone-error"
+								className="text-crimson pt-2 text-text-12"
+							>
 								{errors.phoneNumber.message}
 							</p>
 						)}
@@ -159,6 +172,7 @@ const ContactUsForm = () => {
 			<div className="flex flex-col gap-5">
 				<p className="text-text-normal text-mid--yellow">Select subject</p>
 				<Select
+					data-test="subject"
 					color="neutral"
 					placeholder="Subject"
 					variant="outlined"
@@ -178,13 +192,24 @@ const ContactUsForm = () => {
 					defaultValue={""}
 					onChange={() => {}}
 				>
-					<Option value={"General Enquiry"}>General Enquiry</Option>
-					<Option value={"Onboarding"}>Onboarding</Option>
-					<Option value={"Account"}>Account</Option>
-					<Option value={"Sales"}>Sales</Option>
+					<Option data-test="general" value={"General Enquiry"}>
+						General Enquiry
+					</Option>
+					<Option data-test="onboarding" value={"Onboarding"}>
+						Onboarding
+					</Option>
+					<Option data-test="account" value={"Account"}>
+						Account
+					</Option>
+					<Option data-test="sales" value={"Sales"}>
+						Sales
+					</Option>
 				</Select>
 				{errors.subject && (
-					<p className="text-crimson pt-2 text-text-12">
+					<p
+						data-test="subject-error"
+						className="text-crimson pt-2 text-text-12"
+					>
 						{errors.subject.message}
 					</p>
 				)}
@@ -194,6 +219,7 @@ const ContactUsForm = () => {
 					Message
 				</label>
 				<textarea
+					data-test="message"
 					onInput={(e) => handleTextAreaResize(e)}
 					className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 						errors.message
@@ -209,12 +235,16 @@ const ContactUsForm = () => {
 					})}
 				></textarea>
 				{errors.message && (
-					<p className="text-crimson pt-2 text-text-12">
+					<p
+						data-test="message-error"
+						className="text-crimson pt-2 text-text-12"
+					>
 						{errors.message.message}
 					</p>
 				)}
 			</div>
 			<button
+				data-test="submit-form"
 				type="submit"
 				className="w-fit hover:bg-brand-green ease-in ml-auto mt-7 block text-center font-normal bg-mid--yellow transition-colors duration-200 active:scale-[1.01] text-white button"
 			>

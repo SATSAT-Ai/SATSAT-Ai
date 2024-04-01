@@ -23,6 +23,7 @@ const SignInForm = () => {
 		handleSubmit,
 		register,
 		formState: { errors, isValid },
+		setError,
 	} = useForm<FormValues>();
 
 	const [loading, setLoading] = useState(false);
@@ -47,6 +48,9 @@ const SignInForm = () => {
 			setLoading(false);
 			toast.dismiss();
 			toast.error(error.message);
+			setError("email", {
+				message: "An error occurred",
+			});
 			console.log(error);
 		},
 	});
