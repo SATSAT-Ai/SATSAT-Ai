@@ -34,8 +34,10 @@ jobs:
 
       - name: Set environment variables
         run: |
-          echo NEXTAUTH_SECRET=<span class="math-inline">\{\{ secrets\.NEXTAUTH\_SECRET \}\} \>\> \.env\.local echo NEXTAUTH\_URL\=</span>{{ secrets.NEXTAUTH_URL }} >> .env.local
+          echo NEXTAUTH_SECRET=$NEXTAUTH_SECRET >> .env.local
+          echo NEXTAUTH_URL=$NEXTAUTH_URL >> .env.local
           echo WEBSITE_URL=${{ secrets.WEBSITE_URL }} >> .env.local
+
       - name: Cypress install
         uses: cypress-io/github-action@v6
         with:
