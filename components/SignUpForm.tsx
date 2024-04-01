@@ -110,7 +110,7 @@ const SignUpForm = () => {
 				<input
 					data-test="fullName"
 					disabled={loading}
-					className={`focus:outline-none focus:ring focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
+					className={`focus:outline-none focus:ring  focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
 						errors.fullName
 							? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 							: isValid
@@ -139,7 +139,7 @@ const SignUpForm = () => {
 				<input
 					data-test="email"
 					disabled={loading}
-					className={`focus:outline-none focus:ring focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
+					className={`focus:outline-none focus:ring  focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 border ${
 						errors.email
 							? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 							: isValid
@@ -183,7 +183,7 @@ const SignUpForm = () => {
 							<Listbox.Button
 								className={` ${
 									loading ? "cursor-default" : "cursor-pointer"
-								} relative h-11 w-full rounded-lg text-white hover:text-white  text-[14px] py-2 pl-3 pr-10 text-left border focus-visible:border-indigo-500 focus-visible:ring-2focus:outline-none focus:ring focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ${
+								} relative h-11 w-full rounded-lg text-white hover:text-white  text-[14px] py-2 pl-3 pr-10 text-left border focus-visible:border-indigo-500 focus-visible:ring-2focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ${
 									errors.country
 										? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 										: isValid
@@ -292,7 +292,7 @@ const SignUpForm = () => {
 				Already having an account?{" "}
 				<Link
 					data-test="signInPage"
-					className="focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 focus:rounded-sm focus:outline-none focus:ring focus:ring-offset-1 font-medium text-text-14 text-mid--yellow"
+					className="focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 focus:rounded-sm focus:outline-none focus:ring focus:border-none focus:ring-offset-1 font-medium text-text-14 text-mid--yellow"
 					href="/signin"
 				>
 					signin
