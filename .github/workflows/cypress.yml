@@ -92,7 +92,7 @@ jobs:
           node-version: 18.17.0
       - uses: cypress-io/github-action@v6
         with:
-          start: pnpm start
+          start: pnpm dev
           wait-on: "http://localhost:3000"
           wait-on-timeout: 120
           browser: chrome
