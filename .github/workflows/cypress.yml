@@ -66,5 +66,11 @@ jobs:
           spec: cypress/e2e/*
           config-file: cypress.config.ts
         env:
-          CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            CYPRESS_PROJECT_ID: ${{ secrets.CYPRESS_PROJECT_ID }}
+            CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+            CYPRESS_TEST_EMAIL: ${{ secrets.CYPRESS_TEST_EMAIL }}
+            CYPRESS_TEST_PASSWORD: ${{ secrets.CYPRESS_TEST_PASSWORD }} 
+            NEXTAUTH_SECRET: ${{ secrets.NEXTAUTH_SECRET }}
+            NEXTAUTH_URL: ${{ secrets.NEXTAUTH_URL }}
+            NEXT_PUBLIC_SATSATAI_MS_USER: ${{ secrets.NEXT_PUBLIC_SATSATAI_MS_USER }}
+            WEBSITE_URL: ${{ secrets.WEBSITE_URL }}
