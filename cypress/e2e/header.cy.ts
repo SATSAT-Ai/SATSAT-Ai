@@ -31,6 +31,11 @@ describe("buttons and links navigates properly", () => {
 			.click();
 		cy.location("pathname").should("equal", "/features");
 	});
+	it("should navigate to scan-documents", () => {
+		cy.getElement("dropdown-Products").contains("Products").click();
+		cy.targetElementNavigate("prod-dropDown", `scan-documents`);
+		cy.location("pathname").should("equal", "/scan-documents");
+	});
 });
 
 describe("navigation to target feature page (dynamic routes)", () => {

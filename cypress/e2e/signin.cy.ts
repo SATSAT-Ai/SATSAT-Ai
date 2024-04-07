@@ -22,7 +22,7 @@ describe("User sign in flow", () => {
 		cy.getElement("signin_error_message").should("not.exist");
 		cy.intercept(
 			"POST",
-			`${Cypress.env("SATSATAI_MS_USER")}/auth/login/request`,
+			`${Cypress.env("SATSATAI_MS_USER")}/api/auth/login/request`,
 			(req) => {
 				req.reply({
 					fixture: "signInUserEmail",
@@ -49,10 +49,10 @@ describe("User sign in flow", () => {
 			.should("have.text", "An error occurred");
 	});
 
-	it.only("should signIn user successfully", () => {
+	it("should signIn user successfully", () => {
 		cy.intercept(
 			"POST",
-			`${Cypress.env("SATSATAI_MS_USER")}/auth/login/request`,
+			`${Cypress.env("SATSATAI_MS_USER")}/api/auth/login/request`,
 			(req) => {
 				req.reply({
 					fixture: "signInUserEmail",
