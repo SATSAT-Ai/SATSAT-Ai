@@ -22,24 +22,24 @@ const featuredProducts: {
 	img: string;
 }[] = [
 	{
-		id: "jdkfjrw",
+		id: "scan-documents",
 		productName: "Scan Documents",
 		description: "Scan mobile money, bank statements, Invoices and receipts",
 		img: ScanIcon,
-		link: "/",
+		link: "/scan-documents",
 	},
 	{
-		id: "jdkferwejrw",
+		id: "extract-insights",
 		productName: "Extract Insights",
 		description: "Get valuable insights from your financial documents.",
 		img: ExtractInsightIcon,
-		link: "/",
+		link: "/extract-insights",
 	},
 	{
-		id: "jdkferweet4jrw",
+		id: "alternative-scoring",
 		productName: "Alternative Scoring",
 		description: "Use alternative data for credit scoring and more.",
-		link: "/",
+		link: "/alternative-scoring",
 		img: AltScoring,
 	},
 ];
@@ -112,7 +112,11 @@ const ProductDropDown = ({
 			<GlowCardParent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overscroll-none text-white/80 gap-3 px-5 pb-3 items-center justify-between">
 				{featuredProducts.map((featured) => {
 					return (
-						<Link key={featured.id} href={featured.link}>
+						<Link
+							data-test={featured.id}
+							key={featured.id}
+							href={featured.link}
+						>
 							<GlowCard
 								cardClassName="bg-[#0e2b0e] shadow-sm cursor-pointer p-3 rounded-md flex-row items-center gap-5 justify-between"
 								className="flex w-full flex-col text-center sm:text-left sm:flex-row items-center md:justify-between gap-5"
