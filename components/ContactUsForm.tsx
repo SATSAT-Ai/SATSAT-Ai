@@ -51,6 +51,7 @@ const ContactUsForm = () => {
 							First Name
 						</label>
 						<input
+							data-test="firstName"
 							className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 								errors.firstName
 									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
@@ -67,7 +68,10 @@ const ContactUsForm = () => {
 							})}
 						/>
 						{errors.firstName && (
-							<p className="text-crimson pt-1 text-text-12">
+							<p
+								data-test="firstName-error"
+								className="text-crimson pt-1 text-text-12"
+							>
 								{errors.firstName.message}
 							</p>
 						)}
