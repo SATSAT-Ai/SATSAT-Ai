@@ -27,23 +27,32 @@ export type FormValues = {
 const SignUpForm = () => {
 	const [loading, setLoading] = useState(false);
 	const filteredCountry: { value: string; label: string }[] =
-		africanCountries.filter((country) => country.label === "Ghana");
+		africanCountries.filter((country) => country.label);
 
-	const [selectedCountry, setSelectedCountry] = useState<{
-		label: string;
-		value: string;
-	}>(filteredCountry[0]);
-
-	const searchParams = useSearchParams();
-	const plan = searchParams?.get("plan");
-	const router = useRouter();
-	const params = new URLSearchParams(searchParams!);
 	const {
 		handleSubmit,
 		formState: { errors, isValid },
 		register,
 		setValue,
-	} = useForm<FormValues>();
+		getValues,
+	} = useForm<FormValues>({
+		defaultValues: {
+			country: {
+				label: "Ghana",
+				value: "ghana",
+			},
+		},
+	});
+
+	const [selectedCountry, setSelectedCountry] = useState<{
+		label: string;
+		value: string;
+	}>(getValues("country"));
+
+	const searchParams = useSearchParams();
+	const plan = searchParams?.get("plan");
+	const router = useRouter();
+	const params = new URLSearchParams(searchParams!);
 
 	const { data } = useQuery({
 		queryKey: ["countryIdKey"],
@@ -126,7 +135,7 @@ const SignUpForm = () => {
 				{
 					<p
 						data-test={"fullName-error"}
-						className="text-crimson h-2 text-text-12"
+						className="text-crimson h-2 pt-1 text-text-12"
 					>
 						{errors.fullName && errors.fullName.message}
 					</p>
@@ -155,7 +164,7 @@ const SignUpForm = () => {
 				{
 					<p
 						data-test={"email-error"}
-						className="text-crimson h-2 text-text-12"
+						className="text-crimson h-2 pt-1 text-text-12"
 					>
 						{errors.email && errors.email.message}
 					</p>
@@ -172,12 +181,16 @@ const SignUpForm = () => {
 							required: { value: true, message: "Country is required" },
 						})}
 						disabled={loading}
-						onChange={(e: any) =>
+						onChange={(e: any) => (
 							setValue("country", {
-								label: e.label,
-								value: e.value!,
+								label: e?.label,
+								value: e?.value!,
+							}),
+							setSelectedCountry({
+								label: e?.label,
+								value: e?.value!,
 							})
-						}
+						)}
 					>
 						<div className="relative">
 							<Listbox.Button
@@ -227,7 +240,6 @@ const SignUpForm = () => {
 												}`
 											}
 											value={country}
-											onChange={() => setSelectedCountry(country)}
 										>
 											{({ selected }) => (
 												<>
@@ -250,7 +262,7 @@ const SignUpForm = () => {
 					{
 						<p
 							data-test={"country-error"}
-							className="text-crimson h-2 text-text-12"
+							className="text-crimson h-2 pt-1 text-text-12"
 						>
 							{errors.country && errors.country.message}
 						</p>
@@ -280,7 +292,7 @@ const SignUpForm = () => {
 					{
 						<p
 							data-test={"phone-error"}
-							className="text-crimson h-2 text-text-12"
+							className="text-crimson h-2 pt-1 text-text-12"
 						>
 							{errors.phone && errors.phone.message}
 						</p>
