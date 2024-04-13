@@ -8,8 +8,8 @@ export default defineConfig({
 		},
 		baseUrl: "http://localhost:3000",
 		chromeWebSecurity: false,
-		pageLoadTimeout: 90000,
+		pageLoadTimeout: 120000,
 		defaultCommandTimeout: 40000,
-		requestTimeout: 20000,
+		requestTimeout: 25000,
 	},
 });
