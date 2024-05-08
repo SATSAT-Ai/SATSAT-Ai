@@ -19,6 +19,9 @@ import { MdStar } from "react-icons/md";
 import GetStartedButton from "@/components/ui/GetStartedButton";
 import PageScroller from "./dashboard/(components)/PageScroller";
 import TypeWriteInView from "@/components/TypeWriteInView";
+import Blob from "@/components/Blob";
+import GetStartedWithBlob from "@/components/GetStartedWithBlob";
+// import dashboardImage from "@/public/dashboard.jpg";
 
 export const metadata: Metadata = {
 	title: "Welcome to SatSat-Ai - Chat with your financial documents",
@@ -28,7 +31,7 @@ export default function Home() {
 	return (
 		<>
 			<Header />
-			<main className="bg-darker  overflow-x-clip">
+			<main className="bg-darker overflow-x-clip">
 				<HeroSection />
 
 				<div className="my-max">
@@ -44,9 +47,10 @@ export default function Home() {
 							/>
 						</div>
 						<div className=" relative mt-10 z-0 md:mt-20 grid gap-5 mx-auto grid-cols-1 sm:grid-cols-2 max-w-4xl">
-							<div className="yellow-blob -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
+							<div className="yellow-blob !bg-mid--yellow/70 !blur-3xl -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
+							<div className="green-blob2 !blur-3xl !bg-brand-green/70 w-72 -z-10 h-72 md:w-96 md:h-96 top-[70%] left-[7%] md:top-[40%]"></div>
 
-							<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center justify-center">
+							<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center justify-center">
 								<Image
 									src={chatBot}
 									height={100}
@@ -62,7 +66,7 @@ export default function Home() {
 									rest.
 								</p>
 							</div>
-							<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center justify-center">
+							<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center justify-center">
 								<Image
 									src={chatBot}
 									height={100}
@@ -78,7 +82,7 @@ export default function Home() {
 									information.
 								</p>
 							</div>
-							<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center justify-center">
+							<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center justify-center">
 								<Image
 									src={chatBot}
 									height={100}
@@ -92,7 +96,7 @@ export default function Home() {
 									retrieval.
 								</p>
 							</div>
-							<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-brand-green-darker flex flex-col items-center justify-center">
+							<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-[#071f0790] flex flex-col items-center justify-center">
 								<Link
 									href={"/book-a-demo"}
 									className="flex transition-colors font-medium duration-200 items-center gap-2 active:scale-[1.01] text-white hover:underline w-fit px-7  rounded-3xl mx-auto"
@@ -108,6 +112,15 @@ export default function Home() {
 							</div>
 						</div>
 					</section>
+
+					{/* <div className="bg-white/5 backdrop-blur-xl saturate-150 p-3 md:p-5 rounded-xl w-full my-7">
+						<Image
+							className="rounded-lg"
+							src={dashboardImage}
+							alt="dashboard"
+						/>
+					</div> */}
+
 					<section className="text-center flex flex-col">
 						<h3 className="text-brand-green text-text-24 sm:text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
 							WHY SATSAT AI?
@@ -123,8 +136,10 @@ export default function Home() {
 
 						<div className=" relative  mt-10 md:mt-20 mx-auto max-w-4xl">
 							<div className=" grid gap-5 grid-cols-1 z-0 relative sm:grid-cols-2">
-								<div className="green-blob -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[25%] right-[-30%]"></div>
-								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center text-center justify-center">
+								<div className="green-blob !blur-3xl !bg-brand-green/70 -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[25%] right-[30%]"></div>
+								<div className="yellow-blob !bg-mid--yellow/70 !blur-3xl -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"></div>
+
+								<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center text-center justify-center">
 									<Image
 										src={chatBot}
 										height={100}
@@ -142,7 +157,7 @@ export default function Home() {
 										the power of AI with peace of mind.
 									</p>
 								</div>
-								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center text-center justify-center">
+								<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center text-center justify-center">
 									<Image
 										src={chatBot}
 										height={100}
@@ -159,7 +174,7 @@ export default function Home() {
 										and collectively find answers on a dedicated chat board.
 									</p>
 								</div>
-								<div className="text-white p-10 rounded-3xl bg-white/10 flex flex-col items-center text-center justify-center">
+								<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center text-center justify-center">
 									<Image
 										src={chatBot}
 										height={100}
@@ -178,7 +193,7 @@ export default function Home() {
 									</p>
 								</div>
 
-								<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-brand-green-darker flex flex-col items-center justify-center">
+								<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-[#071f0790] flex flex-col items-center justify-center">
 									<Link
 										href={"/book-a-demo"}
 										className="flex transition-colors font-medium duration-200 items-center gap-2 active:scale-[1.01] text-white hover:underline w-fit px-7  rounded-3xl mx-auto"
@@ -207,12 +222,12 @@ export default function Home() {
 
 						<div className="mt-20 md:max-w-5xl mx-auto grid gap-10 grid-cols-1 lg:grid-cols-2">
 							<div className="text-left relative">
-								<div className="yellow-blob w-72 h-72 md:w-96 md:h-96 top-[70%] left-[-35%] md:top-[-25%]"></div>
+								<div className="green-blob2 !blur-3xl !bg-brand-green/40 w-72  h-72 md:w-96 md:h-96 top-[70%] md:left-[-30%] md:top-[-20%]"></div>
 
-								<h4 className="text-brand-green mb-3 font-semibold text-text-24 md:text-text-40">
+								<h4 className="text-brand-green mb-3 z-10 relative font-semibold text-text-24 md:text-text-40">
 									How To Get Started
 								</h4>
-								<p className="text-mid--yellow mb-5 max-w-md">
+								<p className="text-mid--yellow z-10 relative mb-5 max-w-md">
 									Enjoy fast, secure and reliable way of Querying your financial
 									data with SatSat AI
 								</p>
@@ -228,8 +243,8 @@ export default function Home() {
 									/>
 								</div>
 							</div>
-							<div className="flex flex-col sm:flex-row gap-5 lg:flex-row">
-								<div className="flex sm:flex-col md:flex-col lg:flex-col gap-5 bg-[#071f07] px-5 py-5 rounded-3xl">
+							<div className="flex z-10 relative flex-col sm:flex-row gap-5 lg:flex-row">
+								<div className="flex sm:flex-col md:flex-col lg:flex-col gap-5 bg-[#071f0780] lg:bg-[#071f07] px-5 py-5 rounded-3xl">
 									<Image
 										src={createAccountImage}
 										height={10}
@@ -246,7 +261,7 @@ export default function Home() {
 										</p>
 									</div>
 								</div>
-								<div className="flex sm:flex-col md:flex-col lg:flex-col gap-5 bg-[#071f07] px-5 py-5 rounded-3xl">
+								<div className="flex sm:flex-col md:flex-col lg:flex-col gap-5 bg-[#071f0780] lg:bg-[#071f07] px-5 py-5 rounded-3xl">
 									<Image
 										src={chatWithAiImage}
 										height={10}
@@ -335,7 +350,7 @@ export default function Home() {
 							</div>
 						</Marquee>
 					</section>
-
+					<GetStartedWithBlob />
 					<section className="text-center flex flex-col ">
 						<div className="my-max">
 							<h4 className="text-brand-green text-text-24 sm:text-text-40 md:text-text-50 lg:text-text-80 max-w-5xl mx-auto">
@@ -352,8 +367,14 @@ export default function Home() {
 
 							<div className="py-20">
 								<div className="text-left relative max-w-2xl mx-auto">
-									<div className="yellow-blob2 w-72 h-72 md:w-96 md:h-96 top-[70%] left-[-30%] md:top-[20%]"></div>
-									<div className="green-blob2 w-72 h-72 md:w-96 md:h-96 top-[70%] right-[-70%] md:top-[20%]"></div>
+									<Blob animation="animate-none" blur={60} />
+									<Blob
+										className="top-full right-[10%] md:right-[-20%] "
+										animation="animate-none"
+										blur={60}
+										background="#c9882180"
+									/>
+
 									<div className="flex mb-10 items-center gap-5 flex-wrap w-full justify-between">
 										<span className="text-white text-center font-medium text-[18px]">
 											Who we serve
