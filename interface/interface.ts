@@ -4,13 +4,13 @@ export interface featureData {
 	icon: ReactElement;
 	title: string;
 	para: string;
-	link: string;
+	link?: string;
 	id: string;
 }
 
 export interface IPrices {
-	id: string;
-	category: string;
+	id: "free" | "pro" | "plus" | "enterprise";
+	category: "free" | "pro" | "plus" | "enterprise";
 	privileges: string[];
 	price: string;
 	annualPrice?: string;
@@ -82,4 +82,25 @@ export interface IncomeStreams {
 	name: string;
 	number: number;
 	amount: number;
+}
+
+export type billingPeriodType = "forever" | "annual" | "monthly";
+export type planType = "pro" | "plus" | "free";
+export type databasePlanName =
+	| "pro-monthly"
+	| "pro-annual"
+	| "plus-monthly"
+	| "plus-annual"
+	| "free-monthly"
+	| "free-annual";
+export interface finishingUpDataInterface {
+	"starting plan": planType;
+	"billing period": billingPeriodType;
+	price: string | null | undefined;
+}
+export interface databasePlanInterface {
+	name: databasePlanName;
+	title: "string";
+	id: "string";
+	quantity: number;
 }
