@@ -14,6 +14,7 @@ interface ITypeWrite {
 	showCaretOnComplete?: boolean;
 	caretColor?: string;
 	fontWeight?: "normal" | "medium";
+	textAlign?: "center" | "left";
 }
 
 const TypeWrite = ({
@@ -29,6 +30,7 @@ const TypeWrite = ({
 	maxWidth,
 	caretColor,
 	fontWeight,
+	textAlign = "center",
 }: ITypeWrite): JSX.Element => {
 	const [typedText, setTypedText] = useState("");
 	const [cursorVisible, setCursorVisible] = useState(true);
@@ -100,7 +102,7 @@ const TypeWrite = ({
 					: fontWeight === "medium"
 					? "font-medium"
 					: "font-normal"
-			}  md:text-[${fontSize}]`}
+			}  md:text-[${fontSize}] text-[${textAlign}] my-2`}
 			style={{
 				overflowWrap: "anywhere",
 				maxWidth: `${maxWidth ? `${maxWidth}px` : "100%"}`,
