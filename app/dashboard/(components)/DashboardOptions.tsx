@@ -33,7 +33,7 @@ const DashboardOptions = ({
 
 			{showMoreOptions && (
 				<div className="bg-[#071f07] w-52 no-select border z-40 border-grey-light absolute top-12 right-0 p-3 rounded-xl">
-					<div className="flex items-center w-full justify-between gap-5">
+					<div className="flex items-center w-full justify-center gap-5">
 						<ul className="flex flex-col">
 							<li className=" text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
 								<Link
