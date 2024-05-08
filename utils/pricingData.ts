@@ -1,4 +1,6 @@
-export const pricingData = [
+import { IPrices } from "@/interface/interface";
+
+export const pricingData: IPrices[] = [
 	{
 		id: "free",
 		category: "free",
@@ -32,7 +34,7 @@ export const pricingData = [
 		annualPrice: "$120/Annual",
 	},
 	{
-		id: "Enterprise",
+		id: "enterprise",
 		category: "enterprise",
 		privileges: [
 			"Upload and scan documents",
