@@ -13,9 +13,10 @@ const HeroSection = () => {
 	return (
 		<>
 			<div className=" w-full text-center flex flex-col relative z-0 ">
-				<div className="green-blob2 z-10 w-[550px] h-[400px] animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
+				<div className="green-blob2 z-10 w-[800px] h-[450px] !bg-brand-green/75 animate-pulse top-[-50%] md:top-[-35%] left-[50%]"></div>
 				<div className="absolute source-out h-full bottom-0 z-[1] left-0 w-full">
 					<SparklesCore
+						particleSize={5}
 						id="tsparticlesfullpage"
 						background="transparent"
 						minSize={0.8}
@@ -27,11 +28,11 @@ const HeroSection = () => {
 				</div>
 
 				<div className="z-10 min-h-screen py-20 relative my-max flex flex-col items-center justify-between h-full w-full">
-					<section>
-						<h1 className="text-brand-green mb-5 font-bold max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-80">
+					<section className="flex flex-col items-center flex-1 justify-center">
+						<h1 className="text-brand-green leading-tight font-bold max-w-5xl mx-auto text-text-40 mb-0 md:text-text-60 lg:text-text-80">
 							SATSAT AI
 						</h1>
-						<div className="h-12">
+						<div className="h-14 mb-4">
 							<TypeWrite
 								text={[
 									"Query your financial data with natural language",
@@ -45,6 +46,7 @@ const HeroSection = () => {
 								timeToStartNewText={3500}
 								typingSpeed={55}
 								showCaretOnComplete={true}
+								maxWidth={350}
 							/>
 						</div>
 
@@ -77,8 +79,8 @@ const HeroSection = () => {
 				</h2>
 
 				<div className="flex bg-[black] relative rounded-3xl my-shadow mx-auto my-max items-center justify-center">
-					<div className="green-blob2 w-96 h-96 top-[50%] left-[-50%] md:left-[-20%]"></div>
-					<div className="yellow-blob2 w-96 h-96 top-[20%] right-[-30%]"></div>
+					<div className="green-blob2 !bg-brand-green/70 !blur-3xl -z-10 w-96 h-96 top-[50%] left-[-50%] md:left-[-7%]"></div>
+					<div className="yellow-blob2 !bg-mid--yellow/70 !blur-3xl -z-10 w-96 h-96 top-[20%] right-[-30%]"></div>
 					<PromptPage />
 				</div>
 			</div>
