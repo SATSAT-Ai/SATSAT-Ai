@@ -51,10 +51,10 @@ const developerPortal: {
 		icon: <IoShieldCheckmark size={25} color="#c18e3b" />,
 	},
 	{
-		id: "api-refrence",
+		id: "api-reference",
 		desc: "Explore our API",
 		portal: "Api reference",
-		link: "/developers/api-docs",
+		link: "/developers/api-reference",
 		icon: <VscReferences size={25} color="#c18e3b" />,
 	},
 	{
