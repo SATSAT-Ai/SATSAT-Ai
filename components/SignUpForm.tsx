@@ -12,7 +12,6 @@ import { Listbox, Transition } from "@headlessui/react";
 import { HiChevronUpDown } from "react-icons/hi2";
 import LoadingSpinner from "./ui/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
-import { getCountryId } from "@/utils/getCountryId";
 
 export type FormValues = {
 	fullName: string;
@@ -51,56 +50,71 @@ const SignUpForm = () => {
 
 	const searchParams = useSearchParams();
 	const plan = searchParams?.get("plan");
+	const billingPeriod = searchParams?.get("period");
 	const router = useRouter();
-	const params = new URLSearchParams(searchParams!);
 
 	const { data } = useQuery({
 		queryKey: ["countryIdKey"],
-		queryFn: () => getCountryId(),
+		queryFn: async () => {
+			const response = await axios.get(
+				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/countries/index`
+			);
+			return response.data ?? "";
+		},
 		refetchOnWindowFocus: false,
 	});
 
-	//handle next error "location is not defined'
 	useEffect(() => {
-		if (!plan || !["pro", "free", "enterprise", "plus"].includes(plan)) {
+		if (
+			!plan ||
+			!["pro", "free", "enterprise", "plus"].includes(plan) ||
+			!billingPeriod
+		) {
 			router.replace("/choose-your-pricing");
 		}
-	}, [plan, router]);
+	}, [billingPeriod, plan, router]);
 
 	const onSubmit = async (formData: FormValues) => {
 		setLoading(true);
 		toast.loading("Please wait...");
 
-		try {
-			const response: {
-				data: { message: string; userId: string };
-				status: string | number;
-			} = await axios.post("/api/auth/register", {
-				country_id: data?.data?.data[0]?.id,
-				fullName: formData.fullName,
-				email: formData.email,
-				country: formData.country,
-				phone: formData.phone,
-				starting_plan: plan,
-			});
+		if (!process.env.NEXT_PUBLIC_WAITLIST_MODE) {
+			try {
+				const response: {
+					data: {
+						message: string;
+						userId: string;
+						phone: string;
+						email: string;
+					};
+					status: string | number;
+				} = await axios.post("/api/auth/register", {
+					country_id: data?.data?.data[0]?.id,
+					fullName: formData.fullName,
+					email: formData.email,
+					country: formData.country,
+					phone: formData.phone,
+					starting_plan: plan,
+				});
 
-			toast.dismiss();
-			params.set("userId", response?.data?.userId);
-			toast.success(response?.data?.message);
-			const { userId } = response?.data;
+				toast.dismiss();
+				toast.success(response?.data?.message);
+				const { userId, phone, email } = response?.data;
 
-			if (response.status == 200) {
-				router.push(
-					`/signup/verify?plan=${plan}${
-						userId ? `&userId=${response?.data?.userId}` : ""
-					}`
-				);
+				if (response.status == 200) {
+					router.push(
+						`/signup/verify?plan=${plan}&userId=${userId}&period=${billingPeriod}`
+					);
+				}
+			} catch (error: any) {
+				setLoading(false);
+				console.log(error);
+				toast.dismiss();
+				toast.error(error?.response?.data?.message || error?.message);
 			}
-		} catch (error: any) {
-			setLoading(false);
-			console.log(error);
+		} else {
 			toast.dismiss();
-			toast.error(error?.response?.data?.message || error?.message);
+			toast.error("Please join the waitlist");
 		}
 	};
 

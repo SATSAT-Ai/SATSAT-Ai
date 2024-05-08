@@ -9,8 +9,10 @@ import { useRouter } from "next/navigation";
 import LoadingSpinner from "./ui/LoadingSpinner";
 import secureLocalStorage from "react-secure-storage";
 import { useMutation } from "@tanstack/react-query";
+import { useSession } from "next-auth/react";
 import axios from "axios";
 import Spotlight from "./ui/spotlight";
+import { signIn } from "next-auth/react";
 
 type FormValues = {
 	email: string;
@@ -18,6 +20,7 @@ type FormValues = {
 
 const SignInForm = () => {
 	const router = useRouter();
+	const session = useSession();
 
 	const {
 		handleSubmit,
@@ -41,7 +44,7 @@ const SignInForm = () => {
 		},
 		onSuccess(data) {
 			toast.dismiss();
-			toast.success(data.data.msg);
+			toast.success(data.data.message);
 			router.push("/signin/user_verification");
 		},
 		onError(error) {
@@ -56,10 +59,44 @@ const SignInForm = () => {
 	});
 
 	const onSubmit = async (data: FormValues) => {
-		setLoading(true);
-		toast.loading("Please wait...");
-		secureLocalStorage.setItem("signInEmail", data.email);
-		sendOneTimeCodeMutation.mutate(data.email);
+		if (session && session.data?.user) {
+			toast.error("Please sign out first to continue");
+		} else {
+			if (!process.env.NEXT_PUBLIC_WAITLIST_MODE) {
+				setLoading(true);
+				toast.loading("Please wait...");
+				secureLocalStorage.setItem("signInEmail", data.email);
+				sendOneTimeCodeMutation.mutate(data.email);
+			} else {
+				const allowedUsers = [
+					"demo@gmail.com",
+					"kamasahdickson19@gmail.com",
+					"jeanlinux5@gmail.com",
+				];
+				if (allowedUsers.includes(data.email)) {
+					setLoading(true);
+					const signInResponse = await signIn("credentials", {
+						email: data.email,
+						redirect: false,
+						callbackUrl: "/dashboard",
+					});
+
+					if (signInResponse?.error) {
+						setLoading(false);
+						toast.dismiss();
+						toast.error(signInResponse.error);
+					}
+					if (signInResponse?.ok) {
+						toast.dismiss();
+						toast.success("Logged in successfully");
+						router.push("/dashboard");
+					}
+				} else {
+					toast.dismiss();
+					toast.error("You are not authorized. Join the waitlist");
+				}
+			}
+		}
 	};
 
 	return (
