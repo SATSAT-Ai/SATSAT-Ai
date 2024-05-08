@@ -1,12 +1,12 @@
 import { Dispatch, SetStateAction } from "react";
 import VerifyOTP from "./VerifyOTP";
 
-export interface IverifyPhone {
+export interface IVerifyPhone {
 	setCurrentStep: Dispatch<SetStateAction<number>>;
 	phone: string;
 }
 
-const VerifyPhoneStep = ({ setCurrentStep, phone }: IverifyPhone) => {
+const VerifyPhoneStep = ({ setCurrentStep, phone }: IVerifyPhone) => {
 	const maskPhone = () => {
 		const lastTwoDigits = phone
 			?.split("")
