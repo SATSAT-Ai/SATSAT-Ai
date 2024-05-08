@@ -12,6 +12,7 @@ import IncomeTable from "./IncomeTable";
 import LineChart from "./LineChart";
 import Skeleton from "@mui/material/Skeleton";
 import { timeStampsAndValue } from "@/helpers/TestTimeStamp";
+import secureLocalStorage from "react-secure-storage";
 
 const DashboardClientPage = () => {
 	const { hideSidebar, setHideSidebar } = useContext(AppContext);
@@ -129,7 +130,12 @@ const DashboardClientPage = () => {
 		},
 	]);
 
-	const [selectedStatement, setSelectedStatement] = useState(statements[0]);
+	//remove verified email which is still in secureStorage
+	const verifiedEmail =
+		(secureLocalStorage.getItem("signInEmail") as string) ?? "";
+	if (verifiedEmail) {
+		secureLocalStorage.removeItem("signInEmail");
+	}
 
 	const dateRanges: Date[] = [];
 	const dateRangeWithValue = [];
@@ -172,8 +178,6 @@ const DashboardClientPage = () => {
 				<StatementSelector
 					date={date}
 					setDate={setDate}
-					selectedStatement={selectedStatement}
-					setSelectedStatement={setSelectedStatement}
 					statements={statements}
 				/>
 			</section>
