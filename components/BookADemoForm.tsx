@@ -16,11 +16,12 @@ import { DateRange } from "react-day-picker";
 import { useState, Fragment } from "react";
 import { useForm } from "react-hook-form";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import toast from "react-hot-toast";
 
 type bookDemo = {
 	workEmail: string;
 	phone: string | number;
-	workForAgency: boolean;
+	workingForAnAgency: "yes" | "no";
 	bookingDate: {
 		from: Date;
 		to: Date;
@@ -34,21 +35,35 @@ const BookADemoForm = () => {
 		formState: { errors, isValid },
 		register,
 		setValue,
-		setError,
-	} = useForm<bookDemo>();
+		getValues,
+	} = useForm<bookDemo>({
+		defaultValues: {
+			bookingDate: {
+				from: new Date(),
+				to: addDays(new Date(), 5),
+			},
+			workingForAnAgency: "yes",
+		},
+	});
+
 	const [workingForAgency, setWorkingForAgency] = useState("Yes");
 	const [date, setDate] = useState<DateRange | undefined>({
 		from: new Date(),
 		to: addDays(new Date(), 5),
 	});
 
-	const onSubmit = (data: bookDemo) => {
-		if (!data.bookingDate.from && !data.bookingDate.to) {
-			setError("bookingDate", {
-				message: "Booking date required",
-			});
+	const onSubmit = async (data: bookDemo) => {
+		setLoading(true);
+		if (!data?.bookingDate?.from) {
+			toast.error("Booking date is required");
 		} else {
-			console.log(data);
+			try {
+				console.log(data);
+				setLoading(false);
+			} catch (error) {
+				setLoading(false);
+				console.log(error);
+			}
 		}
 	};
 
@@ -73,13 +88,13 @@ const BookADemoForm = () => {
 				<input
 					data-test="email_input"
 					disabled={loading}
-					className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
+					className={`focus:outline-none focus:ring focus:ring-offset-2 focus:border-none focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 disabled:border-grey-lightest disabled:bg-transparent placeholder:text-grey-lightest/60 text-white border ${
 						errors.workEmail
 							? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 							: isValid
 							? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
 							: "border-white"
-					} bg-transparent p-2 rounded-lg`}
+					} bg-transparent p-[9px] rounded-lg`}
 					type="text"
 					placeholder="johndoe@gmail.com"
 					{...register("workEmail", {
@@ -100,12 +115,12 @@ const BookADemoForm = () => {
 					I work for an Agency (required)
 				</label>
 				<Listbox
-					{...register("workForAgency", {
+					{...register("workingForAnAgency", {
 						required: { value: true, message: "Field is required" },
 					})}
 					disabled={loading}
 					onChange={(e: any) => (
-						setValue("workForAgency", e), setWorkingForAgency(e)
+						setValue("workingForAnAgency", e), setWorkingForAgency(e)
 					)}
 				>
 					<div className="relative">
@@ -113,7 +128,7 @@ const BookADemoForm = () => {
 							className={` ${
 								loading ? "cursor-default" : "cursor-pointer"
 							} relative h-11 w-full rounded-lg text-white hover:text-white  text-[14px] py-2 pl-3 pr-10 text-left border focus-visible:border-indigo-500 focus-visible:ring-2focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ${
-								errors.workForAgency
+								errors.workingForAnAgency
 									? "border-crimson focus:ring-offset-crimson focus:ring-crimson"
 									: isValid
 									? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
@@ -125,7 +140,7 @@ const BookADemoForm = () => {
 									workingForAgency ? "text-white" : "text-grey-lightest/60"
 								}`}
 							>
-								{workingForAgency}
+								{getValues("workingForAnAgency")}
 							</span>
 							<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
 								<HiChevronUpDown
@@ -197,7 +212,7 @@ const BookADemoForm = () => {
 						data-test={"workingForAgency-error"}
 						className="text-crimson h-2 text-text-12"
 					>
-						{errors.workForAgency?.message}
+						{errors.workingForAnAgency?.message}
 					</p>
 				}
 			</div>
@@ -259,6 +274,7 @@ const BookADemoForm = () => {
 						)}
 					</Button>
 				</PopoverTrigger>
+
 				<PopoverContent className="w-full p-0 relative -left-10" align="start">
 					<Calendar
 						initialFocus

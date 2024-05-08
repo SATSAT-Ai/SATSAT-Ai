@@ -2,12 +2,12 @@ import Header from "@/components/Header";
 import SparklesCore from "@/components/ui/Particles";
 import Spotlight from "@/components/ui/spotlight";
 import { BsFillCheckCircleFill } from "react-icons/bs";
-import BookADemoForm from "@/components/BookADemoForm";
 import { Metadata } from "next";
 import Footer from "@/components/Footer";
+import BookADemoForm from "@/components/BookADemoForm";
 
 export const metadata: Metadata = {
-	title: "SATSAT-Ai Book A Demo",
+	title: "SatSat-Ai Book A Demo",
 };
 
 const Page = () => {
@@ -26,7 +26,7 @@ const Page = () => {
 							background="transparent"
 							minSize={0.8}
 							maxSize={1.3}
-							particleDensity={30}
+							particleDensity={15}
 							className="w-full h-full"
 							particleColor="#29a173"
 						/>
@@ -37,13 +37,13 @@ const Page = () => {
 							<h1 className="mb-3 font-medium text-text-40">
 								Speed Up Your Evaluation With A SatSat Ai Demo
 							</h1>
-							<ul>
+							<ul className="flex flex-col gap-2 items-start">
 								<li className=" flex items-center gap-3">
 									<BsFillCheckCircleFill
 										size={17}
 										className={`${"text-brand-green"} check`}
 									/>
-									Get a focused overview covering the essentials of SatSat Ai
+									Get a focused overview covering the essentials of SatSat Ai.
 								</li>
 								<li className=" flex items-center gap-3">
 									<BsFillCheckCircleFill
@@ -51,7 +51,7 @@ const Page = () => {
 										className={`${"text-brand-green"} check`}
 									/>
 									Navigate pricing plans and the platform with our help and
-									experience its functionalities
+									experience its functionalities.
 								</li>
 								<li className=" flex items-center gap-3">
 									<BsFillCheckCircleFill
@@ -59,11 +59,11 @@ const Page = () => {
 										className={`${"text-brand-green"} check`}
 									/>
 									Have an overview of how SatSat Ai can revolutionize your
-									financial analysis
+									financial analysis.
 								</li>
 							</ul>
 							<h2 className="font-medium text-text-40 mt-3">
-								Schedule A free SatSat Ai Demo Today!
+								Schedule A free Demo Today!
 							</h2>
 						</div>
 
