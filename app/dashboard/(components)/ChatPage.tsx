@@ -3,11 +3,11 @@
 import { MutableRefObject, KeyboardEvent } from "react";
 import { IUser, IdeFault } from "./ChatMain";
 import { UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
-import TelegramIcon from "@mui/icons-material/Telegram";
 import OutgoingMessage from "./OutgoingMessage";
 import IncomingMessage from "./IncomingMessage";
 import ChatScrollToTop from "@/app/dashboard/(components)/ChatScrollToTop";
 import ChatScrollToBottom from "@/app/dashboard/(components)/ChatScrollToBottom";
+import ChatInput from "./ChatInput";
 
 interface IChatPage {
 	chatContainerRef: MutableRefObject<HTMLElement | null>;
@@ -72,6 +72,7 @@ const ChatPage = ({
 							list={conversation.list!}
 							firstText={conversation.firstText as string}
 							typeWrite={true}
+							// chatContainerRef={chatContainerRef}
 						/>
 					);
 				}
@@ -81,35 +82,12 @@ const ChatPage = ({
 				onSubmit={handleSubmit(onSubmit)}
 				className="text-white sticky bottom-5 w-full p-5 mt-auto"
 			>
-				<div className="bg-[#071f07] rounded-lg max-w-3xl mx-auto">
-					<div
-						tabIndex={0}
-						className="flex  w-full mt-auto border border-white items-center p-1 justify-between rounded-lg px-2 gap-5"
-					>
-						<textarea
-							disabled={loading}
-							rows={1}
-							onInput={(e) => handleTextAreaResize(e)}
-							autoFocus
-							autoCorrect="true"
-							onKeyDown={(e) => (handleKeyDown(e), handleTextAreaResize(e))}
-							className="w-full text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal outline-none bg-brand-green border-none h-auto bg-transparent"
-							placeholder="Message SatSat AI..."
-							{...register("userMessage", {
-								required: false,
-							})}
-						/>
-						<button type="submit" disabled={loading}>
-							<TelegramIcon
-								tabIndex={0}
-								fontSize="large"
-								className="active:scale-[1.02]"
-								color="inherit"
-								aria-hidden="false"
-							/>
-						</button>
-					</div>
-				</div>
+				<ChatInput
+					handleKeyDown={handleKeyDown}
+					handleTextAreaResize={handleTextAreaResize}
+					loading={loading}
+					register={register}
+				/>
 			</form>
 		</div>
 	);
