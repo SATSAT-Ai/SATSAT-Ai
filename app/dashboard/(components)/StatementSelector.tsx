@@ -1,23 +1,18 @@
+"use client";
 import DropDown from "@/components/ui/Dropdown";
 import { DatePickerWithRange } from "./DateRangePicker";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { DateRange } from "react-day-picker";
 
 interface Istatement {
 	setDate: Dispatch<SetStateAction<DateRange | undefined>>;
 	date: DateRange | undefined;
-	setSelectedStatement: Dispatch<SetStateAction<string>>;
-	selectedStatement: string;
 	statements: string[];
 }
 
-const StatementSelector = ({
-	setDate,
-	date,
-	setSelectedStatement,
-	selectedStatement,
-	statements,
-}: Istatement) => {
+const StatementSelector = ({ setDate, date, statements }: Istatement) => {
+	const [selectedStatement, setSelectedStatement] = useState(statements[0]);
+
 	return (
 		<div
 			className={` flex md:flex-nowrap flex-wrap flex-col min-[410px]:flex-row min-[410px]:justify-between lg:justify-end items-center w-full justify-center gap-5`}
