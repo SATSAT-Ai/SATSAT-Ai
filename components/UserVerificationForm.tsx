@@ -21,14 +21,20 @@ const UserVerificationForm = () => {
 	const [countDown, setCountDown] = useState(0);
 	const [showAlertModal, setShowAlertModal] = useState(false);
 	const router = useRouter();
-	const email = (secureLocalStorage.getItem("signInEmail") as string) ?? "";
-
 	const {
 		handleSubmit,
 		formState: { errors, isValid },
 		setError,
 		register,
 	} = useForm<IVerifySignIn>();
+
+	const email = (secureLocalStorage.getItem("signInEmail") as string) ?? "";
+
+	useEffect(() => {
+		if (!email) {
+			router.push("/signin");
+		}
+	}, [email, router]);
 
 	const maskEmail = () => {
 		const userName = email?.split("@")[0];
@@ -54,7 +60,7 @@ const UserVerificationForm = () => {
 		},
 		onSuccess(data) {
 			toast.dismiss();
-			toast.success(data.data.msg);
+			toast.success(data.data.message);
 			setShowAlertModal(true);
 			setCountDown(30);
 		},
@@ -98,7 +104,6 @@ const UserVerificationForm = () => {
 			}
 			if (signInResponse?.ok) {
 				toast.success("Verification successful");
-				secureLocalStorage.removeItem("signInEmail");
 				router.push("/dashboard");
 			}
 		} catch (error: any) {
