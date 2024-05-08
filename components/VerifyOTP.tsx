@@ -32,9 +32,9 @@ const VerifyOTP = ({
 
 	//resend verification code
 	const resendOTPMutation = useMutation({
-		mutationFn: () => {
+		mutationFn: async () => {
 			const response = axios.get(
-				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/user/phone/request-code/${userId}`
+				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/user/phone/request-code/${userId}`
 			);
 			return response;
 		},
@@ -56,7 +56,7 @@ const VerifyOTP = ({
 		setLoading(true);
 		try {
 			const response = await axios.post(
-				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/user/phone/verify`,
+				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/user/phone/verify`,
 				{
 					phone: telNumber,
 					code: data.otpCode,
@@ -126,9 +126,9 @@ const VerifyOTP = ({
 				type="submit"
 				className={`${
 					loading
-						? "disabled:cursor-not-allowed"
-						: "bg-brand-green  active:scale-[1.01]"
-				}focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 w-full block text-center font-normal transition-colors duration-200 text-white  button`}
+						? "disabled:cursor-not-allowed disabled:bg-brand-green "
+						: "bg-mid--yellow active:scale-[1.01]"
+				}focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-mid--yellow focus:ring-mid--yellow outline-none focus:ring-opacity-50 w-full block text-center font-normal transition-colors duration-200 text-white  button`}
 			>
 				{loading ? (
 					<LoadingSpinner className="mx-auto animate-[spin_0.4s_linear_infinite] border-transparent border-t-brand-green-darker h-6 w-6" />
