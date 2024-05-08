@@ -33,9 +33,9 @@ const VerifyEmailAddress = ({
 
 	const sendOTPMutation = useMutation({
 		mutationKey: [userId],
-		mutationFn: () => {
+		mutationFn: async () => {
 			const response = axios.get(
-				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/user/phone/request-code/${userId}`
+				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/user/phone/request-code/${userId}`
 			);
 
 			return response;
@@ -43,9 +43,9 @@ const VerifyEmailAddress = ({
 	});
 
 	const resendEmailMutation = useMutation({
-		mutationFn: () => {
+		mutationFn: async () => {
 			const response = axios.get(
-				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/user/email/verify/${userId}`
+				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/user/email/verify/${userId}`
 			);
 			return response;
 		},
@@ -72,8 +72,9 @@ const VerifyEmailAddress = ({
 	const onSubmit = async (data: defaultValues) => {
 		try {
 			setLoading(true);
+
 			const response = await axios.post(
-				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/user/email/verify`,
+				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/user/email/verify`,
 				{
 					email,
 					token: data.verification_code,
@@ -143,7 +144,7 @@ const VerifyEmailAddress = ({
 				type="submit"
 				className={`${
 					loading
-						? "disabled:cursor-not-allowed"
+						? "disabled:cursor-not-allowed disabled:bg-brand-green "
 						: "bg-mid--yellow  active:scale-[1.01]"
 				}focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-mid--yellow focus:ring-mid--yellow outline-none focus:ring-opacity-50 w-full block text-center font-normal transition-colors duration-200 text-white  button`}
 			>
