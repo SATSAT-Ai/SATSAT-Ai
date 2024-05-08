@@ -2,25 +2,16 @@
 
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { HiOutlineExternalLink } from "react-icons/hi";
-import TelegramIcon from "@mui/icons-material/Telegram";
 
 import Link from "next/link";
-import {
-	KeyboardEvent,
-	MutableRefObject,
-	Dispatch,
-	SetStateAction,
-} from "react";
+import { MutableRefObject, Dispatch, SetStateAction } from "react";
 import { IdeFault } from "./ChatMain";
-import { UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
+import { UseFormHandleSubmit } from "react-hook-form";
+import ChatInput, { type IChatInput } from "./ChatInput";
 
-interface IchatIntro {
+interface IchatIntro extends IChatInput {
 	handleSubmit: UseFormHandleSubmit<IdeFault, undefined>;
 	onSubmit: (data: IdeFault) => void;
-	loading: boolean;
-	handleTextAreaResize: (e: any) => void;
-	handleKeyDown: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
-	register: UseFormRegister<IdeFault>;
 	helpOptionsRef: MutableRefObject<HTMLDivElement | null>;
 	showHelpOptions: boolean;
 	setShowHelpOptions: Dispatch<SetStateAction<boolean>>;
@@ -131,35 +122,12 @@ const ChatSuggestionIntro = ({
 						</div>
 					)}
 				</div>
-				<div className="bg-[#071f07] rounded-lg max-w-3xl w-full order-1 mx-auto">
-					<div
-						tabIndex={0}
-						className="flex w-full mt-auto border border-white items-center p-1 justify-between rounded-lg px-2 gap-5"
-					>
-						<textarea
-							disabled={loading}
-							rows={1}
-							onInput={(e) => handleTextAreaResize(e)}
-							autoFocus
-							autoCorrect="true"
-							onKeyDown={(e) => (handleKeyDown(e), handleTextAreaResize(e))}
-							className="w-full text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal outline-none bg-brand-green border-none h-auto bg-transparent"
-							placeholder="Message SatSat AI..."
-							{...register("userMessage", {
-								required: false,
-							})}
-						/>
-						<button type="submit" disabled={loading}>
-							<TelegramIcon
-								tabIndex={0}
-								fontSize="large"
-								className="active:scale-[1.02]"
-								color="inherit"
-								aria-hidden="false"
-							/>
-						</button>
-					</div>
-				</div>
+				<ChatInput
+					handleKeyDown={handleKeyDown}
+					handleTextAreaResize={handleTextAreaResize}
+					loading={loading}
+					register={register}
+				/>
 			</form>
 		</>
 	);
