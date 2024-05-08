@@ -12,38 +12,32 @@ export const options: NextAuthOptions = {
 					password: string;
 				};
 
-				if (
-					email !== process.env.CYPRESS_TEST_EMAIL &&
-					password !== process.env.CYPRESS_TEST_PASSWORD
-				) {
-					//get user
-					// try {
-					// 	const response = await axios.post(
-					// 		`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/auth/login`,
-					// 		{
-					// 			email,
-					// 			password,
-					// 		}
-					// 	);
-					// 	if (response.status === 200) {
-					// 		return response.data.user;
-					// 	}
-					// } catch (error: any) {
-					// 	throw new Error(error?.response?.data?.error);
-					// }
-					throw new Error("Please Join The Waitlist");
+				if (!process.env.NEXT_PUBLIC_WAITLIST_MODE) {
+					try {
+						const response = await axios.post(
+							`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/auth/login`,
+							{
+								email,
+								password,
+							}
+						);
+						if (response.status === 200) {
+							return {
+								...response.data.user,
+								access_token: response.data.access_token,
+							};
+						}
+					} catch (error: any) {
+						throw new Error(error?.response?.data?.error);
+					}
 				} else {
 					const user = {
 						id: "1",
 						name: "Demo",
 						email,
 						role: "admin",
-						currentPlan: "Pro",
+						currentPlan: "free",
 					};
-
-					if (email !== process.env.CYPRESS_TEST_EMAIL) {
-						throw new Error("User is not found");
-					}
 
 					return user;
 				}
@@ -66,6 +60,10 @@ export const options: NextAuthOptions = {
 			if (user) {
 				token.role = user.role;
 				token.currentPlan = user.currentPlan;
+				token.id = user.id;
+				token.type = user.type;
+				token.name = user.name;
+				token.access_token = user.access_token;
 			}
 			return token;
 		},
@@ -74,6 +72,10 @@ export const options: NextAuthOptions = {
 			if (session?.user) {
 				session.user.role = token.role;
 				session.user.currentPlan = token.currentPlan;
+				session.user.id = token.id;
+				session.user.type = token.type;
+				session.user.name = token.name;
+				session.user.access_token = token.access_token;
 			}
 			return session;
 		},
