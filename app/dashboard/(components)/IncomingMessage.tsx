@@ -15,15 +15,16 @@ import TypeWrite from "@/components/TypeWrite";
 // 	conversations: IcomingProp[];
 // }
 
-interface IcomingProp {
+interface incomingMessageProp {
 	fontSize?: number;
 	typeWrite?: boolean;
 	list: { id: string; msg: string }[];
 	firstText: string;
 	endingText: string;
+	// chatContainerRef: MutableRefObject<HTMLElement | null>;
 }
 
-type IcurrentSection = "firstText" | "list" | "endingText";
+type currentSectionType = "firstText" | "list" | "endingText";
 
 const IncomingMessage = ({
 	list,
@@ -31,15 +32,16 @@ const IncomingMessage = ({
 	fontSize,
 	typeWrite,
 	endingText,
-}: IcomingProp) => {
+}: // chatContainerRef,
+incomingMessageProp) => {
 	const [currentSection, setCurrentSection] =
-		useState<IcurrentSection>("firstText");
+		useState<currentSectionType>("firstText");
 	const [isTypeWriterComplete, setIsTypeWriterComplete] = useState(false);
 	const [showMessageMore, setShowMessageMore] = useState(true);
 	const [loading, setLoading] = useState(false);
 
 	const handleCopyText = async () => {
-		//copy text
+		//!Todo copy text
 
 		toast.dismiss();
 		toast.success("Text copied", {
@@ -49,7 +51,7 @@ const IncomingMessage = ({
 
 	useEffect(() => {
 		const handleNextSection = () => {
-			setCurrentSection((prevSection): IcurrentSection => {
+			setCurrentSection((prevSection): currentSectionType => {
 				switch (prevSection) {
 					case "firstText":
 						if (isTypeWriterComplete) {
@@ -72,15 +74,31 @@ const IncomingMessage = ({
 		handleNextSection();
 	}, [currentSection, isTypeWriterComplete]);
 
+	// ======================= !!Todo
+	// const handleScroll = useCallback(() => {
+	// 	const element = chatContainerRef.current;
+	// 	if (!element) return;
+	// 	element.scrollTop = element.scrollHeight;
+	// }, [chatContainerRef]);
+
+	// useEffect(() => {
+	// 	const element = chatContainerRef.current;
+	// 	if (!element || !typeWrite) return;
+	// 	element.addEventListener("scroll", handleScroll);
+	// 	element.scrollTop = element.scrollHeight;
+	// 	return () => element.removeEventListener("scroll", handleScroll);
+	// }, [chatContainerRef, handleScroll, typeWrite]);
+	// =======================
+
 	return (
 		<>
 			{typeWrite ? (
-				<div className="flex items-end mr-auto gap-3">
+				<div className="flex items-end gap-3">
 					<Image src={chatbot} height={35} width={35} alt="satsat-ai" />
 					<div
 						className={`${
 							showMessageMore ? "h-auto" : "h-[256px] overflow-clip"
-						} flex inMessage md:max-w-full w-full shadow-lg flex-col gap-1 p-4 rounded-3xl text-white`}
+						} flex inMessage md:max-w-[70%] w-full shadow-lg flex-col gap-1 p-4 rounded-3xl text-white`}
 					>
 						{currentSection === "firstText" && (
 							<TypeWrite
@@ -89,9 +107,10 @@ const IncomingMessage = ({
 								color="white"
 								showCaret={false}
 								timeToStartNewText={firstText?.length}
-								typingSpeed={15}
+								typingSpeed={1}
 								setIsTypeWriterComplete={setIsTypeWriterComplete}
 								fontWeight="medium"
+								textAlign="left"
 							/>
 						)}
 						{list && currentSection === "list" && (
