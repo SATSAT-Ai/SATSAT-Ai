@@ -25,7 +25,7 @@ export const POST = async (req: NextRequest) => {
 		}
 
 		const response = await axios.post(
-			`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/users`,
+			`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/users`,
 			{
 				name: fullName,
 				email,
@@ -38,6 +38,8 @@ export const POST = async (req: NextRequest) => {
 			return NextResponse.json({
 				message: " Account has been created",
 				userId: response.data.user.id,
+				phone: response.data.user.phone,
+				email: response.data.user.email,
 				success: true,
 			});
 		}
