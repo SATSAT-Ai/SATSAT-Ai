@@ -1,4 +1,5 @@
 "use client";
+
 import { DateRange } from "react-day-picker";
 import TransTable from "./TransTable";
 import { useState } from "react";
@@ -7,7 +8,6 @@ import StatementSelector from "./StatementSelector";
 
 const TransactionsClientPage = () => {
 	const statements = ["Mobile Money", "Bank Statement"];
-	const [selectedStatement, setSelectedStatement] = useState(statements[0]);
 	const [date, setDate] = useState<DateRange | undefined>({
 		from: new Date(),
 		to: addDays(new Date(), 5),
@@ -23,8 +23,6 @@ const TransactionsClientPage = () => {
 					<StatementSelector
 						date={date}
 						setDate={setDate}
-						selectedStatement={selectedStatement}
-						setSelectedStatement={setSelectedStatement}
 						statements={statements}
 					/>
 				</div>
