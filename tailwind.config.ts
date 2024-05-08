@@ -8,12 +8,16 @@ const config: Config = {
 	],
 	theme: {
 		extend: {
-			backgroundImage: {
+			backgroundImage: ({ theme }) => ({
 				"silver-gradient":
 					"linear-gradient(to top,#050d0021,#ffffff,#050d0021)",
 				"silver-gradient2":
 					"linear-gradient(to left,#050d0021,#ffffff,#050d0021)",
-			},
+
+				"brand-green-fire": `linear-gradient(to top, ${theme(
+					"colors.brand-green"
+				)},${theme("colors.brand-green-darker")},${theme("colors.darker")})`,
+			}),
 			colors: {
 				border: "hsl(var(--border))",
 				input: "hsl(var(--input))",
