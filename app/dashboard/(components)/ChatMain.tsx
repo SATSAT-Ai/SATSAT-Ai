@@ -177,7 +177,8 @@ const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
 			<main className="flex flex-[3] w-full flex-col">
 				<div
 					ref={chatContainerRef}
-					className=" text-white w-full h-full
+					className=" text-white w-full h-full min-h-80
+
 					custom-scroll2 relative flex flex-col justify-between overflow-y-auto"
 				>
 					<ToggleSidebars />
