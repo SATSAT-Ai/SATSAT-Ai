@@ -17,9 +17,7 @@ const Page = async () => {
 		<>
 			<Header />
 			<main className="min-h-screen overflow-clip bg-darker relative overflow-x-clip">
-				<div className=" animate-pulse green-blob2 w-96 h-96 top-[-10%] md:top-[-15%] right-[-40%] md:right-[-15%]"></div>
-				<div className=" animate-pulse yellow-blob3 w-96 h-96 bottom-[-10%] md:bottom-[-5%] left-[-7%]"></div>
-				<section className="py-24">
+				<section className="py-24 z-10 relative">
 					<h1 className="text-brand-green mb-0 text-center max-w-5xl mx-auto text-text-40 md:text-text-60">
 						Choose pricing
 					</h1>
