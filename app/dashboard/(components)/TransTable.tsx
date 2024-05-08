@@ -219,6 +219,9 @@ export default function TransTable() {
 					"& .MuiTablePagination-selectIcon": {
 						color: "white",
 					},
+					"& .MuiDataGrid-container--top [role=row]": {
+						background: "#174634",
+					},
 				}}
 				density="standard"
 				columns={headCells}
