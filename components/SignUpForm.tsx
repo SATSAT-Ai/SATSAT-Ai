@@ -115,6 +115,7 @@ const SignUpForm = () => {
 		} else {
 			toast.dismiss();
 			toast.error("Please join the waitlist");
+			setLoading(false);
 		}
 	};
 
