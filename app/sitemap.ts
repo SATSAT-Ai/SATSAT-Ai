@@ -11,7 +11,7 @@ type changeFrequency =
 	| "never";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-	const changeFrequency = "weekly" as changeFrequency;
+	const changeFrequency = "monthly" as changeFrequency;
 	const routes = [
 		"",
 		"/about",
@@ -19,6 +19,18 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		"/contact",
 		"/signin",
 		"/signup",
+		"/choose-your-pricing",
+		"/scan-documents",
+		"/extract-insights",
+		"/features/statement-scan",
+		"/features/fraud-detection",
+		"/features/insights-to-financial-documents",
+		"/features/client-profile-management",
+		"/features/ai-chatbot",
+		"/developers",
+		"/developers/webhooks",
+		"/developers/api/authentication",
+		"/developers/api-reference",
 		"/dashboard",
 		"/dashboard/transactions",
 		"/dashboard/transactions/categories",
