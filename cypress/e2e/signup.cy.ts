@@ -13,7 +13,7 @@ describe("resend email and phone_verification token and verify", () => {
 
 		cy.intercept(
 			"GET",
-			`${Cypress.env("SATSATAI_MS_USER")}/countries/index`,
+			`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/countries/index`,
 			(req) => {
 				req.reply({
 					statusCode: 200,
@@ -75,7 +75,7 @@ describe("resend email and phone_verification token and verify", () => {
 
 			cy.intercept(
 				"GET",
-				`${Cypress.env("SATSATAI_MS_USER")}/users/${data.id}`,
+				`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/users/${data.id}`,
 				(req) => {
 					req.reply({
 						statusCode: 200,
@@ -90,7 +90,7 @@ describe("resend email and phone_verification token and verify", () => {
 			cy.visit(`/signup/verify?plan=free&userId=${data.id}`);
 			cy.intercept(
 				"GET",
-				`${Cypress.env("SATSATAI_MS_USER")}/users/${data.id}`,
+				`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/users/${data.id}`,
 				(req) => {
 					req.reply({
 						statusCode: 200,
@@ -107,7 +107,9 @@ describe("resend email and phone_verification token and verify", () => {
 
 			cy.intercept(
 				"GET",
-				`${Cypress.env("SATSATAI_MS_USER")}/user/email/verify/${data.id}`,
+				`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/user/email/verify/${
+					data.id
+				}`,
 				(req) => {
 					req.reply({
 						statusCode: 200,
@@ -134,7 +136,7 @@ describe("resend email and phone_verification token and verify", () => {
 			});
 			cy.intercept(
 				"POST",
-				`${Cypress.env("SATSATAI_MS_USER")}/user/email/verify`,
+				`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/user/email/verify`,
 				(req) => {
 					req.reply({
 						statusCode: 200,
@@ -151,7 +153,9 @@ describe("resend email and phone_verification token and verify", () => {
 
 			cy.intercept(
 				"GET",
-				`${Cypress.env("SATSATAI_MS_USER")}/user/phone/request-code/${data.id}`,
+				`${Cypress.env(
+					"NEXT_PUBLIC_SATSATAI_MS_USER"
+				)}/api/user/phone/request-code/${data.id}`,
 
 				(req) => {
 					req.reply({
@@ -174,7 +178,7 @@ describe("resend email and phone_verification token and verify", () => {
 
 		cy.intercept(
 			"GET",
-			`${Cypress.env("SATSATAI_MS_USER")}/countries/index`,
+			`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/countries/index`,
 			(req) => {
 				req.reply({
 					statusCode: 200,
@@ -237,7 +241,7 @@ describe("resend email and phone_verification token and verify", () => {
 
 			cy.intercept(
 				"GET",
-				`${Cypress.env("SATSATAI_MS_USER")}/users/${data.id}`,
+				`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/users/${data.id}`,
 				(req) => {
 					req.reply({
 						statusCode: 200,
@@ -254,7 +258,7 @@ describe("resend email and phone_verification token and verify", () => {
 				cy.location("pathname").should("equal", `/signup/verify`);
 				cy.intercept(
 					"GET",
-					`${Cypress.env("SATSATAI_MS_USER")}/users/${data.id}`,
+					`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/users/${data.id}`,
 					(req) => {
 						req.reply({
 							statusCode: 200,
@@ -269,7 +273,9 @@ describe("resend email and phone_verification token and verify", () => {
 
 			cy.intercept(
 				"GET",
-				`${Cypress.env("SATSATAI_MS_USER")}/user/email/verify/${data.id}`,
+				`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/user/email/verify/${
+					data.id
+				}`,
 				(req) => {
 					req.reply({
 						statusCode: 200,
@@ -288,7 +294,9 @@ describe("resend email and phone_verification token and verify", () => {
 
 			cy.intercept(
 				"GET",
-				`${Cypress.env("SATSATAI_MS_USER")}/user/phone/request-code/${data.id}`,
+				`${Cypress.env(
+					"NEXT_PUBLIC_SATSATAI_MS_USER"
+				)}/api/user/phone/request-code/${data.id}`,
 
 				(req) => {
 					req.reply({
@@ -311,7 +319,7 @@ describe("resend email and phone_verification token and verify", () => {
 			});
 			cy.intercept(
 				"POST",
-				`${Cypress.env("SATSATAI_MS_USER")}/user/phone/verify`,
+				`${Cypress.env("NEXT_PUBLIC_SATSATAI_MS_USER")}/api/user/phone/verify`,
 				(req) => {
 					req.reply({
 						body: {
