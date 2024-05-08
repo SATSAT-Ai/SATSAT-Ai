@@ -3,8 +3,8 @@
 import { useQuery } from "@tanstack/react-query";
 import FinishingUp from "./FinishingUp";
 import MobileStepTree from "./MobileStepTree";
-import VerifyEmailStep, { IVerifyEmail } from "./VerifyEmailStep";
-import VerifyPhoneStep, { IverifyPhone } from "./VerifyPhoneStep";
+import VerifyEmailStep, { type IVerifyEmail } from "./VerifyEmailStep";
+import VerifyPhoneStep, { type IVerifyPhone } from "./VerifyPhoneStep";
 import StepTree from "./ui/StepTree";
 import { useSearchParams, useRouter } from "next/navigation";
 import { useLayoutEffect, useState } from "react";
@@ -16,8 +16,8 @@ import toast from "react-hot-toast";
 
 type viewType = {
 	1: ({ setCurrentStep, email }: IVerifyEmail) => JSX.Element;
-	2: ({ setCurrentStep, phone }: IverifyPhone) => JSX.Element;
-	3: ({ setCurrentStep }: IVerifyEmail) => JSX.Element;
+	2: ({ setCurrentStep, phone }: IVerifyPhone) => JSX.Element;
+	3: () => JSX.Element;
 };
 
 const VerificationStages = () => {
@@ -26,6 +26,7 @@ const VerificationStages = () => {
 	const plan = searchParams?.get("plan");
 	const { userId } = useGetUserId();
 	const router = useRouter();
+	const billingPeriod = searchParams?.get("period");
 
 	const views: viewType = {
 		1: VerifyEmailStep,
@@ -37,30 +38,33 @@ const VerificationStages = () => {
 
 	const { data, isLoading, error } = useQuery({
 		queryKey: [userId],
-		queryFn: () => {
+		queryFn: async () => {
 			const response = axios.get(
-				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/users/${userId}`
+				`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/users/${userId}`
 			);
 			return response;
 		},
 		refetchOnWindowFocus: false,
 	});
 
-	// if userId is wrong redirect to / else redirect to unverified step
 	useLayoutEffect(() => {
 		const axiosError = error as unknown as {
-			response: { data: { error: any } };
-			message: string;
+			response: { data: { message: any } };
 		};
+		if (!billingPeriod || !plan) {
+			router.push(`/choose-your-pricing`);
+			toast.error("An error occurred");
+		}
+
 		if (!userId) {
 			toast.dismiss();
-			toast.error(axiosError?.response?.data?.error ?? "no userId found");
+			toast.error("no userId found or invalid userId");
 			router.push("/");
 		}
-		if (!data?.data.user && error) {
+		if (!data?.data?.user && error) {
 			toast.dismiss();
 			console.log(axiosError);
-			toast.error(axiosError?.message ?? "Something went wrong");
+			toast.error(axiosError?.response.data.message ?? "Something went wrong");
 		}
 
 		if (data?.data?.user) {
@@ -70,14 +74,16 @@ const VerificationStages = () => {
 
 			setCurrentStep(isFullyVerified ? 3 : hasEmailVerification ? 2 : 1);
 		}
-	}, [data?.data.user, error, router, userId]);
+	}, [billingPeriod, data?.data?.user, error, plan, router, userId]);
 
 	return (
 		<>
 			<button
 				aria-label="go back"
 				type="button"
-				onClick={() => router.push(`/signup?plan=${plan}`)}
+				onClick={() =>
+					router.push(`/signup?plan=${plan}&period=${billingPeriod}`)
+				}
 				className="hidden lg:flex text-white absolute top-36 left-32 w-ful font-medium gap-3 items-center"
 			>
 				<IoChevronBackOutline color="white" className="z-0" size={20} />
