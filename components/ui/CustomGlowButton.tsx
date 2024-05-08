@@ -2,7 +2,7 @@ import { cn } from "@/lib/utils";
 import Link from "next/link";
 
 interface IGlow {
-	name: string;
+	name?: string;
 	icon?: JSX.Element;
 	href?: string;
 	iconPosition?: "left" | "right";
