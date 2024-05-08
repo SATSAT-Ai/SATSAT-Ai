@@ -67,7 +67,7 @@
 		"tailwind-merge": "^2.3.0"
 	},
 	"devDependencies": {
-		"@tanstack/eslint-plugin-query": "^5.28.11",
+		"@tanstack/eslint-plugin-query": "^5.32.1",
 		"@tanstack/react-query-devtools": "^5.32.0",
 		"@types/js-cookie": "^3.0.6",
 		"@types/node": "^20.12.7",
