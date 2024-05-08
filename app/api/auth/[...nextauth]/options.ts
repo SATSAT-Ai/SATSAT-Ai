@@ -13,23 +13,23 @@ export const options: NextAuthOptions = {
 				};
 
 				if (!process.env.NEXT_PUBLIC_WAITLIST_MODE) {
-					// try {
-					// 	const response = await axios.post(
-					// 		`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/auth/login`,
-					// 		{
-					// 			email,
-					// 			password,
-					// 		}
-					// 	);
-					// 	if (response.status === 200) {
-					// 		return {
-					// 			...response.data.user,
-					// 			access_token: response.data.access_token,
-					// 		};
-					// 	}
-					// } catch (error: any) {
-					// 	throw new Error(error?.response?.data?.error);
-					// }
+					try {
+						const response = await axios.post(
+							`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/auth/login`,
+							{
+								email,
+								password,
+							}
+						);
+						if (response.status === 200) {
+							return {
+								...response.data.user,
+								access_token: response.data.access_token,
+							};
+						}
+					} catch (error: any) {
+						throw new Error(error?.response?.data?.error);
+					}
 				} else {
 					const user = {
 						id: "1",
