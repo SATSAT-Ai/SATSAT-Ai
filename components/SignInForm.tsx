@@ -66,13 +66,14 @@ const SignInForm = () => {
 				setLoading(true);
 				toast.loading("Please wait...");
 				secureLocalStorage.setItem("signInEmail", data.email);
-				sendOneTimeCodeMutation.mutate(data.email);
+				// sendOneTimeCodeMutation.mutate(data.email);
 			} else {
 				const allowedUsers = [
 					"demo@gmail.com",
 					"kamasahdickson19@gmail.com",
 					"jeanlinux5@gmail.com",
 				];
+
 				if (allowedUsers.includes(data.email)) {
 					setLoading(true);
 					const signInResponse = await signIn("credentials", {
