@@ -248,6 +248,7 @@ const PromptPage = () => {
 											list={conversation.list!}
 											firstText={conversation.firstText as string}
 											endingText={conversation.endingText as string}
+											// chatContainerRef={chatContainerRef}
 											typeWrite={false}
 										/>
 									</li>
@@ -279,7 +280,7 @@ const PromptPage = () => {
 									onInput={(e) => handleTextAreaResize(e)}
 									autoCorrect="true"
 									onKeyDown={(e) => (handleKeyDown(e), handleTextAreaResize(e))}
-									className="w-full caret-brand-green text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal rounded-lg outline-none bg-brand-green border-none h-auto bg-transparent"
+									className="w-full focus:ring-transparent border-none outline-non text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal rounded-lg bg-brand-green h-auto bg-transparent"
 									placeholder="Chat SatSat AI..."
 									{...register("userMessage", {
 										required: false,
