@@ -21,6 +21,7 @@ import PageScroller from "./dashboard/(components)/PageScroller";
 import TypeWriteInView from "@/components/TypeWriteInView";
 import Blob from "@/components/Blob";
 import GetStartedWithBlob from "@/components/GetStartedWithBlob";
+import EarlyAccessModal from "@/components/ui/EarlyAccessModal";
 // import dashboardImage from "@/public/dashboard.jpg";
 
 export const metadata: Metadata = {
@@ -31,6 +32,7 @@ export default function Home() {
 	return (
 		<>
 			<Header />
+			<EarlyAccessModal />
 			<main className="bg-darker overflow-x-clip">
 				<HeroSection />
 
