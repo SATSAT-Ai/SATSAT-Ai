@@ -1,6 +1,51 @@
 # Getting Started
 
-First, instsall packages and run the development server:
+## instsall packages
+
+```bash
+npm install
+yarn install
+pnpm install
+bun install
+
+```
+
+## Environment Variables
+
+This project utilizes environment variables to store configuration settings. The `env.example` file serves as a template that outlines the necessary variables and their purposes.
+
+**Important:** Rename `env.example` to a descriptive file name (e.g., `.env`) before running the project. Avoid committing this file to version control systems to protect sensitive information.
+
+`WEBSITE_URL` | A production website url that is used to update sitemaps, metadata, robots.xml and tests
+
+`GOOGLE_CLIENT_ID` | client id is the id of your registered application. it used with the client secret for google authentication with nextAUth. to get a client id Visit [Google cloud](https://console.cloud.google.com/apis/credentials)
+
+`GOOGLE_CLIENT_SECRET` client id is used in conjunction with the client id for nextAuth authentication. visit [Google cloud credentials](https://console.cloud.google.com/apis/credentials)
+
+`NEXTAUTH_URL` A url of your application nextAuth uses this url to authenticate your application in local environment use your localhost.
+
+`NEXTAUTH_SECRET` A secret used to encrypt next auth session cookies. it can be anything but to generate a unique value run `bash openssl rand -base64 32` in terminal
+
+`NEXT_PUBLIC_SATSATAI_MS_USER` microservice for user authentication and verification. contact the SatSat Ai team for more help.
+
+`SATSATAI_MS_STATEMENT` microservice for statement authentication and scan. contact the SatSat Ai team for more help.
+
+`NEXT_PUBLIC_PADDLE_ENVIRONMENT` a `#boolean` value to help paddle know you are in a local dev or production mode
+`NEXT_PUBLIC_PADDLE_CLIENT_TOKEN` sign up for paddle js sdk for more info
+`NEXT_PUBLIC_PADDLE_SUCCESS_URL` a redirect url after paddle payment success. `#NOTE` url must start with an https or http.
+Sign up for paddle js sdk for more info
+
+`CYPRESS_TEST_PASSWORD` random password used to run cypress user signup signin tests
+
+`CYPRESS_TEST_EMAIL` random email used to run cypress user signup signin test
+
+`NEXT_PUBLIC_WAITLIST_MODE` `# boolean` used to allow waitlisted users to test satsat ai.
+
+**Additional Notes:**
+
+- `NEXT_PUBLIC` variables with this appended at the start will expose the url on the client side whilst variables without it will only work on the server side. use with caution or visit [Next js environment variables](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables) to lean more.
+
+## run the development server
 
 ```bash
 npm run dev
@@ -10,13 +55,12 @@ yarn dev
 pnpm dev
 # or
 bun dev
+
 ```
 
-# Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Open [http://localhost:3000](http://localhost:3000) with your browser to see the result
 
-# SatSat Ai Frontend
-
-## Getting started
+## Getting started with Gitlab
 
 To make it easy for you to get started with GitLab, here's a list of recommended next steps.
 
@@ -27,7 +71,7 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 - [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
 - [ ] [Add files using the command line](https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
 
-```
+```bash
 cd existing_repo
 git remote add origin https://gitlab.com/jeanlinux5/satsat-ai-frontend.git
 git branch -M main
@@ -58,7 +102,7 @@ Use the built-in continuous integration in GitLab.
 
 ---
 
-# Editing this README
+## Editing this README
 
 When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
 
