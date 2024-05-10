@@ -1,5 +1,15 @@
+import { AnchorHTMLAttributes } from "react";
 import CustomGlowButton from "./CustomGlowButton";
 import { MdArrowForward } from "react-icons/md";
+
+interface getStartedProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
+	showIcon?: boolean;
+	iconPosition?: "right" | "left";
+	name?: string;
+	className?: string;
+	icon?: JSX.Element;
+	href?: string;
+}
 
 const GetStartedButton = ({
 	showIcon = false,
@@ -7,18 +17,14 @@ const GetStartedButton = ({
 	className,
 	icon = <MdArrowForward color="white" size="24" />,
 	iconPosition = "right",
+	href = "/choose-your-pricing",
+
 	...restProps
-}: {
-	showIcon?: boolean;
-	iconPosition?: "right" | "left";
-	name?: string;
-	className?: string;
-	icon?: JSX.Element;
-}) => {
+}: getStartedProps) => {
 	return showIcon ? (
 		<CustomGlowButton
 			{...restProps}
-			href="/choose-your-pricing"
+			href={href}
 			name={name}
 			icon={icon}
 			iconPosition={iconPosition}
@@ -27,9 +33,9 @@ const GetStartedButton = ({
 	) : (
 		<CustomGlowButton
 			{...restProps}
-			href="/choose-your-pricing"
 			className={className}
 			name={name}
+			href={href}
 		/>
 	);
 };
