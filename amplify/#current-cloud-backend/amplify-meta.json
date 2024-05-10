@@ -1,0 +1,15 @@
+{
+  "providers": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-satsataifrontend-dev-ae5ca-authRole",
+      "UnauthRoleArn": "arn:aws:iam::851725493064:role/amplify-satsataifrontend-dev-ae5ca-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::851725493064:role/amplify-satsataifrontend-dev-ae5ca-authRole",
+      "Region": "eu-north-1",
+      "DeploymentBucketName": "amplify-satsataifrontend-dev-ae5ca-deployment",
+      "UnauthRoleName": "amplify-satsataifrontend-dev-ae5ca-unauthRole",
+      "StackName": "amplify-satsataifrontend-dev-ae5ca",
+      "StackId": "arn:aws:cloudformation:eu-north-1:851725493064:stack/amplify-satsataifrontend-dev-ae5ca/c5429500-0ed6-11ef-8360-06000f3d951f",
+      "AmplifyAppId": "d1z55xt1tuw3el"
+    }
+  }
+}
