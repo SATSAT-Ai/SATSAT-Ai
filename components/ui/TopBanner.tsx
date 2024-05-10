@@ -8,25 +8,30 @@ const TopBanner = () => {
 	const [showBanner, setShowBanner] = useState<boolean | null>(false);
 
 	useEffect(() => {
-		//show closed banner every 24hrs
+		//show closed banner every 4hrs
+		// if hasExpired is not true banner will never be shown
 
-		const expirationDuration = 24 * 60 * 60 * 1000; // 24 hours
-		const hasExpired = new Date().getTime() - expirationDuration > 0; // Check if 24 hrs passed
+		const expirationDuration = 4 * 60 * 60 * 1000; // 4 hours
+		const hasExpired = new Date().getTime() - expirationDuration > 0; // Check if 4 hrs passed
 
-		const bannerInSession = JSON.parse(
+		const bannerInLocalStorage = JSON.parse(
 			localStorage.getItem("showBanner") as unknown as string
 		);
-		if (bannerInSession !== false && !hasExpired) {
+
+		//show modal if storage is cleared or show on users first time
+		if (bannerInLocalStorage !== false && hasExpired) {
+			setShowBanner(true);
+			localStorage.setItem("showBanner", JSON.stringify(true));
+		} else {
 			setShowBanner(false);
+			localStorage.setItem("showBanner", JSON.stringify(false));
 		}
-		localStorage.setItem("showBanner", JSON.stringify(true));
-		setShowBanner(bannerInSession);
 	}, []);
 
-	const handleShowBanner = () => {
-		localStorage.setItem("showBanner", JSON.stringify(false));
-		setShowBanner(false);
-	};
+	// const handleShowBanner = () => {
+	// 	localStorage.setItem("showBanner", JSON.stringify(false));
+	// 	setShowBanner(false);
+	// };
 
 	return (
 		showBanner !== false && (
