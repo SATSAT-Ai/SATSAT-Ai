@@ -39,13 +39,6 @@ cypress.env.json
 *.tsbuildinfo
 next-env.d.ts
 
-#unfinished features
-app/dashboard-enterprise/*
-app/dashboard/error.tsx
-public/dashboard.jpg
-app/book-a-demo/*
-components/BookADemoForm.tsx
-
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend
 amplify/.config/local-*
