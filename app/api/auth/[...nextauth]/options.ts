@@ -86,6 +86,4 @@ export const options: NextAuthOptions = {
 		signIn: "/signin",
 		signOut: "/signout",
 	},
-	process.env.NEXTAUTH_URL = "https://d1b67tlq4kz7wq.amplifyapp.com",
-
 };
