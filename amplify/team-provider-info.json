@@ -23,6 +23,14 @@
       "StackName": "amplify-satsataifrontend-staging-faffe",
       "StackId": "arn:aws:cloudformation:eu-north-1:851725493064:stack/amplify-satsataifrontend-staging-faffe/9289bb10-11d9-11ef-b68e-0a5e4dd4fddb",
       "AmplifyAppId": "d1b67tlq4kz7wq"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d1b67tlq4kz7wq",
+          "type": "cicd"
+        }
+      }
     }
   }
 }
