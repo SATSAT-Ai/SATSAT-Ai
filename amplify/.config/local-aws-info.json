@@ -3,5 +3,10 @@
     "configLevel": "project",
     "useProfile": true,
     "profileName": "AmplifyDev"
+  },
+  "staging": {
+    "configLevel": "project",
+    "useProfile": true,
+    "profileName": "AmplifyDev"
   }
 }
