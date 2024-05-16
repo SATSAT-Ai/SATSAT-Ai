@@ -12,8 +12,8 @@ dependencies:
     specifier: ^11.11.5
     version: 11.11.5(@emotion/react@11.11.4)(@types/react@18.3.2)(react@18.3.1)
   '@headlessui/react':
-    specifier: ^1.7.19
-    version: 1.7.19(react-dom@18.3.1)(react@18.3.1)
+    specifier: ^2.0.3
+    version: 2.0.3(react-dom@18.3.1)(react@18.3.1)
   '@mui/icons-material':
     specifier: ^5.15.17
     version: 5.15.18(@mui/material@5.15.18)(@types/react@18.3.2)(react@18.3.1)
@@ -1662,6 +1662,19 @@ packages:
       tabbable: 6.2.0
     dev: false
 
+  /@floating-ui/react@0.26.15(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-WKmfLkxTwCm09Dxq4LpjL3EPbZVSp5wvnap1jmculsfnzg2Ag/pCkP+OPyjE5dFMXqX97hsLIqJehboZ5XAHXw==}
+    peerDependencies:
+      react: '>=16.8.0'
+      react-dom: '>=16.8.0'
+    dependencies:
+      '@floating-ui/react-dom': 2.0.9(react-dom@18.3.1)(react@18.3.1)
+      '@floating-ui/utils': 0.2.2
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+      tabbable: 6.2.0
+    dev: false
+
   /@floating-ui/utils@0.2.2:
     resolution: {integrity: sha512-J4yDIIthosAsRZ5CPYP/jQvUAQtlZTTD/4suA08/FEnlxqW3sKS9iAhgsa9VYLZ6vDHn/ixJgIqRQPotoBjxIw==}
     dev: false
@@ -1675,6 +1688,21 @@ packages:
     dependencies:
       '@tanstack/react-virtual': 3.5.0(react-dom@18.3.1)(react@18.3.1)
       client-only: 0.0.1
+      react: 18.3.1
+      react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
+  /@headlessui/react@2.0.3(react-dom@18.3.1)(react@18.3.1):
+    resolution: {integrity: sha512-Xd1h0YZgfhxZ7W1w4TvK0/TZ1c4qaX4liYVUkAXqW1HCLcXSqnMeYAUGJS/BBroBAUL9HErjyFcRpCWRQZ/0lA==}
+    engines: {node: '>=10'}
+    peerDependencies:
+      react: ^18
+      react-dom: ^18
+    dependencies:
+      '@floating-ui/react': 0.26.15(react-dom@18.3.1)(react@18.3.1)
+      '@react-aria/focus': 3.17.0(react@18.3.1)
+      '@react-aria/interactions': 3.21.2(react@18.3.1)
+      '@tanstack/react-virtual': 3.5.0(react-dom@18.3.1)(react@18.3.1)
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
     dev: false
@@ -2849,6 +2877,54 @@ packages:
       '@babel/runtime': 7.24.5
     dev: false
 
+  /@react-aria/focus@3.17.0(react@18.3.1):
+    resolution: {integrity: sha512-aRzBw1WTUkcIV3xFrqPA6aB8ZVt3XyGpTaSHAypU0Pgoy2wRq9YeJYpbunsKj9CJmskuffvTqXwAjTcaQish1Q==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/interactions': 3.21.2(react@18.3.1)
+      '@react-aria/utils': 3.24.0(react@18.3.1)
+      '@react-types/shared': 3.23.0(react@18.3.1)
+      '@swc/helpers': 0.5.5
+      clsx: 2.1.1
+      react: 18.3.1
+    dev: false
+
+  /@react-aria/interactions@3.21.2(react@18.3.1):
+    resolution: {integrity: sha512-Ju706DtoEmI/2vsfu9DCEIjDqsRBVLm/wmt2fr0xKbBca7PtmK8daajxFWz+eTq+EJakvYfLr7gWgLau9HyWXg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/ssr': 3.9.3(react@18.3.1)
+      '@react-aria/utils': 3.24.0(react@18.3.1)
+      '@react-types/shared': 3.23.0(react@18.3.1)
+      '@swc/helpers': 0.5.5
+      react: 18.3.1
+    dev: false
+
+  /@react-aria/ssr@3.9.3(react@18.3.1):
+    resolution: {integrity: sha512-5bUZ93dmvHFcmfUcEN7qzYe8yQQ8JY+nHN6m9/iSDCQ/QmCiE0kWXYwhurjw5ch6I8WokQzx66xKIMHBAa4NNA==}
+    engines: {node: '>= 12'}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@swc/helpers': 0.5.5
+      react: 18.3.1
+    dev: false
+
+  /@react-aria/utils@3.24.0(react@18.3.1):
+    resolution: {integrity: sha512-JAxkPhK5fCvFVNY2YG3TW3m1nTzwRcbz7iyTSkUzLFat4N4LZ7Kzh7NMHsgeE/oMOxd8zLY+XsUxMu/E/2GujA==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@react-aria/ssr': 3.9.3(react@18.3.1)
+      '@react-stately/utils': 3.10.0(react@18.3.1)
+      '@react-types/shared': 3.23.0(react@18.3.1)
+      '@swc/helpers': 0.5.5
+      clsx: 2.1.1
+      react: 18.3.1
+    dev: false
+
   /@react-spring/animated@9.7.3(react@18.3.1):
     resolution: {integrity: sha512-5CWeNJt9pNgyvuSzQH+uy2pvTg8Y4/OisoscZIR8/ZNLIOI+CatFBhGZpDGTF/OzdNFsAoGk3wiUYTwoJ0YIvw==}
     peerDependencies:
@@ -2899,6 +2975,23 @@ packages:
       '@react-spring/types': 9.7.3
       react: 18.3.1
       react-dom: 18.3.1(react@18.3.1)
+    dev: false
+
+  /@react-stately/utils@3.10.0(react@18.3.1):
+    resolution: {integrity: sha512-nji2i9fTYg65ZWx/3r11zR1F2tGya+mBubRCbMTwHyRnsSLFZaeq/W6lmrOyIy1uMJKBNKLJpqfmpT4x7rw6pg==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      '@swc/helpers': 0.5.5
+      react: 18.3.1
+    dev: false
+
+  /@react-types/shared@3.23.0(react@18.3.1):
+    resolution: {integrity: sha512-GQm/iPiii3ikcaMNR4WdVkJ4w0mKtV3mLqeSfSqzdqbPr6vONkqXbh3RhPlPmAJs1b4QHnexd/wZQP3U9DHOwQ==}
+    peerDependencies:
+      react: ^16.8.0 || ^17.0.0-rc.1 || ^18.0.0
+    dependencies:
+      react: 18.3.1
     dev: false
 
   /@rollup/plugin-babel@5.3.1(@babel/core@7.24.5)(rollup@2.79.1):
