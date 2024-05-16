@@ -16,7 +16,7 @@
 		"@mui/icons-material": "^5.15.17",
 		"@mui/joy": "5.0.0-beta.32",
 		"@mui/material": "^5.15.17",
-		"@mui/x-charts": "^6.19.8",
+		"@mui/x-charts": "^7.4.0",
 		"@mui/x-data-grid": "^7.4.0",
 		"@paddle/paddle-js": "^1.0.3",
 		"@radix-ui/react-popover": "^1.0.7",
