@@ -30,8 +30,8 @@ dependencies:
     specifier: ^7.4.0
     version: 7.4.0(@emotion/react@11.11.4)(@emotion/styled@11.11.5)(@mui/material@5.15.18)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
   '@paddle/paddle-js':
-    specifier: ^1.0.3
-    version: 1.0.3
+    specifier: ^1.1.1
+    version: 1.1.1
   '@radix-ui/react-popover':
     specifier: ^1.0.7
     version: 1.0.7(@types/react-dom@18.3.0)(@types/react@18.3.2)(react-dom@18.3.1)(react@18.3.1)
@@ -2461,8 +2461,8 @@ packages:
       '@nodelib/fs.scandir': 2.1.5
       fastq: 1.17.1
 
-  /@paddle/paddle-js@1.0.3:
-    resolution: {integrity: sha512-ZV3Gy/7P1eVBLHFIX5vBv+fbe2qeaC2y8/85lRbfvzBRq+ZxY+20ujzvIEIZv7OtS51mbn2TTWtSVeAM0Cke5Q==}
+  /@paddle/paddle-js@1.1.1:
+    resolution: {integrity: sha512-ZMEqgNjIJzJIEJBcnqsGdPmXG1P9mPcZ4wsQwSNz0rBNntYH1erqjFr99Pg4V8CHf/Io0msNDkX3oG6xwlcO/A==}
     dev: false
 
   /@panva/hkdf@1.1.1:
