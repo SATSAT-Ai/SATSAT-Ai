@@ -35,6 +35,7 @@ const HeroSection = () => {
 						<div className="h-14 mb-4">
 							<TypeWrite
 								text={[
+									"Your personal financial journal and AI Advisor",
 									"Query your financial data with natural language",
 									"Budget management and forecasts",
 									"Wealth of data-driven financial insights",
