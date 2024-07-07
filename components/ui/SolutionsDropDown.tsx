@@ -5,13 +5,7 @@ import GlowCard from "./GlowCard";
 import { ClassValue } from "clsx";
 import { cn } from "@/lib/utils";
 
-const SolutionsDropDown = ({
-	scrolled,
-	className,
-}: {
-	scrolled: boolean;
-	className?: ClassValue;
-}) => {
+const SolutionsDropDown = ({ className }: { className?: ClassValue }) => {
 	const solutionsData: { id: string; solution: string; link: string }[] = [
 		{
 			id: "dkfj434skd",
@@ -56,13 +50,9 @@ const SolutionsDropDown = ({
 	];
 	return (
 		<div
-		data-test="sol-dropdown"
+			data-test="sol-dropdown"
 			className={cn(
-				`bg-[#071f07]/60 w-full p-5 h-[67vh] xl:h-[57vh] overflow-y-auto custom-scroll2 backdrop-blur-xl absolute z-10 ${
-					!scrolled
-						? "backdrop-blur-xl saturate-150"
-						: "backdrop-blur-xl saturate-150"
-				} text-darker`,
+				"py-5 overflow-y-auto h-[60vh] custom-scroll2 bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
 				className
 			)}
 		>
@@ -70,70 +60,74 @@ const SolutionsDropDown = ({
 				Use cases
 			</p>
 
-			<div className="grid grid-cols-1 sm:grid-cols-2 min-[950px]:grid-cols-3 xl:grid-cols-4 text-white/80 gap-5 px-5 pb-5  items-center justify-between">
+			<ul className="grid grid-cols-1 sm:grid-cols-2 min-[950px]:grid-cols-3 xl:grid-cols-4 text-white/80 gap-3 px-5 pb-5  items-center justify-between">
 				{solutionsData.map((solution) => {
 					return (
-						<Link
-							href={solution.link}
-							key={solution.id}
-							className="hover:bg-brand-green-darker flex border border-brand-green/40 items-center justify-between gap-5 bg-brand-green-darker/50 text-mid--yellow md:text-white text-normal p-2 text-[15px] rounded-lg font-medium"
-						>
-							{solution.solution}
-							<KeyboardArrowRight color="inherit" fontSize="medium" />
-						</Link>
+						<li key={solution.id}>
+							<Link
+								href={solution.link}
+								className="hover:bg-brand-green-darker flex border border-brand-green/40 items-center justify-between gap-5 bg-brand-green-darker/50 text-mid--yellow md:text-white text-normal p-2 text-[15px] rounded-lg font-medium"
+							>
+								{solution.solution}
+								<KeyboardArrowRight color="inherit" fontSize="medium" />
+							</Link>
+						</li>
 					);
 				})}
-			</div>
+			</ul>
 			<div className="px-5">
-				<div className="h-[1px] w-full bg-gradient-to-r from-brand-green-darker/20 via-brand-green to-brand-green-darker/20 mt-2 mb-7 "></div>
+				<div className="h-[1px] w-full bg-gradient-to-r from-brand-green-darker/5 via-brand-green to-brand-green-darker/5 mt-2 mb-7 "></div>
 			</div>
-			<GlowCardParent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-white/80 gap-5 px-5 items-start justify-between">
+			<GlowCardParent className="grid grid-cols-1 xl:grid-cols-3 text-white/80 gap-5 px-5 items-start justify-between">
 				<GlowCard
 					type="link"
+					linkTo="/alternative-scoring"
 					cardClassName="bg-[#0e2b0e] gap-5 p-2 cursor-pointer shadow-sm"
 					className="p-3  duration-100 transition-colors rounded-md"
 				>
-					<Link href={"/"} className=" flex items-center gap-3 justify-between">
+					<div className=" flex items-center gap-3 justify-between">
 						<div>
-							<p className="pb-3 text-text-20 font-medium text-white">
+							<p className="pb-1 text-text-24 font-medium text-white">
 								Credit Scoring Services
 							</p>
-							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
-								Provide accurate credit scoring services tailored to your
+							<span className="text-mid--yellow text-text-normal">
+								We provide accurate credit scoring services tailored to your
 								business needs. Our advanced algorithms ensure precise
 								evaluations, helping you make informed decisions.
 							</span>
 						</div>
 						<KeyboardArrowRight color="inherit" fontSize="medium" />
-					</Link>
+					</div>
 				</GlowCard>
 				<GlowCard
 					type="link"
+					linkTo="/extract-insights"
 					cardClassName="bg-[#0e2b0e] gap-5 p-2 cursor-pointer shadow-sm"
 					className="p-3  duration-100 transition-colors rounded-md"
 				>
-					<Link href={"/"} className=" flex items-center gap-3 justify-between">
+					<div className=" flex items-center gap-3 justify-between">
 						<div>
-							<p className="pb-3 text-text-20 font-medium text-white">
+							<p className="pb-1 text-text-24 font-medium text-white">
 								Business Intelligence Platform
 							</p>
-							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
+							<span className="text-mid--yellow text-text-normal">
 								Harness the power of data with our Business Intelligence
 								Platform. Gain actionable insights, visualize trends, and make
 								data-driven decisions to drive business growth and success.
 							</span>
 						</div>
 						<KeyboardArrowRight color="inherit" fontSize="medium" />
-					</Link>
+					</div>
 				</GlowCard>
 				<GlowCard
 					type="link"
+					linkTo="/scan-documents"
 					cardClassName="bg-[#0e2b0e] gap-5 p-2 cursor-pointer shadow-sm"
 					className="p-3  duration-100 transition-colors rounded-md"
 				>
-					<Link href={"/"} className=" flex items-center gap-3 justify-between">
+					<div className=" flex items-center gap-3 justify-between">
 						<div>
-							<p className="pb-3 text-text-20 font-medium text-white">
+							<p className="pb-1 text-text-24 font-medium text-white">
 								Accounting Software Integration
 							</p>
 							<span className="text-mid--yellow text-text-14 sm:text-text-normal">
@@ -143,7 +137,7 @@ const SolutionsDropDown = ({
 							</span>
 						</div>
 						<KeyboardArrowRight color="inherit" fontSize="medium" />
-					</Link>
+					</div>
 				</GlowCard>
 			</GlowCardParent>
 		</div>

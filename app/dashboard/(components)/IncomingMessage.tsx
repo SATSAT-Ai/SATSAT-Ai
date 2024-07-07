@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { MutableRefObject, useCallback, useEffect, useState } from "react";
 import chatbot from "@/public/chatbot.svg";
 import Image from "next/image";
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
@@ -8,6 +8,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
 import { toast } from "react-hot-toast";
 import TypeWrite from "@/components/TypeWrite";
+import { IUser } from "./ChatMain";
 // //track history of conversations
 // interface ParentChat {
 // 	id: string;
@@ -21,7 +22,8 @@ interface incomingMessageProp {
 	list: { id: string; msg: string }[];
 	firstText: string;
 	endingText: string;
-	// chatContainerRef: MutableRefObject<HTMLElement | null>;
+	chatContainerRef: MutableRefObject<HTMLDivElement | null>;
+	conversations: IUser[];
 }
 
 type currentSectionType = "firstText" | "list" | "endingText";
@@ -32,11 +34,13 @@ const IncomingMessage = ({
 	fontSize,
 	typeWrite,
 	endingText,
-}: // chatContainerRef,
-incomingMessageProp) => {
+	chatContainerRef,
+	conversations,
+}: incomingMessageProp) => {
 	const [currentSection, setCurrentSection] =
 		useState<currentSectionType>("firstText");
-	const [isTypeWriterComplete, setIsTypeWriterComplete] = useState(false);
+	const [isTypeWriterComplete, setIsTypeWriterComplete] = useState(false); //purposefully for the rendering of lists and texts
+	const [aiResponseCompleted, setAiResponseCompleted] = useState(false); //used to determined if response is completed
 	const [showMessageMore, setShowMessageMore] = useState(true);
 	const [loading, setLoading] = useState(false);
 
@@ -74,12 +78,24 @@ incomingMessageProp) => {
 		handleNextSection();
 	}, [currentSection, isTypeWriterComplete]);
 
+	useEffect(() => {
+		// handleScroll();
+		// chatContainerRef?.current?.scrollTo({
+		// 	top: chatContainerRef.current.scrollHeight,
+		// 	behavior: "smooth",
+		// });
+		// chatContainerRef.current?.addEventListener("scroll", (e) => {
+		// console.log(isTypeWriterComplete);
+		// console.log(e);
+		// console.log("scroll");
+		// });
+	});
 	// ======================= !!Todo
-	// const handleScroll = useCallback(() => {
-	// 	const element = chatContainerRef.current;
-	// 	if (!element) return;
-	// 	element.scrollTop = element.scrollHeight;
-	// }, [chatContainerRef]);
+	const handleScroll = useCallback(() => {
+		const element = chatContainerRef.current;
+		if (!element) return;
+		element.scrollTop = element.scrollHeight;
+	}, [chatContainerRef]);
 
 	// useEffect(() => {
 	// 	const element = chatContainerRef.current;
@@ -109,17 +125,17 @@ incomingMessageProp) => {
 								timeToStartNewText={firstText?.length}
 								typingSpeed={1}
 								setIsTypeWriterComplete={setIsTypeWriterComplete}
-								fontWeight="medium"
+								fontWeight="normal"
 								textAlign="left"
 							/>
 						)}
 						{list && currentSection === "list" && (
 							<>
-								<p className="font-medium flex items-center justify-between gap-3">
+								<p className="font-normal flex items-center justify-between gap-3">
 									{firstText}
 								</p>
 								<ul className="unordered-list pl-4 my-3">
-									{list.map((listMessage: { id: string; msg: string }) => {
+									{list?.map((listMessage: { id: string; msg: string }) => {
 										return (
 											<li
 												style={{
@@ -134,8 +150,8 @@ incomingMessageProp) => {
 													color="white"
 													showCaret={false}
 													timeToStartNewText={listMessage.msg?.length}
-													typingSpeed={15}
-													fontWeight="medium"
+													typingSpeed={2}
+													fontWeight="normal"
 												/>
 											</li>
 										);
@@ -145,7 +161,7 @@ incomingMessageProp) => {
 						)}
 						{endingText && currentSection === "endingText" && (
 							<>
-								<p className="font-medium flex items-center justify-between gap-3">
+								<p className="font-normal flex items-center justify-between gap-3">
 									{firstText}
 									{currentSection === "endingText" && (
 										<button
@@ -167,29 +183,32 @@ incomingMessageProp) => {
 										</button>
 									)}
 								</p>
-								<ul className="unordered-list pl-4 my-3">
-									{list.map((listMessage: { id: string; msg: string }) => {
-										return (
-											<li
-												style={{
-													fontSize: `${fontSize ? fontSize : 16}px`,
-												}}
-												className="list-decimal list-outside"
-												key={listMessage.id}
-											>
-												<p>{listMessage.msg}</p>
-											</li>
-										);
-									})}
-								</ul>
+								{list && (
+									<ul className="unordered-list pl-4 my-3">
+										{list?.map((listMessage: { id: string; msg: string }) => {
+											return (
+												<li
+													style={{
+														fontSize: `${fontSize ? fontSize : 16}px`,
+													}}
+													className="list-decimal list-outside"
+													key={listMessage.id}
+												>
+													<p>{listMessage.msg}</p>
+												</li>
+											);
+										})}
+									</ul>
+								)}
 								<TypeWrite
 									text={endingText}
 									fontSize={fontSize}
 									color="white"
 									showCaret={false}
-									typingSpeed={15}
+									typingSpeed={3}
 									timeToStartNewText={10}
-									fontWeight="medium"
+									setIsTypeWriterComplete={setAiResponseCompleted}
+									fontWeight="normal"
 								/>
 							</>
 						)}
@@ -228,7 +247,7 @@ incomingMessageProp) => {
 
 						{list && (
 							<ul className="unordered-list pl-4 my-3">
-								{list.map((listMessage) => {
+								{list?.map((listMessage) => {
 									return (
 										<li
 											style={{

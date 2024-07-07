@@ -1,4 +1,9 @@
-import { addDays, differenceInDays, isWithinInterval } from "date-fns";
+import {
+	addDays,
+	differenceInDays,
+	eachDayOfInterval,
+	isWithinInterval,
+} from "date-fns";
 import { format } from "date-fns";
 
 export const timeStamps = [
@@ -94,6 +99,9 @@ export const generateMonthTotal = (startOfMonth: Date, monthEnd: Date) => {
 };
 
 export const generateWeekTotal = (weekStart: Date) => {
+	if (!weekStart || isNaN(weekStart.getTime())) {
+		throw new Error("Invalid date provided for weekStart at generateWeekTotal");
+	}
 	const weekData = timeStamps.filter((entry) => {
 		const daysBetween = differenceInDays(entry.date, weekStart);
 		return daysBetween >= 0 && daysBetween < 7;
@@ -111,20 +119,18 @@ export const generateDayData = (
 		value: number;
 	}[]
 ): { [key: string]: number } => {
-	const data: { [key: string]: number } = {};
+	type Idata = { [key: string]: number };
 
-	for (let day = from; day <= to; day = addDays(day, 1)) {
-		const formattedDay = format(day, "EEE MMM dd yyy");
-		const matchingEntry = timeStamps.find(
-			(entry) => Math.floor(day.getTime()) === entry.date
-		);
-
-		if (matchingEntry) {
-			data[formattedDay] = matchingEntry.value;
-		} else {
-			data[formattedDay] = 0;
-		}
-	}
+	const data: Idata = {};
+	const formatString = "EEE MMM dd yyy";
+	// Create a map for quick lookup
+	const timeStampMap = new Map(
+		timeStamps.map((entry) => [format(entry.date, formatString), entry.value])
+	);
+	eachDayOfInterval({ start: from, end: to }).forEach((date) => {
+		const formattedDay = format(date, formatString);
+		data[formattedDay] = timeStampMap.get(formattedDay) || 0;
+	});
 
 	return data;
 };

@@ -3,9 +3,11 @@
 		"next/core-web-vitals",
 		"plugin:@tanstack/eslint-plugin-query/recommended"
 	],
+	"plugins": ["unused-imports"],
 	"rules": {
 		"@tanstack/query/exhaustive-deps": "error",
 		"@tanstack/query/no-rest-destructuring": "warn",
-		"@tanstack/query/stable-query-client": "error"
+		"@tanstack/query/stable-query-client": "error",
+		"unused-imports/no-unused-imports": "warn"
 	}
 }

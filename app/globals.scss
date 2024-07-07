@@ -35,6 +35,11 @@
 		--card-color: #171717;
 	}
 
+	*::-moz-selection {
+		background-color: #29a173;
+		color: #fff;
+	}
+
 	*::selection {
 		background-color: #29a173;
 		color: #fff;
@@ -61,6 +66,16 @@
 				background-color: #29a173;
 			}
 		}
+	}
+
+	.no-visible-scrollbar {
+		scrollbar-width: none;
+		-ms-overflow-style: none;
+		-webkit-overflow-scrolling: touch;
+	}
+
+	.no-visible-scrollbar::-webkit-scrollbar {
+		display: none;
 	}
 
 	.custom-scroll,
@@ -98,12 +113,16 @@
 	}
 
 	img {
+		-moz-user-select: none;
+		-ms-user-select: none;
 		user-select: none;
 		pointer-events: none;
 		-webkit-user-select: none;
 	}
 
 	.no-select {
+		-moz-user-select: none;
+		-ms-user-select: none;
 		user-select: none;
 		-webkit-user-select: none;
 	}
@@ -124,7 +143,7 @@
 	}
 
 	section {
-		padding-block: 5rem;
+		padding-block: 6rem;
 	}
 
 	.outmessage {
@@ -190,11 +209,13 @@
 
 	.green-blob,
 	.green-blob2,
-	.green-blob2 {
+	.green-blob2,
+	.green-blob4 {
 		background-color: #2aa274;
 		border-radius: 50%;
 		position: absolute;
 		transform: translateX(-50%);
+		-webkit-filter: blur(rem(120));
 		filter: blur(rem(120));
 	}
 
@@ -205,14 +226,20 @@
 		border-radius: 50%;
 		position: absolute;
 		transform: translateX(-50%);
+		-webkit-filter: blur(rem(150));
 		filter: blur(rem(150));
 	}
 
 	.yellow-blob2 {
+		-webkit-filter: blur(rem(140));
 		filter: blur(rem(140));
 	}
 	.yellow-blob3 {
+		-webkit-filter: blur(rem(190));
 		filter: blur(rem(190));
+	}
+	.green-blob4 {
+		background-color: #2aa27495;
 	}
 	.my-shadow {
 		box-shadow: -7px 1px 20px -9px #29a173, 1px -1px 20px -7px #c98821;
@@ -352,13 +379,23 @@
 	color: red;
 	z-index: 102;
 	position: relative;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
 	user-select: none;
 }
 
 .source-out {
+	-webkit-mask-composite: subtract;
 	mask-composite: subtract;
+	-webkit-mask-image: radial-gradient(circle at top, transparent 150px, white);
 	mask-image: radial-gradient(circle at top, transparent 150px, white);
 	@media (min-width: em(768)) {
+		-webkit-mask-image: radial-gradient(
+			circle at top,
+			transparent 300px,
+			white
+		);
 		mask-image: radial-gradient(circle at top, transparent 300px, white);
 	}
 }
@@ -369,6 +406,7 @@
 
 // ai
 .ai-spin {
+	-webkit-animation: spin 1.2s linear infinite;
 	animation: spin 1.2s linear infinite;
 }
 
@@ -462,10 +500,12 @@
 		width: calc(100% + 2px);
 		height: calc(100% + 2px);
 		z-index: -1;
+		-webkit-animation: glow 12s linear infinite;
 		animation: glow 12s linear infinite;
 	}
 
 	&::before {
+		-webkit-filter: blur(20px);
 		filter: blur(20px);
 		opacity: 0;
 		transition: opacity 0.5s ease-in-out;
@@ -479,6 +519,7 @@
 .glow2 {
 	&::before,
 	&::after {
+		-webkit-animation: glow 8s linear infinite;
 		animation: glow 8s linear infinite;
 	}
 }
@@ -492,6 +533,7 @@
 		background-size: 400%;
 		width: calc(100% + 2px);
 		height: calc(100% + 2px);
+		-webkit-animation: glow 10s linear infinite;
 		animation: glow 10s linear infinite;
 	}
 
@@ -502,6 +544,7 @@
 	&:disabled {
 		&::before,
 		&::after {
+			-webkit-animation: none;
 			animation: none;
 			background-size: auto;
 			background: none;
@@ -510,7 +553,17 @@
 }
 
 .animate-appear {
+	-webkit-animation: appear 200ms ease-in;
 	animation: appear 200ms ease-in;
+}
+
+@-webkit-keyframes appear {
+	from {
+		text-wrap: nowrap;
+	}
+	to {
+		text-wrap: wrap;
+	}
 }
 
 @keyframes appear {
@@ -519,6 +572,15 @@
 	}
 	to {
 		text-wrap: wrap;
+	}
+}
+
+@-webkit-keyframes glow {
+	0% {
+		background-position: 0 0;
+	}
+	100% {
+		background-position: 400% 0;
 	}
 }
 
@@ -531,12 +593,29 @@
 	}
 }
 
+@-webkit-keyframes increase-height {
+	from {
+		height: 0;
+	}
+	to {
+		height: 60px;
+	}
+}
+
 @keyframes increase-height {
 	from {
 		height: 0;
 	}
 	to {
 		height: 60px;
+	}
+}
+@-webkit-keyframes increase-width {
+	from {
+		width: 0;
+	}
+	to {
+		width: 80px;
 	}
 }
 @keyframes increase-width {
@@ -548,6 +627,14 @@
 	}
 }
 @media (min-width: 375px) {
+	@-webkit-keyframes increase-width {
+		from {
+			width: 0;
+		}
+		to {
+			width: 131px;
+		}
+	}
 	@keyframes increase-width {
 		from {
 			width: 0;
@@ -559,6 +646,15 @@
 }
 
 // end of ai
+
+@-webkit-keyframes spin {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+}
 
 @keyframes spin {
 	from {

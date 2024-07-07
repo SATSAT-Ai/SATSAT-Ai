@@ -89,11 +89,9 @@ const products: {
 ];
 
 const ProductDropDown = ({
-	scrolled,
 	className,
 	toggleNavToFalse,
 }: {
-	scrolled: boolean;
 	toggleNavToFalse?: () => void | undefined;
 	className?: ClassValue;
 }) => {
@@ -101,15 +99,11 @@ const ProductDropDown = ({
 		<GlowCardParent
 			data-test="prod-dropDown"
 			className={cn(
-				`bg-[#071f07]/60 py-5 h-[61vh] lg:h-[86vh] overflow-y-auto custom-scroll2 overscroll-none w-full px-5 backdrop-blur-xl absolute z-10 ${
-					!scrolled
-						? "backdrop-blur-xl saturate-150"
-						: "backdrop-blur-xl saturate-150"
-				} text-darker`,
+				"py-5 overflow-y-auto custom-scroll2 h-[65vh] bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
 				className
 			)}
 		>
-			<GlowCardParent className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 overscroll-none text-white/80 gap-3 px-5 pb-3 items-center justify-between">
+			<GlowCardParent className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 overscroll-none text-white/80 gap-3 px-5 pb-3 items-center justify-between">
 				{featuredProducts.map((featured) => {
 					return (
 						<Link
@@ -118,8 +112,8 @@ const ProductDropDown = ({
 							href={featured.link}
 						>
 							<GlowCard
-								cardClassName="bg-[#0e2b0e] shadow-sm cursor-pointer p-3 rounded-md flex-row items-center gap-5 justify-between"
-								className="flex w-full flex-col text-center sm:text-left sm:flex-row items-center md:justify-between gap-5"
+								cardClassName="bg-[#0e2b0e] shadow-sm cursor-pointer rounded-md flex-row items-center gap-5 justify-between"
+								className="flex w-full flex-col text-center sm:text-left sm:flex-row items-center justify-start xl:justify-between gap-5"
 							>
 								<Image
 									src={featured.img}
@@ -129,16 +123,16 @@ const ProductDropDown = ({
 									priority
 								/>
 								<div>
-									<p className="text-white pb-2 font-medium text-text-20">
+									<p className="text-white pb-1 font-medium text-text-24">
 										{featured.productName}
 									</p>
-									<span className="text-mid--yellow mx-auto text-text-14 sm:text-text-normal max-w-sm w-full block">
+									<span className="text-mid--yellow mx-auto text-text-normal max-w-sm w-full block">
 										{featured.description}
 									</span>
 								</div>
 								<KeyboardArrowRight
 									color="inherit"
-									className="!hidden md:!flex"
+									className={cn("hidden md:flex ml-auto xl:ml-0")}
 									fontSize="medium"
 								/>
 							</GlowCard>
@@ -150,10 +144,10 @@ const ProductDropDown = ({
 			<div className="flex flex-col xl:flex-row text-white/80 gap-3 px-5 items-start justify-between">
 				<GlowCardParent>
 					<GlowCard
-						className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-between gap-5 items-start flex-[3] z-20 p-5"
+						className="grid grid-cols-1 md:grid-cols-2 justify-between gap-5 items-start flex-[3] z-20"
 						cardClassName="bg-[#0e2b0e]"
 					>
-						<div className="flex-[2.5]">
+						{/* <div className="flex-[2.5]">
 							<div className="mb-5">
 								<p className="text-white font-medium pb-2 text-text-20">
 									Discover Powerful Features
@@ -186,24 +180,23 @@ const ProductDropDown = ({
 									href="/features"
 								/>
 							</div>
-						</div>
+						</div> */}
 
-						<div className="flex-[2] md:flex justify-center w-full">
+						<div className="flex-[2] w-full">
 							<ul>
-								<li>
-									<GlowCardParent className="grid grid-cols-1 md:flex md:flex-col gap-2">
-										{products.map((product) => {
-											return (
+								<GlowCardParent className="grid grid-cols-1 xl:grid-cols-2 gap-3">
+									{products.map((product) => {
+										return (
+											<li key={product.id}>
 												<GlowCard
 													data-test={`${product.link}`}
 													onCardClick={toggleNavToFalse!}
 													type="link"
 													linkTo={product.link}
-													key={product.id}
 													cardClassName="bg-[#071f07] gap-5 p-0 cursor-pointer"
 													className="p-3 duration-100 transition-colors rounded-md"
 												>
-													<div className=" flex items-center gap-3 justify-start">
+													<div className="flex items-center gap-3 justify-start">
 														<Image
 															src={product.img}
 															alt={product.product}
@@ -225,14 +218,23 @@ const ProductDropDown = ({
 														/>
 													</div>
 												</GlowCard>
-											);
-										})}
-									</GlowCardParent>
-								</li>
+											</li>
+										);
+									})}
+									<li className="grid place-content-center z-20 relative w-full">
+										<CustomGlowButton
+											data-test="explore-all-features"
+											name="Explore All Features"
+											buttonType="Link"
+											href="/features"
+											className="rounded-md before:rounded-md after:rounded-md w-full"
+										/>
+									</li>
+								</GlowCardParent>
 							</ul>
 						</div>
-						<div className="flex-[2]">
-							<div className="mb-5">
+						<div className="flex-[2] flex flex-col gap-3 max-w-xl">
+							{/* <div className="mb-5">
 								<p className="text-white font-medium pb-2 text-text-20">
 									Streamline Your Workflow
 								</p>
@@ -243,12 +245,24 @@ const ProductDropDown = ({
 									matters most. Say goodbye to manual data entry and hello to
 									increased productivity.
 								</span>
+							</div> */}
+							<div>
+								<p className="text-white font-medium text-text-24">
+									Enhance Your Workflow
+								</p>
+								<span className="text-mid--yellow text-text-normal">
+									Take your operations to the next level with our innovative
+									features. Whether{` you're `}a small business or a large
+									enterprise, our solutions are tailored to meet your needs.
+									Experience seamless integration, powerful analytics, and
+									unparalleled convenience. Elevate your workflow today.
+								</span>
 							</div>
 							<div>
-								<p className="text-white pb-2 font-medium text-text-20">
+								<p className="text-white font-medium text-text-24">
 									Gain Actionable Insights
 								</p>
-								<span className="text-mid--yellow md:text-[#d6d6d6] text-text-14 sm:text-text-normal">
+								<span className="text-mid--yellow text-text-normal">
 									Unlock the power of data with our advanced analytics tools.
 									From customizable reports to real-time metrics,{` you'll `}
 									have access to valuable insights that drive informed

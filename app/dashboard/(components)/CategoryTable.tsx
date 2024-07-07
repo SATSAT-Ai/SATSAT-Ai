@@ -38,7 +38,7 @@ const CategoryTable = ({ categoryData }: { categoryData: ICategory[] }) => {
 					},
 					"& thead th": {
 						color: "white",
-						backgroundColor: "#ffffff30",
+						backgroundColor: "#174636",
 						backdropFilter: "blur(4px)",
 					},
 					width: "100%",

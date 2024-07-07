@@ -1,43 +1,47 @@
 "use client";
 
-import { MutableRefObject, KeyboardEvent } from "react";
-import { IUser, IdeFault } from "./ChatMain";
-import { UseFormHandleSubmit, UseFormRegister } from "react-hook-form";
+import {
+	useRef,
+	useEffect,
+	useState,
+	Dispatch,
+	SetStateAction,
+	useContext,
+} from "react";
+import { IUser } from "./ChatMain";
 import OutgoingMessage from "./OutgoingMessage";
 import IncomingMessage from "./IncomingMessage";
 import ChatScrollToTop from "@/app/dashboard/(components)/ChatScrollToTop";
 import ChatScrollToBottom from "@/app/dashboard/(components)/ChatScrollToBottom";
 import ChatInput from "./ChatInput";
+import ToggleSidebars from "./ToggleSidebars";
+import { ChatContext } from "@/context/ChatContext";
 
 interface IChatPage {
-	chatContainerRef: MutableRefObject<HTMLElement | null>;
-	isOldConversation: boolean;
-	scrollToTop: boolean;
-	scrollToBottom: boolean;
-	handleScrollToBottom: () => void;
 	conversations: IUser[];
-	handleSubmit: UseFormHandleSubmit<IdeFault, undefined>;
-	onSubmit: (data: IdeFault) => void;
-	loading: boolean;
-	handleTextAreaResize: (e: any) => void;
-	handleKeyDown: (e: KeyboardEvent<HTMLTextAreaElement>) => void;
-	register: UseFormRegister<IdeFault>;
+	chatContainerId: string | undefined;
+	setConversations: Dispatch<SetStateAction<IUser[]>>;
 }
 
 const ChatPage = ({
-	chatContainerRef,
-	isOldConversation,
-	scrollToTop,
-	handleScrollToBottom,
-	scrollToBottom,
-	onSubmit,
-	loading,
 	conversations,
-	handleSubmit,
-	handleTextAreaResize,
-	register,
-	handleKeyDown,
+	chatContainerId,
+	setConversations,
 }: IChatPage) => {
+	const chatContainerRef = useRef<null | HTMLDivElement>(null);
+	const [scrollToTop, setScrollToTop] = useState(false);
+	const [scrollToBottom, setScrollToBottom] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const { isOldConversation } = useContext(ChatContext);
+
+	const fetchConversations = () => {
+		if (chatContainerId) {
+			//fetchData for containerID
+		} else {
+			//create a new id and start a new conversation.
+		}
+	};
+
 	const handleScrollToTop = () => {
 		if (chatContainerRef?.current) {
 			chatContainerRef.current.scrollTo({
@@ -47,8 +51,43 @@ const ChatPage = ({
 		}
 	};
 
+	const handleScrollToBottom = () => {
+		if (chatContainerRef?.current) {
+			chatContainerRef.current.scrollTo({
+				top: chatContainerRef.current.scrollHeight,
+				behavior: "smooth",
+			});
+		}
+	};
+
+	useEffect(() => {
+		handleScrollToBottom();
+		const handleScroll = () => {
+			const containerRef = chatContainerRef.current;
+			if (containerRef) {
+				const clientHeight = containerRef.clientHeight;
+				const scrollHeight = containerRef.scrollHeight;
+				const scrollTop = containerRef.scrollTop;
+
+				setScrollToTop(scrollTop === scrollHeight - clientHeight);
+
+				setScrollToBottom(
+					clientHeight < scrollHeight &&
+						scrollTop + clientHeight < scrollHeight - 180
+				);
+			}
+		};
+		const containerRef = chatContainerRef.current;
+		containerRef?.addEventListener("scroll", handleScroll);
+
+		return () => {
+			containerRef?.removeEventListener("scroll", handleScroll);
+		};
+	}, [conversations]);
+
 	return (
-		<div className=" flex flex-col gap-5 h-full pt-5 px-5">
+		<div className=" flex flex-col items-center h-dvh overflow-clip">
+			<ToggleSidebars />
 			<div className="fixed bottom-32 -translate-x-1/2 left-1/2">
 				{scrollToTop && isOldConversation && (
 					<ChatScrollToTop scrollToTop={handleScrollToTop} />
@@ -58,37 +97,35 @@ const ChatPage = ({
 					<ChatScrollToBottom scrollToBottom={handleScrollToBottom} />
 				)}
 			</div>
+			<div ref={chatContainerRef} className="h-full w-full overflow-y-auto ">
+				<div className="flex flex-col gap-5 max-w-4xl p-5 mx-auto">
+					{conversations.map((conversation: IUser) => {
+						if (conversation.from === "User") {
+							return (
+								<OutgoingMessage key={conversation.id} message={conversation} />
+							);
+						} else if (conversation.from === "Ai") {
+							return (
+								<IncomingMessage
+									endingText={conversation.endingText as string}
+									key={conversation.id}
+									list={conversation.list!}
+									firstText={conversation.firstText as string}
+									conversations={conversations}
+									typeWrite={true}
+									chatContainerRef={chatContainerRef}
+								/>
+							);
+						}
+					})}
+				</div>
+			</div>
 
-			{conversations.map((conversation: IUser) => {
-				if (conversation.from === "User") {
-					return (
-						<OutgoingMessage key={conversation.id} message={conversation} />
-					);
-				} else if (conversation.from === "Ai") {
-					return (
-						<IncomingMessage
-							endingText={conversation.endingText as string}
-							key={conversation.id}
-							list={conversation.list!}
-							firstText={conversation.firstText as string}
-							typeWrite={true}
-							// chatContainerRef={chatContainerRef}
-						/>
-					);
-				}
-			})}
-
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className="text-white sticky bottom-5 w-full p-5 mt-auto"
-			>
-				<ChatInput
-					handleKeyDown={handleKeyDown}
-					handleTextAreaResize={handleTextAreaResize}
-					loading={loading}
-					register={register}
-				/>
-			</form>
+			<ChatInput
+				setConversations={setConversations}
+				chatContainerId={chatContainerId}
+				loading={loading}
+			/>
 		</div>
 	);
 };

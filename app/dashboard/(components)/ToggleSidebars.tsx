@@ -2,13 +2,15 @@
 
 import { AppContext } from "@/context/AppContext";
 import { ChatContext } from "@/context/ChatContext";
+import { cn } from "@/lib/utils";
+import { ClassValue } from "clsx";
 import { useContext } from "react";
 import {
 	TbLayoutSidebarLeftExpand,
 	TbLayoutSidebarRightExpand,
 } from "react-icons/tb";
 
-const ToggleSidebars = () => {
+const ToggleSidebars = ({ className }: { className?: ClassValue }) => {
 	const { setHideSidebar, hideSidebar } = useContext(AppContext);
 	const { setHideChatSidebar, hideChatSidebar } = useContext(ChatContext);
 
@@ -28,9 +30,12 @@ const ToggleSidebars = () => {
 
 	return (
 		<div
-			className={`${
-				!hideSidebar && !hideChatSidebar ? "invisible" : "visible"
-			}  mx-auto sticky top-0 left-0  flex  max-w-[1440px]  w-full justify-between py-3 items-center `}
+			className={cn(
+				"mx-auto sticky top-0 left-0  flex  max-w-[1440px]  w-full justify-between py-3 items-center",
+				{ hidden: !hideSidebar && !hideChatSidebar },
+				{ flex: hideSidebar && hideChatSidebar },
+				className
+			)}
 		>
 			{hideSidebar && (
 				<div

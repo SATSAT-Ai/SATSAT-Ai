@@ -5,6 +5,7 @@ const config: Config = {
 		"./components/**/*.{js,ts,jsx,tsx,mdx}",
 		"./app/**/*.{js,ts,jsx,tsx,mdx}",
 		"./node_modules/flowbite-react/lib/**/*.js",
+		"./fonts/fonts.scss",
 	],
 	theme: {
 		extend: {
@@ -63,9 +64,26 @@ const config: Config = {
 				spotlight: "spotlight 2s ease .75s 1 forwards",
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+				marquee: "marquee var(--duration) linear infinite",
+				"marquee-vertical": "marquee-vertical var(--duration) linear infinite",
+				orbit: "orbit calc(var(--duration)*1s) linear infinite",
+				grid: "grid 15s linear infinite",
+				"spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
+				slide: "slide var(--speed) ease-in-out infinite alternate",
+				meteor: "meteor 5s linear infinite",
 			},
 
 			keyframes: {
+				orbit: {
+					"0%": {
+						transform:
+							"rotate(0deg) translateY(calc(var(--radius) * 1px)) rotate(0deg)",
+					},
+					"100%": {
+						transform:
+							"rotate(360deg) translateY(calc(var(--radius) * 1px)) rotate(-360deg)",
+					},
+				},
 				spotlight: {
 					"0%": {
 						opacity: "0",
@@ -75,6 +93,45 @@ const config: Config = {
 					"100%": {
 						opacity: "1",
 						transform: "translate(-50%,-40%) scale(1)",
+					},
+				},
+				marquee: {
+					from: { transform: "translateX(0)" },
+					to: { transform: "translateX(calc(-100% - var(--gap)))" },
+				},
+				"marquee-vertical": {
+					from: { transform: "translateY(0)" },
+					to: { transform: "translateY(calc(-100% - var(--gap)))" },
+				},
+				grid: {
+					"0%": { transform: "translateY(-50%)" },
+					"100%": { transform: "translateY(0)" },
+				},
+				"spin-around": {
+					"0%": {
+						transform: "translateZ(0) rotate(0)",
+					},
+					"15%, 35%": {
+						transform: "translateZ(0) rotate(90deg)",
+					},
+					"65%, 85%": {
+						transform: "translateZ(0) rotate(270deg)",
+					},
+					"100%": {
+						transform: "translateZ(0) rotate(360deg)",
+					},
+				},
+				slide: {
+					to: {
+						transform: "translate(calc(100cqw - 100%), 0)",
+					},
+				},
+				meteor: {
+					"0%": { transform: "rotate(215deg) translateX(0)", opacity: "1" },
+					"70%": { opacity: "1" },
+					"100%": {
+						transform: "rotate(215deg) translateX(-500px)",
+						opacity: "0",
 					},
 				},
 			},

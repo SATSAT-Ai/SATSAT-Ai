@@ -194,7 +194,7 @@ export default function TransTable() {
 		<div style={{ height: 500, width: "100%" }}>
 			<DataGrid
 				sx={{
-					backgroundColor: "#174634",
+					backgroundColor: "#174636",
 					color: "#fff",
 					borderColor: "aquamarine",
 					Height: "470px",

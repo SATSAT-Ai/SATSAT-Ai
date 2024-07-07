@@ -12,6 +12,7 @@ import {
 	LucideArrowUpRightFromCircle,
 	LucideArrowDownRightFromCircle,
 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 const TransactionDetails = ({ transData }: { transData: Data[] }) => {
 	const [showMore, setShowMore] = useState(5);
@@ -62,7 +63,7 @@ const TransactionDetails = ({ transData }: { transData: Data[] }) => {
 					return (
 						<div
 							key={value.id + key}
-							className="bg-[#2aa27438] rounded-2xl shadow-md p-4"
+							className="bg-brand-green/20 rounded-2xl shadow-md p-4"
 						>
 							<div className="flex py-3 justify-between items-center gap-5">
 								<h1 className="m-0 flex flex-col gap-1 text-[27px]">
@@ -111,11 +112,19 @@ const TransactionDetails = ({ transData }: { transData: Data[] }) => {
 							<div className="flex flex-wrap md:flex-nowrap lg:flex-wrap xl:flex-nowrap mt-7 items-center gap-5  justify-between">
 								<button
 									disabled={showMore === Object.keys(value).length - 1} // -1 = amount value
-									className={`disabled:bg-gradient-to-t disabled:from-[#80808062] disabled:to-[#80808062]  before:opacity-0 hover:before:opacity-30 p-3 w-full before:z-[-1] after:z-[-1] after:absolute after:top-[-1px] after:left-[-1px] before:rounded-lg after:rounded-lg rounded-lg before:absolute before:top-[-1px] before:left-[-1px] relative bg-gradient-to-tr from-[#050e0b] to-[#000000] custom-block text-text-normal text-white font-medium ${
-										showMoreAiSugestions === list_suggestions[0].list.length
-											? "bg-gradient-to-tr transition-colors duration-150 ease-in from-[#15744f] to-[#15744f] hover:bg-gradient-to-tr hover:from-[#29a173cc] hover:to-[#29a173cc]"
-											: "glow2"
-									}`}
+									className={cn(
+										"disabled:bg-gradient-to-t disabled:from-[#80808062] disabled:to-[#80808062]  before:opacity-0 hover:before:opacity-30 p-3 w-full before:z-[-1] after:z-[-1] after:absolute after:top-[-1px] after:left-[-1px] before:rounded-lg after:rounded-lg rounded-lg before:absolute before:top-[-1px] before:left-[-1px] relative bg-gradient-to-tr from-[#050e0b] to-[#000000] custom-block text-text-normal text-white font-medium",
+										{
+											"bg-gradient-to-tr transition-colors duration-150 ease-in from-[#15744f] to-[#15744f] hover:bg-gradient-to-tr hover:from-[#29a173cc] hover:to-[#29a173cc]":
+												showMoreAiSugestions ===
+												list_suggestions[0].list.length,
+										},
+										{
+											glow2:
+												showMoreAiSugestions !==
+												list_suggestions[0].list.length,
+										}
+									)}
 									type="button"
 									onClick={() => {
 										if (showMore === Object.keys(value).length - 1) {

@@ -2,68 +2,80 @@
 
 import { IoMdHelpCircleOutline } from "react-icons/io";
 import { HiOutlineExternalLink } from "react-icons/hi";
-
 import Link from "next/link";
-import { MutableRefObject, Dispatch, SetStateAction } from "react";
-import { IdeFault } from "./ChatMain";
-import { UseFormHandleSubmit } from "react-hook-form";
-import ChatInput, { type IChatInput } from "./ChatInput";
+import { useState, useRef, SetStateAction, Dispatch, useEffect } from "react";
+import { IUser } from "./ChatMain";
+import ChatInput from "./ChatInput";
+import ToggleSidebars from "./ToggleSidebars";
+import Image from "next/image";
+import SatSatAiLogo from "@/public/SatSat-ai-logo-new.svg";
 
-interface IchatIntro extends IChatInput {
-	handleSubmit: UseFormHandleSubmit<IdeFault, undefined>;
-	onSubmit: (data: IdeFault) => void;
-	helpOptionsRef: MutableRefObject<HTMLDivElement | null>;
-	showHelpOptions: boolean;
-	setShowHelpOptions: Dispatch<SetStateAction<boolean>>;
+interface IchatIntro {
 	conversationLength: number;
-	chatSuggestions: {
-		id: string;
-		value: string;
-	}[];
+	chatContainerId: string | undefined;
+	setConversations: Dispatch<SetStateAction<IUser[]>>;
 }
 
 const ChatSuggestionIntro = ({
-	handleSubmit,
-	onSubmit,
-	loading,
-	handleKeyDown,
-	handleTextAreaResize,
-	register,
-	helpOptionsRef,
-	showHelpOptions,
 	conversationLength,
-	setShowHelpOptions,
-	chatSuggestions,
+	chatContainerId,
+	setConversations,
 }: IchatIntro) => {
+	const helpOptionsRef = useRef<null | HTMLDivElement>(null);
+	const [showHelpOptions, setShowHelpOptions] = useState(false);
+	const [loading, setLoading] = useState(false);
+	const [chatSuggestions, setChatSuggestions] = useState([
+		{
+			id: "skdjfksjdf",
+			value: "Total income for the past quarter",
+		},
+		{
+			id: "skdwerfjfksjdf",
+			value: "Total income for the past quarter",
+		},
+		{
+			id: "skdjsdfrfksjdf",
+			value: "Total income for the past quarter",
+		},
+		{
+			id: "skdjferwrksjdf",
+			value: "Total income for the past quarter",
+		},
+	]);
+
+	const fetchChatSuggestions = () => {
+		//suggestions
+	};
+
 	return (
-		<>
-			<div className="w-full flex h-full flex-col items-center justify-center overflow-y-auto custom-scroll">
-				<h1 className="text-white text-text-40 mb-0 text-center sm:text-text-60">
-					SatSat AI
-				</h1>
-				<div className="text-white mt-10 max-w-xs md:max-w-2xl mx-auto">
-					<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
-						Chat suggestions
-					</h2>
-					<div className="flex flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
-						{chatSuggestions.map((suggestions) => {
-							return (
-								<button
-									key={suggestions.id}
-									type="button"
-									className="border border-white py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/20 active:scale-[1.01] rounded-3xl"
-								>
-									{suggestions.value}
-								</button>
-							);
-						})}
+		<div className="flex flex-col items-center min-h-dvh">
+			<ToggleSidebars />
+			<div className="grow grid place-content-center h-full overflow-y-auto mb-auto flex-1 w-full">
+				<div className="text-white text-text-60 flex mx-auto w-full items-center gap-2 h-auto font-bold justify-center">
+					Sat
+					<div className="bg-white rounded-full w-[60px] h-[60px] p-2">
+						<Image className={"h-full w-full"} src={SatSatAiLogo} alt="logo" />
 					</div>
+					atAi
+				</div>
+				<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
+					Chat suggestions
+				</h2>
+				<div className="flex w-full flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
+					{chatSuggestions.map((suggestions) => {
+						return (
+							<button
+								key={suggestions.id}
+								type="button"
+								className="border border-white/40 py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/60 active:bg-brand-green/70 rounded-3xl"
+							>
+								{suggestions.value}
+							</button>
+						);
+					})}
 				</div>
 			</div>
-			<form
-				onSubmit={handleSubmit(onSubmit)}
-				className="text-white sticky  left-auto right-auto bottom-5 p-5  max-w-3xl mx-auto w-full mt-auto"
-			>
+			{/* <div className="text-white left-auto right-auto p-5 sticky bottom-0 w-full mt-auto">
 				<div
 					ref={helpOptionsRef}
 					className="max-w-3xl absolute  bottom-28 right-5 ml-auto"
@@ -122,14 +134,13 @@ const ChatSuggestionIntro = ({
 						</div>
 					)}
 				</div>
-				<ChatInput
-					handleKeyDown={handleKeyDown}
-					handleTextAreaResize={handleTextAreaResize}
-					loading={loading}
-					register={register}
-				/>
-			</form>
-		</>
+			</div> */}
+			<ChatInput
+				setConversations={setConversations}
+				chatContainerId={chatContainerId}
+				loading={loading}
+			/>
+		</div>
 	);
 };
 

@@ -1,107 +1,64 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import OnscrollTextReveal from "@/components/ui/OnscrollTextReveal";
+import GetStartedWithBlob from "@/components/GetStartedWithBlob";
 
 const page = () => {
 	return (
 		<>
-			<Header />
+			<Header className="z-30" />
+			<main className="z-10 w-full py-10 bg-darker  text-white">
+				<div className="my-max z-20 my-max px-5 my-5 md:h-screen relative">
+					<GetStartedWithBlob
+						showButton={false}
+						className="mb-10"
+						animation="animate-pulse"
+					/>
 
-			<main className="bg-darker min-h-screen w-full py-10 relative overflow-hidden">
-				<div className="green-blob2 w-96 h-96 animate-pulse top-[-10%] md:top-[-20%] left-[50%]"></div>
-
-				<div className="my-max pt-5">
-					<h1 className="capitalize mt-16 text-brand-green text-center max-w-5xl mx-auto text-text-40 md:text-text-60 lg:text-text-60">
-						About us
-					</h1>
-					<div className="flex text-text-normal font-normal text-grey-lightest items-center flex-col gap-3">
-						<p>
-							Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur
-							molestias officia ad et quos quia eligendi dolorum, eos error
-							nostrum iusto odit! Consequatur aliquam impedit enim omnis
-							excepturi ea aut illo ratione veniam. Pariatur quidem id qui,
-							quibusdam ipsum error dicta eveniet nam modi repellendus suscipit
-							ipsa omnis laborum doloribus incidunt? Voluptatem alias sit
-							suscipit reprehenderit incidunt, fugiat nihil at quod quos
-							adipisci et fugit aliquam cum beatae mollitia vitae exercitationem
-							animi dolore corporis, error, iusto maiores possimus pariatur
-							ducimus? Numquam, obcaecati. Maxime sequi voluptas placeat
-							repellat cum necessitatibus voluptate veritatis saepe cumque
-							tempora dolorum qui repellendus, similique doloribus quas. Ipsam
-							repellat accusamus perferendis. Debitis, inventore dolore repellat
-							illo voluptates iste repudiandae libero soluta maiores aliquid
-							tempora in quae quos neque commodi modi natus minus? Voluptate,
-							maiores modi temporibus quidem eveniet nesciunt magni dolorum
-							corporis minima delectus! Placeat accusamus laudantium dolor,
-							necessitatibus doloribus sed ut, culpa dicta inventore cumque
-							molestiae nostrum minima magnam sint maxime soluta corporis quod
-							odio eveniet. Quaerat est quo necessitatibus quidem provident
-							dolorem similique quos sapiente, suscipit sed ex doloribus libero
-							explicabo temporibus reprehenderit enim a neque fuga dolores.
-							Dolor quaerat provident facilis necessitatibus. Ratione eius
-							numquam assumenda, ex nesciunt tempora aliquam sequi temporibus
-							nam cumque?
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Amet
-							magnam ea quisquam, laudantium minus alias neque maxime, numquam
-							doloribus quibusdam voluptatem praesentium expedita. Deleniti,
-							repellendus, dolorem atque iure at doloremque sequi earum, eum
-							alias aspernatur saepe id similique! Placeat unde sit quod eos,
-							quasi, impedit ipsa, alias molestias maiores nam dolor quisquam
-							libero tempora et fugiat. Tempora vero nemo eaque saepe mollitia
-							incidunt dicta repudiandae soluta cum architecto inventore
-							explicabo ad, neque eos aperiam quibusdam itaque ut cupiditate!
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit.
-							Temporibus nemo minima explicabo. Magnam veniam repudiandae
-							officiis sit consectetur quos, veritatis consequuntur! Reiciendis
-							velit inventore quo doloribus voluptatibus architecto consequatur.
-							Neque quod quo quaerat accusamus assumenda! Soluta quae quam
-							facilis aut aliquid, hic quos necessitatibus repellat laborum
-							obcaecati vitae, consequatur, animi blanditiis. Nostrum eligendi
-							vero iure necessitatibus reiciendis in itaque mollitia.
-							Consectetur odio laudantium natus nulla voluptatem dolore magnam
-							ullam, aliquid atque ducimus illum perspiciatis aut, magni fugit
-							beatae cum animi deserunt expedita maxime impedit placeat sequi
-							dignissimos? Unde nostrum voluptatem, suscipit totam culpa
-							repellendus possimus accusamus voluptas incidunt est! Dolorum
-							doloremque, ex amet sapiente perferendis accusantium animi
-							eligendi qui. Obcaecati earum incidunt consequuntur explicabo amet
-							veniam eaque commodi, est quia voluptate autem vero? At incidunt
-							necessitatibus recusandae ipsam est praesentium illo, dolor minima
-							enim iure accusantium quidem, culpa porro, nostrum dolore
-							excepturi mollitia veniam eaque! Tempore veritatis nostrum impedit
-							magni.
-						</p>
-						<p>
-							Lorem ipsum dolor sit amet consectetur adipisicing elit. Minima
-							soluta perspiciatis sint obcaecati nulla quo nesciunt, sequi
-							excepturi nam. Temporibus, officiis amet. Nemo, nihil. Sit hic
-							consequatur a quasi qui, sunt omnis praesentium dolor delectus.
-							Earum inventore ipsum perferendis explicabo eveniet consequatur
-							iure eos iusto fugit, id illo fuga harum delectus sed, ab eligendi
-							repellendus deleniti reprehenderit cum necessitatibus aperiam ex
-							reiciendis dolorem cumque! Culpa beatae itaque voluptates
-							reiciendis tenetur, nobis nam sequi corporis ullam excepturi quae
-							voluptatem repudiandae totam magnam, blanditiis dicta dolores vel
-							accusantium cumque assumenda! Recusandae eos impedit, similique
-							non sit corporis maxime? Repudiandae ad dolore explicabo
-							dignissimos asperiores velit quibusdam at nemo repellat unde hic
-							laudantium doloremque vitae blanditiis, praesentium minima
-							quaerat? Cum assumenda ipsa esse ducimus quos amet quibusdam
-							impedit unde, modi vitae fugit fugiat velit praesentium dolor
-							corporis voluptatum. Accusantium harum minima eos nam neque
-							maiores facilis suscipit cum sequi. Reiciendis atque esse tenetur,
-							quas dolore velit impedit reprehenderit adipisci dolor maiores
-							animi quis at? Ratione quos omnis modi amet animi ab molestiae
-							aliquam illum dolorum sint temporibus nemo, iure illo. Eos ex
-							voluptates ea deleniti quisquam quo magnam fuga dolor
-							reprehenderit
-						</p>
-					</div>
+					<p className="hidden md:flex text-text-20 font-semibold md:text-text-40 text-gray-200">
+						SatSat Ai is ipsum dolor sit, amet consectetur adipisicing elit.
+						Accusamus in numquam commodi, iure nisi ex ab aut ullam molestias
+						assumenda, animi exercitationem quisquam possimus ipsam quod!
+						Sapiente velit, perferendis pariatur
+					</p>
+					<p className="md:hidden text-text-20 md:text-text-40 lg:text-text-50">
+						we amet consectetur adipisicing elit. Teneturmolestias officia ad et
+						quos quia eligendi dolorum, eos errornostrum iusto odit! Consequatur
+						aliquam impedit enim omnis excepturiea aut illo ratione veniam.
+						Pariatur quidem id qui, quibusdam ipsumerror dicta eveniet nam modi
+					</p>
+				</div>
+				{/* //mobile */}
+				<div className="px-5 my-max">
+					<p className="md:hidden my-7 text-text-20 md:text-text-40 lg:text-text-50">
+						sit amet consectetur adipisicing elit. Teneturmolestias officia ad
+						et quos quia eligendi dolorum, eos errornostrum iusto odit!
+						Consequatur aliquam impedit enim omnis excepturiea aut illo ratione
+						veniam. Pariatur quidem id qui, quibusdam ipsumerror dicta eveniet
+						nam modi
+					</p>
+					{/* //desktop */}
+					<OnscrollTextReveal
+						text=" We amet consectetur adipisicing elit. Teneturmolestias officia ad et quos quia eligendi dolorum, eos errornostrum iusto odit! Consequatur aliquam impedit enim omnis excepturiea aut illo ratione veniam. Pariatur quidem id qui, quibusdam ipsumerror dicta eveniet nam modi"
+						className=" hidden md:flex items-start h-[70vh] text-text-20 relative mx-0 md:text-[35px] lg:text-text-50"
+					/>
+					{/* //mobile */}
+					<p className="md:hidden text-text-20 md:text-text-40 lg:text-text-50">
+						sit amet consectetur adipisicing elit. Teneturmolestias officia ad
+						et quos quia eligendi dolorum, eos errornostrum iusto odit!
+						Consequatur aliquam impedit enim omnis excepturiea aut illo ratione
+						veniam. Pariatur quidem id qui, quibusdam ipsumerror dicta eveniet
+						nam modi
+					</p>
+					{/* //desktop */}
+					<OnscrollTextReveal
+						text=" Your amet consectetur adipisicing elit. Teneturmolestias officia ad et quos quia eligendi dolorum, eos errornostrum iusto odit! Consequatur aliquam impedit enim omnis excepturiea aut illo ratione veniam. Pariatur quidem id qui, quibusdam ipsumerror dicta eveniet nam modi  "
+						className="h-[70vh] hidden md:flex items-start text-text-20 mx-0 md:text-[35px] lg:text-text-50"
+						retro={true}
+					/>
 				</div>
 			</main>
+
 			<Footer />
 		</>
 	);

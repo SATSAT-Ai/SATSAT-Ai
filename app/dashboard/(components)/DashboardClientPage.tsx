@@ -139,9 +139,11 @@ const DashboardClientPage = () => {
 
 	const dateRanges: Date[] = [];
 	const dateRangeWithValue = [];
+
 	for (const timeStamp in timeStampsAndValue) {
 		const parsedDate = parseInt(timeStamp) * 1000;
 		const value = timeStampsAndValue[parseInt(timeStamp)];
+
 		dateRanges.push(new Date(parsedDate));
 		dateRangeWithValue.push({ date: parsedDate, value });
 	}
@@ -151,8 +153,8 @@ const DashboardClientPage = () => {
 	dateRangeWithValue.sort((a, b) => a.date - b.date);
 
 	const [date, setDate] = useState<DateRange | undefined>({
-		from: dateRanges[0] ?? new Date(),
-		to: addDays(dateRanges[0], 6),
+		from: dateRanges[1],
+		to: addDays(dateRanges[1], 6),
 	});
 
 	// show sidebar on larger screens initial
@@ -233,7 +235,7 @@ const DashboardClientPage = () => {
 				height={440}
 				sx={{ bgcolor: "#ffffff2f", borderRadius: "15px", marginBlock: "28px" }}
 			/> */}
-			<div className="my-7 bg-white/10 p-2 sm:p-5 grid grid-cols-1 items-center lg:grid-cols-2 w-full justify-between gap-7 rounded-2xl">
+			<div className="my-7 bg-brand-green/10 p-2 sm:p-5 grid grid-cols-1 items-center lg:grid-cols-2 w-full justify-between gap-7 rounded-2xl">
 				<DoughnutChart />
 				<div>
 					<h3 className="text-text-24 sm:text-[35px] text-white font-bold text-center">

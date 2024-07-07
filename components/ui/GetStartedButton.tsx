@@ -9,6 +9,7 @@ interface getStartedProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 	className?: string;
 	icon?: JSX.Element;
 	href?: string;
+	buttonType?: "button" | "Link";
 }
 
 const GetStartedButton = ({
@@ -18,7 +19,7 @@ const GetStartedButton = ({
 	icon = <MdArrowForward color="white" size="24" />,
 	iconPosition = "right",
 	href = "/choose-your-pricing",
-
+	buttonType,
 	...restProps
 }: getStartedProps) => {
 	return showIcon ? (
@@ -29,12 +30,14 @@ const GetStartedButton = ({
 			icon={icon}
 			iconPosition={iconPosition}
 			className={className}
+			buttonType={buttonType}
 		/>
 	) : (
 		<CustomGlowButton
 			{...restProps}
 			className={className}
 			name={name}
+			buttonType={buttonType}
 			href={href}
 		/>
 	);

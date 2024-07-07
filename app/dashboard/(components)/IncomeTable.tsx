@@ -29,11 +29,11 @@ const IncomeTable = ({ incomeData }: { incomeData: IncomeStreams[] }) => {
 				},
 				"& thead th": {
 					color: "white",
-					backgroundColor: "#ffffff20",
+					backgroundColor: " rgb(41 161 115 / 0.1)",
 				},
 				width: "100%",
 				padding: "10px",
-				backgroundColor: "#ffffff20",
+				backgroundColor: "rgb(41 161 115 / 0.1)",
 				color: "white",
 				borderRadius: "8px",
 			}}

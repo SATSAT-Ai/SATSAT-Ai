@@ -53,15 +53,16 @@ const CustomGlowButton = ({
 			onClick={handleButtonClick}
 			type="button"
 			className={cn(
-				`${
-					disabledGlowButton ? "" : "glow"
-				} px-7 before:opacity-0 hover:before:opacity-100 before:z-[-1] after:z-[-1]  before:rounded-3xl after:absolute after:rounded-3xl after:top-[-1px] after:left-[-1px]  before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative rounded-3xl bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between py-3 custom-block text-text-normal text-white font-medium flex items-center gap-2`,
+				"px-7 before:opacity-0 hover:before:opacity-100 before:z-[-1] after:z-[-1]  before:rounded-3xl after:absolute after:rounded-3xl after:top-[-1px] after:left-[-1px]  before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative rounded-3xl bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between py-3 custom-block text-text-normal text-white font-medium flex items-center gap-2",
+				{ glow: !disabledGlowButton },
 				className
 			)}
 		>
-			<div style={{ order: `${iconPosition === "right" ? 2 : 0}` }}>
-				{icon && icon}
-			</div>
+			{icon && (
+				<div style={{ order: `${iconPosition === "right" ? 2 : 0}` }}>
+					{icon}
+				</div>
+			)}
 			{name}
 		</button>
 	);

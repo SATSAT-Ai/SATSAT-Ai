@@ -13,7 +13,7 @@ const UploadStepTwo = ({
 	const [files, setFiles] = useState([]);
 
 	return (
-		<div className="bg-white/20 p-4 sm:p-10 mb-2 max-w-3xl mx-auto rounded-xl">
+		<div className="bg-brand-green/50 p-4 sm:p-10 mb-2 max-w-3xl mx-auto rounded-xl">
 			<div className="max-w-xl mx-auto">
 				<DragNdrop files={files} setFiles={setFiles} />
 

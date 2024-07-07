@@ -1,5 +1,14 @@
 "use client";
-import { useState, useEffect, Dispatch, SetStateAction, memo } from "react";
+import { cn } from "@/lib/utils";
+import { ClassValue } from "clsx";
+import {
+	useState,
+	useEffect,
+	Dispatch,
+	SetStateAction,
+	memo,
+	CSSProperties,
+} from "react";
 
 interface ITypeWrite {
 	text: string | string[];
@@ -15,6 +24,8 @@ interface ITypeWrite {
 	caretColor?: string;
 	fontWeight?: "normal" | "medium";
 	textAlign?: "center" | "left";
+	caretType?: "default" | "round";
+	className?: ClassValue;
 }
 
 const TypeWrite = ({
@@ -31,6 +42,8 @@ const TypeWrite = ({
 	caretColor,
 	fontWeight,
 	textAlign = "center",
+	caretType = "default",
+	className,
 }: ITypeWrite): JSX.Element => {
 	const [typedText, setTypedText] = useState("");
 	const [cursorVisible, setCursorVisible] = useState(true);
@@ -40,7 +53,7 @@ const TypeWrite = ({
 		if (setIsTypeWriterComplete) {
 			setIsTypeWriterComplete(typedText === text);
 		}
-	}, [currentWordIndex, setIsTypeWriterComplete, text, typedText]);
+	}, [setIsTypeWriterComplete, text, typedText]);
 
 	useEffect(() => {
 		const sentence = Array.isArray(text) ? text : [text];
@@ -94,19 +107,23 @@ const TypeWrite = ({
 
 	return (
 		<p
-			className={`${
-				color ? `text-[${color}]` : "text-mid--yellow"
-			} text-text-normal  ${
-				fontWeight == "normal"
-					? "font-normal"
-					: fontWeight === "medium"
-					? "font-medium"
-					: "font-normal"
-			}  md:text-[${fontSize}] text-[${textAlign}] my-2`}
-			style={{
-				overflowWrap: "anywhere",
-				maxWidth: `${maxWidth ? `${maxWidth}px` : "100%"}`,
-			}}
+			className={cn(
+				"md:[font-size:var(--fontSize)] text-text-normal font-normal text-[var(--textAlign)] my-2",
+				{ "font-normal": fontWeight == "normal" },
+				{ "font-medium": fontWeight == "medium" },
+				{ "text-[var(--color)]": color },
+				{ "text-mid--yellow": !color },
+				className
+			)}
+			style={
+				{
+					"--color": color,
+					"--fontSize": fontSize,
+					"--textAlign": textAlign,
+					overflowWrap: "anywhere",
+					maxWidth: `${maxWidth ? `${maxWidth}px` : "100%"}`,
+				} as CSSProperties
+			}
 		>
 			<>{typedText}</>
 			{cursorVisible && showCaret && (
@@ -114,12 +131,22 @@ const TypeWrite = ({
 					className={`${
 						cursorVisible
 							? `animate-pulse ${
-									caretColor ? `text-[${caretColor}]` : "text-mid--yellow"
+									caretColor
+										? `text-[${caretColor}]`
+										: "text-mid--yellow inline-block relative top-[1px]"
 							  }`
 							: ""
 					}`}
 				>
-					|
+					{caretType === "default" ? (
+						"|"
+					) : (
+						<div
+							className={`h-3 w-3 rounded-full ${
+								color ? `bg-[${color}]` : "bg-mid--yellow"
+							}`}
+						/>
+					)}
 				</span>
 			)}
 		</p>

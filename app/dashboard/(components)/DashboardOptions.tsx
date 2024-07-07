@@ -26,7 +26,7 @@ const DashboardOptions = ({
 				onClick={() => setShowMoreOptions((prev) => !prev)}
 				type="button"
 				aria-label="options"
-				className="bg-grey-light hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:scale-[1.02]"
+				className="bg-brand-green/40 hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:bg-brand-green/50"
 			>
 				<ExpandMoreIcon fontSize="medium" color="primary" />
 			</button>

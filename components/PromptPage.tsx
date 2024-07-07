@@ -246,9 +246,10 @@ const PromptPage = () => {
 										<IncomingMessage
 											key={conversation.id}
 											list={conversation.list!}
+											chatContainerRef={chatContainerRef}
+											conversations={conversations}
 											firstText={conversation.firstText as string}
 											endingText={conversation.endingText as string}
-											// chatContainerRef={chatContainerRef}
 											typeWrite={false}
 										/>
 									</li>

@@ -18,7 +18,6 @@ interface navProps {
 	setShowNav: Dispatch<SetStateAction<boolean>>;
 	showNav: boolean;
 	dropDownType: dropdown;
-	scrolled: boolean;
 }
 
 type linkType = "dropdown" | "link";
@@ -28,7 +27,6 @@ const MobileNav = ({
 	showNav,
 	setDropDownType,
 	dropDownType,
-	scrolled,
 }: navProps) => {
 	const pathname = usePathname();
 	const { data: session } = useSession();
@@ -59,10 +57,6 @@ const MobileNav = ({
 			name: "Support",
 			type: "link",
 		},
-		// {
-		// 	path: "/how-it-works",
-		// 	name: "How It Works",
-		// },
 	];
 
 	const handleSignOut = async () => {
@@ -151,21 +145,16 @@ const MobileNav = ({
 						</div>
 						{dropDownType === "developers" ? (
 							<DevelopersDropDown
-								scrolled={scrolled}
 								cardClassName="grid-cols-1"
 								className="!min-h-screen overscroll-none pt-[64px] pb-5 px-0 bg-transparent backdrop-filter-none backdrop-blur-none rounded-none"
 							/>
 						) : dropDownType === "products" ? (
 							<ProductDropDown
 								toggleNavToFalse={() => setShowNav(false)}
-								scrolled={scrolled}
 								className="!min-h-screen overscroll-none pt-[64px] backdrop-filter-none pb-5 px-0 bg-transparent backdrop-blur-none rounded-none"
 							/>
 						) : dropDownType === "solutions" ? (
-							<SolutionsDropDown
-								scrolled={scrolled}
-								className="!min-h-screen overscroll-none pt-[64px] pb-5 px-0 bg-transparent backdrop-filter-none backdrop-blur-none rounded-none"
-							/>
+							<SolutionsDropDown className="!min-h-screen overscroll-none pt-[64px] pb-5 px-0 bg-transparent backdrop-filter-none backdrop-blur-none rounded-none" />
 						) : (
 							<></>
 						)}

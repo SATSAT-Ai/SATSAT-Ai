@@ -33,7 +33,7 @@ const PieCharts = ({
 	};
 
 	return (
-		<div className="bg-white/10 max-w-lg mx-auto lg:max-w-full p-5 w-full rounded-2xl">
+		<div className="bg-brand-green/10 max-w-lg mx-auto lg:max-w-full p-5 w-full rounded-2xl">
 			<h2 className="m-0 font-medium uppercase text-text-normal pb-3">
 				{title}
 			</h2>

@@ -92,7 +92,8 @@ const EarlyAccessModal = () => {
 					</div>
 					<div className="flex flex-col md:flex-row items-center gap-5 justify-center">
 						<p className="silver-text text-center md:text-left text-text-normal md:text-text-20 md:max-w-xs">
-							Join the waitlist to be one of the first to be notified.
+							SatSat-Ai is currently in beta. Join the waitlist to be one of the
+							first to have access.
 						</p>
 						<div className="flex flex-col sm:flex-row items-center gap-3">
 							<GetStartedButton

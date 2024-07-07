@@ -135,7 +135,7 @@ const CategoryClientPage = () => {
 			</div>
 
 			<div
-				className={`mt-5 z-0 relative lg:bg-white/10 flex flex-col gap-5 overflow-clip justify-between lg:flex-row h-[600px] md:h-96 lg:rounded-2xl`}
+				className={`mt-5 z-0 relative bg-brand-green-darker/80 flex flex-col gap-5 overflow-clip justify-between lg:flex-row h-[600px] md:h-96 lg:rounded-2xl`}
 			>
 				<div className="lg:hidden flex flex-wrap-reverse justify-between gap-5">
 					<div className="flex-1">

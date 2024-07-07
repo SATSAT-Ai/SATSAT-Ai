@@ -5,6 +5,7 @@ import receiptImage from "@/public/receipt.png";
 import invoiceImage from "@/public/invoice.png";
 import mobileMoneyImage from "@/public/mobile-money.png";
 import CustomGlowButton from "@/components/ui/CustomGlowButton";
+import { cn } from "@/lib/utils";
 
 const UploadStepOne = ({
 	selectedStatement,
@@ -47,7 +48,7 @@ const UploadStepOne = ({
 	];
 
 	return (
-		<div className="bg-white/20 p-10 w-full mx-auto rounded-xl">
+		<div className="bg-brand-green/40 p-10 w-full mx-auto rounded-xl">
 			<div className="w-full">
 				<ul className="mt-7 p-5 flex flex-wrap justify-center items-center gap-7">
 					{documents.map((document) => {
@@ -55,11 +56,17 @@ const UploadStepOne = ({
 							<li
 								key={document.name}
 								onClick={() => setSelectedStatement(document.name)}
-								className={` p-5 ${
-									selectedStatement == document.name
-										? "bg-brand-green-darker border-[wheat] border hover:bg-brand-green-darker"
-										: "bg-transparent border border-white hover:border-[wheat] hover:bg-brand-green-darker/30"
-								}  cursor-pointer rounded-lg flex w-44 h-44 p-2 items-center justify-center flex-col max-w-[200px] gap-3`}
+								className={cn(
+									"cursor-pointer rounded-lg flex w-44 h-44 p-2 items-center justify-center flex-col max-w-[200px] gap-3",
+									{
+										"bg-brand-green-darker border-[wheat] border hover:bg-brand-green-darker":
+											selectedStatement == document.name,
+									},
+									{
+										"bg-transparent border border-white hover:border-[wheat] hover:bg-brand-green-darker/30":
+											selectedStatement !== document.name,
+									}
+								)}
 							>
 								<Image
 									src={document.image}

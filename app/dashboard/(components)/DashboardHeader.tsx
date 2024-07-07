@@ -4,7 +4,6 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import Link from "next/link";
 import Image from "next/image";
 import { useState, useContext, useEffect, useRef } from "react";
-import satsatLogo from "@/public/satsat-logo.svg";
 import { AppContext } from "@/context/AppContext";
 import { Inotification } from "@/interface/interface";
 import { usePathname } from "next/navigation";
@@ -91,7 +90,7 @@ const DashboardHeader = () => {
 
 	return (
 		<header
-			className={`sticky z-40 backdrop-blur-lg md:h-20 h-16 top-0 bg-white/10 text-white px-3 md:px-5 flex items-center ${
+			className={`sticky z-40 backdrop-blur-lg md:h-20 h-16 top-0 bg-brand-green/10 text-white px-3 md:px-5 flex items-center ${
 				hideSidebar ? "justify-between" : "justify-end"
 			} gap-5 ${pathname?.includes("/dashboard/chat") && "hidden"}`}
 		>
@@ -104,18 +103,8 @@ const DashboardHeader = () => {
 					<RiMenu4Fill size={25} color="white" />
 				</div>
 			)}
-			<Link href={"/"} className="mx-auto md:mr-auto md:ml-0">
-				<Image
-					src={satsatLogo}
-					height={100}
-					width={100}
-					alt="SATSAT-Ai"
-					className={`md:${hideSidebar ? "flex" : "hidden"} h-auto w-auto`}
-					priority
-				/>
-			</Link>
 
-			<ul className="flex gap-4 sm:gap-6 items-center justify-end">
+			<ul className="flex gap-4 ml-auto sm:gap-6 items-center justify-end">
 				<li ref={notificationRef} className="relative" tabIndex={0}>
 					<NotificationsIcon
 						color="primary"

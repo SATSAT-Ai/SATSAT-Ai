@@ -7,9 +7,9 @@ const DashboardBackgroundBlobs = () => {
 
 	const generateColors = useCallback(() => {
 		if (pathname?.includes("/chat") || pathname === "/dashboard") {
-			return ["green-blob", "green-blob"];
+			return ["green-blob4", "green-blob4"];
 		}
-		return ["green-blob", "yellow-blob2"];
+		return ["green-blob4", "yellow-blob2"];
 	}, [pathname]);
 
 	useEffect(() => {

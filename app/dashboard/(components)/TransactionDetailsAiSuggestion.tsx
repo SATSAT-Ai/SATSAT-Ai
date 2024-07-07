@@ -1,6 +1,7 @@
 "use client";
 
 import TypeWrite from "@/components/TypeWrite";
+import { cn } from "@/lib/utils";
 import suggestionImage from "@/public/suggestIcon.svg";
 import Image from "next/image";
 import { useState } from "react";
@@ -39,21 +40,24 @@ const TransactionDetailsAiSuggestion = ({
 				 before:opacity-0 before:hover:opacity-40 w-full before:z-[-1] after:z-[-1] after:absolute after:top-[-1px] after:left-[-1px] before:rounded-2xl after:rounded-2xl rounded-2xl before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between custom-block text-text-normal text-white font-medium flex items-center gap-2 glow4
 							`}
 		>
-			<div className="bg-[#25966b23] flex items-start gap-5 flex-1 rounded-2xl shadow-md p-4">
-				<div className="h-10 w-10 rounded-full shadow-md gradient-upgrade aspect-square">
+			<div className="bg-[#25966b23] flex  gap-5 flex-1 rounded-2xl shadow-md p-4">
+				<div className="h-10 w-10 rounded-full shadow-md gradient-upgrade">
 					<Image
-						className={`${
-							(loading && "ai-spin") || (!isTypeWriterComplete && "ai-spin")
-						} rounded-full h-10 w-10 p-2`}
+						className={cn(
+							"rounded-full h-full w-full p-2 aspect-square",
+							{ "ai-spin": loading },
+							{ "ai-spin": !isTypeWriterComplete }
+						)}
 						src={suggestionImage}
 						alt="ai suggestion"
 						height={25}
 						width={25}
 					/>
 				</div>
+
 				{list_suggestions.map((suggestions) => {
 					return (
-						<ul key={suggestions.id} className="flex flex-col gap-2">
+						<ul key={suggestions.id} className="flex flex-1 flex-col gap-2">
 							<li className="font-medium mb-3">
 								<TypeWrite
 									fontSize={19}

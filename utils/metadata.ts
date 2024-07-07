@@ -16,7 +16,7 @@ export const SatSatAiMetadata: Metadata = {
 	keywords: [
 		"scan financial documents",
 		"financial insights",
-		" Ai in finance",
+		"Ai in finance",
 		"SatSat-Ai",
 	],
 	creator: "Kamasah Dickson",

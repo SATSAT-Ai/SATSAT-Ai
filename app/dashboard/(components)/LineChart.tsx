@@ -13,9 +13,9 @@ import {
 import { Line } from "react-chartjs-2";
 import { DateRange } from "react-day-picker";
 import { DatePickerWithRange } from "./DateRangePicker";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useState } from "react";
 import { generateMixedCharData } from "@/helpers/generateMixedChartData";
-
+import { useEffect } from "react";
 interface ILine {
 	parsedTimeStamps: Date[];
 	date: DateRange | undefined;
@@ -41,36 +41,47 @@ const LineChart = ({
 		plugins
 	);
 
-	const labels = generateMixedCharData(
-		transactionDateRange?.from!,
-		transactionDateRange?.to!,
-		dateRangeWithValue
-	)
-		? Object?.keys(
-				generateMixedCharData(
-					transactionDateRange?.from!,
-					transactionDateRange?.to!,
-					dateRangeWithValue
-				)!
-		  )
-		: [];
+	const [labels, setLabels] = useState<string[]>([]);
+	const [values, setValues] = useState<number[]>([]);
 
-	const values = generateMixedCharData(
-		transactionDateRange?.from!,
-		transactionDateRange?.to!,
-		dateRangeWithValue
-	)
-		? Object?.values(
-				generateMixedCharData(
-					transactionDateRange?.from!,
-					transactionDateRange?.to!,
-					dateRangeWithValue
-				)!
-		  )
-		: [];
+	useEffect(() => {
+		const labels = generateMixedCharData(
+			transactionDateRange?.from!,
+			transactionDateRange?.to!,
+			dateRangeWithValue
+		)
+			? Object?.keys(
+					generateMixedCharData(
+						transactionDateRange?.from!,
+						transactionDateRange?.to!,
+						dateRangeWithValue
+					)!
+			  )
+			: [];
+		const values = generateMixedCharData(
+			transactionDateRange?.from!,
+			transactionDateRange?.to!,
+			dateRangeWithValue
+		)
+			? Object?.values(
+					generateMixedCharData(
+						transactionDateRange?.from!,
+						transactionDateRange?.to!,
+						dateRangeWithValue
+					)!
+			  )
+			: [];
+
+		setValues(values);
+		setLabels(labels);
+	}, [
+		dateRangeWithValue,
+		transactionDateRange?.from,
+		transactionDateRange?.to,
+	]);
 
 	return (
-		<div className="bg-white/10 rounded-2xl p-5 my-7">
+		<div className="bg-brand-green/10 rounded-2xl p-5 my-7">
 			<div className=" hidden md:flex w-fit ml-auto">
 				<DatePickerWithRange
 					date={transactionDateRange}

@@ -99,8 +99,8 @@ export const generateMixedCharData = (
 								);
 								const endOfCurrentWeek = addDays(startOfCurrentWeek, 6);
 
-								console.log(format(startOfCurrentWeek, "EEE MMM dd yyy"));
-								console.log(format(endOfCurrentWeek, "EEE MMM dd yyy"));
+								// console.log(format(startOfCurrentWeek, "EEE MMM dd yyy"));
+								// console.log(format(endOfCurrentWeek, "EEE MMM dd yyy"));
 
 								return isWithinInterval(entry.date, {
 									start: startOfCurrentWeek,

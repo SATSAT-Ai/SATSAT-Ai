@@ -81,11 +81,9 @@ const developerPortal: {
 ];
 
 const DevelopersDropDown = ({
-	scrolled,
 	className,
 	cardClassName,
 }: {
-	scrolled: boolean;
 	className?: ClassValue;
 	cardClassName?: ClassValue;
 }) => {
@@ -93,17 +91,13 @@ const DevelopersDropDown = ({
 		<div
 			data-test="dev-dropdown"
 			className={cn(
-				`bg-[#071f07]/60 w-full p-5 h-[66vh] xl:h-[56vh] overflow-y-auto custom-scroll2 backdrop-blur-xl absolute z-10 ${
-					!scrolled
-						? "backdrop-blur-xl saturate-150"
-						: "backdrop-blur-xl saturate-150"
-				} text-darker`,
+				"py-5 overflow-y-auto h-[60vh] custom-scroll2 bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
 				className
 			)}
 		>
 			<div
 				className={cn(
-					"grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 text-white/80 gap-5 p-5 items-center justify-between",
+					"grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 text-white/80 gap-5 p-5 items-center justify-between",
 					cardClassName
 				)}
 			>
@@ -129,7 +123,7 @@ const DevelopersDropDown = ({
 					);
 				})}
 			</div>
-			<GlowCardParent className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 text-white/80 gap-5 px-5 items-start justify-between">
+			<GlowCardParent className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 text-white/80 gap-5 px-5 items-start justify-between">
 				<GlowCard
 					type="link"
 					linkTo="/"

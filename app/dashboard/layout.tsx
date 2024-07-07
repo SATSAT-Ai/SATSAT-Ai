@@ -23,7 +23,6 @@ const layout = ({ children }: { children: ReactNode }) => {
 						</ThemeProvider>
 						<ChatContextProvider>
 							{children}
-
 							{/* <WalkThrough /> */}
 						</ChatContextProvider>
 					</div>

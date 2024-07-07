@@ -4,6 +4,7 @@ import { usePathname } from "next/navigation";
 import { useContext, useEffect } from "react";
 import { AppContext } from "@/context/AppContext";
 import DashboardSidebarWithData from "./DashboardSidebarData";
+import { cn } from "@/lib/utils";
 const DashboardSidebar = () => {
 	const pathname = usePathname();
 	const { hideSidebar, setHideSidebar } = useContext(AppContext);
@@ -26,11 +27,11 @@ const DashboardSidebar = () => {
 
 	return (
 		<aside
-			className={`bg-white/10 backdrop-blur-md transition-all duration-200 ease-out text-white z-40 md:relative fixed ${
-				hideSidebar
-					? "md:w-32 -translate-x-full md:translate-x-0"
-					: "md:w-64 translate-x-0 overflow-hidden"
-			}`}
+			className={cn(
+				"bg-brand-green/10 backdrop-blur-md transition-all duration-200 ease-out text-white z-40 md:relative fixed ",
+				{ "md:w-32 -translate-x-full md:translate-x-0": hideSidebar },
+				{ "md:w-64 translate-x-0 overflow-hidden": !hideSidebar }
+			)}
 		>
 			<DashboardSidebarWithData
 				hideSidebar={hideSidebar}
