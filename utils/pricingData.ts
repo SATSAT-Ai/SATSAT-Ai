@@ -17,8 +17,8 @@ export const pricingData: IPrices[] = [
 			"Access to API",
 			"$0.25 per extra page scan",
 		],
-		price: "$10/Month",
-		annualPrice: "$60/Annual",
+		price: "$10",
+		annualPrice: "$60",
 	},
 	{
 		id: "plus",
@@ -30,8 +30,8 @@ export const pricingData: IPrices[] = [
 			"Access to chatbot",
 			"$0.25 per extra page scan",
 		],
-		price: "$20/Month",
-		annualPrice: "$120/Annual",
+		price: "$20",
+		annualPrice: "$120",
 	},
 	{
 		id: "enterprise",
