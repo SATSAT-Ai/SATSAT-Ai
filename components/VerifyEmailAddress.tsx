@@ -146,7 +146,7 @@ const VerifyEmailAddress = ({
 					loading
 						? "disabled:cursor-not-allowed disabled:bg-brand-green "
 						: "bg-mid--yellow  active:scale-[1.01]"
-				}focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-mid--yellow focus:ring-mid--yellow outline-none focus:ring-opacity-50 w-full block text-center font-normal transition-colors duration-200 text-white  button`}
+				}focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-mid--yellow focus:ring-mid--yellow outline-none focus:ring-opacity-50 w-full block text-center font-normal transition-colors duration-200 text-white  bg-brand-green hover:bg-brand-green/70 active:bg-brand-green px-4 py-3`}
 			>
 				{loading ? (
 					<LoadingSpinner className="mx-auto animate-[spin_0.4s_linear_infinite] border-transparent border-t-brand-green-darker h-6 w-6" />

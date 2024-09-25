@@ -101,17 +101,29 @@ export function ShimmerButton({
 	buttonType,
 	fontSize = 20,
 	className,
+	text = "Book A Demo",
+	shimmerColor = "#29a173",
+	handleClick,
+	background,
 }: {
 	buttonType?: "link" | "button";
 	fontSize?: number;
 	className?: ClassValue;
+	text?: string;
+	shimmerColor?: string;
+	handleClick?: () => {} | void;
+	background?: string;
 }) {
 	return buttonType == "link" ? (
 		<Link
 			href={"/book-a-demo"}
 			className={cn("z-10 flex items-center justify-center", className)}
 		>
-			<Shimmer className="shadow-2xl py-7 px-32" shimmerColor="#29a173">
+			<Shimmer
+				background={background}
+				className="shadow-2xl py-7 px-32"
+				shimmerColor={shimmerColor}
+			>
 				<span
 					style={
 						{
@@ -120,25 +132,31 @@ export function ShimmerButton({
 					}
 					className="whitespace-pre-wrap text-center [font-size:var(--fontSize)] font-semibold leading-none tracking-tight text-white from-white"
 				>
-					Book A Demo
+					{text}
 				</span>
 			</Shimmer>
 		</Link>
 	) : (
-		<div className={cn("z-10 flex items-center justify-center", className)}>
-			<Shimmer className="shadow-2xl" shimmerColor="#29a173">
-				<span
-					style={
-						{
-							"--fontSize": fontSize,
-						} as CSSProperties
-					}
-					className="whitespace-pre-wrap text-center text-[var(--fontSize)] font-medium leading-none tracking-tight text-white from-white lg:text-lg"
-				>
-					Book A Demo
-				</span>
-			</Shimmer>
-		</div>
+		<Shimmer
+			background={background}
+			onClick={handleClick}
+			className={cn(
+				"z-10 flex shadow-2xl items-center justify-center",
+				className
+			)}
+			shimmerColor={shimmerColor}
+		>
+			<span
+				style={
+					{
+						"--fontSize": fontSize,
+					} as CSSProperties
+				}
+				className="whitespace-pre-wrap text-center text-[var(--fontSize)] font-medium leading-none tracking-tight text-white from-white lg:text-lg"
+			>
+				{text}
+			</span>
+		</Shimmer>
 	);
 }
 

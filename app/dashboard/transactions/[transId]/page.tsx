@@ -1,5 +1,10 @@
 import { Data } from "@/interface/interface";
 import TransactionDetails from "../../(components)/TransactionDetailsPage";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+	title: "SatSat-Ai - Transaction Details",
+};
 
 const page = ({ params: { transId } }: { params: { transId: string } }) => {
 	// fetch data based on paramId

@@ -120,7 +120,7 @@ const TransactionDetails = ({ transData }: { transData: Data[] }) => {
 												list_suggestions[0].list.length,
 										},
 										{
-											glow2:
+											glow:
 												showMoreAiSugestions !==
 												list_suggestions[0].list.length,
 										}

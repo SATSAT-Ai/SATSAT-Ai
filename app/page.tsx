@@ -11,21 +11,22 @@ import { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import HeroSection from "@/components/HeroSection";
-import Link from "next/link";
-import chatBot from "../public/chatbot.svg";
-import createAccountImage from "../public/create-account.svg";
-import chatWithAiImage from "../public/chat-with-ai.svg";
 import { MdStar } from "react-icons/md";
 import GetStartedButton from "@/components/ui/GetStartedButton";
 import PageScroller from "./dashboard/(components)/PageScroller";
 import TypeWriteInView from "@/components/TypeWriteInView";
-import Blob from "@/components/Blob";
 import GetStartedWithBlob from "@/components/GetStartedWithBlob";
 import EarlyAccessModal from "@/components/ui/EarlyAccessModal";
 // import { PulseBeams } from "@/components/ui/PulseBeam";
 import Feature from "@/components/Feature";
 import { featuresData } from "@/utils/featuresData";
 import Spotlight from "@/components/ui/spotlight";
+import { DatabaseZap, FileText, ShieldAlert, UserRoundCog } from "lucide-react";
+import { BotMessageSquare } from "lucide-react";
+import Pricing from "@/components/Pricing";
+// import priceImage from "@/public/price.avif";
+import GlowCardParent from "@/components/ui/GlowCardParent";
+import GlowCard from "@/components/ui/GlowCard";
 
 export const metadata: Metadata = {
 	title: "Welcome to SatSat-Ai - Chat with your financial documents",
@@ -36,218 +37,130 @@ export default function Home() {
 		<>
 			<Header green={true} />
 			<EarlyAccessModal />
-			<main className="bg-darker overflow-x-clip">
+			<main className="bg-darker w-full overflow-x-clip">
 				<HeroSection />
-				<section className="text-center flex flex-col my-max">
-					<h2 className="text-brand-green max-w-4xl leading-tight text-text-24 sm:text-text-40 md:text-text-60 lg:text-text-80 mx-auto">
-						What Is SatSat Ai?
-					</h2>
-					<div className="text-mid--yellow max-w-lg mx-auto text-text-normal md:text-text-normal">
-						<TypeWriteInView
-							text="SatSat AI is your all-in-one intelligence platform. It combines
-							cutting edge AI technology to query your financial data with
-							natural language."
-						/>
+				<section className="text-center my-max flex flex-col items-center md:flex-row md:flex-wrap xl:flex-nowrap gap-9 sm:gap-5 px-5 md:px-0">
+					<div className="max-w-4xl mx-auto xl:max-w-xl w-full">
+						<h2 className="text-brand-green font-semibold text-left leading-tight text-text-40 md:text-text-60 mx-auto">
+							What Is SatSat Ai?
+						</h2>
+						<div className="text-mid--yellow text-left h-24 text-text-normal md:text-text-normal">
+							<TypeWriteInView
+								text="SatSat AI is a financial intelligence platform revolutionizing how you extract value from your financial documents. We empower organizations to save time and resources by unlocking the hidden insights within their data."
+								className="md:text-text-normal"
+							/>
+						</div>
 					</div>
-					<div className=" relative mt-10 z-0 md:mt-20 grid gap-5 mx-auto grid-cols-1 sm:grid-cols-2 max-w-4xl">
-						<Blob
-							blur={120}
-							className="bg-mid--yellow/70 -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"
-						/>
-						<Blob
-							blur={120}
-							className="bg-brand-green/70 w-72 -z-10 h-72 md:w-96 md:h-96 top-[70%] -left-[10%] md:top-[40%]"
-						/>
+					<GlowCardParent className="relative grid gap-5 mx-auto grid-cols-1 sm:grid-cols-2 min-[900px]:grid-cols-3 lg:grid-cols-2 max-w-4xl">
+						<GlowCard cardClassName="bg-[#071f07] text-white">
+							<Feature
+								title={"Data Security and Privacy"}
+								para={
+									"We prioritize data security. We ensure maximum protection and security."
+								}
+								icon={<ShieldAlert size={40} className="text-mid--yellow" />}
+								titleClassName=" text-mid--yellow"
+								className="text-left"
+							/>
+						</GlowCard>
+						<GlowCard cardClassName="bg-[#071f07] text-white ">
+							<Feature
+								title={"Smart Data Extraction"}
+								para={
+									"Our AI algorithms automatically identify file and extract key information."
+								}
+								className="text-left"
+								icon={<FileText size={40} className="text-mid--yellow" />}
+								titleClassName="text-mid--yellow"
+							/>
+						</GlowCard>
+						<GlowCard cardClassName="bg-[#071f07] text-white ">
+							<Feature
+								title={"Seamless Storage"}
+								para={
+									"Processed documents are securely stored in-house for instant retrieval."
+								}
+								className="text-left"
+								icon={<DatabaseZap size={40} className="text-mid--yellow" />}
+								titleClassName="text-mid--yellow"
+							/>
+						</GlowCard>
+						<GlowCard cardClassName="bg-[#071f07] text-white ">
+							<Feature
+								title={"AI model"}
+								para={
+									"Our model provides insights to your financial data helping you make informed decisions with ease."
+								}
+								className="text-left"
+								icon={
+									<svg
+										xmlns="http://www.w3.org/2000/svg"
+										fill="#c98821"
+										viewBox="0 0 24 24"
+										strokeWidth={1.5}
+										stroke="#c98821"
+										className="w-10 h-10"
+									>
+										<path
+											strokeLinecap="round"
+											strokeLinejoin="round"
+											d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
+										/>
+									</svg>
+								}
+								titleClassName="text-mid--yellow"
+							/>
+						</GlowCard>
+					</GlowCardParent>
+				</section>
+				<section className="max-w-3xl lg:max-w-full mx-auto">
+					<h4 className="text-brand-green max-w-4xl leading-tight text-center mb-2 text-text-40 md:text-text-60 mx-auto lg:text-text-80">
+						What We Offer
+					</h4>
+					<p className="text-mid--yellow px-2 h-20 max-w-xl mb-10 mx-auto text-text-normal text-center">
+						Our intelligent tools helps you optimize your financial future.
+						Uncover more features like fraud detection, credit scoring,
+						financial insights, ai chat and many more.
+					</p>
 
-						<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center justify-center">
-							<Image
-								src={chatBot}
-								height={100}
-								width={100}
-								className="h-[100px] w-[100px]"
-								alt="chatbot"
-							/>
-							<h3 className="text-text-20 font-medium mb-2">
-								Effortless Ingestion
-							</h3>
-							<p className="text-white/70">
-								Upload your financial data and SatSat AI takes care of the rest.
-							</p>
-						</div>
-						<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center justify-center">
-							<Image
-								src={chatBot}
-								height={100}
-								width={100}
-								className="h-[100px] w-[100px]"
-								alt="chatbot"
-							/>
-							<h3 className="text-text-20 mb-2 font-medium">
-								Smart Data Extraction
-							</h3>
-							<p className="text-white/70">
-								Our AI algorithms automatically identify file and extract key
-								information.
-							</p>
-						</div>
-						<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center justify-center">
-							<Image
-								src={chatBot}
-								height={100}
-								width={100}
-								className="h-[100px] w-[100px]"
-								alt="chatbot"
-							/>
-							<h3 className="text-text-20 font-medium ">Seamless Storage</h3>
-							<p className="text-white/70">
-								Processed documents are securely stored in-house for instant
-								retrieval.
-							</p>
-						</div>
-						<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-[#071f0790] flex flex-col items-center justify-center">
-							<Link
-								href={"/book-a-demo"}
-								className="flex transition-colors font-medium duration-200 items-center gap-2 active:scale-[1.01] text-white hover:underline w-fit px-7  rounded-3xl mx-auto"
-							>
-								Book a demo
-							</Link>
-
-							<GetStartedButton
-								data-test="choose-pricing-button"
-								showIcon={true}
-								name="Get Started Now"
-							/>
+					<div className=" px-5 ">
+						<div className="border-l border-brand-green/40 grid grid-cols-1 gap-0  lg:grid-cols-4">
+							{featuresData.map((data, idx) => {
+								return (
+									<Feature
+										key={data.title}
+										idx={idx}
+										title={data.title}
+										para={data.para.slice(0, 100) + "..."}
+										icon={data.icon}
+										borderRight={true}
+										hidden={[0, 4, 5, 6].includes(idx)}
+										borderTop={[2, 3, 7, 8, 9, 10, 11, 12].includes(idx)}
+										className=" border-brand-green/40 bg-transparent rounded-none p-7"
+										titleClassName="text-text-24"
+									/>
+								);
+							})}
 						</div>
 					</div>
 				</section>
-
-				<section className="text-center flex flex-col my-max">
-					<h3 className="text-brand-green max-w-4xl leading-tight text-text-24 sm:text-text-40 md:text-text-60 lg:text-text-80 mx-auto">
-						Why SatSat Ai?
-					</h3>
-					<div className="text-mid--yellow max-w-xl h-[104px] mx-auto text-text-normal md:text-text-normal">
-						<TypeWriteInView
-							text="SatSat AI is an financial intelligence platform; a paradigm
-							shift in how you harness the wisdom hidden within your financial
-							documents. We are here to empower your organization, save you time
-							and resources. Here is what sets SatSat AI apart:"
-						/>
-					</div>
-
-					<div className=" relative  mt-10 md:mt-20 mx-auto max-w-4xl">
-						<div className=" grid gap-5 grid-cols-1 z-0 relative sm:grid-cols-2">
-							<Blob
-								blur={120}
-								className="-translate-x-1/2 bg-brand-green/70 -z-10 w-72 h-72 md:w-96 md:h-96 top-[40%] md:top-[25%] right-[30%]"
-							/>
-							<Blob
-								blur={120}
-								className="bg-mid--yellow/70 -translate-x-1/2 -z-10 w-72 h-72 md:w-96 md:h-96 top-[60%] md:top-[20%] right-[-30%]"
-							/>
-
-							<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center text-center justify-center">
-								<Image
-									src={chatBot}
-									height={100}
-									width={100}
-									className="h-[100px] w-[100px]"
-									alt="chatbot"
-								/>
-								<h3 className="text-text-20 font-medium mb-3">
-									Data Security and Privacy
-								</h3>
-								<p className="text-white/70">
-									We understand the importance of data security. SatSat AI
-									ensures maximum protection and security using cutting edge
-									industry security and privacy practices, so you can harness
-									the power of AI with peace of mind.
-								</p>
-							</div>
-							<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center text-center justify-center">
-								<Image
-									src={chatBot}
-									height={100}
-									width={100}
-									className="h-[100px] w-[100px]"
-									alt="chatbot"
-								/>
-								<h3 className="text-text-20 font-medium mb-3 ">
-									Collaborative Intelligence
-								</h3>
-								<p className="text-white/70">
-									Our platform fosters interactive collaboration, allowing your
-									teams to work together in real-time, share insights, and
-									collectively find answers on a dedicated chat board.
-								</p>
-							</div>
-							<div className="text-white p-10 rounded-3xl bg-[#071f0780] flex flex-col items-center text-center justify-center">
-								<Image
-									src={chatBot}
-									height={100}
-									width={100}
-									className="h-[100px] w-[100px]"
-									alt="chatbot"
-								/>
-								<h3 className="text-text-20 font-medium mb-3">
-									Lightning-Fast Answers, Anytime, Anywhere
-								</h3>
-								<p className="text-white/70">
-									Your employees can access answers to their questions in mere
-									seconds without wading through endless documents. SatSat AI
-									scans, understands, and presents relevant information ensuring
-									you spend less time searching and more time acting
-								</p>
-							</div>
-
-							<div className="text-white gap-5 z-0 p-5 rounded-3xl  sm:bg-[#071f0790] flex flex-col items-center justify-center">
-								<Link
-									href={"/book-a-demo"}
-									className="flex transition-colors font-medium duration-200 items-center gap-2 active:scale-[1.01] text-white hover:underline w-fit px-7  rounded-3xl mx-auto"
-								>
-									Book a demo
-								</Link>
-								<GetStartedButton
-									data-test="choose-pricing-button"
-									showIcon={true}
-									name="Get Started Now"
-								/>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				{/* <section className="max-w-3xl lg:max-w-full mx-auto  backdrop-blur-xl saturate-150 p-3 md:p-5 rounded-xl w-full">
-						<h4 className="text-brand-green m-0 text-text-24 sm:text-text-40 md:text-text-60 lg:text-text-80 max-w-5xl mx-auto">
-							Lorem ipsum dolor sit amet.
-						</h4>
-						<TypeWriteInView
-							className="text-center max-w-2xl mx-auto md:my-3"
-							typeWriteType="smoothWriter"
-							text="SatSat AI is your all-in-one intelligence platform. It combines
-							cutting edge AI technology to query your financial data with
-							natural language."
-						/>
-						<AnimatedTabs />
-					</section> */}
+				<Pricing />
 				<section className=" z-10 my-max text-center flex flex-col relative">
 					<Spotlight
 						className="absolute w-[170%] md:w-[250%] lg:w-[120%]"
-						// className="top-[-5%] left-[10%] h-[300%] sm:h-[200%] w-[200%] sm:-top-[20px] md:left-60 md:-top-20"
 						fill="#29a173"
 					/>
 					<h4 className="hidden md:flex text-brand-green max-w-4xl leading-tight text-text-24 sm:text-text-40 md:text-text-60 lg:text-text-80 mx-auto">
 						Chat With SatSat Ai
 					</h4>
-					<div className="hidden md:flex text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
-						<TypeWriteInView
-							text="Querying your financial data has never been easy, with SAT SAT AI
-							you need not worry about anything"
-						/>
-					</div>
+					<p className="hidden md:flex text-mid--yellow max-w-xl mx-auto text-text-normal md:text-text-normal">
+						Querying your financial data has never been easy, with SAT SAT AI
+						you need not worry about anything
+					</p>
 
 					<div className="mt-20 md:max-w-5xl mx-auto grid gap-10 grid-cols-1 lg:grid-cols-2">
 						<div className="text-left relative">
-							<h4 className="text-brand-green mb-3 z-10 relative font-semibold text-text-24 md:text-text-40">
+							<h4 className="text-brand-green mb-3 z-10 relative font-semibold text-text-40">
 								How To Get Started
 							</h4>
 							<p className="text-mid--yellow z-10 relative mb-5 max-w-md">
@@ -268,14 +181,8 @@ export default function Home() {
 						</div>
 						<div className="flex z-10 relative flex-col sm:flex-row gap-5 lg:flex-row">
 							<div className="flex sm:flex-col md:flex-col lg:flex-col gap-5 bg-[#071f0780] lg:bg-[#071f07] px-5 py-5 rounded-3xl">
-								<div className="h-[80px] w-[80px] relative before:absolute before:inset-0 before:h-[80px] before:w-[80px] before:bg-brand-green/50 before:border before:border-brand-green before:mix-blend-hard-light before:rounded-full">
-									<Image
-										src={createAccountImage}
-										height={10}
-										width={10}
-										alt="create-account"
-										className="h-full w-full object-contain"
-									/>
+								<div className=" w-[80px] aspect-square shrink-0 grid place-content-center bg-brand-green-darker rounded-full">
+									<UserRoundCog color="white" size={35} />
 								</div>
 								<div className="flex flex-col items-start">
 									<h4 className="text-brand-green mb-2 font-medium text-text-20 text-left">
@@ -287,15 +194,10 @@ export default function Home() {
 								</div>
 							</div>
 							<div className="flex sm:flex-col md:flex-col lg:flex-col gap-5 bg-[#071f0780] lg:bg-[#071f07] px-5 py-5 rounded-3xl">
-								<div className="h-[80px] w-[80px] relative before:absolute before:inset-0 before:h-[80px] before:w-[80px] before:bg-brand-green/50 before:border before:border-brand-green before:mix-blend-hard-light before:rounded-full">
-									<Image
-										src={chatWithAiImage}
-										height={10}
-										width={10}
-										alt="create-account"
-										className="h-full w-full object-contain"
-									/>
+								<div className="w-[80px] aspect-square shrink-0 grid place-content-center bg-brand-green-darker rounded-full">
+									<BotMessageSquare color="white" size={35} />
 								</div>
+
 								<div className="flex flex-col items-start">
 									<h4 className="text-brand-green font-medium text-text-20 mb-2">
 										Start chatting with Ai
@@ -310,16 +212,14 @@ export default function Home() {
 				</section>
 
 				<section className="text-center flex flex-col w-full overflow-x-auto ">
-					<h4 className="text-brand-green max-w-4xl leading-tight text-text-24 sm:text-text-40 md:text-text-60 mx-auto lg:text-text-80">
+					<h4 className="text-brand-green max-w-4xl leading-tight text-text-40 md:text-text-60 mx-auto lg:text-text-80">
 						Financial Service Providers
 					</h4>
-					<div className="text-mid--yellow px-2 h-20 max-w-xl mx-auto text-text-normal md:text-text-normal">
-						<TypeWriteInView
-							text="SatSat AI scans documents such as invoices, mobile money
-							statements, bank statements, receipts etc. These are some of the
-							service providers and banks we provide our services to."
-						/>
-					</div>
+					<p className="text-mid--yellow px-2 h-20 max-w-xl mx-auto text-text-normal md:text-text-normal">
+						SatSat AI scans documents such as invoices, mobile money statements,
+						bank statements, receipts etc. These are some of the service
+						providers and banks we provide our services to.
+					</p>
 
 					<Marquee
 						autoFill
@@ -381,48 +281,18 @@ export default function Home() {
 						</div>
 					</Marquee>
 				</section>
-				<section className="max-w-3xl lg:max-w-full mx-auto">
-					<h4 className="text-brand-green max-w-4xl leading-tight text-center mb-5 my-max text-text-24 sm:text-text-40 md:text-text-60 mx-auto lg:text-text-80">
-						What We Offer
-					</h4>
-					<div className="text-mid--yellow px-2 h-20 max-w-xl mb-10 mx-auto text-text-normal text-center">
-						<TypeWriteInView text="Our intelligent tools helps you optimize your financial future. Uncover more features like fraud detection, credit scoring, financial insights, ai chat and many more." />
-					</div>
 
-					<div className=" px-5 ">
-						<div className="border-l border-brand-green/40 grid grid-cols-1 gap-0  lg:grid-cols-4">
-							{featuresData.map((data, idx) => {
-								return (
-									<Feature
-										key={data.title}
-										idx={idx}
-										title={data.title}
-										para={data.para.slice(0, 100) + "..."}
-										icon={data.icon}
-										borderRight={true}
-										hidden={[0, 4, 5, 6].includes(idx)}
-										borderTop={[2, 3, 7, 8, 9, 10, 11, 12].includes(idx)}
-										className=" border-brand-green/40 bg-transparent rounded-none p-7"
-										titleClassName="text-text-24"
-									/>
-								);
-							})}
-						</div>
-					</div>
-				</section>
 				<section className="text-center flex my-max flex-col ">
 					<div className="my-max">
-						<h4 className="text-brand-green leading-tight text-text-24 sm:text-text-40 md:text-text-50 lg:text-text-80 max-w-5xl mx-auto">
+						<h4 className="text-brand-green leading-tight text-text-40 md:text-text-50 lg:text-text-80 max-w-5xl mx-auto">
 							Analyze Your Data With SatSat Ai
 						</h4>
-						<div className="text-mid--yellow max-w-xl h-24 mx-auto text-text-normal md:text-text-normal">
-							<TypeWriteInView
-								text="SatSat AI is a revolutionize how we harness knowledge buried
-								within our documents. Whether you are in healthcare, legal,
-								finance, or any other industry, SatSat AI empowers you to
-								transform your data into a dynamic source of insights."
-							/>
-						</div>
+						<p className="text-mid--yellow max-w-xl h-24 mx-auto text-text-normal md:text-text-normal">
+							SatSat AI is a revolutionize how we harness knowledge buried
+							within our documents. Whether you are in healthcare, legal,
+							finance, or any other industry, SatSat AI empowers you to
+							transform your data into a dynamic source of insights.
+						</p>
 
 						<div className="py-20">
 							<div className="text-left relative max-w-2xl mx-auto">
@@ -442,46 +312,46 @@ export default function Home() {
 								<div className="flex items-center justify-between gap-5 w-full">
 									<ul className="text-white text-[14px] flex flex-col gap-5 relative before:absolute before:top-0 before:left-0 before:h-full before:w-[1px] before:bg-grey-lightest/20">
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											FINANCE AND BANKING
 										</li>
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											LEGAL PROFESSIONALS
 										</li>
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											CORPORATE AND ENTERPRISE
 										</li>
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											RESEARCH AND ACADEMIA
 										</li>
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											GOVERNMENT AND PUBLIC SECTOR
 										</li>
 									</ul>
 
 									<ul className="text-white text-[14px] flex flex-col relative before:absolute before:top-0 before:left-0 before:h-full before:w-[1px] before:bg-grey-lightest/20 gap-5">
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											HEALTHCARE AND MEDICAL
 										</li>
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											INSURANCE
 										</li>
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											SMALL BUSINESS OWNERS
 										</li>
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											HUMAN RESOURCES
 										</li>
 										<li className="flex items-center gap-3">
-											<div className="h-5 w-[2px] gradient rounded"></div>
+											<div className="h-5 w-[2px] [background:linear-gradient(to_top,#29a173,#c98821)] rounded"></div>
 											AND MORE!
 										</li>
 									</ul>

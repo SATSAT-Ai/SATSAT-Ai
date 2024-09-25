@@ -7,20 +7,21 @@ import {
 	Dispatch,
 	SetStateAction,
 	useContext,
+	useCallback,
 } from "react";
-import { IUser } from "./ChatMain";
+import { conversationType } from "./ChatMain";
 import OutgoingMessage from "./OutgoingMessage";
 import IncomingMessage from "./IncomingMessage";
 import ChatScrollToTop from "@/app/dashboard/(components)/ChatScrollToTop";
 import ChatScrollToBottom from "@/app/dashboard/(components)/ChatScrollToBottom";
 import ChatInput from "./ChatInput";
-import ToggleSidebars from "./ToggleSidebars";
 import { ChatContext } from "@/context/ChatContext";
+import TopShade from "./TopShade";
 
 interface IChatPage {
-	conversations: IUser[];
 	chatContainerId: string | undefined;
-	setConversations: Dispatch<SetStateAction<IUser[]>>;
+	conversations: conversationType[];
+	setConversations: Dispatch<SetStateAction<conversationType[]>>;
 }
 
 const ChatPage = ({
@@ -51,14 +52,14 @@ const ChatPage = ({
 		}
 	};
 
-	const handleScrollToBottom = () => {
+	const handleScrollToBottom = useCallback(() => {
 		if (chatContainerRef?.current) {
 			chatContainerRef.current.scrollTo({
 				top: chatContainerRef.current.scrollHeight,
 				behavior: "smooth",
 			});
 		}
-	};
+	}, []);
 
 	useEffect(() => {
 		handleScrollToBottom();
@@ -83,12 +84,12 @@ const ChatPage = ({
 		return () => {
 			containerRef?.removeEventListener("scroll", handleScroll);
 		};
-	}, [conversations]);
+	}, [conversations, handleScrollToBottom]);
 
 	return (
-		<div className=" flex flex-col items-center h-dvh overflow-clip">
-			<ToggleSidebars />
-			<div className="fixed bottom-32 -translate-x-1/2 left-1/2">
+		<div className="h-full flex relative flex-col">
+			<TopShade />
+			<div className="absolute bottom-32 z-10 -translate-x-1/2 left-1/2">
 				{scrollToTop && isOldConversation && (
 					<ChatScrollToTop scrollToTop={handleScrollToTop} />
 				)}
@@ -97,21 +98,21 @@ const ChatPage = ({
 					<ChatScrollToBottom scrollToBottom={handleScrollToBottom} />
 				)}
 			</div>
-			<div ref={chatContainerRef} className="h-full w-full overflow-y-auto ">
-				<div className="flex flex-col gap-5 max-w-4xl p-5 mx-auto">
-					{conversations.map((conversation: IUser) => {
-						if (conversation.from === "User") {
+			<div
+				ref={chatContainerRef}
+				className="h-full w-full pt-20 overflow-y-auto scrollbar-hidden"
+			>
+				<div className="flex flex-col gap-5 max-w-4xl pb-10 px-5 mx-auto">
+					{conversations.map((conversation: conversationType) => {
+						if (conversation.from === "user") {
 							return (
 								<OutgoingMessage key={conversation.id} message={conversation} />
 							);
-						} else if (conversation.from === "Ai") {
+						} else if (conversation.from === "ai") {
 							return (
 								<IncomingMessage
-									endingText={conversation.endingText as string}
+									response={conversation}
 									key={conversation.id}
-									list={conversation.list!}
-									firstText={conversation.firstText as string}
-									conversations={conversations}
 									typeWrite={true}
 									chatContainerRef={chatContainerRef}
 								/>

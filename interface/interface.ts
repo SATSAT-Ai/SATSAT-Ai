@@ -78,6 +78,7 @@ export interface ICategory {
 }
 
 export interface IncomeStreams {
+	streamNo?: number;
 	date: string;
 	name: string;
 	number: number;

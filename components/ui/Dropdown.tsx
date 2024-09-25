@@ -1,5 +1,11 @@
 import { Fragment, Dispatch, SetStateAction } from "react";
-import { Listbox, Transition } from "@headlessui/react";
+import {
+	Listbox,
+	ListboxButton,
+	ListboxOption,
+	ListboxOptions,
+	Transition,
+} from "@headlessui/react";
 import { HiChevronUpDown } from "react-icons/hi2";
 
 interface Iselect {
@@ -15,8 +21,8 @@ export default function DropDown({
 }: Iselect) {
 	return (
 		<Listbox value={selectedStatement} onChange={setSelectedDropDownStatement}>
-			<div className="relative mt-1">
-				<Listbox.Button className="relative w-full rounded-lg bg-brand-green-darker/80 hover:text-white cursor-pointer text-[wheat] text-[14px] py-2 pl-3 pr-10 text-left border border-[wheat] hover:bg-[#123829] focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
+			<div className="relative">
+				<ListboxButton className="relative w-full rounded-lg bg-brand-green-darker/80 hover:text-white cursor-pointer text-[wheat] text-[14px] py-2 pl-3 pr-10 text-left border border-[wheat] hover:bg-[#123829] focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white/75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
 					<span className="block truncate">{selectedStatement}</span>
 					<span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
 						<HiChevronUpDown
@@ -25,16 +31,16 @@ export default function DropDown({
 							aria-hidden="true"
 						/>
 					</span>
-				</Listbox.Button>
+				</ListboxButton>
 				<Transition
 					as={Fragment}
 					leave="transition ease-in duration-100"
 					leaveFrom="opacity-100"
 					leaveTo="opacity-0"
 				>
-					<Listbox.Options className="absolute z-[1] mt-1 max-h-60 w-full overflow-auto rounded-md  text-[wheat] bg-[#123829] py-1 text-[14px] text-base shadow-lg focus:outline-none sm:text-sm">
+					<ListboxOptions className="absolute z-[1] mt-1 max-h-60 w-full overflow-auto rounded-md  text-[wheat] bg-[#123829] py-1 text-[14px] text-base shadow-lg focus:outline-none sm:text-sm">
 						{statements.map((statement, statementIdx) => (
-							<Listbox.Option
+							<ListboxOption
 								key={statementIdx}
 								className={({ active }) =>
 									`relative cursor-pointer select-none py-2 px-7 ${
@@ -54,9 +60,9 @@ export default function DropDown({
 										</span>
 									</>
 								)}
-							</Listbox.Option>
+							</ListboxOption>
 						))}
-					</Listbox.Options>
+					</ListboxOptions>
 				</Transition>
 			</div>
 		</Listbox>

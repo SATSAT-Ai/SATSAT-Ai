@@ -79,7 +79,7 @@ const FinishingUp = () => {
 					data-test="finishingUpButton"
 					type="button"
 					onClick={() => router.push("/signin")}
-					className="w-full block text-center font-normal hover:bg-brand-green/70 transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green/80 button"
+					className="w-full block text-center font-normal hover:bg-brand-green/70 transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green/80 px-4 py-3 rounded-[8px] text-text-normal"
 				>
 					Done
 				</button>
@@ -89,7 +89,7 @@ const FinishingUp = () => {
 					data-test="finishingUpButtonWithPaddle"
 					type="button"
 					onClick={handlePaddlePayment}
-					className="w-full block text-center font-normal hover:bg-brand-green/70 transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green/80 button"
+					className="w-full block text-center font-normal hover:bg-brand-green/70 transition-colors duration-200 active:scale-[1.01] text-white bg-brand-green/80  px-4 py-3 rounded-[8px] text-text-normal"
 				>
 					Continue to checkout
 				</button>

@@ -6,14 +6,15 @@ const IncomeTable = ({ incomeData }: { incomeData: IncomeStreams[] }) => {
 		date: string,
 		name: string,
 		number: number,
-		amount: number
+		amount: number,
+		streamNo?: number
 	) {
-		return { date, name, number, amount };
+		return { date, name, number, amount, streamNo };
 	}
 
 	const rows = incomeData.map((incomeStreams: IncomeStreams) => {
-		const { date, name, number, amount } = incomeStreams;
-		return createData(date, name, number, amount);
+		const { date, name, number, amount, streamNo } = incomeStreams;
+		return createData(date, name, number, amount, streamNo);
 	});
 
 	return (
@@ -44,15 +45,25 @@ const IncomeTable = ({ incomeData }: { incomeData: IncomeStreams[] }) => {
 		>
 			<thead>
 				<tr>
-					<th title="Date">Date</th>
+					<th className="w-[17%]" title="streamNo.">
+						streamNo.
+					</th>
+					<th className="w-[20%]" title="Date">
+						Date
+					</th>
 					<th title="Name">Name</th>
-					<th title="Number">Number</th>
-					<th title="Amount">Amount</th>
+					<th className="w-[15%]" title="Number">
+						Number
+					</th>
+					<th className="w-[15%]" title="Amount">
+						Amount
+					</th>
 				</tr>
 			</thead>
 			<tbody>
 				{rows.map((row) => (
-					<tr key={row.date}>
+					<tr key={`${row.date}-${row.number}`}>
+						<td>{row.streamNo}</td>
 						<td>{row.date}</td>
 						<td>{row.name}</td>
 						<td>{row.number}</td>

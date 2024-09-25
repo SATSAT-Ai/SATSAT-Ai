@@ -11,6 +11,7 @@ interface IGlow {
 	disabled?: boolean;
 	disabledGlowButton?: boolean;
 	className?: string;
+	target?: "_parent" | "_blank";
 }
 
 const CustomGlowButton = ({
@@ -23,6 +24,7 @@ const CustomGlowButton = ({
 	disabled,
 	disabledGlowButton,
 	className,
+	target = "_parent",
 	...restProps
 }: IGlow) => {
 	const handleButtonClick = () => {
@@ -32,7 +34,8 @@ const CustomGlowButton = ({
 	};
 
 	return buttonType === "Link" ? (
-		<Link
+		<a
+			target={target}
 			{...restProps}
 			href={href!}
 			className={cn(
@@ -40,11 +43,13 @@ const CustomGlowButton = ({
 				className
 			)}
 		>
-			<div style={{ order: `${iconPosition === "right" ? 2 : 0}` }}>
-				{icon && icon}
-			</div>
+			{icon && (
+				<div style={{ order: `${iconPosition === "right" ? 2 : 0}` }}>
+					{icon}
+				</div>
+			)}
 			{name}
-		</Link>
+		</a>
 	) : disabled ? (
 		<button type="button"></button>
 	) : (

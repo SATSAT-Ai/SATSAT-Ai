@@ -33,7 +33,7 @@ const WalkThrough = () => {
 			const target = document.getElementById(targetElement?.targetElementId!);
 			if (target) {
 				target?.classList?.remove("walkthroughTarget");
-                target.classList.remove("glow3");
+				target.classList.remove("glow");
 			}
 		});
 		const targetDomElement = document.getElementById(
@@ -42,7 +42,7 @@ const WalkThrough = () => {
 		if (targetDomElement) {
 			targetDomElement.classList.add("walkthroughTarget");
 
-			targetDomElement.classList.add("glow3");
+			targetDomElement.classList.add("glow");
 			targetDomElement.scrollIntoView({ behavior: "smooth", block: "center" });
 		}
 	};

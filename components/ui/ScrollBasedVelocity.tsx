@@ -11,7 +11,7 @@ import {
 	useTransform,
 	useVelocity,
 } from "framer-motion";
-import React, { CSSProperties, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface VelocityScrollProps {
 	text: string;
@@ -73,7 +73,7 @@ function ScrollBasedVelocity({
 
 		const x = useTransform(baseX, (v) => `${wrap(-100 / repetitions, 0, v)}%`);
 
-		const directionFactor = React.useRef<number>(1);
+		const directionFactor = useRef<number>(1);
 		useAnimationFrame((t, delta) => {
 			let moveBy = directionFactor.current * baseVelocity * (delta / 1000);
 

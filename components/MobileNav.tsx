@@ -54,7 +54,7 @@ const MobileNav = ({
 		},
 		{
 			path: "/contact",
-			name: "Support",
+			name: "Contact",
 			type: "link",
 		},
 	];

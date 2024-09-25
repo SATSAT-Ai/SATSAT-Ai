@@ -37,16 +37,15 @@ const TransactionDetailsAiSuggestion = ({
 	return (
 		<div
 			className={`
-				 before:opacity-0 before:hover:opacity-40 w-full before:z-[-1] after:z-[-1] after:absolute after:top-[-1px] after:left-[-1px] before:rounded-2xl after:rounded-2xl rounded-2xl before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between custom-block text-text-normal text-white font-medium flex items-center gap-2 glow4
-							`}
+				 before:opacity-0 before:hover:opacity-40 w-full before:z-[-1] after:z-[-1] after:absolute after:top-[-1px] after:left-[-1px] before:rounded-2xl after:rounded-2xl rounded-2xl before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between custom-block text-text-normal text-white font-medium flex items-center gap-2 glow`}
 		>
 			<div className="bg-[#25966b23] flex  gap-5 flex-1 rounded-2xl shadow-md p-4">
-				<div className="h-10 w-10 rounded-full shadow-md gradient-upgrade">
+				<div className="h-10 w-10 rounded-full shadow-md [background:linear-gradient(40deg,#2e2e48,#005031)] hover:[background:linear-gradient(80deg,#2e2e48,#005031)] transition-colors">
 					<Image
 						className={cn(
 							"rounded-full h-full w-full p-2 aspect-square",
-							{ "ai-spin": loading },
-							{ "ai-spin": !isTypeWriterComplete }
+							{ "[animation:spin_1.2s_linear_infinite]": loading },
+							{ "[animation:spin_1.2s_linear_infinite]": !isTypeWriterComplete }
 						)}
 						src={suggestionImage}
 						alt="ai suggestion"
@@ -60,13 +59,12 @@ const TransactionDetailsAiSuggestion = ({
 						<ul key={suggestions.id} className="flex flex-1 flex-col gap-2">
 							<li className="font-medium mb-3">
 								<TypeWrite
-									fontSize={19}
 									text={suggestions.title_suggestion}
 									key={suggestions.id}
 									showCaret={false}
 									color="white"
 									typingSpeed={20}
-									setIsTypeWriterComplete={setIsTypeWriterComplete}
+									onComplete={setIsTypeWriterComplete}
 									timeToStartNewText={20}
 								/>
 							</li>
@@ -84,13 +82,12 @@ const TransactionDetailsAiSuggestion = ({
 											key={list_suggestions.id}
 										>
 											<TypeWrite
-												fontSize={16}
 												text={list_suggestions.suggestion}
 												key={list_suggestions.id}
 												showCaret={false}
 												color="white"
 												typingSpeed={20}
-												setIsTypeWriterComplete={setIsTypeWriterComplete}
+												onComplete={setIsTypeWriterComplete}
 												timeToStartNewText={20}
 											/>
 										</li>

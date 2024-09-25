@@ -14,13 +14,12 @@ const page = () => {
 		<>
 			<Header />
 			<div className="bg-darker overflow-clip  pb-7 w-full min-h-screen items-center flex relative">
-				<main className="grid grid-cols-1 lg:grid-cols-2 h-screen mt-20 items-center justify-between w-full gap-5 max-w-5xl xl:max-w-6xl my-max">
+				<main className="grid grid-cols-1 lg:grid-cols-2 h-screen pt-28 items-center justify-between w-full gap-5 max-w-5xl xl:max-w-6xl my-max">
 					<SignInForm />
 					<div className="rounded-[40px] hidden lg:flex overflow-clip">
 						<Image
-							className="object-cover rounded-[40px]"
+							className="object-cover h-auto rounded-[40px]"
 							src={signInImage}
-							height={550}
 							width={550}
 							alt="signup"
 							quality={30}

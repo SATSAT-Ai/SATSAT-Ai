@@ -20,6 +20,7 @@ const developerPortal: {
 	link: string;
 	desc: string;
 	icon: ReactElement;
+	target: "_blank" | "_parent";
 }[] = [
 	{
 		id: "Developers",
@@ -27,56 +28,64 @@ const developerPortal: {
 		desc: "Get started as a developer",
 		link: "/developers",
 		icon: <FaCode size={25} color="#c18e3b" />,
+		target: "_parent",
 	},
 	{
 		id: "dev-docs",
 		portal: "Developer docs",
 		desc: "Learn about using our API",
-		link: "/developers/api-docs",
+		link: "https://satsatai.mintlify.app/introduction",
 		icon: <BsFileEarmarkCode size={25} color="#c18e3b" />,
+		target: "_blank",
 	},
 
 	{
 		id: "web-hooks",
-		portal: "Web hooks",
+		portal: "Webhooks",
 		desc: "Set up and manage webhooks.",
-		link: "/developers/webhooks",
+		link: "https://satsatai.mintlify.app/webhooks/configuration",
 		icon: <PiWebhooksLogoBold size={25} color="#c18e3b" />,
+		target: "_blank",
 	},
 	{
 		id: "authentication",
 		portal: "Authentication",
 		desc: " Authorize and Authenticate",
-		link: "/developers/api/authentication",
+		link: "https://satsatai.mintlify.app/api-references/authentication",
 		icon: <IoShieldCheckmark size={25} color="#c18e3b" />,
+		target: "_blank",
 	},
 	{
 		id: "api-reference",
 		desc: "Explore our API",
 		portal: "Api reference",
-		link: "/developers/api-reference",
+		link: "https://satsatai.mintlify.app/api-references/api-version",
 		icon: <VscReferences size={25} color="#c18e3b" />,
+		target: "_blank",
 	},
 	{
 		id: "Integration-Guide",
 		desc: "Follow our integration guide",
 		portal: "Integration Guide",
-		link: "/developers/getting-started",
+		link: "https://satsatai.mintlify.app/api-references/integration-guide",
 		icon: <TbArrowGuide size={25} color="#c18e3b" />,
+		target: "_blank",
 	},
 	{
 		id: "developer support",
 		desc: "Get assistance and support.",
 		portal: "Developer Support",
-		link: "/developers/getting-started",
+		link: "http://satsatai.com/contact/support",
 		icon: <BiSupport size={25} color="#c18e3b" />,
+		target: "_blank",
 	},
 	{
 		id: "developer-sandbox",
 		portal: "Developer sandbox",
 		desc: "Start using our sandbox",
-		link: "/developers/getting-started",
+		link: "https://satsatai.mintlify.app/microservices/users/lorem",
 		icon: <FiCodesandbox size={25} color="#c18e3b" />,
+		target: "_blank",
 	},
 ];
 
@@ -91,7 +100,7 @@ const DevelopersDropDown = ({
 		<div
 			data-test="dev-dropdown"
 			className={cn(
-				"py-5 overflow-y-auto h-[60vh] custom-scroll2 bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
+				"py-5 overflow-y-auto h-[60vh] [scrollbar-width:thin] bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
 				className
 			)}
 		>
@@ -103,13 +112,13 @@ const DevelopersDropDown = ({
 			>
 				{developerPortal.map((portal) => {
 					return (
-						<Link
+						<a
 							data-test={portal.link}
 							href={portal.link}
-							key={portal.id}
-							className="flex border border-brand-green/40 items-center justify-between gap-5 hover:bg-brand-green-darker bg-brand-green-darker/50 text-white text-normal p-2 rounded-lg font-medium"
+							target={portal.target}
+							className="flex border border-brand-green/40 items-center justify-between gap-2 hover:bg-brand-green-darker bg-brand-green-darker/50 text-white text-normal p-2 rounded-lg font-medium"
 						>
-							<div className="flex items-start gap-3">
+							<div className="flex items-start gap-2">
 								{portal.icon}
 								<p className="flex flex-col">
 									<span className="font-medium">{portal.portal}</span>
@@ -119,7 +128,7 @@ const DevelopersDropDown = ({
 								</p>
 							</div>
 							<KeyboardArrowRight color="inherit" fontSize="medium" />
-						</Link>
+						</a>
 					);
 				})}
 			</div>

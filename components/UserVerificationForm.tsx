@@ -6,11 +6,12 @@ import toast from "react-hot-toast";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { useMutation } from "@tanstack/react-query";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import axios from "axios";
 import secureLocalStorage from "react-secure-storage";
-import EmailAlertModal from "./ui/EmailAlertModal";
 import { IoChevronBackOutline } from "react-icons/io5";
+import { SiMinutemailer } from "react-icons/si";
+import { cn } from "@/lib/utils";
 
 interface IVerifySignIn {
 	signInCode: string;
@@ -135,14 +136,21 @@ const UserVerificationForm = () => {
 					<input
 						data-test="signin_verification_input"
 						disabled={loading}
-						placeholder="Verification Code"
-						className={`focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green focus:ring-opacity-50 placeholder:text-grey-lightest/60 outline-none text-white border ${
-							errors.signInCode
-								? "border-crimson focus:border-crimson focus:ring-offset-crimson focus:ring-crimson"
-								: isValid
-								? "border-brand-green focus:ring-offset-brand-green focus:ring-brand-green"
-								: "border-white"
-						} bg-transparent p-2 rounded-md`}
+						placeholder="Enter Verification Code"
+						className={cn(
+							"focus:outline-none focus:ring focus:border-none focus:ring-offset-1 focus:ring-offset-brand-green focus:ring-brand-green focus:ring-opacity-50 placeholder:text-grey-lightest/60 outline-none text-white border border-white bg-transparent p-2 rounded-md",
+							{
+								"border-crimson focus:border-crimson focus:ring-offset-crimson focus:ring-crimson":
+									errors.signInCode,
+							},
+							{
+								"border-brand-green focus:ring-offset-brand-green focus:ring-brand-green":
+									isValid,
+							},
+							{
+								"border-grey-lightest/40": loading,
+							}
+						)}
 						type="text"
 						{...register("signInCode", {
 							required: {
@@ -164,13 +172,15 @@ const UserVerificationForm = () => {
 				<button
 					data-test="verify_signin_button"
 					disabled={loading}
-					className={`mt-5 disabled:cursor-not-allowed text-white font-medium text-[17px] active:scale-[1.001] transition-colors duration-150 ease-in
-					${
-						loading
-							? "bg-grey-light cursor-default"
-							: "bg-brand-green/80 hover:bg-mid--yellow/80"
-					}
-					  block w-full p-2 rounded-lg`}
+					className={cn(
+						"disabled:cursor-not-allowed focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-mid--yellow focus:ring-mid--yellow text-white transition-colors duration-150 ease-in active:scale-100 outline-none block w-full p-2 rounded-lg focus:ring-opacity-50 bg-brand-green enabled:hover:bg-mid--yellow font-medium text-[17px]",
+						{
+							"active:scale-[1.01] hover:bg-mid--yellow/85": !loading,
+						},
+						{
+							"bg-grey-light cursor-default": loading,
+						}
+					)}
 					type="submit"
 				>
 					{loading ? (
@@ -201,7 +211,48 @@ const UserVerificationForm = () => {
 				</span>
 			</form>
 			{showAlertModal && (
-				<EmailAlertModal email={email} setShowAlertModal={setShowAlertModal} />
+				<div
+					onClick={() => setShowAlertModal(false)}
+					className="w-full h-screen bg-darker/80 p-2 grid place-content-center text-white z-30 absolute top-0 left-0"
+				>
+					<div
+						onClick={(e) => e.stopPropagation()}
+						className="bg-[#071f07] shadow-md max-w-[350px] p-5 rounded-lg"
+					>
+						<SiMinutemailer
+							size={40}
+							className="text-mid--yellow mx-auto mb-3 leading-tight"
+						/>
+						<h2 className="font-medium text-text-24 text-mid--yellow">{`Didn't Receive the email verification code?`}</h2>
+						<p className="py-4 font-normal">
+							Email verification has been sent. If you have not received the
+							verification code after several attempts, please try the
+							following:
+						</p>
+						<ul className="list-decimal list-inside font-normal">
+							<li>
+								Check if it is in your
+								<span className="text-mid--yellow"> Spam/junk </span> mail.
+							</li>
+							<li>
+								Make sure your email address is{" "}
+								<span className="text-mid--yellow">{email}</span> .
+							</li>
+							<li>
+								The message may have been delayed for a few minutes. Try again
+								after 5mins
+							</li>
+						</ul>
+						<button
+							data-test="modal"
+							onClick={() => setShowAlertModal(false)}
+							className="w-full bg-brand-green/60 hover:bg-brand-green/70 ease transition-colors duration-100 p-2 font-medium rounded-sm mt-5 active:scale-[1.01]"
+							type="button"
+						>
+							OK
+						</button>
+					</div>
+				</div>
 			)}
 		</>
 	);

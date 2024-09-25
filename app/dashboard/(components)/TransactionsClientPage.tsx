@@ -41,7 +41,6 @@ const TransactionsClientPage = () => {
 				<div className="w-full min-h-[450px] overflow-x-auto">
 					<TransTable />
 				</div>
-				<p className="text-center text-text-12">Scroll left or right</p>
 			</div>
 		</div>
 	);

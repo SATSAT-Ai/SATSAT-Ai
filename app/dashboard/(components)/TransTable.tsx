@@ -1,3 +1,5 @@
+"use client";
+
 import {
 	DataGrid,
 	GridRowParams,
@@ -6,13 +8,28 @@ import {
 	GridColumnVisibilityModel,
 } from "@mui/x-data-grid";
 import Image from "next/image";
-
 import Link from "next/link";
 import { Data } from "@/interface/interface";
 import { useState } from "react";
 import { getProviderImage } from "@/utils/providerImages";
 
+import { createTheme, ThemeProvider } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+
 export default function TransTable() {
+	const [columnVisibilityModel, setColumnVisibilityModel] =
+		useState<GridColumnVisibilityModel>({
+			"From Acc.": false,
+			"To No.": false,
+			"From No.": false,
+			"Ref.": false,
+			Ova: false,
+			Fees: false,
+			E_Levy: false,
+			"To Acc.": false,
+			"Trans. ID": false,
+		});
+
 	const rows: Data[] = [
 		{
 			id: "sdjfksdjf",
@@ -177,64 +194,58 @@ export default function TransTable() {
 		return params.row.reconcilable ? "" : "not-reconcilable-row";
 	};
 
-	const [columnVisibilityModel, setColumnVisibilityModel] =
-		useState<GridColumnVisibilityModel>({
-			"From Acc.": false,
-			"To No.": false,
-			"From No.": false,
-			"Ref.": false,
-			Ova: false,
-			Fees: false,
-			E_Levy: false,
-			"To Acc.": false,
-			"Trans. ID": false,
-		});
+	const theme = createTheme({
+		palette: {},
+	});
 
 	return (
 		<div style={{ height: 500, width: "100%" }}>
-			<DataGrid
-				sx={{
-					backgroundColor: "#174636",
-					color: "#fff",
-					borderColor: "aquamarine",
-					Height: "470px",
-					"& .MuiDataGrid-cell:hover": {
-						color: "yellow",
-					},
-					"& .MuiDataGrid-sortIcon": {
-						color: "#c18e3b",
-					},
-					"& .MuiDataGrid-menuIconButton": {
-						color: "#c18e3b",
-					},
-					"& .MuiButtonBase-root": {
-						color: "#c18e3b",
-					},
-					"& .Mui-disabled": {
-						color: "rgba(0, 0, 0, 0.26)",
-					},
-					"& .MuiToolbar-root": {
-						color: "white",
-					},
-					"& .MuiTablePagination-selectIcon": {
-						color: "white",
-					},
-					"& .MuiDataGrid-container--top [role=row]": {
-						background: "#174634",
-					},
-				}}
-				density="standard"
-				columns={headCells}
-				rows={rows}
-				getRowId={getRowId}
-				getRowClassName={getRowClassName}
-				slots={{ toolbar: GridToolbar }}
-				columnVisibilityModel={columnVisibilityModel}
-				onColumnVisibilityModelChange={(mewModel) => {
-					setColumnVisibilityModel(mewModel);
-				}}
-				// loading
-			/>
+			<div style={{ height: 500, width: "100%" }}>
+				<ThemeProvider theme={theme}>
+					<DataGrid
+						sx={{
+							backgroundColor: "#174636",
+							color: "#ffffff",
+							borderColor: "aquamarine",
+							height: "470px",
+							"& .MuiDataGrid-cell:hover": {
+								color: "yellow",
+							},
+							"& .MuiDataGrid-sortIcon": {
+								color: "#c18e3b",
+							},
+							"& .MuiDataGrid-menuIconButton": {
+								color: "#c18e3b",
+							},
+							"& .MuiButtonBase-root": {
+								color: "#c18e3b",
+							},
+							"& .Mui-disabled": {
+								color: "#ffffff",
+							},
+							"& .MuiToolbar-root": {
+								color: "#ffffff",
+							},
+							"& .MuiTablePagination-selectIcon": {
+								color: "#ffffff",
+							},
+							"& .MuiDataGrid-container--top [role=row]": {
+								background: "#174634",
+							},
+						}}
+						density="standard"
+						columns={headCells}
+						rows={rows}
+						getRowId={getRowId}
+						getRowClassName={getRowClassName}
+						slots={{ toolbar: GridToolbar }}
+						columnVisibilityModel={columnVisibilityModel}
+						onColumnVisibilityModelChange={(newModel) => {
+							setColumnVisibilityModel(newModel);
+						}}
+					/>
+				</ThemeProvider>
+			</div>
 		</div>
 	);
 }

@@ -64,6 +64,10 @@ const config: Config = {
 				spotlight: "spotlight 2s ease .75s 1 forwards",
 				"accordion-down": "accordion-down 0.2s ease-out",
 				"accordion-up": "accordion-up 0.2s ease-out",
+
+				"shadAccordion-down": "shadAccordion-down .1s ease-out forwards",
+				"shadAccordion-up": "shadAccordion-up .1s ease-out forwards",
+
 				marquee: "marquee var(--duration) linear infinite",
 				"marquee-vertical": "marquee-vertical var(--duration) linear infinite",
 				orbit: "orbit calc(var(--duration)*1s) linear infinite",
@@ -71,9 +75,115 @@ const config: Config = {
 				"spin-around": "spin-around calc(var(--speed) * 2) infinite linear",
 				slide: "slide var(--speed) ease-in-out infinite alternate",
 				meteor: "meteor 5s linear infinite",
+				"default-blink": "default-blink 1.5s infinite alternate ease-in",
+				"shape-shift": "shape-shift-square 2.5s infinite",
+				"pie-shift": "pie-shift 0.5s infinite alternate",
+				"pie-shift-origin": "pie-shift-origin 4s infinite linear",
+				blink: "blink 1s infinite alternate ease-in;",
+				"angry-blink": "angry-blink 1.5s infinite alternate",
 			},
 
 			keyframes: {
+				"angry-blink": {
+					"0%,20%": {
+						transform: "scaleX(var(--s, 1)) rotate(0deg)",
+						"clip-path": "inset(0)",
+					},
+
+					"60%,100%": {
+						transform: "scaleX(var(--s, 1)) rotate(30deg)",
+						"clip-path": "inset(40% 0 0)",
+					},
+				},
+
+				"shadAccordion-down": {
+					from: { height: "0" },
+					to: { height: "var(--radix-accordion-content-height)" },
+				},
+				"shadAccordion-up": {
+					from: { height: "var(--radix-accordion-content-height)" },
+					to: { height: "0" },
+				},
+
+				blink: {
+					"0%,70%": {
+						"-webkit-mask-size": "50% 100%",
+						"mask-size": "50% 100%",
+					},
+					"85%": {
+						"-webkit-mask-size": "50% 0",
+						"mask-size": "50% 0",
+					},
+					"100%": {
+						"-webkit-mask-size": "50% 100%",
+						"mask-size": "50% 100%",
+					},
+				},
+				"pie-shift": {
+					"100%": {
+						transform: "translate(-10px, -10px)",
+					},
+				},
+				"pie-shift-origin": {
+					"0%,24.99%": {
+						transform: "rotate(0deg)",
+					},
+					"25%,49.99%": {
+						transform: "rotate(90deg)",
+					},
+					"50%,74.99%": {
+						transform: "rotate(180deg)",
+					},
+					"75%,100%": {
+						transform: "rotate(270deg)",
+					},
+				},
+
+				"default-blink": {
+					"0%": {
+						"background-size": "100%",
+					},
+
+					"70%": {
+						"background-size": "100% 40%, 8px 8px",
+					},
+					"85%": {
+						"background-size": "100% 120%, 8px 8px",
+					},
+					"100%": {
+						"background-size": "100% 40%, 8px 8px",
+					},
+				},
+
+				"shape-shift-square": {
+					"0%": {
+						inset: "0 35px 35px 0",
+					},
+					"12.5%": {
+						inset: "0 35px 0 0",
+					},
+					"25%": {
+						inset: "35px 35px 0 0",
+					},
+					"37.5%": {
+						inset: "35px 0 0 0",
+					},
+					"50%": {
+						inset: "35px 0 0 35px",
+					},
+					"62.5%": {
+						inset: " 0 0 0 35px",
+					},
+					"75%": {
+						inset: " 0 0 35px 35px",
+					},
+					"87.5%": {
+						inset: "0 0 35px 0",
+					},
+					"100%": {
+						inset: " 0 35px 35px 0",
+					},
+				},
 				orbit: {
 					"0%": {
 						transform:

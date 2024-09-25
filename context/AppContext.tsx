@@ -22,7 +22,7 @@ export const AppContext = createContext<Icontext>({
 
 const ContextProvider = ({ children }: { children: React.ReactNode }) => {
 	const [showModal, setShowModal] = useState(false);
-	const [modalAction, setModalAction] = useState("deleteAccount");
+	const [modalAction, setModalAction] = useState("");
 	const [hideSidebar, setHideSidebar] = useState(true);
 
 	return (

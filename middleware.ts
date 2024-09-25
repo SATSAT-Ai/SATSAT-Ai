@@ -1,5 +1,5 @@
 import { withAuth, NextRequestWithAuth } from "next-auth/middleware";
-import { NextResponse } from "next/server";
+// import { NextResponse } from "next/server";
 
 export default withAuth(
 	function middleware(request: NextRequestWithAuth) {
@@ -28,5 +28,5 @@ export default withAuth(
 
 // Matching Paths
 export const config = {
-	matcher: ["/dashboard/:path*"],
+	matcher: ["/dashboard/:path*", "/api/:path*"],
 };

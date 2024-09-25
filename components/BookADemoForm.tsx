@@ -1,6 +1,12 @@
 "use client";
 
-import { Listbox, Transition } from "@headlessui/react";
+import {
+	Listbox,
+	ListboxButton,
+	ListboxOption,
+	ListboxOptions,
+	Transition,
+} from "@headlessui/react";
 import { HiChevronUpDown } from "react-icons/hi2";
 import {
 	Popover,
@@ -124,7 +130,7 @@ const BookADemoForm = () => {
 					)}
 				>
 					<div className="relative">
-						<Listbox.Button
+						<ListboxButton
 							className={` ${
 								loading ? "cursor-default" : "cursor-pointer"
 							} relative h-11 w-full rounded-lg text-white hover:text-white  text-[14px] py-2 pl-3 pr-10 text-left border focus-visible:border-indigo-500 focus-visible:ring-2focus:outline-none focus:ring focus:border-none focus:ring-offset-2 focus:ring-offset-brand-green focus:ring-brand-green outline-none focus:ring-opacity-50 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm ${
@@ -149,18 +155,18 @@ const BookADemoForm = () => {
 									aria-hidden="true"
 								/>
 							</span>
-						</Listbox.Button>
+						</ListboxButton>
 						<Transition
 							as={Fragment}
 							leave="transition ease-in duration-100"
 							leaveFrom="opacity-100"
 							leaveTo="opacity-0"
 						>
-							<Listbox.Options
+							<ListboxOptions
 								data-test="countryOptions"
 								className="absolute z-[1] placeholder:text-grey-lightest/60 mt-1 w-full overflow-auto rounded-md  text-[wheat] bg-[#123829] py-1 text-[14px] text-base shadow-lg focus:outline-none sm:text-sm"
 							>
-								<Listbox.Option
+								<ListboxOption
 									className={({ active }) =>
 										`relative cursor-pointer select-none  py-2 px-7 ${
 											active ? "bg-[#071f07]" : "text-[wheat]"
@@ -180,8 +186,8 @@ const BookADemoForm = () => {
 											</span>
 										</>
 									)}
-								</Listbox.Option>
-								<Listbox.Option
+								</ListboxOption>
+								<ListboxOption
 									className={({ active }) =>
 										`relative cursor-pointer select-none  py-2 px-7 ${
 											active ? "bg-[#071f07]" : "text-[wheat]"
@@ -201,8 +207,8 @@ const BookADemoForm = () => {
 											</span>
 										</>
 									)}
-								</Listbox.Option>
-							</Listbox.Options>
+								</ListboxOption>
+							</ListboxOptions>
 						</Transition>
 					</div>
 				</Listbox>

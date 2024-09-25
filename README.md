@@ -24,7 +24,7 @@ This project utilizes environment variables to store configuration settings. The
 
 `NEXTAUTH_URL` A url of your application nextAuth uses this url to authenticate your application in local environment use your localhost.
 
-`NEXTAUTH_SECRET` A secret used to encrypt next auth session cookies. it can be anything but to generate a unique value run `bash openssl rand -base64 32` in terminal
+`NEXTAUTH_SECRET` A secret used to encrypt next auth session cookies. it can be anything but to generate a unique value run `openssl rand -base64 32` in terminal
 
 `NEXT_PUBLIC_SATSATAI_MS_USER` microservice for user authentication and verification. contact the SatSat Ai team for more help.
 
@@ -162,6 +162,4 @@ For open source projects, say how it is licensed.
 
 If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
 
-
 - npm install -g pnpm # This line installs pnpm globally
-

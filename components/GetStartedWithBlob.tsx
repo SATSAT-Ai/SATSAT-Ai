@@ -30,11 +30,10 @@ const GetStartedWithBlob = ({
 			/>
 
 			<div className="group z-10 text-white text-text-60 md:text-text-80 flex items-center gap-3 font-semibold justify-center">
-				Sat
-				<div className="bg-white rounded-full w-14 h-14 md:h-20 md:w-20 p-2">
+				<div className="bg-white rounded-full w-14 h-14 md:h-[88px] md:w-[88px] p-2">
 					<Image className="h-full w-full" src={SatSatAiLogo} alt="logo" />
 				</div>
-				atAi
+				SatSat Ai
 			</div>
 
 			{showButton && (

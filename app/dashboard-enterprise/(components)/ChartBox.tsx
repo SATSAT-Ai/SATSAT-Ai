@@ -1,11 +1,11 @@
 "use client";
-import Link from "next/link";
+// import Link from "next/link";
 import dynamic from "next/dynamic";
 import { ApexOptions } from "apexcharts";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import { TbZoomInArea, TbZoomOutArea } from "react-icons/tb";
-import { FaHandSparkles } from "react-icons/fa6";
-import { BiReset } from "react-icons/bi";
+// import { TbZoomInArea, TbZoomOutArea } from "react-icons/tb";
+// import { FaHandSparkles } from "react-icons/fa6";
+// import { BiReset } from "react-icons/bi";
 
 interface optionsProps extends ApexOptions {
 	toolbar: {

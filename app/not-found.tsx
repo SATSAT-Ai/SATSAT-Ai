@@ -14,7 +14,7 @@ export default function NotFound() {
 
 			<Link
 				href="/"
-				className=" active:scale-[1.01] button w-fit hover:bg-brand-green border border-white block mx-auto transition-all text-white hover:border-none"
+				className=" active:scale-[1.01] p-3 px-4 active:bg-brand-green border-none rounded-lg bg-brand-green w-fit hover:bg-brand-green/70 border border-white block mx-auto transition-all text-white hover:border-none"
 			>
 				Back to Home
 			</Link>

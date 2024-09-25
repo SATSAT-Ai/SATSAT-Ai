@@ -1,19 +1,17 @@
 "use client";
 
-import { IoMdHelpCircleOutline } from "react-icons/io";
-import { HiOutlineExternalLink } from "react-icons/hi";
-import Link from "next/link";
-import { useState, useRef, SetStateAction, Dispatch, useEffect } from "react";
-import { IUser } from "./ChatMain";
+// import { IoMdHelpCircleOutline } from "react-icons/io";
+// import { HiOutlineExternalLink } from "react-icons/hi";
+// import Link from "next/link";
+import { useState, SetStateAction, Dispatch } from "react";
+import { conversationType } from "./ChatMain";
 import ChatInput from "./ChatInput";
-import ToggleSidebars from "./ToggleSidebars";
-import Image from "next/image";
-import SatSatAiLogo from "@/public/SatSat-ai-logo-new.svg";
+import { cn } from "@/lib/utils";
 
 interface IchatIntro {
 	conversationLength: number;
-	chatContainerId: string | undefined;
-	setConversations: Dispatch<SetStateAction<IUser[]>>;
+	chatContainerId?: string;
+	setConversations: Dispatch<SetStateAction<conversationType[]>>;
 }
 
 const ChatSuggestionIntro = ({
@@ -21,8 +19,8 @@ const ChatSuggestionIntro = ({
 	chatContainerId,
 	setConversations,
 }: IchatIntro) => {
-	const helpOptionsRef = useRef<null | HTMLDivElement>(null);
-	const [showHelpOptions, setShowHelpOptions] = useState(false);
+	// const helpOptionsRef = useRef<null | HTMLDivElement>(null);
+	// const [showHelpOptions, setShowHelpOptions] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const [chatSuggestions, setChatSuggestions] = useState([
 		{
@@ -49,25 +47,27 @@ const ChatSuggestionIntro = ({
 
 	return (
 		<div className="flex flex-col items-center min-h-dvh">
-			<ToggleSidebars />
 			<div className="grow grid place-content-center h-full overflow-y-auto mb-auto flex-1 w-full">
-				<div className="text-white text-text-60 flex mx-auto w-full items-center gap-2 h-auto font-bold justify-center">
-					Sat
-					<div className="bg-white rounded-full w-[60px] h-[60px] p-2">
-						<Image className={"h-full w-full"} src={SatSatAiLogo} alt="logo" />
-					</div>
-					atAi
+				<div className="text-white mb-5 text-text-50 flex flex-col mx-auto w-full items-center gap-2 h-auto font-bold justify-center">
+					SatSat Ai
 				</div>
-				<h2 className="font-medium mx-auto w-fit xl:mr-auto xl:w-full">
-					Chat suggestions
-				</h2>
-				<div className="flex w-full flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
-					{chatSuggestions.map((suggestions) => {
+
+				<div className="flex w-full flex-col md:flex-row flex-wrap xl:grid xl:grid-cols-2 justify-center gap-5">
+					{chatSuggestions.map((suggestions, index) => {
 						return (
 							<button
 								key={suggestions.id}
 								type="button"
-								className="border border-white/40 py-2 px-4 text-text-12 sm:text-text-normal hover:bg-brand-green/60 active:bg-brand-green/70 rounded-3xl"
+								className={cn(
+									"border border-white/40 py-2 px-4 text-text-12 sm:text-text-14 hover:bg-brand-green/60 active:bg-brand-green/70 rounded-3xl",
+									{
+										hidden: index == 0 || index == 1,
+									},
+
+									{
+										"hidden md:flex": index == 0 || index == 1,
+									}
+								)}
 							>
 								{suggestions.value}
 							</button>

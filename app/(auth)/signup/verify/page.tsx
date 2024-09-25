@@ -1,3 +1,4 @@
+import Blob from "@/components/Blob";
 import Header from "@/components/Header";
 import VerificationStages from "@/components/VerificationStages";
 import { Metadata } from "next";
@@ -11,7 +12,10 @@ const Page = () => {
 		<>
 			<Header />
 			<div className=" pt-20 flex relative overflow-x-clip items-center justify-center min-h-screen bg-darker">
-				<div className=" animate-pulse green-blob2 w-96 h-96 top-[-50%] lg:top-[-30%] left-[50%] "></div>
+				<Blob
+					className="w-96 h-96 top-[-50%] lg:top-[-30%]"
+					animation="animate-pulse"
+				/>
 
 				<main className="my-max">
 					<VerificationStages />

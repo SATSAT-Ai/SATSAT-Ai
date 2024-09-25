@@ -15,7 +15,7 @@ const StatementSelector = ({ setDate, date, statements }: Istatement) => {
 
 	return (
 		<div
-			className={` flex md:flex-nowrap flex-wrap flex-col min-[410px]:flex-row min-[410px]:justify-between lg:justify-end items-center w-full justify-center gap-5`}
+			className={` flex flex-col min-[410px]:flex-row min-[410px]:justify-between lg:justify-end items-center w-full justify-center gap-5`}
 		>
 			<DropDown
 				selectedStatement={selectedStatement}

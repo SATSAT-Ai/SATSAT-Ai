@@ -10,7 +10,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Analytics } from "@vercel/analytics/react";
 import QueryProvider from "@/components/QueryProvider";
 import { SatSatAiMetadata } from "@/utils/metadata";
-import { roboto } from "@/fonts/fonts";
+import { spaceGrotesk } from "@/fonts/fonts";
 
 export const metadata: Metadata = SatSatAiMetadata;
 
@@ -23,7 +23,7 @@ export default async function RootLayout({
 
 	return (
 		<html lang="en">
-			<body className={`antialiased ${roboto.className}`}>
+			<body className={`antialiased ${spaceGrotesk.className}`}>
 				<NextTopLoader
 					showSpinner={false}
 					color="#29a173"

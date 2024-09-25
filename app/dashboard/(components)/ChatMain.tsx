@@ -1,65 +1,24 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import ChatPage from "./ChatPage";
 import ChatSuggestionIntro from "./ChatSuggestionIntro";
 
-type MessageFrom = "User" | "Ai";
-export interface IUser {
-	from: MessageFrom;
+export type IUser = {
+	from: "user";
 	id: string;
-	message?: string;
-	list?: { id: string; msg: string }[];
-	firstText?: string;
-	endingText?: string;
-}
+	message: string;
+};
 
-export interface IdeFault {
-	userMessage: string;
-}
+export type IAi = {
+	from: "ai";
+	id: string;
+	response: string[];
+};
+
+export type conversationType = IUser | IAi;
 
 const ChatMain = ({ chatContainerId }: { chatContainerId?: string }) => {
-	const [conversations, setConversations] = useState<IUser[]>([
-		// {
-		// 	from: "Ai",
-		// 	id: Math.floor(Math.random() * 1000).toString(),
-		// 	firstText: "Here is a demo response from SatSat AI.",
-		// 	list: [
-		// 		{
-		// 			id: Math.floor(Math.random() * 1000).toString(),
-		// 			msg: "January:GHS 1500",
-		// 		},
-		// 		{
-		// 			id: Math.floor(Math.random() * 1000).toString(),
-		// 			msg: "February:GHS 1800",
-		// 		},
-		// 		{
-		// 			id: Math.floor(Math.random() * 1000).toString(),
-		// 			msg: "March:GHS 1400",
-		// 		},
-		// 	],
-		// 	endingText: `Is there anything else you'd like to inquire about? Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you`,
-		// },
-		// {
-		// 	from: "Ai",
-		// 	id: Math.floor(Math.random() * 1000).toString(),
-		// 	firstText: "Here is a demo response from SatSat AI.",
-		// 	list: [
-		// 		{
-		// 			id: Math.floor(Math.random() * 1000).toString(),
-		// 			msg: "January:GHS 1500",
-		// 		},
-		// 		{
-		// 			id: Math.floor(Math.random() * 1000).toString(),
-		// 			msg: "February:GHS 1800",
-		// 		},
-		// 		{
-		// 			id: Math.floor(Math.random() * 1000).toString(),
-		// 			msg: "March:GHS 1400",
-		// 		},
-		// 	],
-		// 	endingText: `Is there anything else you'd like to inquire about? Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you'd like to inquire about?Is there anything else you`,
-		// },
-	]);
+	const [conversations, setConversations] = useState<conversationType[]>([]);
 
 	return (
 		<>

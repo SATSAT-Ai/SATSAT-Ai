@@ -49,6 +49,7 @@ const TypeWriteInView = ({
 					typingSpeed={20}
 					showCaretOnComplete={false}
 					timeToStartNewText={0}
+					className={className}
 				/>
 			)}
 			{typeWriteType === "smoothWriter" && inView && (

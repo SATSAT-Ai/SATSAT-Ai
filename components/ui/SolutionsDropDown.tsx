@@ -52,7 +52,7 @@ const SolutionsDropDown = ({ className }: { className?: ClassValue }) => {
 		<div
 			data-test="sol-dropdown"
 			className={cn(
-				"py-5 overflow-y-auto h-[60vh] custom-scroll2 bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
+				"py-5 overflow-y-auto h-[60vh] [scrollbar-width:thin] bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
 				className
 			)}
 		>

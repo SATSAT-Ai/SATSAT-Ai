@@ -5,9 +5,9 @@ import Image from "next/image";
 import LoadingSpinner from "./ui/LoadingSpinner";
 import confettiData from "@/utils/confetti.json";
 import Lottie from "react-lottie";
-import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
-import { toast } from "react-hot-toast";
+// import { useMutation } from "@tanstack/react-query";
+// import axios from "axios";
+// import { toast } from "react-hot-toast";
 import { useState } from "react";
 
 const PaymentSuccess = () => {

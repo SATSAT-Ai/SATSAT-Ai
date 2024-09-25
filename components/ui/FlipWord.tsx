@@ -1,6 +1,6 @@
 "use client";
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { Retro } from "./RetroGrid";
 import { ClassValue } from "clsx";
@@ -99,7 +99,7 @@ export function FlipWord({ className }: { className?: ClassValue }) {
 			)}
 		>
 			<p className="text-center leading-tight text-text-40 md:text-text-60 max-w-xl font-semibold text-brand-green">
-				<Flip words={words} /> <br />
+				<Flip words={words} />
 			</p>
 			<Retro />
 		</div>

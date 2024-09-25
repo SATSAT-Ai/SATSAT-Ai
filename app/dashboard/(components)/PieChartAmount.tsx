@@ -1,30 +1,36 @@
 "use client";
 
 import { useState } from "react";
-import { AiTwotoneEyeInvisible, AiOutlineEye } from "react-icons/ai";
-
-const PieChartAmount = ({ amount }: { amount: string }) => {
+import { EyeOff, Eye } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { ClassValue } from "clsx";
+const PieChartAmount = ({
+	amount,
+	className,
+}: {
+	amount: string;
+	className?: ClassValue;
+}) => {
 	const [showAmount, setShowAmount] = useState(false);
 
 	return (
 		<h3
 			onClick={() => setShowAmount(!showAmount)}
 			tabIndex={0}
-			className="text-text-normal mb-2 text-white cursor-pointer select-none flex items-center gap-2"
+			className={cn(
+				"text-text-normal mb-2 text-white cursor-pointer select-none flex items-center gap-2",
+				className
+			)}
 		>
 			{showAmount ? (
-				<AiOutlineEye color="#ffffff60" size={20} className="cursor-pointer" />
+				<Eye color="#c98821" size={20} className="cursor-pointer" />
 			) : (
-				<AiTwotoneEyeInvisible
-					color="#ffffff60"
-					size={20}
-					className="cursor-pointer"
-				/>
+				<EyeOff color="#c98821" size={20} className="cursor-pointer" />
 			)}
 			{showAmount ? (
 				<span>{`GHS ${amount}`}</span>
 			) : (
-				<span className="text-text-24 h-5">******</span>
+				<span className="text-text-24 h-5 leading-tight">******</span>
 			)}
 		</h3>
 	);

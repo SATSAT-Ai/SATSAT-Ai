@@ -109,7 +109,7 @@ const PaddleCheckout = () => {
 							data-test="finishingUpButton"
 							type="button"
 							onClick={() => router.push("/signin")}
-							className="w-full shadow-md block text-center font-normal hover:bg-brand-green/70 transition-colors duration-200 active:scale-[1.01] text-white bg-mid--yellow/80 button"
+							className="w-full shadow-md block text-center font-normal hover:bg-brand-green/70 transition-colors duration-200 active:scale-[1.01] text-white bg-mid--yellow/80 bg-brand-green py-3 px-4 active:bg-brand-green"
 						>
 							Done
 						</button>

@@ -2,14 +2,15 @@ import { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
 	return {
-		name: "SatSat-Ai",
-		short_name: "SatSat AI",
+		name: "SatSat Ai",
+		lang: "en-US",
+		short_name: "SatSat Ai",
 		description:
 			"SatSat AI is an all-in-one artificial intelligence platform...",
 		start_url: "/",
 		display: "standalone",
 		background_color: "#050d0a",
-		theme_color: "dark",
+		theme_color: "#000000",
 		scope: "/",
 		screenshots: [
 			{

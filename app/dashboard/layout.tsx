@@ -1,26 +1,18 @@
 import { ReactNode } from "react";
-import { ThemeProvider } from "@mui/material/styles";
 import DashboardHeader from "@/app/dashboard/(components)/DashboardHeader";
 import ContextProvider from "@/context/AppContext";
-import { theme } from "./theme";
 import ChatContextProvider from "@/context/ChatContext";
 import DashboardSidebar from "./(components)/DashboardSidebar";
-import WalkThrough from "./(components)/WalkThrough";
-import DashboardBackgroundBlobs from "./(components)/DashboardBackgroundBlobs";
+// import WalkThrough from "./(components)/WalkThrough";
 
 const layout = ({ children }: { children: ReactNode }) => {
 	return (
-		<div className="bg-darker">
-			<DashboardBackgroundBlobs />
+		<div className="dashboard-background [background-image:url(../public/dashboard-background.png)] bg-center bg-no-repeat bg-cover bg-darker h-screen">
 			<div className="flex relative max-w-[1440px] mx-auto overflow-clip">
 				<ContextProvider>
-					<ThemeProvider theme={theme}>
-						<DashboardSidebar />
-					</ThemeProvider>
+					<DashboardSidebar />
 					<div className="flex-[10] h-screen z-10 overflow-x-auto">
-						<ThemeProvider theme={theme}>
-							<DashboardHeader />
-						</ThemeProvider>
+						<DashboardHeader />
 						<ChatContextProvider>
 							{children}
 							{/* <WalkThrough /> */}

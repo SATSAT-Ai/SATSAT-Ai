@@ -1,11 +1,13 @@
 "use client";
 
 import { useState, KeyboardEvent } from "react";
-import EditIcon from "@mui/icons-material/Edit";
-import PersonPinIcon from "@mui/icons-material/PersonPin";
 import { IUser } from "./ChatMain";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useSession } from "next-auth/react";
+import { Pencil } from "lucide-react";
+import { cn } from "@/lib/utils";
+import { generateInitials } from "@/helpers/generateUserInitials";
 
 const OutgoingMessage = ({
 	message,
@@ -14,7 +16,7 @@ const OutgoingMessage = ({
 	message: IUser;
 	fontSize?: number;
 }) => {
-	const handleTextAreaInput = (e: any) => {
+	const handleTextAreaResize = (e: any) => {
 		e.target.style.height = "auto";
 		e.target.style.height = `${e.target.scrollHeight}px`;
 	};
@@ -29,8 +31,12 @@ const OutgoingMessage = ({
 	});
 
 	const [editChat, setEditChat] = useState(false);
+	const [showEditOption, setShowEditOption] = useState(false);
 	const [theOutGoingMessage, setTheOutGoingMessage] = useState<IUser>(message);
 	const WatchMessage = watch();
+	const session = useSession();
+	const userName = session.data?.user.name;
+	const userEmail = session.data?.user.email;
 
 	const onSubmit = ({ updatedMessage }: { updatedMessage: string }) => {
 		//find  message with id and update
@@ -40,6 +46,7 @@ const OutgoingMessage = ({
 			});
 		} else if (updatedMessage.trim()) {
 			setTheOutGoingMessage((prev) => ({ ...prev, message: updatedMessage }));
+			setShowEditOption(false);
 			setEditChat(false);
 		}
 	};
@@ -71,75 +78,78 @@ const OutgoingMessage = ({
 	return (
 		<>
 			{!editChat ? (
-				<div className="flex items-end gap-3 ml-auto w-fit">
-					<div className="outmessage flex shadow-lg flex-col items-end gap-3 p-4 rounded-3xl text-white">
-						<div
-							style={{
-								overflowWrap: "anywhere",
-							}}
-						>
-							{(theOutGoingMessage.message as string)
-								?.split("\n")
-								.map((message, index) => (
-									<p
-										key={index}
-										style={{
-											fontSize: `${fontSize ? fontSize : 16}px`,
-										}}
-									>
-										{message}
-										<br />
-									</p>
-								))}
-						</div>
+				<div
+					onMouseEnter={() => setShowEditOption(true)}
+					onMouseLeave={() => setShowEditOption(false)}
+					className="flex leading-6 gap-2 w-full p-3 rounded-xl bg-[#001f00] shadow-lg border border-white/20"
+					// className="flex leading-6 gap-2 w-full p-3 rounded-xl bg-[#001f00] shadow-lg border border-white/20"
+				>
+					<p className="bg-white shrink-0 text-darker rounded-full text-text-14 aspect-square h-7 grid place-content-center font-extrabold">
+						{generateInitials(userName!, userEmail!)}
+					</p>
 
-						<EditIcon
-							className="text-text-20 active:scale-[1.03] cursor-pointer"
-							onClick={() => setEditChat(true)}
-						/>
-					</div>
-					<PersonPinIcon
-						className="text-text-24 hidden sm:flex sm:text-[30px]"
-						color="inherit"
-					/>
+					<p
+						style={{
+							fontSize: `${fontSize ? fontSize : 16}px`,
+							overflowWrap: "anywhere",
+						}}
+						className="break-words whitespace-pre-wrap text-white relative"
+					>
+						{theOutGoingMessage.message}
+						<div
+							className={cn(
+								"group z-10 opacity-0 transition-all duration-150 ease-in scale-90 text-text-14 absolute w-16 grid place-content-center rounded-lg bg-brand-green-darker border border-white/20 p-1",
+
+								{ "opacity-100 scale-100": showEditOption }
+							)}
+						>
+							<button
+								onClick={() => setEditChat(true)}
+								type="button"
+								className="flex items-center gap-1 py-px px-1 rounded-md group-hover:bg-green-700 w-full"
+							>
+								<Pencil size={14} />
+								<p className="text-text-14">Edit</p>
+							</button>
+						</div>
+					</p>
 				</div>
 			) : (
-				<div className="flex  min-h-[40%] items-end gap-3 w-full ml-auto">
+				<div className="flex items-center leading-6 gap-2 w-full p-3 rounded-xl bg-[#001f00] border border-white/10 shadow-lg">
+					<p className="bg-white shrink-0 text-darker rounded-full text-text-14 aspect-square h-7 grid place-content-center font-extrabold">
+						{generateInitials(userName!, userEmail!)}
+					</p>
 					<form
 						onSubmit={handleSubmit(onSubmit)}
-						className="flex h-full w-full outmessage rounded-3xl p-4 shadow-lg flex-col items-end gap-4"
+						className="w-full flex flex-col gap-5"
 					>
 						<textarea
-							onInput={(e) => handleTextAreaInput(e)}
-							onKeyDown={(e) => handleKeydown(e)}
+							rows={1}
+							onInput={(e) => handleTextAreaResize(e)}
 							autoFocus
 							autoCorrect="true"
-							style={{ fontSize }}
-							className={` text-white w-full flex-1 bg-transparent custom-scroll2 border-none outline-none`}
+							onKeyDown={(e) => handleTextAreaResize(e)}
+							className={` text-text-normal focus:border-white/30 hover:border-white/30 transition-colors duration-150 focus:ring-offset-0  text-white w-full focus:ring-0 bg-[#000a00] rounded-xl p-3 border border-white/20 scrollbar-hidden`}
 							{...register("updatedMessage", {
 								required: { value: true, message: "Message cannot be empty" },
 							})}
 						/>
-						<div className="flex gap-5 items-center">
+						<div className="flex gap-5 items-end w-fit ml-auto z-10 relative">
 							<button
-								type="submit"
-								className="text-white text-[13px] active:scale-[1.02] bg-brand-green-darker py-2 px-3 rounded-lg shadow-md"
-							>
-								Save & Submit
-							</button>
-							<button
-								onClick={() => setEditChat(false)}
+								onClick={() => (setEditChat(false), setShowEditOption(false))}
 								type="button"
-								className="border rounded-lg py-2 px-3 text-white text-text-12 md:text-[13px]"
+								className="rounded-lg py-2 px-5 text-white hover:border-transparent text-[17px] border-white/15 bg-brand-green-darker/30 transition-all duration-200 border hover:bg-brand-green-darker font-bold"
 							>
 								Cancel
 							</button>
+							<button
+								type="submit"
+								className="text-white w-24 font-bold text-[17px] bg-yellow-600 hover:bg-yellow-700 text-center py-2 px-3 rounded-lg shadow-md"
+							>
+								Save
+							</button>
 						</div>
 					</form>
-					<PersonPinIcon
-						className="text-text-24 hidden sm:flex sm:text-[30px]"
-						color="inherit"
-					/>
 				</div>
 			)}
 		</>

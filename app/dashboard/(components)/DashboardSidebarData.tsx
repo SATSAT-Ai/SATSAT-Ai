@@ -2,9 +2,6 @@ import Link from "next/link";
 import TextSnippetIcon from "@mui/icons-material/TextSnippet";
 import SettingsSuggestIcon from "@mui/icons-material/SettingsSuggest";
 import ReceiptLongIcon from "@mui/icons-material/ReceiptLong";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
-import { MdClose } from "react-icons/md";
-import { TbLayoutSidebarLeftExpandFilled } from "react-icons/tb";
 import { Dispatch, SetStateAction } from "react";
 import { IDashboardSidebarData } from "@/interface/interface";
 import PageWithSubPath from "./PageWithSubPath";
@@ -19,6 +16,8 @@ import DashboardCustomizeIcon from "@mui/icons-material/DashboardCustomize";
 import { isActive } from "@/helpers/isRouteActive";
 import Logo from "@/components/ui/Logo";
 import { cn } from "@/lib/utils";
+import { ArrowLeftToLine, Rocket } from "lucide-react";
+
 interface IDashboardSideber {
 	pathname: string;
 	setHideSidebar: Dispatch<SetStateAction<boolean>>;
@@ -94,10 +93,10 @@ const DashboardSidebarWithData = ({
 		<>
 			<div className={`h-screen flex w-full items-center md:items-start`}>
 				<div className="w-full flex flex-col h-full overflow-y-auto overflow-x-clip">
-					<div className="flex items-center justify-between py-4 px-2 md:px-5">
+					<div className="flex items-center overflow-clip justify-between py-4 px-2 md:px-5">
 						<div
 							className={cn(
-								"w-full flex items-center mx-auto font-medium",
+								"w-full flex items-center mx-auto font-medium gap-2",
 
 								{
 									"flex w-fit ": hideSidebar && pathname.includes("/chat"),
@@ -105,61 +104,42 @@ const DashboardSidebarWithData = ({
 							)}
 						>
 							<Link href={"/"} id="home">
-								<Logo className="mx-0 md:hidden" type="small" />
 								<Logo
-									className="mx-0 hidden md:flex"
-									type={hideSidebar ? "small" : "large"}
+									className="mx-0 text-nowrap"
+									type={hideSidebar ? "small-normal" : "normal"}
 								/>
 								<Tooltip
 									variant="light"
 									anchorSelect="#home"
 									place="right"
 									content="Home"
+									className={hideSidebar ? "hidden md:flex" : "hidden"}
 								/>
 							</Link>
-
-							{!pathname.includes("/chat") && (
-								<div
-									id="open-sidebar"
-									tabIndex={0}
-									className={cn(
-										"hidden sm:flex ml-auto md:mx-full cursor-pointer w-fit rounded-md",
-										{ "!hidden": !hideSidebar }
-									)}
-									onClick={() => setHideSidebar((prev) => !prev)}
-								>
-									<TbLayoutSidebarLeftExpandFilled size={25} color="white" />
-									<Tooltip
-										variant="light"
-										anchorSelect="#open-sidebar"
-										place="right"
-										content="Open sidebar"
-									/>
-								</div>
-							)}
 						</div>
-						<div
+						<button
+							type="button"
 							id="close-sidebar"
 							tabIndex={0}
 							className={cn(
-								"ml-2 active:scale-[1.06] z-10  md:mx-auto md:mx-full cursor-pointer w-fit rounded-md`",
+								"ml-2 z-10 border relative -left-1 md:left-3 border-brand-green bg-brand-green/30 rounded-md md:mx-auto md:mx-full hover:bg-brand-green/40 p-1 w-fit rounded-md`",
 
 								{ "md:hidden": hideSidebar }
 							)}
 							onClick={() => setHideSidebar((prev) => !prev)}
 						>
-							<MdClose size={25} color="white" />
+							<ArrowLeftToLine size={20} className="text-white " />
 							<Tooltip
 								variant="light"
-								className={!hideSidebar ? "hidden" : "hidden lg:flex"}
 								anchorSelect="#close-sidebar"
 								place="right"
 								content="Close sidebar"
+								className="hidden md:flex"
 							/>
-						</div>
+						</button>
 					</div>
 					<ul
-						className={`h-full mt-5 flex grow md:w-full overflow-y-auto w-fit mx-auto overflow-x-hidden flex-col gap-3`}
+						className={`h-full overflow-x-clip mt-5 px-2 md:px-0 flex grow overflow-y-auto [scrollbar-width:thin] w-full mx-auto flex-col gap-3`}
 					>
 						{dashboardSidebarData.map((routes: IDashboardSidebarData) => {
 							if (routes.subPaths) {
@@ -178,25 +158,29 @@ const DashboardSidebarWithData = ({
 								<li key={routes.name} id={routes.name}>
 									<Tooltip
 										variant="light"
-										className={`text-nowrap ${
-											!hideSidebar ? "hidden" : "hidden md:flex"
-										}`}
+										className={cn(
+											"text-nowrap",
+											{
+												hidden: !hideSidebar,
+											},
+											{
+												"hidden md:flex": hideSidebar,
+											}
+										)}
 										anchorSelect={`#${routes.name}`}
 										place="right"
 										content={routes.name}
 									/>
 									<Link
-										onClick={() =>
-											setHideSidebar(!pathname.includes("/chat") ? true : false)
-										}
 										href={routes.path!}
 										aria-label={routes.name}
 										className={cn(
-											"text-text-normal font-medium md:pl-6 w-fit md:mx-full rounded-md md:rounded-none justify-center md:justify-start md:w-full flex  cursor-pointer p-2 items-center gap-3 hover:bg-white/10 relative",
+											"text-text-normal font-medium pl-4 md:mx-0 md:pl-6 rounded-md md:rounded-none w-full flex items-start cursor-pointer py-2 gap-3 hover:bg-white/10 relative",
 											{
-												" bg-mid--yellow md:bg-transparent icon rounded-md shadow-md md:shadow-none text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow":
+												" bg-brand-green/30 hover:bg-brand-green/40 md:bg-mid--yellow hover:border-white/30 md:hover:bg-mid--yellow md:hover:bg-white/10 text-white md:bg-transparent rounded-md shadow-md md:shadow-none md:text-mid--yellow md:before:absolute md:before:left-0 md:before:top-1/2 md:before:-translate-y-1/2 md:before:h-[24px] md:before:rounded-md md:before:w-[4px] md:before:bg-mid--yellow transition-all":
 													routes.path === isPathActive,
 											},
+
 											{ "text-white": routes.path !== isPathActive }
 										)}
 									>
@@ -204,9 +188,9 @@ const DashboardSidebarWithData = ({
 											{routes.icon}
 
 											<p
-												className={`${
-													hideSidebar ? "!hidden" : ""
-												} hidden md:flex`}
+												className={cn("flex", {
+													"md:hidden": hideSidebar,
+												})}
 											>
 												{routes.name}
 											</p>
@@ -216,26 +200,26 @@ const DashboardSidebarWithData = ({
 							);
 						})}
 					</ul>
-					<div>
+
+					<div className="px-3">
 						<Link
 							href={"/choose-your-pricing"}
 							id="upgrade-plan"
 							aria-label="upgrade your plan"
-							className={cn("flex flex-col mx-3 w-fit gap-7 py-2", {
+							className={cn("flex flex-col w-fit text-nowrap gap-7 py-2", {
 								"md:mx-auto": hideSidebar,
 							})}
 						>
-							<div className="md:mb-2 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 gradient-upgrade rounded-3xl p-5 shadow-md">
+							<div className="md:mb-2 active:scale-[1.01] select-none flex flex-col cursor-pointer gap-3 [background:linear-gradient(40deg,#2e2e48,#005031)] hover:[background:linear-gradient(80deg,#2e2e48,#005031)] transition-all duration-150 rounded-3xl p-5 shadow-md overflow-clip">
 								<div className="mr-auto">
-									<RocketLaunchIcon fontSize="large" color={"primary"} />
+									<Rocket size={30} color="white" />
 								</div>
 
 								<div
 									className={cn(
-										"my-0 hidden md:flex font-medium text-text-normal",
+										"my-0 hidden lg:flex font-medium text-text-normal",
 
-										{ "!hidden": hideSidebar },
-										{ flex: !hideSidebar }
+										{ "!hidden": hideSidebar }
 									)}
 								>
 									UPGRADE PLAN
@@ -243,9 +227,8 @@ const DashboardSidebarWithData = ({
 
 								<p
 									className={cn(
-										"hidden md:flex text-left text-[13px] font-normal",
-										{ "!hidden": hideSidebar },
-										{ "animate-appear": !hideSidebar }
+										"hidden lg:flex text-left text-[13px] text-wrap font-normal",
+										{ "!hidden": hideSidebar }
 									)}
 								>
 									Upgrade your current plan and enjoy amazing features
@@ -254,7 +237,7 @@ const DashboardSidebarWithData = ({
 						</Link>
 						<Tooltip
 							variant="light"
-							className={!hideSidebar ? "hidden" : "flex"}
+							className={!hideSidebar ? "hidden" : "hidden md:flex"}
 							anchorSelect="#upgrade-plan"
 							place="right"
 							content="Upgrade plan"

@@ -43,7 +43,7 @@ const Feature = ({
 		>
 			{icon}
 
-			<h2 className={cn("text-text-20 font-medium m-0 my-2", titleClassName)}>
+			<h2 className={`text-text-24 font-medium m-0 my-2 ${titleClassName}`}>
 				{title}
 			</h2>
 			<p

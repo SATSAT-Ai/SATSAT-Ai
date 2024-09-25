@@ -99,7 +99,7 @@ const ProductDropDown = ({
 		<GlowCardParent
 			data-test="prod-dropDown"
 			className={cn(
-				"py-5 overflow-y-auto custom-scroll2 h-[65vh] bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
+				"py-5 overflow-y-auto [scrollbar-width:thin] h-[65vh] bg-[#071f07]/80 overscroll-none w-full px-5 absolute z-10 backdrop-blur-xl saturate-150",
 				className
 			)}
 		>

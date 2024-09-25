@@ -10,6 +10,7 @@ interface getStartedProps extends AnchorHTMLAttributes<HTMLAnchorElement> {
 	icon?: JSX.Element;
 	href?: string;
 	buttonType?: "button" | "Link";
+	target?: "_parent" | "_blank";
 }
 
 const GetStartedButton = ({
@@ -20,10 +21,12 @@ const GetStartedButton = ({
 	iconPosition = "right",
 	href = "/choose-your-pricing",
 	buttonType,
+	target = "_parent",
 	...restProps
 }: getStartedProps) => {
 	return showIcon ? (
 		<CustomGlowButton
+			target={target}
 			{...restProps}
 			href={href}
 			name={name}
@@ -34,6 +37,7 @@ const GetStartedButton = ({
 		/>
 	) : (
 		<CustomGlowButton
+			target={target}
 			{...restProps}
 			className={className}
 			name={name}

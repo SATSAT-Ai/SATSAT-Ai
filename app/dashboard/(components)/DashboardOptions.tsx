@@ -1,9 +1,10 @@
-import PersonPinIcon from "@mui/icons-material/PersonPin";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+"use client";
+
 import Link from "next/link";
 import { Dispatch, MutableRefObject, SetStateAction } from "react";
-import RocketLaunchIcon from "@mui/icons-material/RocketLaunch";
 import LoadingSpinner from "@/components/ui/LoadingSpinner";
+import { useEffect } from "react";
+import { ChevronDown, Sparkles, UserRoundCog } from "lucide-react";
 
 interface IdashboardOptions {
 	optionsRef: MutableRefObject<HTMLLIElement | null>;
@@ -20,19 +21,36 @@ const DashboardOptions = ({
 	handleLogout,
 	loading,
 }: IdashboardOptions) => {
+	useEffect(() => {
+		const hideOptions = (event: MouseEvent) => {
+			if (!optionsRef?.current?.contains(event.target as Node)) {
+				setShowMoreOptions(false);
+			}
+			// if (!notificationRef?.current?.contains(event.target as Node)) {
+			// 	setShowNotification(false);
+			// }
+		};
+
+		window.addEventListener("mousedown", hideOptions);
+
+		return () => {
+			window.removeEventListener("mousedown", hideOptions);
+		};
+	}, [optionsRef, setShowMoreOptions]);
+
 	return (
 		<li ref={optionsRef} className="relative">
 			<button
 				onClick={() => setShowMoreOptions((prev) => !prev)}
 				type="button"
 				aria-label="options"
-				className="bg-brand-green/40 hover:bg-brand-green transition-colors duration-150 p-2 rounded-lg shadow-sm active:bg-brand-green/50"
+				className="bg-brand-green/40 border border-transparent hover:border-white/20 transition-colors duration-150 p-1.5 rounded-lg shadow-sm active:bg-brand-green/50"
 			>
-				<ExpandMoreIcon fontSize="medium" color="primary" />
+				<ChevronDown size={20} color="white" />
 			</button>
 
 			{showMoreOptions && (
-				<div className="bg-[#071f07] w-52 no-select border z-40 border-grey-light absolute top-12 right-0 p-3 rounded-xl">
+				<div className="bg-[#071f07] w-52 select-none border z-40 border-white/20 absolute top-12 right-0 p-3 rounded-xl">
 					<div className="flex items-center w-full justify-center gap-5">
 						<ul className="flex flex-col">
 							<li className=" text-text-normal hover:bg-[#071f07] hover:text-[wheat] transition-color cursor-pointer active:scale-[1.02] text-white rounded-md py-2 px-7">
@@ -40,7 +58,7 @@ const DashboardOptions = ({
 									href={"/dashboard/profile"}
 									className="flex items-center gap-2"
 								>
-									<PersonPinIcon fontSize="medium" color="inherit" />
+									<UserRoundCog className="text-[inherit]" size={25} />
 									Profile
 								</Link>
 							</li>
@@ -49,7 +67,7 @@ const DashboardOptions = ({
 									href={"/dashboard/whats-new"}
 									className="flex items-center gap-2"
 								>
-									<RocketLaunchIcon fontSize="medium" color="inherit" />
+									<Sparkles className="text-[inherit]" size={25} />
 									{`What's new`}
 								</Link>
 							</li>
@@ -63,7 +81,7 @@ const DashboardOptions = ({
 								<button
 									disabled={loading}
 									type="button"
-									className="text-[14px] flex w-full text-center justify-center items-center gap-4"
+									className="text-text-normal flex w-full text-center justify-center items-center gap-4"
 									onClick={handleLogout}
 								>
 									{loading ? "Signing out" : "Sign Out"}

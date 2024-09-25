@@ -7,7 +7,7 @@ const Logo = ({
 	type = "large",
 	className,
 }: {
-	type?: "normal" | "small" | "large";
+	type?: "normal" | "small" | "large" | "small-normal";
 	className?: ClassValue;
 }) => {
 	return type === "normal" ? (
@@ -17,18 +17,17 @@ const Logo = ({
 				className
 			)}
 		>
-			Sat
 			<Image
-				className={cn("h-auto w-[30px]", className)}
+				className={cn("h-auto w-[34px]", className)}
 				src={SatSatAiLogo}
 				alt="logo"
 			/>
-			atAi
+			SatSat Ai
 		</div>
 	) : type === "small" ? (
 		<div
 			className={cn(
-				"bg-white hover:bg-white/10 transition rounded-full mx-5 w-10 h-10 p-1 ",
+				"bg-white hover:bg-white/10 transition rounded-full mx-5 w-9 h-auto shrink-0 aspect-square p-1 ",
 				className
 			)}
 		>
@@ -38,6 +37,12 @@ const Logo = ({
 				alt="logo"
 			/>
 		</div>
+	) : type === "small-normal" ? (
+		<Image
+			className={cn("h-auto w-9", className)}
+			src={SatSatAiLogo}
+			alt="logo"
+		/>
 	) : (
 		type === "large" && (
 			<div
@@ -46,15 +51,14 @@ const Logo = ({
 					className
 				)}
 			>
-				Sat
-				<div className={cn("bg-white rounded-full w-10 h-10 p-1 ", className)}>
+				<div className={cn("bg-white rounded-full w-8 h-8 p-1 ", className)}>
 					<Image
 						className={cn("h-full w-full", className)}
 						src={SatSatAiLogo}
 						alt="logo"
 					/>
 				</div>
-				atAi
+				SatSat Ai
 			</div>
 		)
 	);

@@ -150,7 +150,7 @@ const CategoryClientPage = () => {
 					</div>
 				</div>
 
-				<ul className="hidden lg:flex p-3 flex-1 hover:cursor-pointer h-full overflow-auto custom-scroll2 flex-col gap-2 text-white">
+				<ul className="hidden lg:flex p-3 flex-1 hover:cursor-pointer h-full overflow-auto [scrollbar-width:thin] flex-col gap-2 text-white">
 					{categoryLists.map((category, index) => {
 						return (
 							<li

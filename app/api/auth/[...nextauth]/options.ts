@@ -12,7 +12,7 @@ export const options: NextAuthOptions = {
 					password: string;
 				};
 
-				if (!process.env.NEXT_PUBLIC_WAITLIST_MODE) {
+				if (!!process.env.NEXT_PUBLIC_WAITLIST_MODE === false) {
 					try {
 						const response = await axios.post(
 							`${process.env.NEXT_PUBLIC_SATSATAI_MS_USER}/api/auth/login`,

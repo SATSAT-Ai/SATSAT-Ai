@@ -86,12 +86,12 @@ const EarlyAccessModal = () => {
 							className="w-full h-12 md:h-[70px]"
 							priority
 						/>
-						<p className="silver-text text-text-40 leading-normal text-center font-bold md:text-text-60 lg:text-[70px]">
+						<p className="[background:radial-gradient(70.71%_70.71%_at_50%_50%,#fff_30%,rgba(255,255,255,0.5)_84.77%)] !bg-clip-text text-transparent text-text-40 leading-normal text-center font-bold md:text-text-60 lg:text-[70px]">
 							Coming Soon
 						</p>
 					</div>
 					<div className="flex flex-col md:flex-row items-center gap-5 justify-center">
-						<p className="silver-text text-center md:text-left text-text-normal md:text-text-20 md:max-w-xs">
+						<p className="[background:radial-gradient(70.71%_70.71%_at_50%_50%,#fff_30%,rgba(255,255,255,0.5)_84.77%)] !bg-clip-text text-transparent text-center md:text-left text-text-normal md:text-text-20 md:max-w-xs">
 							SatSat-Ai is currently in beta. Join the waitlist to be one of the
 							first to have access.
 						</p>

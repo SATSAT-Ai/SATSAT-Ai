@@ -41,14 +41,14 @@ const Page = () => {
 								<li className=" flex items-center gap-3">
 									<BsFillCheckCircleFill
 										size={17}
-										className={`${"text-brand-green"} check`}
+										className={`${"text-brand-green"}`}
 									/>
 									Get a focused overview covering the essentials of SatSat Ai.
 								</li>
 								<li className=" flex items-center gap-3">
 									<BsFillCheckCircleFill
 										size={17}
-										className={`${"text-brand-green"} check`}
+										className={`${"text-brand-green"}`}
 									/>
 									Navigate pricing plans and the platform with our help and
 									experience its functionalities.
@@ -56,7 +56,7 @@ const Page = () => {
 								<li className=" flex items-center gap-3">
 									<BsFillCheckCircleFill
 										size={17}
-										className={`${"text-brand-green"} check`}
+										className={`${"text-brand-green"}`}
 									/>
 									Have an overview of how SatSat Ai can revolutionize your
 									financial analysis.

@@ -46,8 +46,8 @@ const SingleChat = ({
 	return (
 		<div
 			key={chat.id}
-			className={`flex relative items-center gap-0 px-2 hover:bg-white/10 ${
-				pathname.includes(chat.id) && "bg-white/10"
+			className={`flex relative items-center gap-0 px-2 hover:bg-brand-green/35 ${
+				pathname.includes(chat.id) && "bg-brand-green/35"
 			} rounded-xl`}
 		>
 			<Link

@@ -34,7 +34,7 @@ const Header = ({
 	const [scrolled, setScrolled] = useState(false);
 	const [loading, setLoading] = useState(false);
 	const pathname = usePathname();
-	const [showDropDown, setShowDropDown] = useState(true);
+	const [showDropDown, setShowDropDown] = useState(false);
 	const [dropDownType, setDropDownType] = useState<dropdown>("");
 
 	type linkType = "dropdown" | "link";
@@ -119,18 +119,9 @@ const Header = ({
 						{ "bg-none backdrop-blur-none": !scrolled },
 
 						{
-							" bg-brand-green/10 saturate-150": showDropDown,
+							"bg-brand-green-darker/30 saturate-150": showDropDown,
 						},
-						{
-							"bg-white/5 saturate-150": !showDropDown && scrolled,
-						},
-						{
-							"bg-brand-green-darker/70 saturate-150": scrolled && showDropDown,
-						},
-						{
-							"bg-brand-green-darker/70 saturate-150":
-								pathname == "/choose-your-pricing" && scrolled,
-						},
+
 						{
 							"bg-brand-green-darker/5 saturate-150": green,
 						},
@@ -139,16 +130,15 @@ const Header = ({
 				>
 					<div className={` my-max flex items-center justify-between w-full`}>
 						<Link href={"/"} data-test="SatSat-Ai-logo">
-							<div className="text-white text-text-20 min-[900px]:text-[30px] flex mx-auto w-full items-center gap-2 font-semibold justify-center">
-								Sat
-								<div className="bg-white rounded-full w-[30px] h-[30px] min-[900px]:w-[35px] min-[900px]:h-[35px] p-1">
+							<div className="text-white text-text-20 min-[900px]:text-[27px] flex mx-auto w-full items-center gap-2 font-semibold justify-center">
+								<div className="bg-white rounded-full w-[25px] h-[25px] min-[900px]:w-[30px] min-[900px]:h-[30px] p-1">
 									<Image
 										className={"h-full w-full"}
 										src={SatSatAiLogo}
 										alt="logo"
 									/>
 								</div>
-								atAi
+								SATSAT Ai
 							</div>
 						</Link>
 						<MdMenu
@@ -217,17 +207,11 @@ const Header = ({
 								/>
 							</div>
 						) : (
-							<ul className="hidden md:flex items-center gap-5">
+							<ul className="hidden text-white hover:text-mid--yellow md:flex items-center gap-5">
 								<li
-									className={cn(
-										{
-											"text-mid--yellow font-medium": pathname == "/signin",
-										},
-										{
-											"text-white hover:text-mid--yellow":
-												pathname !== "/signin",
-										}
-									)}
+									className={cn({
+										hidden: pathname == "/signin",
+									})}
 								>
 									<Link
 										className={cn(

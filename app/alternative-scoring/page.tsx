@@ -8,7 +8,7 @@ import SparklesText from "@/components/ui/SparklesText";
 import { GridCards } from "@/components/ui/GridCard";
 import OnscrollTextReveal from "@/components/ui/OnscrollTextReveal";
 import { featureProp } from "@/components/ui/GridCard";
-import { FileCog, Wrench } from "lucide-react";
+import { Wrench } from "lucide-react";
 import { BsInputCursorText } from "react-icons/bs";
 import GaugeCircle from "@/components/ui/GuageCirlce";
 import Meteors from "@/components/ui/Meteors";

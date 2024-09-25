@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { MdClose } from "react-icons/md";
+// import { MdClose } from "react-icons/md";
 import Link from "next/link";
 
 const TopBanner = () => {
@@ -34,7 +34,7 @@ const TopBanner = () => {
 	// };
 
 	return (
-		showBanner !== false && (
+		showBanner && (
 			<div className="text-white flex items-center gap-5 px-5 py-2 justify-between w-full text-center bg-darker">
 				<p className="flex-[11] font-medium text-text-14 sm:text-text-normal">
 					To Get Early Access To SatSat Ai, Please{" "}

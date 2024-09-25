@@ -1,17 +1,16 @@
 "use client";
 
-import { IUser, IdeFault } from "@/app/dashboard/(components)/ChatMain";
+import ChatInput, { IdeFault } from "@/app/dashboard/(components)/ChatInput";
+import { conversationType } from "@/app/dashboard/(components)/ChatMain";
 import ChatScrollToBottom from "@/app/dashboard/(components)/ChatScrollToBottom";
 import IncomingMessage from "@/app/dashboard/(components)/IncomingMessage";
 import OutgoingMessage from "@/app/dashboard/(components)/OutgoingMessage";
-import TelegramIcon from "@mui/icons-material/Telegram";
-import { useState, KeyboardEvent, useRef, useEffect } from "react";
+import { cn } from "@/lib/utils";
+import { useState, useRef, useEffect } from "react";
 import { useForm } from "react-hook-form";
 
 const PromptPage = () => {
-	const { register, watch, handleSubmit, reset, setFocus } =
-		useForm<IdeFault>();
-
+	const { watch, reset, setFocus } = useForm<IdeFault>();
 	const chatContainerRef = useRef<null | HTMLDivElement>(null);
 	const inputRef = useRef<null | HTMLDivElement>(null);
 	const [scrollToBottom, setScrollToBottom] = useState(false);
@@ -19,40 +18,7 @@ const PromptPage = () => {
 	const [isFirstChat, setIsFirstChat] = useState(false);
 	const [glow, setGlow] = useState(true);
 
-	const [conversations, setConversations] = useState<IUser[]>([
-		{
-			id: "skdjfksdjf",
-			message: "Can you show me my monthly spending trends?",
-			from: "User",
-		},
-
-		{
-			from: "Ai",
-			id: "lorcermk",
-			firstText: "Here is a demo response from SatSat AI.",
-
-			list: [
-				{ id: "lorem", msg: "January:GHS 1500" },
-				{ id: "lorem", msg: "February:GHS 1800" },
-				{ id: "lorem", msg: "March:GHS 1400" },
-			],
-			endingText: `Is there anything else you'd like to inquire about?`,
-		},
-
-		{
-			id: "skdjfkwer",
-			from: "User",
-			message: "What about my total income for the past quarter?",
-		},
-		{
-			from: "Ai",
-			id: "lorem",
-			firstText: "Here is a demo response from SatSat AI.",
-
-			list: [],
-			endingText: `Is there anything else you'd like to inquire about?`,
-		},
-	]);
+	const [conversations, setConversations] = useState<conversationType[]>([]);
 
 	const handleScrollToBottom = () => {
 		if (chatContainerRef?.current) {
@@ -88,44 +54,57 @@ const PromptPage = () => {
 		};
 	}, [conversations]);
 
-	const handleTextAreaResize = (e: any) => {
-		e.target.style.height = "auto";
-		e.target.style.height = `${e.target.scrollHeight}px`;
-	};
+	// const getRandomHumorResponse = () => {
+	// 	const humorResponses = [
+	// 		"Don't let the beta label fool you! SatSat AI is constantly learning and evolving. While we're still under development, we can already provide valuable insights and guidance to help you manage your finances more effectively.  Think of it as having your own personal financial guru in training!",
+	// 		"We understand the importance of financial security. That's why SatSat AI is built on a foundation of cutting-edge technology and data analysis. While we're still in beta, we're confident in our ability to empower you to make informed financial decisions.  Consider us your financial co-pilot, navigating the complexities of money with you!",
+	// 		"Shhh, it's a secret, but my financial knowledge is still under wraps! SatSat AI is in beta, so my responses might be a bit limited for now. But hey, think of it as a surprise gift – you never know what financial wisdom I might unlock next! (Just don't expect me to predict winning lottery numbers...yet!)",
+	// 		"I'm like a financial apprentice, eager to learn but still mastering the craft! SatSat AI is in beta, so my responses might be a bit restricted for now. But with your help and feedback, I'll become a financial guru in no time! (Maybe then I can help you decipher those mind-boggling bank statements!)",
+	// 		"Imagine a financial expert with a temporary case of laryngitis – that's kind of where I'm at! SatSat AI is in beta, so my responses might be shorter than usual. But fear not, I'm constantly learning and expanding my voice! (Just be patient, and who knows, maybe I'll even sing you a financial lullaby someday!)",
+	// 		"Don't let the beta label fool you! While my responses might be limited for now, SatSat AI is constantly learning and evolving. With your help, I'll become a powerful tool to help you manage your finances with confidence. (Think of it as having a financial mentor in training, eager to impress!)",
+	// 		"Even a baby can take its first steps! SatSat AI is in beta, so my responses might be a bit restricted at times. But just like a growing child, I'm constantly learning and expanding my abilities.  (Think of it as having a financial sidekick who's always getting smarter!)",
+	// 		"I'm like a library with a few missing books – still valuable, but not quite complete! SatSat AI is in beta, so my responses might be limited at times. But don't worry, with your help and feedback, I'll fill those knowledge gaps and become your one-stop financial resource! (Think of us as financial detectives, working together to unlock all the financial mysteries!)",
+	// 		"The future of finance is here, and you have a front-row seat! SatSat AI, though in beta, offers a glimpse into a world of personalized financial management. We're constantly learning and growing, and with your help, we'll become an indispensable tool for anyone looking to take control of their financial well-being.  Think of us as your financial fitness coach, still perfecting the workout plan, but ready to get you in financial shape!",
+	// 		"I'm still under development, so I can't answer everything. But hey, SatSat AI is about to move from beta, and with your help, we'll become your ultimate financial sidekick! (Think of it as having a financial trainee eager to impress!)",
+	// 		"As an AI language model, I can help you understand your finances better. SatSat AI might be in beta, but we're already analyzing data like a champ! (Just don't expect us to explain every economic theory in existence...yet!)",
+	// 		"My financial knowledge is like a delicious pizza - still in the oven, but the base is strong! SatSat AI is in beta, but we're constantly in beta and evolving to become your one-stop financial shop. (Maybe future versions can even recommend the best pizza toppings for your budget!)",
+	// 		"Financial security is our top priority. SatSat AI (currently in beta) leverages cutting-edge technology to analyze your finances and empower informed decisions.  (Consider us your financial co-pilot, navigating the complexities of money with you!)",
+	// 	];
 
-	const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
-		const WatchedUserMessage = watch("userMessage");
+	// 	const randomIndex = Math.floor(Math.random() * humorResponses.length);
+	// 	return humorResponses[randomIndex];
+	// };
 
-		if (e.key === "Enter" && !e.shiftKey) {
-			e.preventDefault();
-			if (!isFirstChat && WatchedUserMessage?.trim()) {
-				///clear default chats when user  initiate first conversation
-				setConversations([]);
-				setIsFirstChat(true);
-			}
-			//sendMessage
-			if (WatchedUserMessage?.trim()) {
-				setConversations((prev) => [
-					...prev,
-					{
-						id: WatchedUserMessage.slice(0, 10),
-						message: WatchedUserMessage?.trim(),
-						from: "User",
-					},
+	// const handleKeyDown = (e: KeyboardEvent<HTMLTextAreaElement>) => {
+	// 	const WatchedUserMessage = watch("userMessage");
 
-					{
-						from: "Ai",
-						id: "lore34m",
-						firstText: "Here is a demo response from SatSat AI.",
-						list: [],
-						endingText: `Is there anything else you'd like to inquire about?`,
-					},
-				]);
+	// 	if (e.key === "Enter" && !e.shiftKey) {
+	// 		e.preventDefault();
+	// 		if (!isFirstChat && WatchedUserMessage?.trim()) {
+	// 			///clear default chats when user  initiate first conversation
+	// 			setConversations([]);
+	// 			setIsFirstChat(true);
+	// 		}
+	// 		//sendMessage
+	// 		if (WatchedUserMessage?.trim()) {
+	// 			setConversations((prev) => [
+	// 				...prev,
+	// 				{
+	// 					from: "user",
+	// 					id: "sdf9",
+	// 					message: WatchedUserMessage,
+	// 				},
+	// 				{
+	// 					from: "ai",
+	// 					id: "df9",
+	// 					response: [getRandomHumorResponse()],
+	// 				},
+	// 			]);
 
-				reset();
-			}
-		}
-	};
+	// 			reset();
+	// 		}
+	// 	}
+	// };
 
 	useEffect(() => {
 		const glowInput = (event: MouseEvent) => {
@@ -143,167 +122,151 @@ const PromptPage = () => {
 		};
 	}, []);
 
-	const onSubmit = (data: IdeFault) => {
-		if (!isFirstChat && data.userMessage?.trim()) {
-			///clear default chats when user  initiate first conversation
-			setConversations([]);
-			setIsFirstChat(true);
-		}
+	// const onSubmit = (data: IdeFault) => {
+	// 	if (!isFirstChat && data.userMessage?.trim()) {
+	// 		///clear default chats when user  initiate first conversation
+	// 		setConversations([]);
+	// 		setIsFirstChat(true);
+	// 	}
 
-		if (data?.userMessage?.trim()) {
-			//sendMessage;
-			setConversations((prev) => [
-				...prev,
-				{
-					id: data.userMessage.slice(0, 10),
-					message: data.userMessage,
-					from: "User",
-				},
-				{
-					from: "Ai",
-					id: "lore34m",
-					firstText: "Here is a demo response from SatSat AI.",
-					list: [],
-					endingText: `Is there anything else you'd like to inquire about?`,
-				},
-			]);
-			setFocus("userMessage", { shouldSelect: true });
-			reset();
-		}
-	};
+	// 	if (data.userMessage.trim()) {
+	// 		//sendMessage;
+	// 		setConversations((prev) => [
+	// 			...prev,
+	// 			{
+	// 				from: "user",
+	// 				id: "sdf9",
+	// 				message: data.userMessage,
+	// 			},
+	// 			{
+	// 				from: "ai",
+	// 				id: "df9",
+	// 				response: [getRandomHumorResponse()],
+	// 			},
+	// 		]);
+	// 		setFocus("userMessage", { shouldSelect: true });
+	// 		reset();
+	// 	}
+	// };
 
 	return (
-		<div className="flex flex-col z-0 md:gap-0 p-3 sm:p-7 lg:flex-row text-white h-full lg:h-[800px] gap-7">
-			<div className="pb-5 lg:pb-0 lg:pr-5 flex-1">
-				<ul className="flex text-center items-center sm:text-left flex-col gap-5">
+		<div className="flex flex-col z-0 md:gap-0 p-3 w-full sm:p-7 rounded-3xl lg:flex-row text-white h-[500px] md:h-[700px]">
+			<div className="pb-5 lg:pb-0 lg:pr-5 hidden xl:flex flex-1">
+				<ul className="flex items-center text-left flex-col justify-between h-full">
 					<li>
-						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-text-24">
+						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-[30px] font-semibold">
 							Streamline your finances with smart chatbot analysis
 						</p>
-						<span className="text-text-14 sm:text-text-normal font-normal">
+						<span className="text-text-normal font-normal">
 							Managing your finances has never been this intuitive and
 							hassle-free. Our platform empowers you to effortlessly interact
-							with your financial data through our advanced AI chatbot. Simply
-							upload your financial statement, and within moments, gain access
-							to a wealth of insights and trends about your spending habits,
-							income sources, and more. No more crunching numbers or deciphering
-							complex spreadsheets. Our user-friendly chat interface puts all
-							the information you need at your fingertips.
+							with your financial data through our advanced Ai. Simply upload
+							your financial statement, and within moments, gain access to a
+							wealth of insights and trends about your spending habits, income
+							sources, and more. Our user-friendly chat interface puts all the
+							information you need at your fingertips.
 						</span>
 					</li>
 					<li>
-						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-text-24">
+						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-[30px] font-semibold">
 							Gain Valuable insights instantly
 						</p>
-						<span className="text-text-14 sm:text-text-normal font-normal">
+						<span className="text-text-normal font-normal">
 							With our financial statements analyzer, understanding your
 							financial health is a breeze. Want to know your monthly spending
 							trends? Curious about how much you spent on dining out last month?
 							Our chatbot has you covered. It provides concise and clear
 							summaries, ensuring you have a complete understanding of your
-							financial situation without the headache of navigating complicated
-							reports. Take control of your financial future with the insights
-							you need, precisely when you need them.
+							financial situation. Take control of your financial future with
+							the insights you need, precisely when you need them.
 						</span>
 					</li>
 					<li>
-						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-text-24">
+						<p className="mb-2 capitalize text-brand-green text-text-20 md:text-[30px] font-semibold">
 							Secure, Effortless, and Personalized
 						</p>
-						<span className="text-text-14 sm:text-text-normal font-normal">
-							Rest easy knowing your financial data is handled with the
-							utmost,security. Our platform employs industry-leading encryption
+						<span className="text-text-normal font-normal">
+							Rest easy knowing your financial data is handled with the utmost
+							security. Our platform employs industry-leading encryption
 							protocols to safeguard your sensitive information. Your data is
 							for your eyes only.
 						</span>
 					</li>
 				</ul>
 			</div>
-			<div className="flex flex-col gap-5 flex-1 w-full items-center">
+			<div className="flex flex-col gap-5 flex-1 w-full min-h-[450px] items-center">
 				<div
 					ref={chatContainerRef}
-					className=" text-white px-2 sm:px-5 w-full custom-scroll2 relative overflow-y-auto overflow-x-clip lg:overscroll-y-none h-[450px] md:h-full"
+					className=" text-white w-full h-full overflow-x-clip grow [scrollbar-width:thin] overflow-y-auto overscroll-y-auto"
 				>
 					<div
-						className={`bottom-0 ${
-							scrollToBottom ? "visible" : "invisible"
-						} sticky ml-3 top-[60%] md:top-[75%]`}
+						className={cn(
+							"sticky bottom-20 w-fit mx-auto z-40 top-[85%]",
+							{
+								flex: scrollToBottom,
+							},
+							{
+								hidden: !scrollToBottom || !conversations.length,
+							}
+						)}
 					>
 						<ChatScrollToBottom scrollToBottom={handleScrollToBottom} />
 					</div>
 
-					<ul className="w-full flex flex-col gap-5 h-[450px]">
-						{conversations.map((conversation: IUser) => {
-							if (conversation.from === "User") {
-								return (
-									<li key={conversation.id}>
-										<OutgoingMessage message={conversation} />
-									</li>
-								);
-							} else if (conversation.from === "Ai") {
-								return (
-									<li key={conversation.id}>
-										<IncomingMessage
-											key={conversation.id}
-											list={conversation.list!}
-											chatContainerRef={chatContainerRef}
-											conversations={conversations}
-											firstText={conversation.firstText as string}
-											endingText={conversation.endingText as string}
-											typeWrite={false}
-										/>
-									</li>
-								);
-							}
-						})}
-					</ul>
-				</div>
-				<form
-					onSubmit={handleSubmit(onSubmit)}
-					className="text-white p-0 w-full mx-2 mt-auto"
-				>
-					<div className="bg-[#071f07] rounded-lg max-w-3xl mx-auto">
-						<div
-							className={`before:opacity-0 before:z-[-1] after:z-[-1] after:absolute after:top-[-1px] after:left-[-1px] before:rounded-lg after:rounded-lg rounded-lg before:absolute before:top-[-1px] before:left-[-1px] bg-transparent relative bg-gradient-to-tr from-[#050e0b] to-[#000000] justify-between custom-block text-text-normal text-white font-medium flex items-center gap-2 ${
-								glow ? "glow4" : ""
-							}`}
-						>
+					<div className="flex flex-col h-full gap-5 max-w-4xl px-5 mx-auto">
+						{!conversations.length ? (
 							<div
-								ref={inputRef}
-								tabIndex={0}
-								className={`flex w-full mt-auto ${
-									glow ? "border-none" : " border-[1px]"
-								} border-white border items-center p-1 justify-between rounded-lg px-2 gap-5`}
+								className="h-full w-full grid place-content-center"
+								key={conversations.length}
 							>
-								<textarea
-									disabled={loading}
-									rows={1}
-									onInput={(e) => handleTextAreaResize(e)}
-									autoCorrect="true"
-									onKeyDown={(e) => (handleKeyDown(e), handleTextAreaResize(e))}
-									className="w-full focus:ring-transparent border-none outline-non text-text-normal scrollbar-hidden placeholder:text-white/70 placeholder:text-text-normal rounded-lg bg-brand-green h-auto bg-transparent"
-									placeholder="Chat SatSat AI..."
-									{...register("userMessage", {
-										required: false,
-									})}
-								/>
-								<button
-									type="submit"
-									aria-label="send message"
-									disabled={loading}
+								<svg
+									xmlns="http://www.w3.org/2000/svg"
+									viewBox="0 0 24 24"
+									className="w-28 md:w-36 h-auto mx-auto text-mid--yellow stroke-1 fill-mid--yellow"
 								>
-									<TelegramIcon
-										tabIndex={0}
-										fontSize="large"
-										className="active:scale-[1.02]"
-										color="inherit"
-										aria-hidden="false"
+									<path
+										strokeLinecap="round"
+										strokeLinejoin="round"
+										d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09zM18.259 8.715L18 9.75l-.259-1.035a3.375 3.375 0 00-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 002.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 002.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 00-2.456 2.456zM16.894 20.567L16.5 21.75l-.394-1.183a2.25 2.25 0 00-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 001.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 001.423 1.423l1.183.394-1.183.394a2.25 2.25 0 00-1.423 1.423z"
 									/>
-								</button>
+								</svg>
+								<p className="text-mid--yellow/40 font-semibold text-text-20 md:text-text-24">
+									Ask SatSat Ai Anything
+								</p>
 							</div>
-						</div>
+						) : (
+							conversations.map((conversation: conversationType) => {
+								if (conversation.from === "user") {
+									return (
+										<OutgoingMessage
+											key={conversation.id}
+											message={conversation}
+										/>
+									);
+								} else if (conversation.from === "ai") {
+									return (
+										<IncomingMessage
+											response={conversation}
+											key={conversation.id}
+											typeWrite={true}
+											chatContainerRef={chatContainerRef}
+										/>
+									);
+								}
+							})
+						)}
 					</div>
-				</form>
+				</div>
+
+				<ChatInput
+					loading={loading}
+					setConversations={setConversations}
+					glow={glow}
+					inputRef={inputRef}
+					showDefaultGlow={true}
+					autoFocus={false}
+					className="w-full"
+				/>
 			</div>
 		</div>
 	);

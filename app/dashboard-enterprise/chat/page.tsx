@@ -1,6 +1,6 @@
 import React from "react";
 import ChatSidebarEnterprise from "../(components)/ChatSidebarEnterprise";
-import ChatSidebar from "@/app/dashboard/(components)/ChatSidebar";
+// import ChatSidebar from "@/app/dashboard/(components)/ChatSidebar";
 
 const page = () => {
 	return (

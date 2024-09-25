@@ -5,12 +5,13 @@ import { TextGenerateEffect } from "./TextGenerateEffect";
 import { ClassValue } from "clsx";
 
 interface smoothEffectProps {
-	text: string | string[];
+	text: string[];
 	delay?: number;
 	duration?: number;
 	className?: ClassValue;
 	timeoutDuration?: number;
 	showCaret?: boolean;
+	flip?: boolean;
 }
 
 const SmoothTextEffect = ({
@@ -20,6 +21,7 @@ const SmoothTextEffect = ({
 	duration,
 	timeoutDuration = 6000,
 	className,
+	flip,
 }: smoothEffectProps): JSX.Element => {
 	const [currentWordIndex, setCurrentWordIndex] = useState(0);
 	const [words, setWords] = useState("");

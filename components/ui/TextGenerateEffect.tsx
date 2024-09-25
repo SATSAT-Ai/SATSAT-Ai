@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, stagger, useAnimate } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { ClassValue } from "clsx";
+import { Flip } from "./FlipWord";
 
 interface effectProps {
 	words: string;
@@ -75,4 +76,20 @@ export const TextGenerateEffect = ({
 	};
 
 	return renderWords();
+};
+
+export const FlipWordTypeWriter = ({
+	textArray,
+	className,
+}: {
+	textArray?: string[];
+	className?: ClassValue;
+}) => {
+	return (
+		<Flip
+			className={cn("text-text-normal text-mid--yellow", className)}
+			words={textArray!}
+			duration={5500}
+		/>
+	);
 };

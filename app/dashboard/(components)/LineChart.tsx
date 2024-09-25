@@ -13,9 +13,8 @@ import {
 import { Line } from "react-chartjs-2";
 import { DateRange } from "react-day-picker";
 import { DatePickerWithRange } from "./DateRangePicker";
-import { Dispatch, SetStateAction, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { generateMixedCharData } from "@/helpers/generateMixedChartData";
-import { useEffect } from "react";
 interface ILine {
 	parsedTimeStamps: Date[];
 	date: DateRange | undefined;
@@ -81,7 +80,7 @@ const LineChart = ({
 	]);
 
 	return (
-		<div className="bg-brand-green/10 rounded-2xl p-5 my-7">
+		<div className="bg-brand-green/10 rounded-2xl p-5 my-5">
 			<div className=" hidden md:flex w-fit ml-auto">
 				<DatePickerWithRange
 					date={transactionDateRange}
@@ -203,3 +202,176 @@ const LineChart = ({
 };
 
 export default LineChart;
+
+// import Link from "next/link";
+// import dynamic from "next/dynamic";
+// import { ApexOptions } from "apexcharts";
+// const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
+
+// interface optionsProps extends ApexOptions {
+// 	toolbar: {
+// 		show: boolean;
+// 		tools: {
+// 			download: boolean;
+// 			selection: boolean;
+// 			zoom: boolean;
+// 			zoomin: boolean;
+// 			zoomout: boolean;
+// 			pan: boolean;
+// 			reset: boolean;
+// 		};
+// 	};
+// }
+// const ChartBox = ({
+// 	date: transactionDateRange,
+// 	setDate,
+// 	parsedTimeStamps,
+// 	dateRangeWithValue,
+// }: ILine) => {
+// 	const [labels, setLabels] = useState<string[]>([]);
+// 	const [values, setValues] = useState<number[]>([]);
+
+// 	useEffect(() => {
+// 		const labels = generateMixedCharData(
+// 			transactionDateRange?.from!,
+// 			transactionDateRange?.to!,
+// 			dateRangeWithValue
+// 		)
+// 			? Object?.keys(
+// 					generateMixedCharData(
+// 						transactionDateRange?.from!,
+// 						transactionDateRange?.to!,
+// 						dateRangeWithValue
+// 					)!
+// 			  )
+// 			: [];
+// 		const values = generateMixedCharData(
+// 			transactionDateRange?.from!,
+// 			transactionDateRange?.to!,
+// 			dateRangeWithValue
+// 		)
+// 			? Object?.values(
+// 					generateMixedCharData(
+// 						transactionDateRange?.from!,
+// 						transactionDateRange?.to!,
+// 						dateRangeWithValue
+// 					)!
+// 			  )
+// 			: [];
+
+// 		setValues(values);
+// 		setLabels(labels);
+// 	}, [
+// 		dateRangeWithValue,
+// 		transactionDateRange?.from,
+// 		transactionDateRange?.to,
+// 	]);
+// 	const options: optionsProps = {
+// 		theme: {
+// 			mode: "dark",
+// 		},
+// 		chart: {
+// 			animations: {
+// 				enabled: true,
+// 				easing: "easeinout",
+// 				speed: 1200,
+// 				animateGradually: {
+// 					enabled: true,
+// 					delay: 250,
+// 				},
+// 				dynamicAnimation: {
+// 					enabled: true,
+// 					speed: 100,
+// 				},
+// 			},
+// 		},
+// 		toolbar: {
+// 			show: false,
+// 			tools: {
+// 				download: true,
+// 				selection: true,
+// 				zoom: true,
+// 				zoomin: true,
+// 				zoomout: true,
+// 				pan: true,
+// 				reset: true,
+// 			},
+// 		},
+
+// 		tooltip: {
+// 			enabled: true,
+// 			x: {
+// 				show: true,
+// 			},
+// 		},
+// 		fill: {
+// 			type: "gradient",
+// 			gradient: {
+// 				opacityFrom: 0.55,
+// 				opacityTo: 0,
+// 				shade: "#1C64F2",
+// 				gradientToColors: ["#1C64F2"],
+// 			},
+// 		},
+// 		dataLabels: {
+// 			enabled: false,
+// 		},
+// 		stroke: {
+// 			width: 6,
+// 		},
+// 		grid: {
+// 			show: false,
+// 			strokeDashArray: 4,
+// 			padding: {
+// 				left: 2,
+// 				right: 2,
+// 				top: 0,
+// 			},
+// 		},
+// 		series: [
+// 			{
+// 				name: "client lorem",
+// 				data: values,
+// 				color: "#29a173",
+// 			},
+// 		],
+// 		xaxis: {
+// 			categories: labels,
+// 			labels: {
+// 				show: true,
+// 			},
+// 			axisBorder: {
+// 				show: true,
+// 			},
+// 			axisTicks: {
+// 				show: true,
+// 			},
+// 		},
+// 		yaxis: {
+// 			show: true,
+// 		},
+// 	};
+
+// 	return (
+// 		<div className="bg-brand-green/10 rounded-2xl p-5 my-5">
+// 			<div className=" hidden md:flex w-fit ml-auto">
+// 				<DatePickerWithRange
+// 					date={transactionDateRange}
+// 					setDate={setDate}
+// 					parsedTimeStamps={parsedTimeStamps}
+// 				/>
+// 			</div>
+// 			<div className="relative h-80">
+// 				<Chart
+// 					options={options}
+// 					series={options.series}
+// 					type="area"
+// 					width={"100%"}
+// 					height={"100%"}
+// 				/>
+// 			</div>
+// 		</div>
+// 	);
+// };
+
+// export default ChartBox;
