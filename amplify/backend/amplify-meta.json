@@ -1,22 +1,15 @@
 {
   "providers": {
     "awscloudformation": {
-      "AuthRoleName": "amplify-satsataifrontend-staging-faffe-authRole",
-      "UnauthRoleArn": "arn:aws:iam::851725493064:role/amplify-satsataifrontend-staging-faffe-unauthRole",
-      "AuthRoleArn": "arn:aws:iam::851725493064:role/amplify-satsataifrontend-staging-faffe-authRole",
-      "Region": "eu-north-1",
-      "DeploymentBucketName": "amplify-satsataifrontend-staging-faffe-deployment",
-      "UnauthRoleName": "amplify-satsataifrontend-staging-faffe-unauthRole",
-      "StackName": "amplify-satsataifrontend-staging-faffe",
-      "StackId": "arn:aws:cloudformation:eu-north-1:851725493064:stack/amplify-satsataifrontend-staging-faffe/9289bb10-11d9-11ef-b68e-0a5e4dd4fddb",
-      "AmplifyAppId": "d1b67tlq4kz7wq"
-    }
-  },
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
-      "type": "cicd",
-      "lastPushTimeStamp": "2024-05-14T10:21:11.188Z"
+      "AuthRoleName": "amplify-satsatai-dev-cff47-authRole",
+      "UnauthRoleArn": "arn:aws:iam::396913713089:role/amplify-satsatai-dev-cff47-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::396913713089:role/amplify-satsatai-dev-cff47-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-satsatai-dev-cff47-deployment",
+      "UnauthRoleName": "amplify-satsatai-dev-cff47-unauthRole",
+      "StackName": "amplify-satsatai-dev-cff47",
+      "StackId": "arn:aws:cloudformation:us-east-1:396913713089:stack/amplify-satsatai-dev-cff47/0dfa1b80-7b36-11ef-b7c3-0affc0b5faa9",
+      "AmplifyAppId": "d3igstvc88jzne"
     }
   }
 }
