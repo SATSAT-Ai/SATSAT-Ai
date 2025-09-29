@@ -27,7 +27,9 @@ const signUpSchema = z.object({
 		.string()
 		.min(5, { message: "fullName must be at least 5 character(s)" })
 		.max(40),
+
 	email: z.string().email(),
+
 	phone: z
 		.string()
 		.min(10, { message: "invalid phone number" })
