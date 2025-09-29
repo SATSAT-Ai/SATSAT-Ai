@@ -18,7 +18,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 const emailSchema = z.object({
-	email: z.string().email(),
+	email: z.string().email().default("demo@gmail.com"),
 });
 
 export type FormValues = z.infer<typeof emailSchema>;
@@ -34,6 +34,9 @@ const SignInForm = () => {
 		setError,
 	} = useForm<FormValues>({
 		resolver: zodResolver(emailSchema),
+		defaultValues: {
+			email: "demo@gmail.com",
+		},
 	});
 
 	const [loading, setLoading] = useState(false);
