@@ -20,6 +20,9 @@
 		],
 		"debug": true
 	},
+	"engines": {
+		"node": "22.x"
+	},
 	"dependencies": {
 		"@emotion/react": "^11.13.0",
 		"@emotion/styled": "^11.13.0",
